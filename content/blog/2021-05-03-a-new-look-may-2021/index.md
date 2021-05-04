@@ -105,3 +105,78 @@ As discussed above, I was particularly attracted to the place Apéro would
 provide for non-blog content. I have more to learn about how to take 
 advantage of those features. What I have done so far with the Project and
 Collections menus is just a first attempt at exploring what's possible.
+
+#### What Have I Learned While Updating
+
+1) The `magick` package (based on the ImageMagick library)
+is more useful than I realized. I used it to resize a photo
+as raw material to make an iconset. I also used it to concatenate
+the two law school photos displayed above and resize them so that they
+were both exactky the same width:
+
+```r
+#  Using magick package to append two photos: 
+image1 <- magick::image_read("IMG_6832.PNG")     
+    image1_width <- magick::image_info(image1)$width    
+    image2 <- magick::image_read("IMG_6833.PNG")    
+    image2_width <- magick::image_info(image2)$width    
+    if (image2_width > image1_width){    
+      image1 <- magick::image_scale(image1, paste0(image2_width, "x"))    
+    } else if (image2_width < image1_width) {    
+      image2 <- magick::image_scale(image2, paste0(image1_width, "x"))    
+    }     
+xx <- magick::image_append(c(image2, image1), stack = TRUE)  
+# and then use magick::image_write to export xx 
+```
+
+2) I should think about PNG images a bit more. To use them as
+featured images for my posts here, I need to size them correctly.
+Using the Preview app on MacOS, I ended up sizing them as
+400 pixels high at 144 pixels per inch (after initially
+doing 200 pixels high at 72 pixels per inch). I kept an eye
+on the resulting file sizes trying to avoid too much clutter.
+I'll have to see how well this does. Maybe I should use higher
+pixel density, which might make a difference on fancy screens.
+Maybe in the future I'll use magick to resize images rather than Preview.
+
+3) My life will be easier if I buckle down and learn how to use Git. I made
+some progress working on this, but I've got a ways to go. 
+And at the end of this project I've got bits and bytes lying 
+around on the floor so I need to go back and do a bit of clean up.
+
+4) Maybe I need to break down and learn a bit more about CSS.
+As someone who pre-dates the internet, let alone pre-dates CSS,
+I've been reluctant to expose myself to the details of CSS. I did
+a tiny amount to adjust some Xarigan slides I did last month,
+but maybe I should do a bit more to help with my web site. I'm
+always feel like the font sizes of default markdown headers are
+too large. Maybe I could come up with some CSS that I could use
+repeatedly here and elsewhere.
+
+5) I should give some more thought to markdown versus RMarkdown
+for blog posts, or rather .md versus .Rmd versus .Rmarkdown. The
+advantage of using .Rmd and RMarkdown to create my content is
+that I can dive right in with less housekeeping. The 
+disadvantage is that an .Rmd post is more fragile. If
+something changes, there may be a problem if it has to
+be re-knitted. I had to re-knit all my posts and there was
+only one that gave me trouble. In a census post, I was
+using a list of census variable names downloaded from the
+census by `tidycensus`. I had used the fixed position of
+variables in that list, and it turned out the number of
+variables had changed slightly. So I had to go back to 
+figure out exactly which variables I needed. It wasn't
+too difficult to fix the code and re-knit, but one can easily imagine a situation where
+the file I'm depending on no longer exists. Then I would be
+stuck. All the issues that come up when people
+worry about reproduceable code apply, such as
+changes in package versions or change in any
+resource that the code relies on.
+The solution is to use RMarkdown to create a
+markdown product and then use that markdown file
+as the blog post. If I had a blog with a larger audience
+and greater visibility the pressure to have posts that
+will endure over time would probably push me to 
+use markdown rather than Rmd. Given my situation where I can be
+a bit more casual, relying on .Rmd seems like the easy
+way to go. But I should think about this more for the future.
