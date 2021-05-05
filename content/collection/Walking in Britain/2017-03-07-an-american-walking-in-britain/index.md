@@ -1,4 +1,6 @@
 ---
+title: Why Walking in Britain
+subtitle: There are a vaiety of ways to have a walking holiday in Britain.
 slug: "am-walker-1"
 aliases:
     - /2017/03/am_walker_1/
@@ -10,8 +12,6 @@ publishDate: '2017-03-07'
 show_author_byline: false
 show_post_date: false
 show_post_thumbnail: true
-subtitle: There are a vaiety of ways to have a walking holiday in Britain.
-title: Why Walking in Britain
 
 weight: 2
 ---
