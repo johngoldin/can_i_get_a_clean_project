@@ -83,7 +83,7 @@ menu:
   footer:
     - name: License
       title: License
-      url: /license/
+      url: /license/ 
       weight: 1
     - name: Contact
       title: Contact form
