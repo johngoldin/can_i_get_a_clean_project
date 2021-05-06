@@ -1,9 +1,10 @@
 ---
 title: An American Walking in Britain Part 3
-slug: "am-walker-1"
+subtitle: Planning an Itinerary
+slug: "am-walker-3"
 aliases:
     - /2017/03/am_walker_3/
-excerpt: 'Tips on country walking in Britain from the point of view of an American. The second of three parts.'
+excerpt: 'Tips on how to plan a multi-day itineary with some advice on how to arrange for accommodations.'
 categories:
   - British Walking
 layout: single-series
@@ -11,7 +12,6 @@ publishDate: '2017-03-15'
 show_author_byline: false
 show_post_date: false
 show_post_thumbnail: true
-subtitle: 
 weight: 34
 ---
 

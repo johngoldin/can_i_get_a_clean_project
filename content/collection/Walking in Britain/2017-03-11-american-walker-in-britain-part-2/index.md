@@ -1,9 +1,10 @@
 ---
 title: An American Walking in Britain Part 2
-slug: "am-walker-1"
+subtitle: Choosing a Path
+slug: "am-walker-2"
 aliases:
     - /2017/03/am_walker_2/
-excerpt: 'Tips on country walking in Britain from the point of view of an American. The second of three parts.'
+excerpt: 'A description of some of the popular multi-day walks in Britain.'
 categories:
   - British Walking
 layout: single-series
@@ -11,7 +12,6 @@ publishDate: '2017-03-11'
 show_author_byline: false
 show_post_date: false
 show_post_thumbnail: true
-subtitle: 
 weight: 3
 ---
 

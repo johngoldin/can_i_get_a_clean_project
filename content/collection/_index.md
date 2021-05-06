@@ -1,6 +1,6 @@
 ---
 description: "Where does this information show?"
-layout: list-sidebar
+layout: list-sidebar # list, list-sidebar
 show_author_byline: false
 show_post_date: false
 show_post_thumbnail: true
