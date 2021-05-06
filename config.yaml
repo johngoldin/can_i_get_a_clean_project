@@ -51,7 +51,7 @@ params:
   navallcaps: yes
   orgLocal: "Guilford, CT  USA"
   orgName: "John Goldin"
-  sharing_image: /img/papillons.jpg
+  sharing_image: /img/for_site/UR_a_joke.png
   social:
     - icon: github
       icon_pack: fab
