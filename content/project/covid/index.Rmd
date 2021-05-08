@@ -67,7 +67,7 @@ library(janitor)
 library(fuzzyjoin) # for interval_left_join
 library(broom) 
 library(RSocrata)
-library(RcppRoll) 
+library(RcppRoll)
 library(gt) 
 library(formattable) 
 # note that both scales and formattable have a comma function and they take different parameters
@@ -117,8 +117,11 @@ covid_estim <- read_csv("https://covidestim.s3.us-east-2.amazonaws.com/latest/st
 #   ungroup() 
 ```
 
-I have been publishing this in a blog post from June 2020. Each weekday I would update that post with the data from Connecticut state sources.
-The blog format never made sense for doing a frequent update of that type of data. I plan to move it to this item in *Projects*. The original post remains. I plan to redirect the old URL for that blog post so that it leads to this project page.
+I started publishing this in as a blog post in June 2020. 
+Each weekday I would update that post with the data from Connecticut state sources.
+The blog format never made sense for doing a frequent update of that type of data. I have moved the daily charts into *Projects*. 
+The original post remains. 
+I plan to redirect the old URL for that blog post so that it leads to this project page.
 
 ## Latest Connecticut Data from the Department of Public Health
 
@@ -247,26 +250,10 @@ box_score %>%
 
 ```
 
-There is a new [data tracker
+There is a Connecticut [data tracker
 map](https://portal.ct.gov/Coronavirus/COVID-19-Data-Tracker) that
 displays the rate of cases in the last two weeks by town. It is
 color-coded to indicate where cases are most prevalent.
-
-[My post on Covid-19 back in
-March](https://www.johngoldin.com/2020/03/covid-19-cases-in-connecticut/)
-tracked the growth of the epidemic as it hit Connecticut. Back at the
-end of March I did not realize that the greater New York area (including
-Connecticut) would be the center of the first wave in the US. At that
-time what I was reading focused on the nature of exponential growth of
-an epidemic. We were urged to "flatten the curve" and that shaped the
-way I presented the data in that post. I have been updating the figures
-in that post each evening. During that time the [Connecticut data
-portal](https://data.ct.gov/stories/s/COVID-19-data/wa3g-tfvc/) has
-expanded considerably, and I've built [some R
-code](https://github.com/johngoldin/ctcorona/blob/master/R/daily_ct_stats.R)
-that let's me easily update that post. I'll use the same data
-infrastructure for this post as well. This post is more oriented toward
-tracking the current status of the epidemic in Connecticut.
 
 ```{r 'new-cases-plot', echo = FALSE, eval = TRUE}
 ## This imaged will be saved in the /post/*_files/ directory 
@@ -417,8 +404,7 @@ p_states_map <- ggplot(data = cdc_covid %>%
   facet_geo(~ state)
 ```
 
-This post focuses on what is happening currently. The aim is to use the
-recent trend to get some idea of the near future. The first plot will
+The first plot will
 show the average number of new cases reported each day along with a line
 that displays the rolling seven-day average. Typically there are
 day-of-the-week effects in the reporting so it's best to focus on the
@@ -457,8 +443,7 @@ print(p_daily_deaths)
 print(p_hospitalizations)
 ```
 
-<br/> The number of new cases peaked in mid April and then began to
-decrease rapidly, although not as rapidly as it increased. A key issue
+<br/> TA key issue
 is how fast epidemic is expanding or contracting. One indicator of that
 is to estimate the parameter R<sub>t</sub>, the average number of people
 who become infected by an infectious person. When R<sub>t</sub> is
@@ -472,9 +457,7 @@ of the calculation of R at the [covidestim](https://covidestim.org) site, but it
 seems to jive with other information about the pattern of the epidemic
 among states.
 
-As of June (and a month previous), Connecticut, New York, and New Jersey
-have among the lowest values for R<sub>t</sub> in the country. This is
-good news for us in Connecticut. I have included R<sub>t</sub> for
+I have included R<sub>t</sub> for
 Arizona as well as Connecticut to provide a contrast with a state that
 has lately shown [signs of a growing
 outbreak](https://www.fox10phoenix.com/news/arizona-medical-experts-alarmed-over-surge-in-covid-19-cases).
@@ -578,107 +561,8 @@ data to say anything firm about this
 
 ## Nursing Homes
 
-```{r nursing-homes, echo = FALSE}
-nursing_home_totals <- dph_nursing_cases %>% filter(date == max(date)) %>%
-  summarise(cases = sum(nh_cases, na.rm = TRUE), deaths = sum(nh_deaths, na.rm = TRUE))
-```
-
-Nursing homes have been hard hit by the epidemic. It's hard to control
-coronavirus outbreak in a group living situation, which includes prisons
-and cruises ship. On top of that, Covid-19 is especially serious for the
-elderly. The combination in nursing homes has been deadly. There have
-been `r scales::comma(nursing_home_totals$deaths)` deaths in Connecticut
-Nursing Homes which makes
-`r paste0(round((nursing_home_totals$deaths/dph_total$deaths[dph_total$date == max(dph_total$date)]) * 100, 1), "%")`
-of the total of
-`r scales::comma(dph_total$deaths[dph_total$date == max(dph_total$date)])`
-deaths from Covid-19.
-
-```{r prisons, echo = FALSE}
-# see wikipedia entry: https://en.wikipedia.org/wiki/List_of_Connecticut_state_prisons
-# Locations in Connecticut
-# Bridgeport Correctional Center (inmate population 712)
-# Brooklyn Correctional Institution (inmate population 454) Brooklyn
-# Cheshire Correctional Institution (inmate population 1322)
-# Corrigan-Radgowski Correctional Center (inmate population 760) Montville
-# Garner Correctional Institution (inmate population 584) Newtown
-# Hartford Correctional Center (inmate population 933)
-# MacDougall-Walker Correctional Institution (inmate population 1522) Suffield
-# Manson Youth Institution (inmate population 322) Cheshire
-# New Haven Correctional Center (inmate population 718)
-# Northern Correctional Institution (inmate population 135) Somers
-# Osborn Correctional Institution (inmate population 1322)  Somers
-# Robinson Correctional Institution (inmate population 1449) Enfield
-# Willard-Cybulski Correctional Institution (inmate population 1142) Enfield
-# York Correctional Institution (inmate population 898) Niantic (women) 
-```
-
-## Prisons
-
-Prisons even more than nursing homes create a situation where it is hard
-to limit exposure among individuals living together. We have less
-information about prisons than about nursing homes. The Department of
-Corrections (DOC) posts some statistics on [total Covid19 rates among
-prisoners and
-staff](https://data.ct.gov/Public-Safety/COVID-19-in-Correctional-Facilities/6t8i-du3u)
-via the state open data site and some limited information of [rates by
-individual
-facility](https://portal.ct.gov/DOC/Common-Elements/Common-Elements/Health-Information-and-Advisories)
-on their web site, but the data are not as detailed or as accessible as
-the data on nursing homes.
-
-As of `r format(max(doc_covid$date, na.rm = TRUE), "%m/%d/%Y")`,
-`r scales::comma(max(doc_covid$inmates_positive, na.rm = TRUE))` inmates
-have tested positive for Covid-19. At the peak of the epidemic,
-`r scales::comma(max(doc_covid$northern_med, na.rm = TRUE))` inmates
-were isolated at the Northern Correctional Institution medical facility.
-The most recent report is that
-`r scales::comma(doc_covid$inmate_deaths[doc_covid$date == max(doc_covid$date)])`
-died, and currently
-`r scales::comma(doc_covid$northern_med[doc_covid$date == max(doc_covid$date)])`
-Covid-19 inmates remain in that medical facility.
-
-Unlike nursing homes, the number of deaths from Covid-19 in prisons is
-relatively low. Presumably that is because the prison population has
-many fewer elderly people who are especially vulnerable to the effects
-of Covid-19.
-
-In addition to prisoners, the Department of Corrections reports that
-`r scales::comma(max(doc_covid$staff_positive, na.rm = TRUE))` staff
-have tested positive for Covid-19, of whom
-`r scales::comma(max(doc_covid$staff_returned, na.rm = TRUE))` have been
-cleared to return to work.
-
-One cannot easily relate the number of cases reported by the Department
-of Corrections to the town by town counts reported by the Department of
-Public Health. It's clear that for small rural towns the prison cases
-may swamp the community counts in those towns. For example, in the town
-of Brooklyn in Windham County (population about 8,200) the DPH town
-stats between June 17 and June 18 showed the number of cases jumped from
-24 to 116. That's the home of the Brooklyn Correctional Institution and
-I have to believe that site dominated those numbers and that the process
-by which the Department of Corrections reported test results to the
-Department of Public Health affected the magnitude of the one-day jump.
-
-In effect there is a separate epidemic occurring inside the prison
-system and the pace of that epidemic does not necessarily correspond to
-trends in the wider community. For the purposes of tracking Covid-19 in
-the population of Connecticut generally, in some cases I will exclude
-some of the small rural towns with prisons such as Somers, Montville,
-and Brooklyn. But it's not practical for me to segregate the effect of
-prisons on counts for larger towns such as New Haven, Cheshire,
-Hartford, and others. As of 6/16/2020, the DOC reported a cumulative
-total of 117 cases among prisoners in Bridgeport, 125 in New Haven, 94
-in Hartford, and 21 in Cheshire. Enfield is a tricky case. There are two
-DOC facilities in Enfield and as of 6/16/2020 DOC reported 265 cases
-there. Enfield has a population of about 44,000, but the prison cases
-may have a significant effect on the picture of Covid-19 in Enfield.
-Similar to Brooklyn, one can see likely effects in the reports. On
-6/10/20 DPH reported a total of 447 Covid-19 cases in Enfield and the
-next day on 6/11/2020 they reported 546, and increase of 22% in one day.
-That's highly likely to be an effect of how cases were reported from the
-DOC facilities in Enfield and how those reports reached the Department
-of Public Health.
+I discussed nursing homes and prisons in the post last June. I have
+not been updating that data since the summer.
 
 ## Variations by County in Connecticut
 
@@ -982,49 +866,14 @@ towns within that county.
 
 |                                                                                                               |                                                                                                             |                                                                                                             |                                                                                                               |
 |---------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| [Litchfield County](/post/2020-06-22-tracking-covid-19-in-connecticut/index.en_files/litchfield_summary.html) | [Hartford County](/post/2020-06-22-tracking-covid-19-in-connecticut/index.en_files/hartford_summary.html)   | [Tolland County](/post/2020-06-22-tracking-covid-19-in-connecticut/index.en_files/tolland_summary.html)     | [Windham County](/post/2020-06-22-tracking-covid-19-in-connecticut/index.en_files/windham_summary.html)       |
-| [Fairfield County](/post/2020-06-22-tracking-covid-19-in-connecticut/index.en_files/fairfield_summary.html)   | [New Haven County](/post/2020-06-22-tracking-covid-19-in-connecticut/index.en_files/new_haven_summary.html) | [Middlesex County](/post/2020-06-22-tracking-covid-19-in-connecticut/index.en_files/middlesex_summary.html) | [New London County](/post/2020-06-22-tracking-covid-19-in-connecticut/index.en_files/new_london_summary.html) |
+| [Litchfield County](/project/covid-19-in-connecticut-2/index_files/county_html/litchfield_summary.html) | [Hartford County](/project/covid-19-in-connecticut-2/index_files/county_html/hartford_summary.html)   | [Tolland County](/project/covid-19-in-connecticut-2/index_files/county_html/tolland_summary.html)     | [Windham County](/project/covid-19-in-connecticut-2/index_files/county_html/windham_summary.html)       |
+| [Fairfield County](/project/covid-19-in-connecticut-2/index_files/county_html/fairfield_summary.html)   | [New Haven County](/project/covid-19-in-connecticut-2/index_files/county_html/new_haven_summary.html) | [Middlesex County](/project/covid-19-in-connecticut-2/index_files/county_html/middlesex_summary.html) | [New London County](/project/covid-19-in-connecticut-2/index_files/county_html/new_london_summary.html) |
 
 <br/>
 
 ------------------------------------------------------------------------
 
 <br/>
-
-## Where Do Things Stand Today?
-
-As I write this on July 4, Connecticut seems to be in relatively good
-shape. [Covid ActNow](https://covidactnow.org/?s=61890) shows it as one
-of only three states "on track to contain COVID" along with
-Massachusetts and Vermont.\
-It won't be easy to sustain that situation. Some of our fellow
-northeastern states have also done well but are struggling to maintain
-their success.
-
-I started burrowing into the Covid-19 data back in March in part because
-I'm a 70 year old male who therefore is at high risk (and because I love
-to work in R and I'm always looking for an excuse). The situation in
-Connecticut looks and feels very different than it did in March-April.
-One amazing feature of this epidemic is how differently it affects
-subsets of the population. As a financially comfortable semi-retiree, it
-was quite easy for me to hide from the virus by hiding from people in
-general. Many, many people were not so fortunate. If you can get out of
-the way of the virus, you do it. But if economic circumstances force you
-to work face to face or if you are confined to a group living situation
-or if where you live forces you to mingle with multiple generations and
-multiple networks of interactions, it is much harder to avoid the virus.
-I'm equally shocked by how the economic effects hit individuals in
-dramatically different ways. For someone in my circumstances there is
-almost no effect. Meanwhile many people face economic ruin that will
-affect them for the rest of their lives. The virus and its effects
-cannot be contained by uncoordinated individual efforts. It takes
-collective will and collective action. Many individuals are coping, but
-collectively we are failing.
-
-It is tragic watching the virus explode in the south and southwest. New
-York and others showed that you can get it back under control, but it
-took a maximum concerted effort. There is no sign that going to happen
-in many parts of the country. <br/>
 
 ## Links to Sources
 
