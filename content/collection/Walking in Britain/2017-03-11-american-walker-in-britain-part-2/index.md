@@ -38,15 +38,16 @@ to do five stages:
     Perranporth to Portreath    
     Portreath to St. Ives    
     
-<img style="float: right;" src="/img/swcp2.png">
 In terms of accommodations there's not much in Treyarnon besides the Youth Hostel (which looked very nice to me, at least from the outside).
-One might get something in Porthcothan, a bit beyond Trearnon.
+One might get something in Porthcothan, a bit beyond Treyarnon.
 The route out of Padstow is around a peninsula called Trevose Head.
 Padstow isn't very far from Treyarnon because the direct
 route cuts across the base of a peninsula.
+<img style="float: right;" src="/img/swcp2.png">
 It would be practical to take a bus or taxi out of Padstow to
 Porthcothan and then walk back to Padstow. For the second day,
 take the bus back out of Padstow to Porthcothan and then resume the walk.
+(I used the bus from Padstow to Porthcothan on a later visit to Padstow.)
 
 I did this itinerary back in 2007. It's a nice walk, and I think it's quite
 popular. Both St. Ives and Padstow are substantial towns that attract a 
@@ -58,10 +59,10 @@ of my trips to Padstow I stayed at the London Inn and dined on pub food. I didn'
 
 If you are a fan of the British TV show Doc Martin then by all means start
 your trip in Port Isaac, a day to the east of Padstow and the real-life
+<img style="float: right;" src="/img/swcp_map_sign.png">
 location for the fictional village of [Portwenn](http://www.radiotimes.com/news/2017-02-27/where-is-doc-martin-filmed-martin-clunes-guide-to-port-isaac).
 Port Isaac is even more quaint and charming in person than it appears in the TV show.
 
-<img style="float: right;" src="/img/swcp_map_sign.png">
 Given the length of the South West Coast Path, there are lots of other
 possibilities. The northern section at the start of the walk
 from [Minehead to Combe Martin or Ilfracombe](https://www.southwestcoastpath.org.uk/walk-coast-path/walking-breaks/3-5-day-breaks/minehead-combe-martin/) also seems to be popular.
@@ -121,19 +122,20 @@ it is very popular. My impression is that it had a higher
 proportion of non-British walkers than the other routes, although that may
 be true of the West Highland Way as well. The route passes through
 the Lake District, the Yorkshire Dales National Park, and the North York
-Moors National Park.^[National Parks in the UK are not exclusively park
-land like a national park in the US. They generally are private land,
-but there are regulations to preserve the landscape. There are also other
-landscapes designated as [Areas of Outstanding Natural Beauty](http://www.landscapesforlife.org.uk/) that have
-some legal protection.] In 2012 I walked this path from St. Bees to Richmond.
+Moors National Park.[^1] In 2012 I walked this path from St. Bees to Richmond.
 It's a good introduction to the Lake District, but includes the different
 landscape of North Yorkshire farther east. The variety of landscape is one of
 the attractions of the route.
+[^1]: [National Parks in the UK](https://en.wikipedia.org/wiki/National_parks_of_the_United_Kingdom) are not exclusively park
+land like a national park in the US. They generally are private land,
+but there are regulations to preserve the landscape. There are also other
+landscapes designated as [Areas of Outstanding Natural Beauty](http://www.landscapesforlife.org.uk/) that have
+some legal protection.
 
-<img style="float: right;" src="/img/beachy_head_lighthouse.png">
 #### The South Downs Way
 
 [The South Downs Way](http://www.nationaltrail.co.uk/south-downs-way/be-inspired) in southern England is not so very far from London. I have walked the last nine mile stretch along the Seven Sisters and Beachy Head into Eastbourne. That is a magnificent walk along the white cliffs, but very unlike
+<img style="float: right;" src="/img/beachy_head_lighthouse.png">
 the rest of the walk. Based on what I have read, this could be a very
 nice walk with convenient access and forgiving terrain.
 
