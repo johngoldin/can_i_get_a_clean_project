@@ -16,24 +16,47 @@ show_post_thumbnail: true
 weight: 2
 ---
 
-Since retiring in 2011, I have been on a binge of walking in the UK. I will try to offer some tips based on lessons I have learned.
-I doubt this would be of any use to someone raised in the UK. Much of what I would say here would be obvious or second nature.
-But lots of things weren't obvious to me as an American and therefore a foreigner unfamiliar with the British countryside.
+Since retiring in 2011, I have been on a binge of walking in the UK. Here will offer 
+some tips based on lessons I have learned.
+I doubt this would be of any use to someone raised in the UK. 
+Much of what I would say here would be obvious or second nature.
+But lots of things weren't obvious to me as an American 
+and therefore a foreigner unfamiliar with the British countryside.
 
-As an example right at the outset, compare the words "hiking" and "walking." In the
-US we use the word "hike" a lot. My impression is that "hiking" is not the usual term
-in England. Instead one refers to "walking." In America, "walking" implies a short ramble. In the UK one has the hard-core [Long Distance Walkers Association](https://www.ldwa.org.uk/). Their idea of a good time starts
+Why the word "walking?"
+The words used to discuss
+the topic at hand are different in British and American English.
+My authority on language is Lynne Murphy, an American by birth,
+professor of linguistics at University of Sussex,
+and author of [The Prodigal Tongue: The Love-Hate Relationship Between
+American and British English](https://theprodigaltongue.com).
+
+She has a lot to say on the topic of [hiking versus walking](https://separatedbyacommonlanguage.blogspot.com/2020/06/rambling-hiking-and-walking-on.html).
+We're going for immersion in the British activity of walking
+so the language here will be "walking" and "paths" rather
+than "hiking" and "trails."
+
+ > Of course, English-speakers everywhere use the verb to walk. But for me (at least) what's different is that I have a town/country divide in my AmE: If I'm walking around town for leisure, I'm going for a walk. If I go out of town to walk (on less even terrain, taking more care with my footwear and supplies), I'm going hiking.  Or maybe it's better characteri{s/z}ed as: if I'm on a paved path/road or the beach, I'm on a walk, and if I'm on less even terrain (fields, woods, mountains, deserts), I'm on a hike. 
+>    
+> --- Lynne Murphy [rambling, hiking, and walking on footpaths and trails](https://separatedbyacommonlanguage.blogspot.com/2020/06/rambling-hiking-and-walking-on.html)
+
+For exampke, in the UK one has the hard-core [Long Distance Walkers Association](https://www.ldwa.org.uk/). Their idea of a good time starts
 with about 50 miles in a day. Or a more human-scaled example would be [The Walking Englishman](https://www.walkingenglishman.com/) web site, a great source
 of information. In these notes and tips I will try to use English terminology
-(based on my imperfect knowledge) and so I will
+(based on my imperfect knowledge) and so will
 refer to "walking" rather than "hiking."
+
+Here's a British tweet that describes how this looks from the British point of view:
+
+{{< tweet 1390602863651573760 >}}
 
 ### Why Walking in Britain
 
-More than once while chatting with a local walker on the top of some barren fell,
-^[A "fell" is a term primarily used in northern England or Scotland for a hill top. Often appears in place names such as Cross Fell.  See also [fell running](https://www.walkingenglishman.com/).]
+More than once while chatting with a local walker on the top of some barren fell[^1]
 I have been asked why I have come all the way to England to do my walking.
-Surely there is plenty of opportunity back in the US. What about the Appalachian Trail? Good question. On a number of multi-mile trudges across boggy moorland I have had plenty of opportunity to think about it.
+Surely there is plenty of opportunity back in the US. What about the Appalachian Trail? 
+Good question. On a number of multi-mile trudges across boggy moorland I have had plenty of opportunity to think about it.
+[^1]: A "fell" is a term primarily used in northern England or Scotland for a hill top. Often appears in place names such as Cross Fell.  See also [fell running](https://en.wikipedia.org/wiki/Fell_running).
 
 The UK has a great infrastructure for walking, both short and long distances.
 <img style="float: right;" src="/img/finger_pointer.png">
@@ -41,8 +64,10 @@ One frequently see the ubiquitous "public footpath" finger posts marking some lo
 There must have been quite a bit of that in colonial New England as well.
 I don't know the legal and cultural circumstances that caused those right
 of ways to be preserved in the UK. In modern times, the powerful [Ramblers Association](http://www.ramblers.org.uk/) functions somewhat like 
-the National Rifle Association, except for walking rather than guns. The Ramblers
-lobby for [legislation favorable to walkers](https://en.wikipedia.org/wiki/Countryside_and_Rights_of_Way_Act_2000) and [actively police](http://www.ramblers.org.uk/get-involved/pathwatch.aspx) existing
+the National Rifle Association, except for walking rather than guns. 
+The Ramblersmlobby for 
+[legislation favorable to walkers](https://en.wikipedia.org/wiki/Countryside_and_Rights_of_Way_Act_2000) 
+and [actively police](http://www.ramblers.org.uk/get-involved/pathwatch.aspx) existing
 rights of way.
 
 In the US hiking routes are associated with wilderness or less desirable land
@@ -50,14 +75,17 @@ that is away from populated areas. In the UK, because many paths grew out of
 transportation routes, they often go from village to village. One consequence
 of that is that in the US one has long distance routes such as
 the Appalachian Trail or the Pacific Crest Trail that emphasize being in
-the wild and require camping. If wilderness is what you are after, long-settled England is not the place to find it. One might refer to the wild coast of
+the wild and require camping. If wilderness is what you are after, 
+long-settled England is not the place to find it. One might refer to the wild coast of
 Cornwall on the South West Coast Path, but one is never very far away from a farm
 or a village. One can feel far from the madding crowd in national parks such
 as Dartmoor or Exmoor. It does feel a bit wild and isolated. But wilderness is
 not the word that describes it. 
 
-For an urbanized senior citizen such as myself, the creature comforts available in the UK are a big attraction. Even on the long distance routes one can walk from
-village to village and stay in a cozy B&B, pub, or small hotel at the end of the day. One starts the day with a full English breakfast and follows a full day 
+For an urbanized senior citizen such as myself, the creature comforts available in 
+the UK are a big attraction. Even on the long distance routes one can walk from
+village to village and stay in a cozy B&B, pub, or small hotel at the end of the day. 
+One starts the day with a full English breakfast and follows a full day 
 of walking with a hot shower, a solid evening meal in the local pub, and finally 
 a comfortable bed (we hope). The type of walking I do in the UK is
 fundamentally different from the Appalachian Trail. Plus there are no
@@ -68,11 +96,14 @@ during the walk.
   <figcaption>Isn't this better than camping?</figcaption>
 </figure> 
 
-Another plus is public transportation, even away from cities and towns. If one wants to do a simple walk, it is often possible to take bus out
+Another plus is public transportation, even away from cities and towns. 
+If one wants to do a simple walk, it is often possible to take bus out
 somewhere and walk back to your hotel. Here in Connecticut where I live,
-there is a very nice set of trails (the [Blue Blazed Trails](https://www.ctwoodlands.org/blue-blazed-hiking-trails)), but
+there is a very nice set of trails (the 
+[Blue Blazed Trails](https://www.ctwoodlands.org/blue-blazed-hiking-trails)), but
 almost none of them are near bus routes or motels or places to get food.
-Invariably one has to drive to a trail head. That's true for many foot paths in the UK as well, but there are also many that are available via public transportation.
+Invariably one has to drive to a trail head. That's true for many foot paths in the 
+UK as well, but there are also many that are available via public transportation.
 <img style="float: right;" src="/img/Port_Isaac_Shuttle.png">
 A couple of times I have decided to cut the day short and catch a bus for
 the rest of the trip. Sometimes there are even simple ferries to get you across

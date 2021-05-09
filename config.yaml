@@ -110,14 +110,18 @@ menu:
 #      title: Talks
 #      url: /talk/
 #      weight: 4
-    - name: A collection
-      title: A collection
+    - name: Walking
+      title: Walking
       url: /collection/
       weight: 5
     # - name: Elements
     #   title: Element Page
     #   url: /elements/
     #   weight: 6
+    - name: tips
+      title: tips
+      url: /tips/
+      weight: 6
 privacy:
   disqus:
     disable: no

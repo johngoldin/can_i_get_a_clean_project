@@ -1,0 +1,94 @@
+---
+title: "R Tips and Techniques"
+author:
+date: "5/8/2021"
+subtitle: 
+slug: R-tips-and-techniques
+excerpt: "A collection of R tips and techniques, parked here so that I can find them when I need them."
+layout: wide-body
+show_title_as_headline: true
+draft: no
+output: 
+  blogdown::html_page:
+    # figure parameters based on recommendation in Hadley's book 
+    toc: yes
+    number_sections: false
+    fig_width: 7
+    out.width: "100%"
+    fig.align: "center"
+    fig.asp: 0.618  
+editor_options:
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### HTML and Hugo Shortcodes
+
+[link to Hugo shortcodes](https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes)
+
+To insert a figure:
+
+```html
+<figure> 
+  <img  src="/img/canopy_bed.png" alt="Canopy Bed" width="304" height="228">
+  <figcaption>Isn't this better than camping?</figcaption>
+</figure> 
+```
+
+```
+ img style="float: right;" src="/img/taxi.png"> 
+<figure.right  > 
+  <img  src="/img/taxi.png" alt="taxi phone number" ">
+  <figcaption>Isn't this better than camping?</figcaption>
+</figure>
+```
+
+
+Figure which contains a link in the caption:
+
+```
+<figure> 
+  <img  src="https://www.ldwa.org.uk/ldp/images/TF/517-1-L.png" alt="Canopy Bed">
+  <figcaption>Elevation along the <a href="https://www.ldwa.org.uk/ldp/members/show_path.php?menu_type=S&path_name=West+Highland+Way">West Highland Way (Long Distance Walkers Association)</a> </figcaption>
+</figure> 
+```
+
+#### A relative reference
+
+Although it's likely this is not a correct reference.
+
+```
+#### [Back to UK Walking Topics]({{< relref "2017-03-07-an-american-walking-in-britain.md#topics" >}})
+
+- [Choosing a path]({{< relref "2017-03-11-american-walker-in-britain-part-2.md#choosing-a-path" >}})
+
+If your writing documentation for Hugo shortcodes, you will need to 
+escape the shortcode processing. e.g., 
+{{</* code */>}} will be rendered as {{< code >}}.
+```
+
+[Hugo figure shortcode](https://gohugo.io/content-management/shortcodes/#figure)
+
+```
+and {{%/* figure src="/img/taxi.png#floatright" caption="Need a taxi Hadrians Wall Path?" */%}}
+ img style="float: right;" src="/img/taxi.png"> 
+<figure.right  > 
+  <img  src="/img/taxi.png" alt="taxi phone number" ">
+  <figcaption>Isn't this better than camping?</figcaption>
+   
+</figure>
+
+markdown code for figure: (html parameters within curly braces)
+![(*Text, italic in ()*)](/img/hugo_pool/page_inspector.jpg){width=100%}
+
+{{%/* figure src="/img/taxi.png#floatright" caption="Need a taxi Hadrians Wall Path?" */%}}
+
+Have to use shortcode function to embed shortcode from RMarkdown:
+blogdown::shortcode("figure", src = "/img/taxi.png#floatright", caption = "Called using shortcode function")
+```
+
+`r blogdown::shortcode("figure", src = "/img/taxi.png#floatright", caption = "Called using shortcode function")`
