@@ -4,7 +4,7 @@ subtitle: Planning an Itinerary
 slug: "am-walker-3"
 aliases:
     - /2017/03/am_walker_3/
-excerpt: 'Tips on how to plan a multi-day itineary with some advice on how to arrange for accommodations.'
+excerpt: 'Tips on how to plan a multi-day itinerary with some advice on how to arrange for accommodations.'
 categories:
   - British Walking
 layout: single-series
@@ -55,11 +55,13 @@ make sure that stop is available before you book accommodations for the rest of 
 
 ### Arranging for Accommodations
 
-If you're doing a multi-day walk, most of the time you are going to be in boonies where accommodations may be scarce. You may not have a lot of choice.
+If you're doing a multi-day walk, most of the time you are going to be in boonies where 
+accommodations may be scarce. You may not have a lot of choice.
 Here's where Trailblazer or Cicerone guide books can be really helpful.
 Sometimes there are also web sites that list all the available accommodations.
 Remember that when you are on foot, you don't want to go far afield. With a car
-a mile away from a village is nothing. But at the end of a long day of walking you don't want to have one-mile round trip to village pub to get your evening meal.
+a mile away from a village is nothing. But at the end of a long day of walking 
+you don't want to have one-mile round trip to village pub to get your evening meal.
 You want to be close to the path and close to food.
 
 I would strongly advise booking a room in advance. Off-season it might be possible
@@ -70,24 +72,38 @@ less potential for miscommunication and misunderstanding. Just because they spea
 English doesn't mean you will always be able to understand everyone over the
 telephone. 
 
-Key tip: do not do something like ask for a room on 6/7/2017!!! In the US, we do month/day/year. But in the UK (and in [much of the rest of the world](https://en.wikipedia.org/wiki/Date_format_by_country)), it's day/month/year. To be safe, I spell out the month and add the day of the week as well, just to be certain. Unless your guide book leads you to be confident that you can get an evening meal, you should ask about that as well. In some B&B the host can make a meal for you. Or they may give you a ride to a local pub. In one
+Key tip: do not do something like ask for a room on 6/7/2017!!! In the US, we do month/day/year. 
+But in the UK (and in [much of the rest of the world](https://en.wikipedia.org/wiki/Date_format_by_country)), it's day/month/year. 
+To be safe, I spell out the month and add the day of the week as well, just to be certain. 
+Unless your guide book leads you to be confident that you can get an evening meal, 
+you should ask about that as well. In some B&B the host can make a meal for you. 
+Or they may give you a ride to a local pub. In one
 place they arranged for a catered meal which I ate in their dining room.
 
-At a B&B keep in mind that it is somebody's home. Take your backpack off before entering. You don't know what's back there and you can easily knock things off a table or do other damage. You probably should take off your boots. Your host probably has had a lot of experience with unkempt walkers, especially in the rain,
-and will be ready to let you know what is expected. Even some pubs and hotels may have a sign at the front door about muddy boots and may have a place where
-you can sit and remove them. At one farmhouse during a heavy rain, my host met me at the door with a plastic wash basket and had me dump all my things into right there and then.
+At a B&B keep in mind that it is somebody's home. Take your backpack off before entering.
+You don't know what's back there and you can easily knock things off a table or do other damage. 
+You probably should take off your boots. Your host probably has had a lot of experience with 
+unkempt walkers, especially in the rain,
+and will be ready to let you know what is expected. Even some pubs and hotels 
+may have a sign at the front door about muddy boots and may have a place where
+you can sit and remove them. At one farmhouse during a heavy rain, 
+my host met me at the door with a plastic wash basket and had me dump 
+all my things into the basket right there and then.
 
 A few places have elaborate rules. At a private home one may see rules against washing clothing in the sink.
-
 <img style="float: right;" src="/img/tea_at_b_and_b.png" alt="tea service at B&B" width="288">
-The one thing you can be almost certain of is that there will be an electric water kettle in your room with a few packets of biscuits. 
+The one thing you can be almost certain of is that there will be an electric water kettle 
+in your room with a few packets of biscuits. 
 If your host offers you tea when you arrive, that is likely to mean you
 will be offered tea and cake in a sitting room. That can be very nice,
-although I confess that after a long day of walking I am too eager to
-get into a hot shower and get cleaned up.
+although I confess that after a long day of walking I am eager to
+get into a hot shower and get cleaned up so "tea" sounds less attractive.
+But I always accept the offer because it may be an opportunity
+for some nice social chit chat and local information as well.
 
+Back at the beginning of these notes, I showed an elaborate canopy bed. 
 <img style="float: right;" src="/img/spartan_room.png" alt="a Spartan room" width="341">
-Back at the beginning of these notes, I showed an elaborate canopy bed. I have been happy to make do with more Spartan accommodations as well.
+I have been happy to make do with more Spartan accommodations as well.
 
 #### Types of Accommodations
 
@@ -96,15 +112,18 @@ a web site is a sign that they welcome walkers. (A drying room generally is noth
 your host can vary. Some like the social contact beyond picking up some extra cash For some farmhouse B&B's walkers are just another money-making crop. On the
 whole I have experienced pleasant hospitality. 
 
-<img style="float: right;" src="/img/anchor.png" alt="a Spartan room" width="341">About half the time I have stayed in a pub or a small hotel. Some pubs function as a hotel as well as a bar and
+About half the time I have stayed in a pub or a small hotel. Some pubs function as a hotel as well as a bar and
 restaurant. In other cases, they the pub is the core business and they just have a
 couple of rooms that they let out as a B&B. Some pubs can be a bit noisy on a weekend night. In general, I have modest expectations and I am rarely disappointed.
 
 A cooked breakfast is always part of the package and is included with the price.
 Feel free to ask for "packed lunch." At a small B&B it would be best to do that
-at the time you book the room.
+at the time you book the room. At a pub or hotel you can usually do it when
+you check in.
 
-An "en suite" bathroom means the bathroom (with toilet) is in the room. A "private bath" means that you have to go out of your room to get to your bathroom.
+An "en suite" bathroom means the bathroom (with toilet) is in the room. 
+<img style="float: right;" src="/img/anchor.png" alt="a Spartan room" width="341">
+A "private bath" means that you have to go out of your room to get to your bathroom.
 But you are not sharing it with anybody. I have encountered a "shared bath" very
 infrequently, but if you don't see either "en suite" or "private bath" be
 on the lookout for a shared bath. You can see ingenious ways that people have carved up rooms and closets to make room for a bathroom. It's not just
@@ -112,8 +131,11 @@ Americans who have a strong preference to avoid a shared bathroom.
 
 #### Electricity
 
-As a side effect of the high voltage used in the British electric system (double the voltage in the US), they are very anxious to keep electricity away from the bathroom.
-The only electric outlet you will see in the bathroom is a special lower voltage outlet for electric shavers. You won't find a wall switch inside the bathroom,
+As a side effect of the high voltage used in the British electric system (double the voltage in the US), 
+they are very anxious to keep electricity away from the bathroom because of the
+presence of water.
+The only electric outlet you will see in the bathroom is a special lower voltage outlet 
+for electric shavers. You won't find a wall switch inside the bathroom,
 although there may be a non-conducting pull cord hanging down for an overhead lamp.
 
 And yet in most cases shower water is heated by electricity. Ah, British showers.
@@ -125,13 +147,17 @@ The [shower controls](/img/electric_shower.png) can be hard for an American to
 decipher. Generally there is a separate control for the volume of the water
 and for the temperature of the water. Sometimes they work very well. And
 sometimes they don't, especially if there is variation in
-the water pressure. While 230 volts makes it easier to electrocute someone than our 115, it does make it easier to produce hot water on demand at the shower head.
-In fancier showers, there is a thermostat where you specify the actual temperature of the water. But it's in centigrade so that's just another source of confusion.
+the water pressure. While 230 volts makes it easier to electrocute someone than our 115,
+it does make it easier to produce hot water on demand at the shower head.
+In fancier showers, there is a thermostat where you specify the actual temperature of the water. 
+But it's in centigrade so that's just another source of confusion.
 
-Of course you will need a adapter plug so you can charge your phone. Electronic
+Of course you will need an adapter plug so you can charge your phone. Electronic
+<img style="float: right;" src="/img/electric_outlet.png" alt="a British electrical outlet">
 devices these days run a wide range of voltages, but you won't be carrying
 something like a hair dryer where a change of voltage would be required.
 One small trick about UK electric outlets: there is
 a small on/off switch for each plug. When it is powered on, a small bit of
-red color will show ([see this example](/img/electric_outlet.png)). Keep this in mind or you may be surprised to find that
+red color will show. 
+Keep this in mind or you may be surprised to find that
 your phone has not charged overnight.
