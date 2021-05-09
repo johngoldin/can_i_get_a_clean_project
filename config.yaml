@@ -120,7 +120,7 @@ menu:
     #   weight: 6
     - name: tips
       title: tips
-      url: /tips/R-tips-and-techniques/
+      url: /tips/
       weight: 6
 privacy:
   disqus:
