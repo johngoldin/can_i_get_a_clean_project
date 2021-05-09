@@ -223,14 +223,21 @@ and I am shocked to see that they seem to offer free shipping world wide.
 Of course there are other guide books available as well.
 
 If you rely on a guidebook for navigation, check whether they have
+<<<<<<< HEAD
 a page of errata or updates available online in case there is some amendment to some 
+=======
+a page of errata or updates available online in case there is some correction to some 
+>>>>>>> ad622757d0a6cad83ca427dac6970f8160b26394
 detail of the route. [Here](https://trailblazer-guides.com/update/hadrians-wall-path) an
 example for the Trailblazer *Hadrian's Wall Path* guide book:
 
 > August 2020    
 > p137, Map 16. The location of the bridge abutment should be opposite the south east facing wall of Chesters fort on the straight section of the river ie north east of where it is currently marked on the map.
 
+<<<<<<< HEAD
 They also include some detailed feedback from previous readers.
+=======
+>>>>>>> ad622757d0a6cad83ca427dac6970f8160b26394
 
 ### What Next?
 
