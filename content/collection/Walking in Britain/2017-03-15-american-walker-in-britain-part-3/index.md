@@ -107,14 +107,17 @@ I have been happy to make do with more Spartan accommodations as well.
 
 #### Types of Accommodations
 
-B&B's can range from someone offering a spare room to guest houses that seem like a small hotel. Read a few of comments on TripAdvisor and you quickly get a sense of whether a particular places is hospitable to walkers. Mention of a "drying room" on
+B&B's can range from someone offering a spare room to guest houses that seem like a small hotel. 
+Read a few of the comments on TripAdvisor and you quickly get a sense of whether a particular places 
+is hospitable to walkers. Mention of a "drying room" on
 a web site is a sign that they welcome walkers. (A drying room generally is nothing fancy. It may just be a closet containing a hot water heater with a stack of newsprint that you can stuff into your boots to help them dry.) The attitude of
 your host can vary. Some like the social contact beyond picking up some extra cash For some farmhouse B&B's walkers are just another money-making crop. On the
 whole I have experienced pleasant hospitality. 
 
 About half the time I have stayed in a pub or a small hotel. Some pubs function as a hotel as well as a bar and
-restaurant. In other cases, they the pub is the core business and they just have a
-couple of rooms that they let out as a B&B. Some pubs can be a bit noisy on a weekend night. In general, I have modest expectations and I am rarely disappointed.
+restaurant. In other cases, the pub is the core business and they just have a
+couple of rooms that they let out as a B&B. Some pubs can be a bit noisy on a weekend night. 
+In general, I have modest expectations and I am rarely disappointed.
 
 A cooked breakfast is always part of the package and is included with the price.
 Feel free to ask for "packed lunch." At a small B&B it would be best to do that

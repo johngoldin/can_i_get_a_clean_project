@@ -16,12 +16,12 @@ show_post_thumbnail: true
 weight: 2
 ---
 
-Since retiring in 2011, I have been on a binge of walking in the UK. Here will offer 
+Since retiring in 2011, I have been on a binge of walking in the UK. Here I will offer 
 some tips based on lessons I have learned.
-I doubt this would be of any use to someone raised in the UK. 
-Much of what I would say here would be obvious or second nature.
+I doubt this will be of much use to someone raised in the UK. 
+Much of what I say here would be obvious or second nature.
 But lots of things weren't obvious to me as an American 
-and therefore a foreigner unfamiliar with the British countryside.
+who is unfamiliar with the British countryside.
 
 Why the word "walking?"
 The words used to discuss
@@ -60,14 +60,14 @@ Good question. On a number of multi-mile trudges across boggy moorland I have ha
 
 The UK has a great infrastructure for walking, both short and long distances.
 <img style="float: right;" src="/img/finger_pointer.png">
-One frequently see the ubiquitous "public footpath" finger posts marking some local public [right of way](https://en.wikipedia.org/wiki/Right_of_way). These footpaths originated as actual transportation routes.
+One frequently sees the ubiquitous "public footpath" finger posts marking some local public [right of way](https://en.wikipedia.org/wiki/Right_of_way). These footpaths originated as actual transportation routes.
 There must have been quite a bit of that in colonial New England as well.
 I don't know the legal and cultural circumstances that caused those right
 of ways to be preserved in the UK. In modern times, the powerful [Ramblers Association](http://www.ramblers.org.uk/) functions somewhat like 
 the National Rifle Association, except for walking rather than guns. 
-The Ramblersmlobby for 
+The Ramblers lobby for 
 [legislation favorable to walkers](https://en.wikipedia.org/wiki/Countryside_and_Rights_of_Way_Act_2000) 
-and [actively police](http://www.ramblers.org.uk/get-involved/pathwatch.aspx) existing
+and [actively police](https://www.ramblers.org.uk/get-involved/campaign-with-us/paths.aspxy-2026.aspx) existing
 rights of way.
 
 In the US hiking routes are associated with wilderness or less desirable land
@@ -145,13 +145,13 @@ to Coast Path](https://www.youtube.com/watch?v=PRjhfaxOSyo) and another on [Best
 There are plenty of books extolling the pleasures of walking in Britain. [The National Trails of England, Scotland and Wales](http://www.paddydillon.co.uk/guidebook/the-national-trails/) by Paddy Dillon provides
 a modern overview of each of the national trails with pictures, text, and
 a map to orient you. A book which is significant for me is [The National 
-Trust Book of Long Walks in England, Scotland and Wales](The National 
-Trust Book of Long Walks in England, Scotland and Wales) by Adam Nicolson with photographs by Charlie Waite. 
+Trust Book of Long Walks in England, Scotland and Wales](https://www.amazon.com/National-Trust-Walks-England-Scotland/dp/0517545098) by Adam Nicolson with photographs by Charlie Waite. 
 This
 book was my introduction to the long distance trails in Britain. After stumbling
 on the existence of the Pennine Way in 1997, I wanted to know more and
-found the National Trust book in the New Haven Public Library
-after I returned home.
+found the Nicolson book 
+in the New Haven Public Library after I returned home. (A couple of years
+ago I bought a used copy from Amazon.)
 
 I'll leave it to Julia Bradbury and the authors of these books to
 wax lyrical about the glories of British walking. In these notes
@@ -165,25 +165,33 @@ number of half-day walks, including two that lay the ground work for
 an enduring interest in walking in Britain. So mixing car touring with
 walking is an entirely reasonable way to go. One one trip in Wales I arranged to stay for two nights in each of three places. That often worked out to be 
 a half day walk on the day I arrived and then a full-day of walking before
-staying the second night. I started out with a two days in Cotton-under-Edge and a full-days's walk on the Cotswold Way, two days in St. Davids in Wales and the Pembrokeshire Coast Path and then two more nights in the northern half of
+staying the second night. I started out with two days in Wotton-under-Edge and a full-days's walk on the Cotswold Way, two days in St. Davids in Wales and the Pembrokeshire Coast Path and then two more nights in the northern half of
 Wales. There are lots of areas where one could do something like that. With
 a bit of planning, one could do something like that via bus or train and avoid
 the car entirely (a big plus if one has qualms about driving on the left side of the road).
 
 ### Tour Companies
 
-There are many companies that arrange walking holidays. ^[More language issues: they say "holiday" where we say "vacation."] I used [Sherpa](https://www.sherpaexpeditions.com/United-Kingdom) for a self-guided
-tour on the West Highland Way. There are many others. A "self-guided" tour means that they will organize a route and accommodations, provide you with a map and
-directions, and usually also arrange to transport your luggage. Guided tours mean that you walk with a group. The only group tour I have done was an REI tour in the United States walking rim to rim across the Grand Canyon. I can't claim to have any expertise about organized tours. It's a definite possibility, and well
-worth your consideration. Just Google "walking" and "britain" or "England" or "Scotland" and you will find a lot of options. An organized tour is a good way
+There are many companies that arrange walking holidays[^2]. I used [Sherpa](https://www.sherpaexpeditions.com/United-Kingdom) for a self-guided
+tour on the West Highland Way. There are many others. 
+A "self-guided" tour means that they will organize a route and accommodations, provide you with a map and
+directions, and usually also arrange to transport your luggage. Guided tours mean that you walk with a group. 
+I have done two group tours woth REI tour, one in the US and one in Greece. 
+I can't claim to have any expertise about organized tours. It's a definite possibility, and well
+worth your consideration. Just Google "walking" and "britain" or "England" or "Scotland" and you will 
+find a lot of options. An organized tour is a good way
 to get started. 
 
-There are also walking holidays that are organized out of a particular inn. You stay there for a period of time and each day your hosts arrange transportation to and from a walk for that day. This is not something I have any experience with.
+[^2]:More language issues: they say "holiday" where we say "vacation."
+
+There are also walking holidays that are organized out of a particular inn. You stay there for a 
+period of time and each day your hosts arrange transportation to and from a walk for that day. 
+This is not something I have any experience with.
 
 ### Camping
 
 Although I've made it clear that camping is not my cup of tea, plenty of people
-do make there way along the long-distance trails in Britain camping in much the
+do make their way along the long-distance trails in Britain camping in much the
 same way as Americans on the Appalachian or Pacific Coast Trails. It's
 not something I know anything about so all I can do is
 acknowledge that it is a popular possibility.
@@ -208,11 +216,21 @@ buy a guide book. [Trailblazer](https://trailblazer-guides.com/books) seems to d
 the market, at least for some trails in Britain. I have used a bunch of Trailblazer guides.
 They have a similar style and organization although different authors.
 They are loaded with very practical information including details about
-route, accommodations, and services. They include useful hand drawn
-maps of the route. Often you can find them on Amazon or other site in the US, but
+route, accommodations, and services. They include useful hand-drawn
+maps of the route. Often you can find them on Amazon or other sites in the US, but
 you can also order them directly from Trailblazer. I just checked their web site
 and I am shocked to see that they seem to offer free shipping world wide.
 Of course there are other guide books available as well.
+
+If you rely on a guidebook for navigation, check whether they have
+a page of errata or updates available online in case there is some amendment to some 
+detail of the route. [Here](https://trailblazer-guides.com/update/hadrians-wall-path) an
+example for the Trailblazer *Hadrian's Wall Path* guide book:
+
+> August 2020    
+> p137, Map 16. The location of the bridge abutment should be opposite the south east facing wall of Chesters fort on the straight section of the river ie north east of where it is currently marked on the map.
+
+They also include some detailed feedback from previous readers.
 
 ### What Next?
 

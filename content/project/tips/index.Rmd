@@ -91,3 +91,9 @@ blogdown::shortcode("figure", src = "/img/taxi.png#floatright", caption = "Calle
 ```
 
 `r blogdown::shortcode("figure", src = "/img/taxi.png#floatright", caption = "Called using shortcode function")`
+
+#### Markdown for footnote that contains a link
+
+[^1] -- put this where the footnote appears    
+[^1]: The footnote is contained in this line of text and can include more markdown formatting.    
+
