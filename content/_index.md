@@ -1,5 +1,5 @@
 ---
-title: "John Goldin"
+title: "Can I Blog Too?"
 subtitle: "My Personal Web Site"
 description: "This is is the entryway to my blog and to some personal projects. The topics have to do with R or travel or whatever else is of interest."
 images:

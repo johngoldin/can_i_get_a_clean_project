@@ -15,7 +15,7 @@ intro: |
   audience. Many times I have learned something useful after a web search has landed me on some
   stranger's writing on the web. I hope this site may prove useful to others who stumble across it.
   
-  
+  [![Netlify Status](https://api.netlify.com/api/v1/badges/07fa5294-5311-483f-92c5-74abfd6c3f59/deploy-status)](https://app.netlify.com/sites/can-i-get-a-clean-project/deploys)
   
 show_outro: true
 outro: |

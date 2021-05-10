@@ -12,3 +12,10 @@ command = "hugo -F -b $DEPLOY_PRIME_URL"
 [context.production]
 [context.production.environment]
 HUGO_ENV = "production"
+
+# from https://drmowinckels.io/blog/2020-05-25-changing-you-blogdown-workflow/ to fix css issue
+# blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource
+# [[headers]]
+#  for = "/*"
+#  [headers.values]
+#    Access-Control-Allow-Origin = "*"

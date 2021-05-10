@@ -54,8 +54,6 @@ knitr::opts_chunk$set(echo = TRUE)
 I have been saving R-related snippets in Evernote. What I will do here is pick out some of
 the ones that I use most often to try to organize them here in a more curated fashion.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/07fa5294-5311-483f-92c5-74abfd6c3f59/deploy-status)](https://app.netlify.com/sites/can-i-get-a-clean-project/deploys)
-
 ### Mapping
 
 #### Leaflet
