@@ -40,7 +40,7 @@ than "hiking" and "trails."
 >    
 > --- Lynne Murphy [rambling, hiking, and walking on footpaths and trails](https://separatedbyacommonlanguage.blogspot.com/2020/06/rambling-hiking-and-walking-on.html)
 
-For exampke, in the UK one has the hard-core [Long Distance Walkers Association](https://www.ldwa.org.uk/). Their idea of a good time starts
+For example, in the UK one has the hard-core [Long Distance Walkers Association](https://www.ldwa.org.uk/). Their idea of a good time starts
 with about 50 miles in a day. Or a more human-scaled example would be [The Walking Englishman](https://www.walkingenglishman.com/) web site, a great source
 of information. In these notes and tips I will try to use English terminology
 (based on my imperfect knowledge) and so will
@@ -107,7 +107,7 @@ UK as well, but there are also many that are available via public transportation
 <img style="float: right;" src="/img/Port_Isaac_Shuttle.png">
 A couple of times I have decided to cut the day short and catch a bus for
 the rest of the trip. Sometimes there are even simple ferries to get you across
-an estuary. And even in rural areas there often is some sort of tax service available.
+an estuary. And even in rural areas there often is some sort of taxi service available.
 
 There are other aspects of the UK that probably make a difference. There is less suburban sprawl and less dependence on cars. In my part of the world one does
 not expect to find a motel or hotel anywhere except in a city or near a highway exit. In the UK B&B's and small-scale hotels seem more plentiful. I don't claim to understand all the political, cultural, and legal factors that create those differences in
@@ -131,9 +131,7 @@ seems to be regarded as the the key figure in the modern popularity
 of walking in Britain, especially the Lake District. He basically
 invented the route for the Coast to Coast Path, which is one of the most
 popular routes even though it is not one of the official [National Trails](http://www.nationaltrail.co.uk/).
-There is a popular series of BBC programs by [Julia Bradbury](https://www.youtube.com/watch?v=8A9U9y1LMNM) 
-describing
-Waintwright's fell walks. The original [Wainwright guide books](https://www.amazon.com/Alfred-Wainwright/e/B001HPUBVK/ref=sr_tc_2_0?qid=1489257346&sr=1-2-ent) are
+The original [Wainwright guide books](https://www.amazon.com/Alfred-Wainwright/e/B001HPUBVK/ref=sr_tc_2_0?qid=1489257346&sr=1-2-ent) are
 now somewhat out of date, but his enthusiasm is contagious and
 his drawings are quite charming. If your local public library
 has a copy, take a look.
@@ -163,7 +161,8 @@ The first trip I took to England was planned as a car trip around North Yorkshir
 But I quickly realized that if I went to the local tourist information center (TIC) there often was information about some local walks. I ended up doing a 
 number of half-day walks, including two that lay the ground work for
 an enduring interest in walking in Britain. So mixing car touring with
-walking is an entirely reasonable way to go. One one trip in Wales I arranged to stay for two nights in each of three places. That often worked out to be 
+walking is an entirely reasonable way to go. 
+On a trip in Wales I arranged to stay for two nights in each of three places. That often worked out to be 
 a half day walk on the day I arrived and then a full-day of walking before
 staying the second night. I started out with two days in Wotton-under-Edge and a full-days's walk on the Cotswold Way, two days in St. Davids in Wales and the Pembrokeshire Coast Path and then two more nights in the northern half of
 Wales. There are lots of areas where one could do something like that. With

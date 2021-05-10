@@ -36,7 +36,7 @@ Keep in mind that not all miles are created equal. For all of the suggested itin
 for the West Highland Way, the shortest day is 8.5 miles, from Kingshouse to Kinlochleven. But that
 is not quite as easy as it sounds. Between Kingshouse and Kinlochleven is the Devil's Staircase and
 a climb of 850 feet. The total ascent for the day is about 1,400 feet. That's not a remarkable amount,
-but enough that you will notice you did a fair amount of up hill walking. Often you can find an
+but enough that you will notice you did a fair amount of up-hill walking. Often you can find an
 "elevation map" that describes how much "up" you will have to do.
 <figure> 
   <img  src="https://www.ldwa.org.uk/ldp/images/TF/87-1-L.png" alt="elevation">
@@ -55,7 +55,7 @@ make sure that stop is available before you book accommodations for the rest of 
 
 ### Arranging for Accommodations
 
-If you're doing a multi-day walk, most of the time you are going to be in boonies where 
+If you're doing a multi-day walk, most of the time you are going to be in the boonies where 
 accommodations may be scarce. You may not have a lot of choice.
 Here's where Trailblazer or Cicerone guide books can be really helpful.
 Sometimes there are also web sites that list all the available accommodations.
@@ -76,7 +76,7 @@ Key tip: do not do something like ask for a room on 6/7/2017!!! In the US, we do
 But in the UK (and in [much of the rest of the world](https://en.wikipedia.org/wiki/Date_format_by_country)), it's day/month/year. 
 To be safe, I spell out the month and add the day of the week as well, just to be certain. 
 Unless your guide book leads you to be confident that you can get an evening meal, 
-you should ask about that as well. In some B&B the host can make a meal for you. 
+you should ask about that as well. In some B&B's the host can make a meal for you. 
 Or they may give you a ride to a local pub. In one
 place they arranged for a catered meal which I ate in their dining room.
 
@@ -111,7 +111,8 @@ B&B's can range from someone offering a spare room to guest houses that seem lik
 Read a few of the comments on TripAdvisor and you quickly get a sense of whether a particular places 
 is hospitable to walkers. Mention of a "drying room" on
 a web site is a sign that they welcome walkers. (A drying room generally is nothing fancy. It may just be a closet containing a hot water heater with a stack of newsprint that you can stuff into your boots to help them dry.) The attitude of
-your host can vary. Some like the social contact beyond picking up some extra cash For some farmhouse B&B's walkers are just another money-making crop. On the
+your host can vary. Some like the social contact beyond picking up some extra cash. 
+For some farmhouse B&B's walkers are just another money-making crop. On the
 whole I have experienced pleasant hospitality. 
 
 About half the time I have stayed in a pub or a small hotel. Some pubs function as a hotel as well as a bar and

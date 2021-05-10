@@ -1,11 +1,37 @@
 ---
 title: "R Tips and Techniques"
 author:
-date: "5/8/2021"
+date: 2021-05-09
 subtitle: 
 slug: R-tips-and-techniques
 layout: wide-body
 show_title_as_headline: true
+links:
+- icon: github
+  icon_pack: fab
+  name: HappyGit
+  url: https://happygitwithr.com
+- icon: r-project
+  icon_pack: fab
+  name: R for Data Science
+  url: https://r4ds.had.co.nz
+- icon: markdown
+  icon_pack: fab
+  name: R Markdown
+  url: https://bookdown.org/yihui/rmarkdown/
+- icon: blog
+  icon_pack: fas
+  name: blogdown
+  url: https://bookdown.org/yihui/blogdown/
+- icon: chart-line
+  icon_pack: fas
+  name: ggplot2
+  url: https://ggplot2.tidyverse.org/reference/index.html
+excerpt: |
+  A collection of tips and techniques that I want save as notes for my future self.
+  This is intended for my personal use. If anybody else finds it useful,
+  great. I find myself returning to some of the same topics over and
+  over again. Sometimes what I forget how to do is quite basic.
 draft: no
 output: 
   blogdown::html_page:
@@ -25,7 +51,59 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### HTML and Hugo Shortcodes
+I have been saving R-related snippets in Evernote. What I will do here is pick out some of
+the ones that I use most often to try to organize them here in a more curated fashion.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/07fa5294-5311-483f-92c5-74abfd6c3f59/deploy-status)](https://app.netlify.com/sites/can-i-get-a-clean-project/deploys)
+
+### Mapping
+
+#### Leaflet
+
+[scale on leaflet map](http://leafletjs.com/reference.html#control-scale)    
+http://www.r-bloggers.com/interactive-mapping-with-leaflet-in-r/    
+leaflet map sample: http://leaflet-extras.github.io/leaflet-providers/preview/    
+
+### Tables
+
+[How to Make Beautiful Tables](https://rfortherestofus.com/2019/11/how-to-make-beautiful-tables-in-r/)    
+
+### Census
+
+[dot densisty maps](https://tarakc02.github.io/dot-density/)
+
+### Network Analysis & Twitter
+
+[Introduction to Network Analysis with R](https://www.jessesadler.com/post/network-analysis-with-r/)    
+[good tutorial to networks](http://psych-networks.com/misinterpreting-networks-an-abbreviated-tutorial-on-visualizations/) and https://www.frontiersin.org/articles/10.3389/fpsyg.2018.01742/full)    
+[network of faculty hiring](http://advances.sciencemag.org/content/1/1/e1400005)
+
+### Github Techniques
+
+[GitHub merge](http://allendowney.github.io/amgit/conflict)    
+[pull request helpers](https://usethis.r-lib.org/articles/articles/pr-functions.html)    
+
+### ggplot2
+
+[ggridges](https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html)   
+![](img/ggridges_example.png)
+[geofacet](https://hafen.github.io/geofacet/)     
+
+really great collection of tips and tricks: https://github.com/z3tt/outlierconf2021
+   tutorial: https://z3tt.github.io/OutlierConf2021/
+   ![](img/ggplot_wizardry.png)
+   ![](img/fancy_example.png)
+scio palettes: https://github.com/thomasp85/scico 
+![](img/scico_palette_show.png)
+
+#### sankey plots
+
+Sankey plots.  https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html    
+in plotly: https://plot.ly/r/sankey-diagram/    
+and see https://matthewdharris.com/2017/11/11/a-brief-diversion-into-static-alluvial-sankey-diagrams-in-r/    
+And https://david.frigge.nz/posts/2019-10-rugby-world-cup/    
+
+### Markdown, HTML, and Hugo Shortcodes
 
 [link to Hugo shortcodes](https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes)
 
@@ -91,6 +169,9 @@ blogdown::shortcode("figure", src = "/img/taxi.png#floatright", caption = "Calle
 ```
 
 `r blogdown::shortcode("figure", src = "/img/taxi.png#floatright", caption = "Called using shortcode function")`
+
+[workflow for blogdown and netlify](https://www.garrickadenbuie.com/blog/blogdown-netlify-new-post-workflow/)    
+[a spoonful of hugo](https://alison.rbind.io/post/2020-12-12-how-much-hugo/)    
 
 #### Markdown for footnote that contains a link
 

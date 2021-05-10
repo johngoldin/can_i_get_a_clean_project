@@ -22,7 +22,11 @@ post I included some links where you could find ideas on where to walk.
 I'll lay out some concrete possibilities here, just to get you started. 
 Don't take this as a prescriptive list.
 
-Would you prefer walking on the coast or in the hills? If a multi-day route along beautiful seacoast appeals to you then the obvious possibilities are the [South West Coast Path](http://www.southwestcoastpath.org.uk/) in Devon and Cornwall or the [Pembrokeshire Coast Path](http://www.nationaltrail.co.uk/pembrokeshire-coast-path) in Wales. 
+Would you prefer walking on the coast or in the hills? If a multi-day route along beautiful seacoast 
+appeals to you then the obvious possibilities are the 
+[South West Coast Path](http://www.southwestcoastpath.org.uk/) 
+in Devon and Cornwall or the 
+[Pembrokeshire Coast Path](http://www.nationaltrail.co.uk/pembrokeshire-coast-path) in Wales. 
 
 #### South West Coast Path
 
@@ -51,7 +55,7 @@ take the bus back out of Padstow to Porthcothan and then resume the walk.
 
 I did this itinerary back in 2007. It's a nice walk, and I think it's quite
 popular. Both St. Ives and Padstow are substantial towns that attract a 
-lot of holiday visitors. St. Ives is know for the Tate Gallery there and Padstow
+lot of holiday visitors. St. Ives is known for the Tate Gallery there and Padstow
 is known for fine dining because of restaurateur [Rick Stein](https://en.wikipedia.org/wiki/Rick_Stein). But I don't know who
 Rick Stein is and I don't know about galleries, so if you are
 craving information about food or art you are in the wrong place. On both
@@ -144,7 +148,8 @@ There are many other possibilities.
 #### Go for Broke!
 
 If all of this sounds too tame and you have three months to spare, consider doing the walk from
-[Lands End to John O'Groats](http://www.landsendjohnogroats.info/route/). That, 1,111 miles. Part of the route follows the Pennine Way. 
+[Lands End to John O'Groats](http://www.landsendjohnogroats.info/route/). 
+That requires a 1,111 mile walk. Part of the route follows the Pennine Way. 
 I met a couple from Australia there who had gotten leave from their jobs to take three months to do the whole route.
 Their routine was to walk six days a week and take one day off. I last saw them on the
 border between England and Scotland when they still had over 400 miles to go.
