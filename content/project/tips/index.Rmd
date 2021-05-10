@@ -52,7 +52,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 I have been saving R-related snippets in Evernote. What I will do here is pick out some of
-the ones that I use most often to try to organize them here in a more curated fashion.
+the ones that I use most often to try to organize them in a more curated fashion.
 
 ### Mapping
 

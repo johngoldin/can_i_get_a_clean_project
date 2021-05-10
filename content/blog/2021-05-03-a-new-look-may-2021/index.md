@@ -59,7 +59,7 @@ says "U R A JOKE".
 ![Sterling Law class](/img/for_site/UR_a_joke.png)
 
 For more on the Library gallery, read [If These Walls Could Talk](http://www.thenewjournalatyale.com/2009/12/if-these-stone-walls-could-talk/) or
-see this video:
+see this video on what's happening on the other side of Wall Street on the Sterling Law Building:
 
 {{< youtube 2RgrlQbZkYE >}}
 
