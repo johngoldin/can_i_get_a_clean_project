@@ -103,7 +103,7 @@ pacification of the Highlands after the rebellion of 1745.
 Later is was a route for driving cattle down out of the Highlands
 to market in Glasgow and beyond. 
 
-I walked this route in 1998 on a self-guide tour arranged by [Sherpa](https://www.sherpavan.com/trails/west_highland_way.asp).
+I walked this route in 1998 on a self-guided tour arranged by [Sherpa](https://www.sherpavan.com/trails/west_highland_way.asp).
 I have great memories of leaving Kingshouse in Glencoe and
 walking up the Devil's Staircase to the highest point on the path
 and a spectacular view of the valley below. And I remember being tired and footsore by the time I reached my bed in Kinlochleven, but that's all
@@ -126,8 +126,10 @@ it is very popular. My impression is that it had a higher
 proportion of non-British walkers than the other routes, although that may
 be true of the West Highland Way as well. The route passes through
 the Lake District, the Yorkshire Dales National Park, and the North York
-Moors National Park.[^1] In 2012 I walked this path from St. Bees to Richmond.
-It's a good introduction to the Lake District, but includes the different
+Moors National Park.[^1] In 2012 I walked this path from St. Bees to Richmond,
+and in 2019 walked the part that overlaps with the Cleveland Way and ends
+at Robin Hood's Bay.
+It's a good introduction to the Lake District, but also includes the different
 landscape of North Yorkshire farther east. The variety of landscape is one of
 the attractions of the route.
 [^1]: [National Parks in the UK](https://en.wikipedia.org/wiki/National_parks_of_the_United_Kingdom) are not exclusively park
@@ -138,7 +140,9 @@ some legal protection.
 
 #### The South Downs Way
 
-[The South Downs Way](http://www.nationaltrail.co.uk/south-downs-way/be-inspired) in southern England is not so very far from London. I have walked the last nine mile stretch along the Seven Sisters and Beachy Head into Eastbourne. That is a magnificent walk along the white cliffs, but very unlike
+[The South Downs Way](http://www.nationaltrail.co.uk/south-downs-way/be-inspired) in southern England is not so very far from London. 
+I have walked the last nine mile stretch along the Seven Sisters and Beachy Head 
+into Eastbourne. That is a magnificent walk along the white cliffs, but very unlike
 <img style="float: right;" src="/img/beachy_head_lighthouse.png">
 the rest of the walk. Based on what I have read, this could be a very
 nice walk with convenient access and forgiving terrain.
