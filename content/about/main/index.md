@@ -24,9 +24,6 @@ intro: |
   #### Me and Computers
   
   I've enjoyed computers and computing ever since my first
-  computer course at Michigan State during my sophomore year.
-  I used to keep lists of programming languages in which I had
-  done some work: FORTRAN, APL, COBOL, PL/I, 
   computer course at Michigan State during my sophomore year (1972).
   My first personal computer was a TRS-80 that I purchased in 1979.
   I enjoy learning new programming languages and techniques. I have done some work in 
@@ -36,9 +33,8 @@ intro: |
   I started using R in 2006 and it satisfied my itch
   for a programming language that provided an
   interactive connection with the data and the power of 
-  visualizations. 
   visualizations. Since then I have pretty much stuck to R.
-  
+
   I enjoy having a project to work on that combines some R coding and some
   simple data analysis. For the last year that has been Connecticut Covid stats
   or digging deep into the millions of rows of data exported from my iPhone and
