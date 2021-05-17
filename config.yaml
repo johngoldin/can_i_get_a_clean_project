@@ -8,6 +8,14 @@ author: John Goldin
 copyright: ''
 googleAnalytics: "UA-92008736-2"
 disqusShortname: ''
+# highlightjsVersion: "9.11.0"
+# highlightjsCDN: "//cdn.bootcss.com"
+# highlightjsLang: ["r", "yaml"]
+# highlightjsTheme: "github"
+# MathJaxCDN: "//cdn.bootcss.com"
+# MathJaxVersion: "2.7.1"
+pygmentsCodeFences: yes
+pygmentsStyle: "pygments"  # try github or tango or pygments
 metaDataFormat: yaml
 footnoteReturnLinkContents: '&#8617;'
 paginate: 8
@@ -19,6 +27,7 @@ ignoreFiles:
   - \.knit\.md$
   - \.utf8\.md$
 enableEmoji: yes
+# one of https://xyproto.github.io/splash/docs/all.html
 markup:
   defaultMarkdownHandler: goldmark
   goldmark:

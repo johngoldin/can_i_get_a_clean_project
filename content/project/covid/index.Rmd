@@ -31,6 +31,7 @@ output:
   blogdown::html_page:
     # figure parameters based on recommendation in Hadley's book 
     toc: yes
+    highlight: pygments
     number_sections: false
     fig_width: 7
     out.width: "100%"
