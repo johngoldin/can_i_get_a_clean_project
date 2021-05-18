@@ -28,48 +28,8 @@ editor_options:
     wrap: 72
 ---
 
-```{r libraries, echo = FALSE, message = FALSE}
-library(tidyverse)
-library(lubridate)
-library(kableExtra)
-library(janitor)
-library(scales)
-library(scico)       ## scico color palettes(http://www.fabiocrameri.ch/colourmaps.php) in R 
-library(ggtext)      ## add improved text rendering to ggplot2
-library(ggforce)     ## add missing functionality to ggplot2
-library(ggdist)      ## add uncertainity visualizations to ggplot2
-# library(magick)      ## load images into R
-library(patchwork)   ## combine outputs from ggplot2
-library(Cairo)
 
-path_saved_export <- "~/Dropbox/Programming/R_Stuff/john_vitals/Apple-Health-Data/"
-path_to_healthexport1 <- "~/Documents/R_local_repos/applehealth1/R/"
-# save(vo2max, resting_hr, file = paste0(path_saved_export, "vo2max_resting_hr.RData"))
-load(paste0(path_saved_export, "vo2max_resting_hr.RData"))
-# load(paste0(path_saved_export,"save_processed_export.RData"))
-```
-```{r setup_ggplot, echo = FALSE}
-# cribbed directly from: https://github.com/Z3tt/OutlierConf2021/blob/main/R/OutlierConf2021_ggplotWizardry_HandsOn.Rmd
-# You should have package Cairo installed if you use ggsave:
-# i.e., add device = cairo_pdf in ggsave call.
-## change global theme settings (for all following plots)
-#  IMPORTANT!!! open sans font must be installed (see next line)
-# open sans downloaded from https://fonts.google.com/specimen/Open+Sans?preview.text_type=custom
-# for tips on extra fonts on windows, see https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows/
-# based on William Chase, I may also try Alegreya Sans from https://www.huertatipografica.com/en/fonts/alegreya-sans-ht
-theme_set(theme_minimal(base_size = 12, base_family = "Open Sans")) #originally 12
-## modify plot elements globally (for all following plots)
-theme_update(
-  axis.ticks = element_line(color = "grey92"),
-  axis.ticks.length = unit(.5, "lines"),
-  panel.grid.minor = element_blank(),
-  legend.title = element_text(size = 12),
-  legend.text = element_text(color = "grey30"), 
-  plot.title = element_text(size = 14, face = "bold"),  # originally 18
-  plot.subtitle = element_text(size = 10, color = "grey30"), # originally 12
-  plot.caption = element_text(size = 9, margin = margin(t = 15))
-)
-```
+
 
 This is a follow-up to an [earlier  post](https://johngoldin.com/2020/02/apple-health-export-part-i/) 
 exploring the Apple Health Export. The earlier post describes how
@@ -138,116 +98,8 @@ but it is not so clear what it means in practice. I will dive deep into my own d
 to try to observe what is actually happening with
 the measurement of resting heart rate.
 
-```{r hr_boundaries, echo = FALSE, message = FALSE, warning = FALSE}
-# resting_hr <- health_df %>% filter(sourceName == "Watch") %>% 
-#   filter(type == "RestingHeartRate")
 
-dup_resting <- resting_hr %>% count(local_date) %>% filter(n > 1) %>% arrange(desc(local_date))
-
-hr_versions <- unique(resting_hr %>% filter(str_detect(sourceName, "Watch"), !is.na(sourceVersion)) %>% 
-                     select(sourceVersion)) %>% 
-                     separate(sourceVersion, into = c("major", "minor", "subminor"), remove = FALSE) %>% 
-  mutate(subminor = ifelse(is.na(subminor), "0", subminor)) %>% 
-  arrange(sourceVersion)
-
-hr_boundaries <- resting_hr %>% 
-  left_join(hr_versions, by = "sourceVersion") %>% 
-  arrange(sourceVersion, local_start, creationDate) %>% 
-  group_by(sourceVersion, major, minor, subminor) %>% 
-  summarise(first_date = first(local_start), last_date = last(local_start))
-
-hr_boundaries <- hr_boundaries %>% 
-  ungroup() %>% 
-  arrange(first_date) %>% 
-  mutate(test = lag(major),
-         test2 = lead(major),
-    level = case_when(
-    major != lag(major) ~ 3,
-    minor != lag(minor) ~ 2,
-    subminor != lag(subminor) ~ 1,
-    TRUE ~ NA_real_
-  ))
-min_date <- min(resting_hr$local_date[resting_hr$type == "RestingHeartRate"])
-max_date <- max(resting_hr$local_date[resting_hr$type == "RestingHeartRate"])
-min_resting_heart_rate <- min(resting_hr$value[resting_hr$type == "RestingHeartRate"])
-half_year_sequence <- seq(floor_date(min_date, "year"), ceiling_date(max_date, "year"), by = "quarter")
-half_year_sequence <- half_year_sequence[month(half_year_sequence) %in% c(1, 7)]
-
-p_noversion1 <- ggplot(data = resting_hr, aes(x = local_date, y = value)) +
-  geom_point(size = 0.5, alpha = .6) +
-  scale_x_date(limits = c(min_date + 0, max_date - 0), 
-               date_labels = "%b %Y",
-               breaks = half_year_sequence)  + 
-  scale_y_continuous(breaks = seq(45, 65, by = 5), 
-                     limits = c(min_resting_heart_rate, NA)) +
-  labs(
-    title = 'My Resting Heart Rate by Day', 
-    subtitle = 'Data from Apple Watch via Health Export',
-    x = NULL,
-    y = 'Resting Heart Rate'
-  )
-# ggsave("temp.png", p_noversion1, width = 9, height = 8, device = cairo_pdf, dpi = "retina")
-
-#  as.hexmode(col2rgb("seagreen3"))   # #43cd80  (to use with HTML)
-# I could have added some R code to create the HTML, but this is easier
-
-p_noversion2 <- p_noversion1 +
-  geom_smooth(fill = "lightgrey")
-p_version0 <- p_noversion1 +
-  labs(subtitle = '<i style="color:#28A87D;">Vertical lines show major and minor versions of Watch OS</i>') +
-  theme(
-    plot.subtitle = ggtext::element_markdown())
-p_version1 <- p_version0 +
-  geom_vline(data = hr_boundaries %>% filter(level == 3), 
-             aes(xintercept = as_date(first_date)), size = 1, colour = "seagreen3", alpha = 0.6) +
-  geom_richtext(data = hr_boundaries %>% filter(level == 3),
-            aes(label = paste0("**v", sourceVersion, "**"), x = as_date(first_date), y = Inf), 
-            colour = "seagreen3", alpha = 0.6, hjust = 0, vjust = 1, nudge_x = 5, size = 3.5) +
-  geom_vline(data = hr_boundaries %>% filter(level == 2), 
-             aes(xintercept = as_date(first_date)), size = 0.3, colour = "seagreen2", alpha = 0.6)
-p_version2 = p_version1 + geom_smooth(fill = "lightgrey")
-big_change <- hr_boundaries$first_date[hr_boundaries$sourceVersion == "7.0"] %>% as_date()
-p_version3 <- p_version1 +
-  geom_smooth(data = resting_hr %>% filter(local_date < big_change)) +
-  geom_smooth(data = resting_hr %>% filter(local_date >= big_change)) 
-
-
-p_tod1 <- ggplot(data = resting_hr, aes(x = local_date, y = 
-                                  as.integer(difftime(local_end, floor_date(local_end, "day"), unit = "secs")) %>% hms::hms())) +
-  geom_point(size = 0.5, alpha = 0.6) + 
-  geom_vline(data = hr_boundaries %>% filter(level == 3), 
-             aes(xintercept = as_date(first_date)), size = 1, colour = "seagreen3", alpha = 0.6) +
-  geom_richtext(data = hr_boundaries %>% filter(level == 3),
-            aes(label = paste0("**v", sourceVersion, "**"), x = as_date(first_date), y = Inf), 
-            colour = "seagreen3", alpha = 0.6, hjust = 0, vjust = 1, nudge_x = 5, size = 3.5) +
-  geom_vline(data = hr_boundaries %>% filter(level == 2), 
-             aes(xintercept = as_date(first_date)), size = 0.3, colour = "seagreen2", alpha = 0.6) +
-  geom_vline(data = hr_boundaries %>% filter(level == 1), 
-             aes(xintercept = as_date(first_date)), size = 0.3, colour = "seagreen1", alpha = 0.6, linetype = "dotted") +
-  scale_x_date(limits = c(min_date + 0, max_date - 0), 
-               date_labels = "%b %Y",
-               breaks = half_year_sequence)  + 
-  scale_y_time(labels = function(l) strftime(l, '%H:%M')) +  # thanks to https://stackoverflow.com/a/50173616/5828243
-  labs(
-    title = 'My Resting Heart Rate endDate Shown as Time of Day' , 
-    subtitle = '<i style="color:#28A87D;">Vertical lines show major and minor versions of Watch OS</i>',
-    x = NULL,
-    y = 'Resting Heart Rate endDate (hours:minutes)'
-  ) +
-  theme(
-    plot.subtitle = ggtext::element_markdown(),
-    plot.title = ggtext::element_markdown())
-# use the lines below to examine outliers
-# resting_hr %>%
-#   filter(sourceVersion > "7.", 
-#          as.integer(difftime(local_end, floor_date(local_end, "day"), unit = "secs")) > hms::hms(0,0,21)) %>%
-#   select(value, local_start, local_end, creationDate, sourceVersion) %>%
-#   View()
-# p_tod1 + geom_point(data = resting_hr %>% filter(sourceVersion > "7.", as.integer(difftime(local_end, floor_date(local_end, "day"), unit = "secs")) > hms::hms(0,0,23)), colour = "red", size = 0.6, alpha = 0.6)
-```
-```{r base_resting_hr_figure, echo = FALSE, message = FALSE}
-print(p_noversion2)
-```
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/base_resting_hr_figure-1.png" width="672" />
 
 This figure shows my daily resting heart rate back to 2017. I have
 added a smoothed curve to show the trend during this time period.
@@ -264,9 +116,7 @@ rather than in me.
 The next figure adds vertical green lines to show when I upgraded the
 Watch OS software.
 
-```{r resting_hr_figure_with_version, echo = FALSE, message = FALSE}
-print(p_version1)
-```
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/resting_hr_figure_with_version-1.png" width="672" />
 
 It's clear that resting heart rate was suddenly higher after I upgraded
 to Version 7 of WatchOS. I did some searching, but the 
@@ -299,9 +149,7 @@ Here's yet another graph of my resting heart rate, but in this one I show a
 separate smoothed trend line for the periods before and after I upgraded to
 Version 7. 
 
-```{r resting_hr_two_parts, echo = FALSE, message = FALSE}
-print(p_version3)
-```
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/resting_hr_two_parts-1.png" width="672" />
 
 Just to beat this issue to death, I did a bit more digging into the details
 of the Apple Health Export. For each data row of the export there is a start date
@@ -313,9 +161,7 @@ end dates. You can see that after Version 7, the time of day for the
 end date generally occurs before my normal bedtime, i.e., while I'm
 still awake.
 
-```{r resting_hr_tod, echo = FALSE, message = FALSE}
-print(p_tod1)
-```
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/resting_hr_tod-1.png" width="672" />
 
 No doubt Apple will improve how it identifies when one is asleep.
 That may directly affect the measurement of resting heart
@@ -349,71 +195,7 @@ provided by the Apple Developer Documentation:
 As with resting heart rate, let's
 look at my values for VO2 Max to see what it reveals.
 
-```{r vo2max, echo = FALSE, message = FALSE}
-# vo2max <- health_df %>% 
-#   filter(type == "VO2Max", str_detect(sourceName, "Watch"))
-
-vo_versions <- unique(vo2max %>% filter(type == "VO2Max", !is.na(sourceVersion)) %>% 
-                     select(sourceVersion)) %>% 
-                     separate(sourceVersion, into = c("major", "minor", "subminor"), remove = FALSE) %>% 
-  mutate(subminor = ifelse(is.na(subminor), "0", subminor), major = as.numeric(major),
-         minor = as.numeric(minor), subminor = as.numeric(subminor)) %>% 
-  arrange(major, minor, subminor)
-vo2max2 <- vo2max %>% 
-  left_join(vo_versions, by = "sourceVersion") %>% 
-  arrange(sourceVersion, local_start, creationDate)
-vo_boundaries <- vo2max2 %>% 
-  group_by(major, minor, subminor) %>% 
-  summarise(first_date = first(local_start), last_date = last(local_start))
-
-vo_boundaries <- vo_boundaries %>% 
-  ungroup() %>% 
-  arrange(first_date) %>% 
-  mutate(test = lag(major),
-         test2 = lead(major),
-    level = case_when(
-    (major != lag(major)) | ((major > 0) & is.na(lag(major))) ~ 3,
-    is.na(lag(major)) ~ 0,
-    minor != lag(minor) ~ 2,
-    subminor != lag(subminor) ~ 1,
-    TRUE ~ NA_real_
-  ))
-p_vo2max1 <- ggplot(data = vo2max, aes(x = local_date, y = value)) +
-  ylab("VO2 Max") + xlab(NULL) +
-  ggtitle("My Estimated VO2 Max and Versions of Watch OS") +
-  geom_point(size = 0.5) 
-p_vo2max2 <- p_vo2max1 # no smooth
-p_vo2max3 <- p_vo2max2 +
-  labs(subtitle = '<i style="color:#28A87D;">Vertical lines show major and minor versions of Watch OS</i>') +
-  theme(
-    plot.subtitle = ggtext::element_markdown()) +
-  geom_vline(data = vo_boundaries %>% filter(level == 3), 
-             aes(xintercept = as_date(first_date)), size = 1, colour = "goldenrod1") +
-  geom_vline(data = vo_boundaries %>% filter(level == 2), 
-             aes(xintercept = as_date(first_date)), size = 0.3, colour = "goldenrod3") +
-  geom_vline(data = hr_boundaries %>% filter(level == 3), 
-             aes(xintercept = as_date(first_date)), size = 1, colour = "seagreen3") +
-  geom_vline(data = hr_boundaries %>% filter(level == 2), 
-             aes(xintercept = as_date(first_date)), size = 0.3, colour = "seagreen2") +
-   geom_vline(data = hr_boundaries %>% filter(level == 1), 
-             aes(xintercept = as_date(first_date)), size = 0.3, colour = "seagreen1", alpha = 0.6, linetype = "dotted") +
-  geom_richtext(data = hr_boundaries %>% filter(level == 3),
-            aes(label = paste0("**v", sourceVersion, "**"), x = as_date(first_date), y = Inf), 
-            colour = "seagreen3", alpha = 0.9, hjust = 0, vjust = 1, nudge_x = 5, size = 3.5) +
-  scale_x_date(limits = c(min_date + 0, max_date - 0), 
-               date_labels = "%b %Y",
-               breaks = half_year_sequence)  
-print(p_vo2max3)
-
-# [Various VO2 Max estimates at home](https://9to5strength.com/vo2-max-testing/)
-# https://www.runnersblueprint.com/vo2-max/
-
-# [https://www.apple.com/newsroom/2020/12/cardio-fitness-notifications-are-available-today-on-apple-watch/]
-
-# To search for clinical trials involving the Apple Watch, click
-# [here](https://www.clinicaltrials.gov/ct2/results?recrs=ab&cond=&term=Apple+Watch&cntry=&state=&city=&dist=).
-
-```
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/vo2max-1.png" width="672" />
 
 What can I make of these changes over time? It's evident that the
 estimated value of VO2 Max is
@@ -454,9 +236,7 @@ future changes in the Apple Health Kit
 as Apple works to improve their health and fitness information. Of course
 we as customers want it to improve. That means that when interpreting long
 term trends in the data one has to allow for the possibility that
-the definition of measures have changed.
-
-### What Happened to My Million Rows of Data?
+the definition of measures have changed.### What Happened to My Million Rows of Data?
 
 When I did my [first  post](https://johngoldin.com/2020/02/apple-health-export-part-i/) 
 on the Apple Health Export, I had a total of 4,012,907 rows of
@@ -545,7 +325,8 @@ for `ggplot2` so I'll feature that code here as well.
 
 ### [Tips from Cédric Scherer for ggplot2](https://z3tt.github.io/OutlierConf2021/)
 
-```{r scherer_tips1, eval = FALSE}
+
+```r
 library(scico)       ## scico color palettes(http://www.fabiocrameri.ch/colourmaps.php) in R 
 library(ggtext)      ## add improved text rendering to ggplot2
 library(ggforce)     ## add missing functionality to ggplot2

@@ -20,12 +20,14 @@ output:
   html_document:
     code_folding: hide
 ---
+<script src="{{< blogdown/postref >}}index_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index_files/lightable/lightable.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index_files/lightable/lightable.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index_files/lightable/lightable.css" rel="stylesheet" />
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE, out.width = "100%",
-                      knitr.table.format = "html")
-# knitr.table.format is for kable. Needed this to get blogdown table to format correctly.
-```
+
 
 This post will work through a basic setup to look at
 census data for the New Haven area. It will rely on the
@@ -202,7 +204,8 @@ You can obtain a key via [this link](http://api.census.gov/data/key_signup.html)
 it for use by `tiycensus` and [tigris](https://walkerke.github.io/tigris-webinar/#15) functions. It will look like `census_api_key("YOUR KEY GOES HERE"). The
 key is stored in your R environment.
 
-```{r libraries, message = FALSE, warning = FALSE}
+
+```r
 # setup R libraries used in this post
 library(tidyverse, quietly = TRUE)
 library(tidycensus, quietly = TRUE)
@@ -222,7 +225,8 @@ fetch via `load_variables()`. Some additional parsing of the returned data can
 make working with variables much easier. In the code block here we will pull out the table identifiers
 and also separate out the table variants for breakdowns by race.
 
-```{r load_variablfes}
+
+```r
 vars <- load_variables(2017, "acs5", cache = TRUE) %>% 
   mutate(table_id = str_sub(name, 1, 6), 
          # Race generally is in parentheses after the concept name.
@@ -274,7 +278,8 @@ of error when you combine or summarize estimates. See the `tidycensus` help for 
 for notes on how to estimate margin of error when doing arithmetic operatons
 on ACS estimates such as addition or using a ratio to calculate a percentage.
 
-```{r sample_results}
+
+```r
 pick_towns <- c("Woodbridge", "West Haven", "New Haven", "East Haven",
                 "Bethany", "Orange", "Milford", "Branford", "Guilford",
                 "North Haven", "Madison", "Hamden", "North Branford",
@@ -299,15 +304,178 @@ kable(poverty_formatted, format.args = list(big.mark = ","),
   kableExtra::footnote(general = "Source: US Census American Community Survey 2013-2017 (variable B17010_002)\ntidycensus R package")
 ```
 
+<table class="table" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Families Below Poverty Line (from Table B17010)</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> GEOID </th>
+   <th style="text-align:left;"> Town </th>
+   <th style="text-align:right;"> Below Poverty </th>
+   <th style="text-align:left;"> MOE </th>
+   <th style="text-align:right;"> Total # of Families </th>
+   <th style="text-align:left;"> MOE of Families </th>
+   <th style="text-align:left;"> % Poverty </th>
+   <th style="text-align:left;"> MOE of % </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 0900952070 </td>
+   <td style="text-align:left;"> New Haven </td>
+   <td style="text-align:right;"> 5,038 </td>
+   <td style="text-align:left;"> ±468 </td>
+   <td style="text-align:right;"> 24,699 </td>
+   <td style="text-align:left;"> ±584 </td>
+   <td style="text-align:left;"> 20% </td>
+   <td style="text-align:left;"> ±1.8% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0900982870 </td>
+   <td style="text-align:left;"> West Haven </td>
+   <td style="text-align:right;"> 1,055 </td>
+   <td style="text-align:left;"> ±267 </td>
+   <td style="text-align:right;"> 11,563 </td>
+   <td style="text-align:left;"> ±460 </td>
+   <td style="text-align:left;"> 9% </td>
+   <td style="text-align:left;"> ±2.3% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0900922910 </td>
+   <td style="text-align:left;"> East Haven </td>
+   <td style="text-align:right;"> 438 </td>
+   <td style="text-align:left;"> ±194 </td>
+   <td style="text-align:right;"> 6,802 </td>
+   <td style="text-align:left;"> ±296 </td>
+   <td style="text-align:left;"> 6% </td>
+   <td style="text-align:left;"> ±2.8% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0900935650 </td>
+   <td style="text-align:left;"> Hamden </td>
+   <td style="text-align:right;"> 534 </td>
+   <td style="text-align:left;"> ±187 </td>
+   <td style="text-align:right;"> 13,974 </td>
+   <td style="text-align:left;"> ±410 </td>
+   <td style="text-align:left;"> 4% </td>
+   <td style="text-align:left;"> ±1.3% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0900947535 </td>
+   <td style="text-align:left;"> Milford </td>
+   <td style="text-align:right;"> 507 </td>
+   <td style="text-align:left;"> ±163 </td>
+   <td style="text-align:right;"> 13,841 </td>
+   <td style="text-align:left;"> ±340 </td>
+   <td style="text-align:left;"> 4% </td>
+   <td style="text-align:left;"> ±1.2% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0900978740 </td>
+   <td style="text-align:left;"> Wallingford </td>
+   <td style="text-align:right;"> 421 </td>
+   <td style="text-align:left;"> ±148 </td>
+   <td style="text-align:right;"> 11,879 </td>
+   <td style="text-align:left;"> ±350 </td>
+   <td style="text-align:left;"> 4% </td>
+   <td style="text-align:left;"> ±1.2% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0900907310 </td>
+   <td style="text-align:left;"> Branford </td>
+   <td style="text-align:right;"> 227 </td>
+   <td style="text-align:left;"> ±115 </td>
+   <td style="text-align:right;"> 7,325 </td>
+   <td style="text-align:left;"> ±307 </td>
+   <td style="text-align:left;"> 3% </td>
+   <td style="text-align:left;"> ±1.6% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0900904580 </td>
+   <td style="text-align:left;"> Bethany </td>
+   <td style="text-align:right;"> 45 </td>
+   <td style="text-align:left;"> ±42 </td>
+   <td style="text-align:right;"> 1,611 </td>
+   <td style="text-align:left;"> ±107 </td>
+   <td style="text-align:left;"> 3% </td>
+   <td style="text-align:left;"> ±2.6% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0900957600 </td>
+   <td style="text-align:left;"> Orange </td>
+   <td style="text-align:right;"> 97 </td>
+   <td style="text-align:left;"> ±65 </td>
+   <td style="text-align:right;"> 3,836 </td>
+   <td style="text-align:left;"> ±117 </td>
+   <td style="text-align:left;"> 3% </td>
+   <td style="text-align:left;"> ±1.7% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0900954870 </td>
+   <td style="text-align:left;"> North Haven </td>
+   <td style="text-align:right;"> 137 </td>
+   <td style="text-align:left;"> ±61 </td>
+   <td style="text-align:right;"> 6,261 </td>
+   <td style="text-align:left;"> ±216 </td>
+   <td style="text-align:left;"> 2% </td>
+   <td style="text-align:left;"> ±1.0% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0900934950 </td>
+   <td style="text-align:left;"> Guilford </td>
+   <td style="text-align:right;"> 122 </td>
+   <td style="text-align:left;"> ±62 </td>
+   <td style="text-align:right;"> 6,343 </td>
+   <td style="text-align:left;"> ±193 </td>
+   <td style="text-align:left;"> 2% </td>
+   <td style="text-align:left;"> ±1.0% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0900987700 </td>
+   <td style="text-align:left;"> Woodbridge </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> ±32 </td>
+   <td style="text-align:right;"> 2,249 </td>
+   <td style="text-align:left;"> ±156 </td>
+   <td style="text-align:left;"> 2% </td>
+   <td style="text-align:left;"> ±1.4% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0900944560 </td>
+   <td style="text-align:left;"> Madison </td>
+   <td style="text-align:right;"> 76 </td>
+   <td style="text-align:left;"> ±48 </td>
+   <td style="text-align:right;"> 5,066 </td>
+   <td style="text-align:left;"> ±158 </td>
+   <td style="text-align:left;"> 2% </td>
+   <td style="text-align:left;"> ±0.9% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0900953890 </td>
+   <td style="text-align:left;"> North Branford </td>
+   <td style="text-align:right;"> 55 </td>
+   <td style="text-align:left;"> ±53 </td>
+   <td style="text-align:right;"> 4,075 </td>
+   <td style="text-align:left;"> ±208 </td>
+   <td style="text-align:left;"> 1% </td>
+   <td style="text-align:left;"> ±1.3% </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Source: US Census American Community Survey 2013-2017 (variable B17010_002)<br>tidycensus R package</td></tr>
+</tfoot>
+</table>
+
 The table displays the basic data returned by the call to `get_acs`.
 Note that there is a margin of error (MOE) for
 each count. ACS is based on a sample and is subject to sampling error. Plus or minus the
 MOE is the 90% confidence interval for the estimate. As one looks at small geographic
 units, MOE can be a big issue. For example, in this data there are an estimated
-`r comma(branford$summary_est)` families in Branford, plus or minus 
-`r branford$summary_moe`. That's a range of about 7%. But for Branford
+7,325 families in Branford, plus or minus 
+307. That's a range of about 7%. But for Branford
 the estimate for the number of families below the poverty line is both small and 
-unreliable: `r branford$estimate` with an MOE of `r branford$moe`. If
+unreliable: 227 with an MOE of 115. If
 I had used the one-year ACS rather than the five-year, the MOE would be even worse. In fact,
 the API will not even return the one-year results for most towns. If I run the `get_acs` code
 but with *ACS1* rather than *ACS5* I only get data returned for New Haven and Waterbury, the
@@ -318,8 +486,8 @@ The one-year ACS has rules for [what data will not be reported](https://www.cens
 is too small. The ACS5 will give you the results, but that doesn't mean you should
 be oblivious to whether a large MOE indicates a comparison you want to make is not valid.
 
-The table confirms that poverty is concentrated in the city. While `r nh_pct_families` of families of the 14 towns are 
-in New Haven, `r nh_pct_poverty` of families below the poverty line are in New Haven.
+The table confirms that poverty is concentrated in the city. While 21% of families of the 14 towns are 
+in New Haven, 57% of families below the poverty line are in New Haven.
 And some other tracts with elevated levels of poverty are in East Haven and West Haven
 adjacent to the city.
 
@@ -378,7 +546,8 @@ TRACT.GEOID. I turn that into a regular data frame that I can join
 to other `sf` objects so that I can associate towns with tracts via
 tract GEOID.
 
-```{r setup_geo_selection, message = FALSE, warning=FALSE}
+
+```r
 pick_towns <- c("Woodbridge", "West Haven", "New Haven", "East Haven",
                 "Bethany", "Orange", "Milford", "Branford", "Guilford",
                 "North Haven", "Madison", "Hamden", "North Branford",
@@ -413,7 +582,8 @@ area_town_centroid <- st_centroid(area_towns) # use to place town labels
 Next we will use `ggplot2` and the `geom_sf` geom to create a map
 from the `sf` objects that contain the shapefiles for tracts and towns around New Haven.
 
-```{r base_plot, out.width = "100%", message = FALSE, warning=FALSE}
+
+```r
 ggplot() + 
   geom_sf(data = area_tracts, 
   fill = "gray", colour = "darkgray", show.legend = FALSE) +
@@ -424,8 +594,9 @@ ggplot() +
   labs(title = "New Haven Area Towns", 
        subtitle = "with census tract boundaries",
        caption = "Source: US Census, tidycensus package")  
-
 ```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/base_plot-1.png" width="100%" />
 
 ### We Have a Map; Let's Display Some Census Data
 
@@ -438,7 +609,8 @@ happens and afterward we will explore the issue of margin of error a bit more.
 I have redone the `get_acs` query we did by town, only this time the geography unit
 will be tracts rather than county subdivisions.
 
-```{r poverty_tract, cache = TRUE, message = FALSE, warning=FALSE}
+
+```r
 poverty_tracts <- get_acs(geography = "tract",  
               state = "CT",
               county = "New Haven",
@@ -453,7 +625,8 @@ poverty_tracts <- get_acs(geography = "tract",
   left_join(tract_town_df, by = "GEOID") %>% 
   filter(TOWN %in% pick_towns)
 ```
-```{r poverty_plot, warning = FALSE, out.width = "110%"}
+
+```r
 # poverty_tracts is similar to poverty_acs, but includes geometry and limits to area towns
 ggplot() + 
   geom_sf(data = poverty_tracts, 
@@ -468,6 +641,8 @@ ggplot() +
        caption = "Source: US Census American Community Survey 2013-2017 (variable B17010_002)\ntidycensus R package")  
 ```
 
+<img src="{{< blogdown/postref >}}index_files/figure-html/poverty_plot-1.png" width="110%" />
+
 In the map that shows poverty by census tract, there are six tracts that are
 missing from the data. They show up as white areas on the map. Presumably data
 has been suppressed. One of the missing tracts is where I used to live in New
@@ -475,7 +650,8 @@ Haven. Families below the poverty line may have been hard to find there. I
 don't know how the suppression policies work for the five-year ACS so I don't
 know why these tracts are missing.
 
-```{r income_plot, warning = FALSE}
+
+```r
 # INCOME IN THE PAST 12 MONTHS B07411_0.5
 income_tracts <- get_acs(geography = "tract",  
               state = "CT",
@@ -502,6 +678,8 @@ ggplot() +
        caption = "Source: US Census American Community Survey 2013-2017 (variable B19013_001)\ntidycensus R package")  
 ```
 
+<img src="{{< blogdown/postref >}}index_files/figure-html/income_plot-1.png" width="100%" />
+
 Because the ACS is based on a sample, one cannot ignore the margin of error. The
 next plot has shows the median income for each census tract within each town drawn
 with a line that represents minus and plus the margin error. In effect this shows
@@ -509,7 +687,8 @@ a 90% confidence interval. Where the lines overlap you should not draw the concl
 one census tract is higher than another. On the other hand, one see cases where
 it is clear there is a difference. Track 1571 in Orange is unambiguously lower than
 the other tracts in Orange.
-```{r show_moe, fig.height = 8, message = FALSE, warning=FALSE}
+
+```r
 area_towns_order <- c("Bethany", "Woodbridge", "Wallingford", "North Branford",
                       "Orange", "Hamden", "North Haven", "Guilford",
                       "West Haven", "New Haven", "Branford", "Madison",
@@ -529,13 +708,16 @@ ggplot(data = income_tracts, aes(x = estimate/1000, y = fct_reorder(tract_name, 
   theme(axis.text.x  = element_text(size=6), axis.text.y  = element_text(size=5))
 ```
 
+<img src="{{< blogdown/postref >}}index_files/figure-html/show_moe-1.png" width="100%" />
+
 ### Now for Something Completely Different
 
 The next ACS query will focus on mode of transportation to work. This is an example
 of the breadth of the survey. In addition to the material shown here, there's also
 a lot on the time it takes to get to work.
 
-```{r commuting_data}
+
+```r
 vars2 <- vars %>% filter(table_id == "B08006") %>% 
   separate(label, into = paste0("t", seq(1, 8)), remove = FALSE, sep = "!!") %>% 
   select(-t1)
@@ -586,13 +768,163 @@ The ACS reports the mode of transportation to work. For workers, the table below
 shows the percentage who rely primarily on each form of transportation (plus
 a column for workers who work at home). The table is sorted by the percentage who
 travel by car. 
-```{r commuter_table}
+
+```r
 kable(commuters_table, caption = "Mode of Transportation to Work", lab = NA) %>% 
   kableExtra::kable_styling() %>% 
   kableExtra::footnote(general = "Source: US Census American Community Survey 2013-2017 (variable B08006)\ntidycensus R package")
 ```
 
-```{r race}
+<table class="table" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Mode of Transportation to Work</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> TOWN </th>
+   <th style="text-align:left;"> At home </th>
+   <th style="text-align:left;"> Bicycle </th>
+   <th style="text-align:left;"> Public Transport </th>
+   <th style="text-align:left;"> Taxi, motorcycle </th>
+   <th style="text-align:left;"> Vehicle </th>
+   <th style="text-align:left;"> Walked </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> New Haven </td>
+   <td style="text-align:left;"> 4.1825% </td>
+   <td style="text-align:left;"> 3.056% </td>
+   <td style="text-align:left;"> 12.359% </td>
+   <td style="text-align:left;"> 0.9942% </td>
+   <td style="text-align:left;"> 66.837% </td>
+   <td style="text-align:left;"> 12.571% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Madison </td>
+   <td style="text-align:left;"> 9.8785% </td>
+   <td style="text-align:left;"> 0.710% </td>
+   <td style="text-align:left;"> 3.646% </td>
+   <td style="text-align:left;"> 0.9626% </td>
+   <td style="text-align:left;"> 84.274% </td>
+   <td style="text-align:left;"> 0.529% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> West Haven </td>
+   <td style="text-align:left;"> 3.3653% </td>
+   <td style="text-align:left;"> 0.096% </td>
+   <td style="text-align:left;"> 6.226% </td>
+   <td style="text-align:left;"> 0.2248% </td>
+   <td style="text-align:left;"> 86.318% </td>
+   <td style="text-align:left;"> 3.771% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Guilford </td>
+   <td style="text-align:left;"> 7.8807% </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 2.318% </td>
+   <td style="text-align:left;"> 0.3674% </td>
+   <td style="text-align:left;"> 87.746% </td>
+   <td style="text-align:left;"> 1.688% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hamden </td>
+   <td style="text-align:left;"> 3.0827% </td>
+   <td style="text-align:left;"> 0.627% </td>
+   <td style="text-align:left;"> 4.210% </td>
+   <td style="text-align:left;"> 0.4294% </td>
+   <td style="text-align:left;"> 88.160% </td>
+   <td style="text-align:left;"> 3.490% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Milford </td>
+   <td style="text-align:left;"> 4.7260% </td>
+   <td style="text-align:left;"> 0.021% </td>
+   <td style="text-align:left;"> 4.973% </td>
+   <td style="text-align:left;"> 0.5392% </td>
+   <td style="text-align:left;"> 88.381% </td>
+   <td style="text-align:left;"> 1.360% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Woodbridge </td>
+   <td style="text-align:left;"> 7.7015% </td>
+   <td style="text-align:left;"> 0.454% </td>
+   <td style="text-align:left;"> 2.774% </td>
+   <td style="text-align:left;"> 0.2153% </td>
+   <td style="text-align:left;"> 88.424% </td>
+   <td style="text-align:left;"> 0.431% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Orange </td>
+   <td style="text-align:left;"> 5.9053% </td>
+   <td style="text-align:left;"> 0.217% </td>
+   <td style="text-align:left;"> 3.046% </td>
+   <td style="text-align:left;"> 0.4909% </td>
+   <td style="text-align:left;"> 89.691% </td>
+   <td style="text-align:left;"> 0.650% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Bethany </td>
+   <td style="text-align:left;"> 6.7881% </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 1.179% </td>
+   <td style="text-align:left;"> 0.7145% </td>
+   <td style="text-align:left;"> 90.640% </td>
+   <td style="text-align:left;"> 0.679% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> East Haven </td>
+   <td style="text-align:left;"> 3.7225% </td>
+   <td style="text-align:left;"> 0.085% </td>
+   <td style="text-align:left;"> 2.663% </td>
+   <td style="text-align:left;"> 0.5368% </td>
+   <td style="text-align:left;"> 90.669% </td>
+   <td style="text-align:left;"> 2.324% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Branford </td>
+   <td style="text-align:left;"> 4.1840% </td>
+   <td style="text-align:left;"> 0.145% </td>
+   <td style="text-align:left;"> 2.072% </td>
+   <td style="text-align:left;"> 0.7127% </td>
+   <td style="text-align:left;"> 90.774% </td>
+   <td style="text-align:left;"> 2.112% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wallingford </td>
+   <td style="text-align:left;"> 4.8982% </td>
+   <td style="text-align:left;"> 0.004% </td>
+   <td style="text-align:left;"> 0.735% </td>
+   <td style="text-align:left;"> 0.5204% </td>
+   <td style="text-align:left;"> 91.856% </td>
+   <td style="text-align:left;"> 1.987% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> North Haven </td>
+   <td style="text-align:left;"> 4.1027% </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 2.306% </td>
+   <td style="text-align:left;"> 1.2165% </td>
+   <td style="text-align:left;"> 92.089% </td>
+   <td style="text-align:left;"> 0.286% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> North Branford </td>
+   <td style="text-align:left;"> 2.6022% </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 0.320% </td>
+   <td style="text-align:left;"> 0.3205% </td>
+   <td style="text-align:left;"> 96.193% </td>
+   <td style="text-align:left;"> 0.564% </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Source: US Census American Community Survey 2013-2017 (variable B08006)<br>tidycensus R package</td></tr>
+</tfoot>
+</table>
+
+
+```r
 white_not_hispanic <- "B01001H_001"
 white_alone <- "B02008_001"
 black <- "B02009_001"
@@ -661,13 +993,161 @@ Note that the categories as I have defined them here can add up to more than
 the total population. This is a tricky area of the ACS. There are some other
 tables that get into the issue of how the multiple categories are used.
 
-```{r race_table}
+
+```r
 race_table %>% kable(caption = "Percent Race by Town (Categories are not mutually exclusive)",
                      lab = NA) %>% 
   kableExtra::kable_styling() %>% 
   kableExtra::footnote(general = "Source: US Census American Community Survey 2013-2017\nvariables B01001H_001, B02008_001, B02009_001, B02011_001, B01001I_001, B05001_006\ntidycensus R package")
-
 ```
+
+<table class="table" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Percent Race by Town (Categories are not mutually exclusive)</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Town </th>
+   <th style="text-align:left;"> White alone </th>
+   <th style="text-align:left;"> White not Hispanic </th>
+   <th style="text-align:left;"> Hispanic </th>
+   <th style="text-align:left;"> Black </th>
+   <th style="text-align:left;"> Asian </th>
+   <th style="text-align:left;"> Not US citizen </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> New Haven </td>
+   <td style="text-align:left;"> 46% </td>
+   <td style="text-align:left;"> 30% </td>
+   <td style="text-align:left;"> 30% </td>
+   <td style="text-align:left;"> 35% </td>
+   <td style="text-align:left;"> 5% </td>
+   <td style="text-align:left;"> 12% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> West Haven </td>
+   <td style="text-align:left;"> 67% </td>
+   <td style="text-align:left;"> 51% </td>
+   <td style="text-align:left;"> 21% </td>
+   <td style="text-align:left;"> 24% </td>
+   <td style="text-align:left;"> 4% </td>
+   <td style="text-align:left;"> 9% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hamden </td>
+   <td style="text-align:left;"> 65% </td>
+   <td style="text-align:left;"> 58% </td>
+   <td style="text-align:left;"> 11% </td>
+   <td style="text-align:left;"> 25% </td>
+   <td style="text-align:left;"> 6% </td>
+   <td style="text-align:left;"> 7% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> East Haven </td>
+   <td style="text-align:left;"> 86% </td>
+   <td style="text-align:left;"> 77% </td>
+   <td style="text-align:left;"> 15% </td>
+   <td style="text-align:left;"> 4% </td>
+   <td style="text-align:left;"> 5% </td>
+   <td style="text-align:left;"> 3% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Woodbridge </td>
+   <td style="text-align:left;"> 82% </td>
+   <td style="text-align:left;"> 77% </td>
+   <td style="text-align:left;"> 5% </td>
+   <td style="text-align:left;"> 2% </td>
+   <td style="text-align:left;"> 16% </td>
+   <td style="text-align:left;"> 6% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> North Haven </td>
+   <td style="text-align:left;"> 88% </td>
+   <td style="text-align:left;"> 83% </td>
+   <td style="text-align:left;"> 5% </td>
+   <td style="text-align:left;"> 4% </td>
+   <td style="text-align:left;"> 8% </td>
+   <td style="text-align:left;"> 3% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Milford </td>
+   <td style="text-align:left;"> 90% </td>
+   <td style="text-align:left;"> 84% </td>
+   <td style="text-align:left;"> 7% </td>
+   <td style="text-align:left;"> 4% </td>
+   <td style="text-align:left;"> 6% </td>
+   <td style="text-align:left;"> 5% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wallingford </td>
+   <td style="text-align:left;"> 92% </td>
+   <td style="text-align:left;"> 85% </td>
+   <td style="text-align:left;"> 8% </td>
+   <td style="text-align:left;"> 2% </td>
+   <td style="text-align:left;"> 5% </td>
+   <td style="text-align:left;"> 2% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Bethany </td>
+   <td style="text-align:left;"> 94% </td>
+   <td style="text-align:left;"> 86% </td>
+   <td style="text-align:left;"> 6% </td>
+   <td style="text-align:left;"> 1% </td>
+   <td style="text-align:left;"> 6% </td>
+   <td style="text-align:left;"> 3% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Orange </td>
+   <td style="text-align:left;"> 91% </td>
+   <td style="text-align:left;"> 87% </td>
+   <td style="text-align:left;"> 2% </td>
+   <td style="text-align:left;"> 2% </td>
+   <td style="text-align:left;"> 8% </td>
+   <td style="text-align:left;"> 4% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Branford </td>
+   <td style="text-align:left;"> 93% </td>
+   <td style="text-align:left;"> 88% </td>
+   <td style="text-align:left;"> 5% </td>
+   <td style="text-align:left;"> 2% </td>
+   <td style="text-align:left;"> 5% </td>
+   <td style="text-align:left;"> 3% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> North Branford </td>
+   <td style="text-align:left;"> 94% </td>
+   <td style="text-align:left;"> 89% </td>
+   <td style="text-align:left;"> 5% </td>
+   <td style="text-align:left;"> 4% </td>
+   <td style="text-align:left;"> 2% </td>
+   <td style="text-align:left;"> 1% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Guilford </td>
+   <td style="text-align:left;"> 96% </td>
+   <td style="text-align:left;"> 91% </td>
+   <td style="text-align:left;"> 4% </td>
+   <td style="text-align:left;"> 1% </td>
+   <td style="text-align:left;"> 4% </td>
+   <td style="text-align:left;"> 2% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Madison </td>
+   <td style="text-align:left;"> 96% </td>
+   <td style="text-align:left;"> 93% </td>
+   <td style="text-align:left;"> 1% </td>
+   <td style="text-align:left;"> 1% </td>
+   <td style="text-align:left;"> 4% </td>
+   <td style="text-align:left;"> 3% </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Source: US Census American Community Survey 2013-2017<br>variables B01001H_001, B02008_001, B02009_001, B02011_001, B01001I_001, B05001_006<br>tidycensus R package</td></tr>
+</tfoot>
+</table>
 
 Next we will see multiple plots that plot each of these categories on the map
 of towns around New Haven. We can see that the Black population is primarily in
@@ -675,7 +1155,8 @@ New Haven, West Haven, and Hamden. I was surprised to see that there is a notabl
 Asian population in Woodbridge. As we saw in the table, most of the outer suburban
 towns are very, very white.
 
-```{r race_by_town}
+
+```r
 ggplot() + 
   geom_sf(data = race_town, 
   aes(fill = pct), colour = "lightgray") +
@@ -691,13 +1172,16 @@ ggplot() +
        caption = "Source: US Census American Community Survey 2013-2017 (variables B01001H_001, B02008_001, B02009_001, B02011_001, B01001I_001, B05001_006)\ntidycensus R package")  
 ```
 
+<img src="{{< blogdown/postref >}}index_files/figure-html/race_by_town-1.png" width="100%" />
+
 As an experiment, I redid the race plot to show detail by census tract not just
 by town. Of course the overall impression is similar to the town level plots. As
 I have said before, as one gets down to the level of individual tracts the
 fact that we are dealing with a sample with a margin of error is an
 important reason not to over-interpret small vaiations.
 
-```{r race_by_tract}
+
+```r
 race_tracts <- get_acs(geography = "tract",  
               state = "CT",
               county = "New Haven",
@@ -733,6 +1217,8 @@ ggplot() +
        caption = "Source: US Census American Community Survey 2013-2017\n(variables B01001H_001, B02008_001, B02009_001, B02011_001, B01001I_001, B05001_006)\ntidycensus R package")  
 ```
 
+<img src="{{< blogdown/postref >}}index_files/figure-html/race_by_tract-1.png" width="100%" />
+
 As a final step I focused only on the City of New Haven. By focusing on one
 town only, we can see more detail by census tract. Within the city, some
 tracts are very white and others are very non-white. The east side of the city
@@ -747,7 +1233,8 @@ it is important to remember that at the level of individual census tracts the
 ACS sample results may not be exactly precise. Small differences between
 tracts may be within the margin of error.
 
-```{r focus_on_newhaven}
+
+```r
 # I explored possibilit of adding roads, but didn't like it.
 # nh_roads <- roads("CT", "New Haven") %>%
 # filter(RTTYP %in% c("I", "S", "U"))
@@ -770,6 +1257,8 @@ ggplot() +
        subtitle = "by census tract (margin of error by tract may be large)",
        caption = "Source: US Census American Community Survey 2013-2017\n(variables B01001H_001, B02008_001, B02009_001, B02011_001, B01001I_001, B05001_006)\ntidycensus R package")  
 ```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/focus_on_newhaven-1.png" width="100%" />
 
 ### Conclusion
 

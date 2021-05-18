@@ -19,9 +19,7 @@ image: ''
 draft: no
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 This post is Part I of a dive into the contents of the Apple Health Export. 
 It will work through the mechanics of moving data from the Apple Health app
 out of your iPhone and into R where you can analyze it. It also will describe in detail the problem of 
@@ -30,14 +28,14 @@ Unfortunately the topic of time zones and the Apple Health Export is a complicat
 
 ## First, Export the Data from the Health App
 
-```{css echo=FALSE}
+<style type="text/css">
 code {
 
     color: #97736C;
   background-color: #FAF9F9;
   font-weight: 400
 }
-```
+</style>
 You can export all of the data you are able to view via the Health app. 
 Open the Health app on your iPhone. 
 To export, go to your personal settings by
@@ -85,28 +83,10 @@ The big file inside that folder is `export.xml`. Following the examples cited ab
 use the XML package to covert the major elements of the XML file into
 tidy data frames.
 
-```{r load_libraries, message = FALSE, warnings = FALSE, echo = FALSE}
-library(tidyverse, quietly = TRUE)
-#library(jsonlite, quietly = TRUE)
-library(lubridate, quietly = TRUE)
-library(XML, quietly = TRUE)
-library(knitr)
-library(kableExtra) 
-library(PerformanceAnalytics) # to get correlation matrix
-library(janitor) # so that I an use the tabyl function
-library(scales) # to help format some tabular data
-library(fuzzyjoin)
-library(httr)
-library(fs)
-library(memoise)
-```
-```{r include_functions, echo = FALSE}
-path_saved_export <- "~/Dropbox/Programming/R_Stuff/john_vitals/Apple-Health-Data/"
-path_to_healthexport1 <- "~/Documents/R_local_repos/applehealth1/R/"
-source(paste0(path_to_healthexport1, "find_timezone.R"))
-# source(paste0(path_to_healthexport1, "tripit_functions.R"))
-```
-```{r import_xml, echo = TRUE, cache = TRUE, messages = FALSE}
+
+
+
+```r
 if (file_exists("~/Downloads/export.zip")) {
   rc <- unzip("~/Downloads/export.zip", exdir = "~/Downloads", overwrite = TRUE)
   if (length(rc) != 0) {
@@ -132,11 +112,7 @@ if (file_exists("~/Downloads/export.zip")) {
   }
 } 
 ```
-```{r recover_previous_work, echo = FALSE}
-if (!exists("health_df") & file.exists(paste0(path_saved_export, "exported_dataframes.RData"))) {
-  load(paste0(path_saved_export, "exported_dataframes.RData"))
-}
-```
+
 
 I won't go into the details of the XML structure of the health export.
 For most purposes, the Record, ActivitySummary, Workout, and Clinical data types
@@ -152,27 +128,399 @@ more than four million rows and takes about 70 seconds on my 2019 iMac.
 
 ### The Types of Data in the Export
 
-The counts by "type" describe the breadth and quantity of data are shown in Table \@ref(tab:freq-type).
+The counts by "type" describe the breadth and quantity of data are shown in Table <a href="#tab:freq-type">1</a>.
 
-```{r freq-type, echo = FALSE}
-health_df2 <- health_df %>% 
-  mutate(source = case_when(
-    str_detect(sourceName, "Phone") ~ "Phone",
-    str_detect(sourceName, "Watch") ~ "Watch",
-    str_detect(sourceName, "Lose It") ~ "Lose It!",
-    TRUE ~ "Other"),
-    source = factor(source, levels = c("Watch", "Phone", "Lose It!", "Other")))
-  # can use clipr::write_clip(allow_non_interactive = TRUE) if want to paste table
-# padding tip from https://stackoverflow.com/questions/39252915/r-knitr-kable-padding-not-working-with-format-html
-health_df2 %>% 
-  janitor::tabyl(type, source) %>% 
-  janitor::adorn_totals("col") %>%  arrange(desc(Total)) %>% 
-  janitor::adorn_totals("row") %>% # do column total after arrange
-  kable(format.args = list(decimal.mark = " ", big.mark = ","),
-        table.attr='class="myTable"',
-        # caption = "Frequency by Type and Data Source", format = "markdown") %>% 
-        caption = "Frequency by Type and Data Source")
-```
+<table class="myTable">
+<caption>Table 1: Frequency by Type and Data Source</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> type </th>
+   <th style="text-align:right;"> Watch </th>
+   <th style="text-align:right;"> Phone </th>
+   <th style="text-align:right;"> Lose It! </th>
+   <th style="text-align:right;"> Other </th>
+   <th style="text-align:right;"> Total </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierActiveEnergyBurned </td>
+   <td style="text-align:right;"> 1,120,202 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 1,120,204 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierHeartRate </td>
+   <td style="text-align:right;"> 502,394 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 2,642 </td>
+   <td style="text-align:right;"> 505,036 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierDistanceWalkingRunning </td>
+   <td style="text-align:right;"> 259,806 </td>
+   <td style="text-align:right;"> 157,767 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 417,575 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierBasalEnergyBurned </td>
+   <td style="text-align:right;"> 362,927 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 362,927 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierStepCount </td>
+   <td style="text-align:right;"> 81,132 </td>
+   <td style="text-align:right;"> 158,903 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 240,037 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierAppleExerciseTime </td>
+   <td style="text-align:right;"> 85,863 </td>
+   <td style="text-align:right;"> 453 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 86,316 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierFlightsClimbed </td>
+   <td style="text-align:right;"> 20,095 </td>
+   <td style="text-align:right;"> 17,922 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 38,019 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierAppleStandTime </td>
+   <td style="text-align:right;"> 34,806 </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 34,830 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKCategoryTypeIdentifierAppleStandHour </td>
+   <td style="text-align:right;"> 29,547 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 29,557 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierEnvironmentalAudioExposure </td>
+   <td style="text-align:right;"> 24,436 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 24,436 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierDietaryFatTotal </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 9,922 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 9,922 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierDietaryEnergyConsumed </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 9,524 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 9,524 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierDietaryFatSaturated </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 9,124 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 9,124 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierDietaryFiber </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 8,951 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 8,951 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierDietaryProtein </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 8,914 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 8,914 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierDietarySodium </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 8,903 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 8,903 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierDietarySugar </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 8,671 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 8,672 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierDietaryCholesterol </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 8,391 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 8,391 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierHeartRateVariabilitySDNN </td>
+   <td style="text-align:right;"> 7,878 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 7,878 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierWalkingStepLength </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 6,176 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 6,176 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierWalkingSpeed </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 6,161 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 6,161 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKCategoryTypeIdentifierSleepAnalysis </td>
+   <td style="text-align:right;"> 1,166 </td>
+   <td style="text-align:right;"> 306 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 4,504 </td>
+   <td style="text-align:right;"> 5,976 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierWalkingDoubleSupportPercentage </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 5,160 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 5,160 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierBloodPressureDiastolic </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 4,344 </td>
+   <td style="text-align:right;"> 4,344 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierBloodPressureSystolic </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 4,344 </td>
+   <td style="text-align:right;"> 4,344 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierStairDescentSpeed </td>
+   <td style="text-align:right;"> 3,288 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3,288 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierStairAscentSpeed </td>
+   <td style="text-align:right;"> 3,236 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3,236 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierOxygenSaturation </td>
+   <td style="text-align:right;"> 2,905 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 57 </td>
+   <td style="text-align:right;"> 2,962 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierWalkingAsymmetryPercentage </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1,462 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1,462 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierRestingHeartRate </td>
+   <td style="text-align:right;"> 1,258 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1,258 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierWalkingHeartRateAverage </td>
+   <td style="text-align:right;"> 1,178 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1,178 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierBodyMass </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 564 </td>
+   <td style="text-align:right;"> 92 </td>
+   <td style="text-align:right;"> 657 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierVO2Max </td>
+   <td style="text-align:right;"> 488 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 488 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierDistanceCycling </td>
+   <td style="text-align:right;"> 458 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 458 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierHeadphoneAudioExposure </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 147 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 147 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKCategoryTypeIdentifierMindfulSession </td>
+   <td style="text-align:right;"> 145 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 145 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierSixMinuteWalkTestDistance </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKCategoryTypeIdentifierAudioExposureEvent </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierHeight </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierNumberOfTimesFallen </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKCategoryTypeIdentifierDizziness </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKCategoryTypeIdentifierECGOtherSymptom </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKCategoryTypeIdentifierRapidPoundingOrFlutteringHeartbeat </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKDataTypeSleepDurationGoal </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierDietaryCaffeine </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> HKQuantityTypeIdentifierDietaryCarbohydrates </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 2,543,212 </td>
+   <td style="text-align:right;"> 354,507 </td>
+   <td style="text-align:right;"> 72,964 </td>
+   <td style="text-align:right;"> 15,999 </td>
+   <td style="text-align:right;"> 2,986,682 </td>
+  </tr>
+</tbody>
+</table>
 
 The same data may be repeated from multiple sources
 so it is important to pay attention to `sourceName`.
@@ -215,10 +563,7 @@ ClinicalRecord is a bit tricky.
 I have set things up so that my health organization shares my health records with the
 Apple Health app. 
 
-```{r count-clin-record-types, echo = FALSE, eval = FALSE}
-# The count by type is in Table \@ref(tab:count-clin-record-types).
-clinical_df %>% count(type) %>% kable(format = "markdown", caption = "Types of Clinical Items")
-```
+
 
 In the clinical data frame there is a column called `resourceFilePath` that contains 
 the path to a json dataset in the `Apple Health Export/clinical records` folder. Presumably
@@ -352,7 +697,8 @@ in Amsterdam. If you have no
 data in TripIt then the manual table would have to
 describe all your trips to a different time zone.
 
-```{r create-manual-table}
+
+```r
 manual_timezone_changes <-
   tibble::tribble(
     ~local_arrive,        ~local_timezone,
@@ -432,35 +778,17 @@ fetched more than the minimum columns I needed partly out of curiosity over
 what was in the TripIt data. It's interesting to see all my flight information
 in one table, although much is not directly relevant to the task at hand.
 
-```{r basic_tripit_data, echo = TRUE, eval = FALSE}
+
+```r
 # get list of trips
 trips_list <- GET_tripit("https://api.tripit.com/v1/list/trip/past/true/false")
 trip_ids <- trips_list$Trip %>% map_chr("id")
 ```
-```{r more_tripit, echo = FALSE, eval = FALSE}
-# flying <- trip_ids %>% map_dfr(GET_air_mem)
-# save(flying, file = paste0(path_saved_export, "flying.RData"))
-# save_all_trips <- trip_ids %>% map
-# first get flights (i.e., segments) from all air trips
-air_trips <- save_all_trips %>% purrr::map("AirObject") %>% purrr::map("Segment") %>% flatten()
-save(trips_list, trip_ids, save_all_trips, air_trips, file = paste0(path_saved_export, "saved_tripit_data.RData"))
-```
-```{r load_saved_trips, echo = FALSE}
-load(paste0(path_saved_export, "saved_tripit_data.RData"))
-```
-```{r tripit_stuff, echo = FALSE, eval = FALSE}
-print(load(paste0(path_saved_export, "save_all_trips.RData")))
-air_trips <- save_all_trips %>% map("AirObject") %>% map("Segment") %>% flatten()
 
-load(paste0(path_saved_export, "flying.RData"))
 
-# memoise::forget(GET_air_mem)
 
-# flying2 <- flying %>%   # don't need this, right?
-#   mutate(start = ymd_hms(paste0(start_date, start_time)),
-#          end = ymd_hms(paste0(end_date, end_time)))
-```
-```{r get_air_trips}
+
+```r
 GET_air <- function(trip_id) {
   atrip <-
     GET_tripit(
@@ -494,13 +822,11 @@ GET_air_mem <- memoise::memoise(GET_air)
 # all the data in a single call. With memoise, for each call
 # I only fetch the items it doesn't remember.
 ```
-```{r get_flying, eval = FALSE}
+
+```r
 flying <- trip_ids %>% map_dfr(GET_air_mem)
 ```
-```{r load_flying, echo = FALSE}
-# save(flying, file = paste0(path_saved_export, "flying.RData"))
-load(paste0(path_saved_export, "flying.RData"))
-```
+
 
 I used [memoise](https://github.com/r-lib/memoise) with the `GET_air_mem`
 function because TripIt generally doesn't give me all my flights
@@ -522,7 +848,8 @@ So after I bind together rows from TripIt and the manual rows above, I
 set `utc_until = lead(utc_arrive), until_timezone = lead(local_timezone)`.
 I set the last `utc_until` to `now()`
 
-```{r process_flights}
+
+```r
 local_to_utc <- function(dt, timezone) {
   # UTC of this local time. Note: not vectorized
   if (is.character(dt)) dt <- as_datetime(dt)
@@ -571,7 +898,8 @@ impressed by the speed of `interval_left_join`. I thought it would be impractica
 on the full dataset, but it feels fast. I also used it to relate rows in 
 `health_df` to rows in `workout_df`, but I'll describe that in Part II.
 
-```{r relate_time_zone_intervals_to_each_row}
+
+```r
 health_df <- health_df %>%
   mutate(utc_start = as_datetime(startDate),
          utc_end = as_datetime(endDate)) %>% 
@@ -585,9 +913,10 @@ Do a quick report to check whether the assignment of time zone makes sense.
 If data documenting the transition from one time zone to
 another is missing the whole table will be off kilter. If
 there's something wrong with the `arrivals` table, it should show up as an
-unexpected result in Table \@ref(tab:check-time-zone). 
+unexpected result in Table <a href="#tab:check-time-zone">2</a>. 
 
-```{r check-time-zone}
+
+```r
 # shows trip by trip to check whether timezone assignment works as expected:
 # health_df %>% #filter(timezone != "America/New_York") %>%
 #   mutate(date = as_date(utc_start)) %>%
@@ -601,6 +930,59 @@ health_df %>% mutate(date = as_date(utc_start)) %>% group_by(timezone) %>%
         table.attr='class="myTable"',
         caption = "Frequency of Days by Time Zone")
 ```
+
+<table class="myTable">
+<caption>Table 2: Frequency of Days by Time Zone</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> timezone </th>
+   <th style="text-align:right;"> dates </th>
+   <th style="text-align:right;"> observations </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> America/Chicago </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:right;"> 19,435 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> America/Los_Angeles </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 25,836 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> America/New_York </td>
+   <td style="text-align:right;"> 2,198 </td>
+   <td style="text-align:right;"> 2,844,369 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> America/Phoenix </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 10,535 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Europe/Amsterdam </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 5,105 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Europe/Athens </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 19,555 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Europe/London </td>
+   <td style="text-align:right;"> 29 </td>
+   <td style="text-align:right;"> 60,382 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Europe/Rome </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 1,467 </td>
+  </tr>
+</tbody>
+</table>
   
 ### Using Row-by-Row Time Zone Data to Adjust Time Stamps
 
@@ -630,7 +1012,8 @@ vectorized. This is important because it will be applied to millions of rows.
 *All You Zombies*, described [here](https://en.wikipedia.org/wiki/All_You_Zombies).
 There's a movie version called *Predestination* starring Ethan Hawke.
 
-```{r utc_dt_to_local}
+
+```r
 utc_dt_to_local <- function(dt, time_zone) {
   # Adjust a vector of datetime from time zone where data was exported
   # to a particular time_zone that that applies to the whole vector.
@@ -661,7 +1044,8 @@ when and where the observation was recorded. So 16:42 means 4:42 PM in the time 
 (and daylight savings status) at the place and time of the measurement that goes
 with that time stamp.
 
-```{r adjust_time_stamps, cache = TRUE}
+
+```r
 health_df <- health_df %>% 
   group_by(timezone) %>% 
   # assume end_date is in the same time zone as start_date
@@ -691,12 +1075,7 @@ workout_df <- workout_df %>%
   ungroup()
 # I'm going to focus on health_df and workout_df, but I could adjust times in the other df's as well
 ```
-```{r interim_save, echo = FALSE, eval = FALSE}
-# Save some stuff so that I can skip the slow steps above:
-save(health_xml, health_df, activity_df, workout_df, clinical_df, 
-     file = paste0(path_saved_export,"save_processed_export.RData"))
-# print(load(paste0(path_saved_export, "save_processed_export.RData")))
-```
+
 
 At this point we have two sets of date and time stamps for `health_df` and `workout_df`. 
 The prefix "utc" is for universal time and
@@ -704,7 +1083,7 @@ should be used for sorting by time. The prefix "local" has local time as was sho
 measurement was recorded. Local time and date is what we need if we want to examine time during the day.
 For `health_df` there is also a column called `start_time` which is just the time of day, without date, expressed as hh:mm:ss.
 
-Figure \@ref(fig:hist-by-time) is a density plot that shows 
+Figure <a href="#fig:hist-by-time">1</a> is a density plot that shows 
 the difference between looking at 
 time of day in terms of UTC versus local time. 
 The first takeaway from this plot is that the frequency of measurements is
@@ -742,38 +1121,10 @@ In summary, if I did not correct for time zone and daylight savings the general 
 still be apparent. But the translation into local time makes the time of day pattern more clear
 and more accurate, especially if one focuses on hours when I would expect to be asleep.
 
-```{r hist-by-time, echo = FALSE, fig.cap = "Density Plot by Time of Observation"}
-a_sample <- sample_frac(health_df, size = 0.1)
-time_type <- a_sample %>% 
-  mutate(start_time = (as.integer(difftime(utc_start - hours(4) - minutes(30), floor_date(utc_start - hours(5) - minutes(30), "day"), unit = "secs"))) %>% hms::hms()) %>% 
-  select(start_time) %>% 
-  mutate(type = "UTC Time") %>% 
-  bind_rows(
-    a_sample %>% select(start_time) %>% mutate(type = "Local Time")
-  ) %>% mutate(type = fct_rev(factor(type)))
-for_labels <- tribble(
-  ~type,  ~start_time, ~y,  ~label,
-  "UTC Time",  4*3600, 2e-05, "UTC Time - 4.5 hours",
-  "Local Time", 19*3600, 2e-05, "Local Time"
-)
-p<-ggplot(time_type, aes(x=start_time, fill=type, color = type)) +
-  geom_density(alpha=0.4, adjust = 0.5) + 
-   # geom_histogram(aes(y=..density..), alpha=0.5,
-   #              position="identity", bins = 24)+
-  ggtitle("Distribution of Observations by Time of Day (UTC vs Local Time)") +
-  theme(legend.position="top") +
-  scale_x_time(breaks= seq(0, 3600*24, 3600*4), labels = scales::time_format("%H:%M"), 
-               minor_breaks = seq(0, 3600*24, 3600)) +
-  theme(axis.title.y=element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.title.x=element_blank(),
-        legend.position = "none")
- p <- p + geom_text(data = for_labels, 
-               aes(x = start_time, y = y, label = label, color = type), 
-               show.legend = FALSE, size = 5.5, vjust = 0) 
- print(p)
-```
+<div class="figure">
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/hist-by-time-1.png" alt="Density Plot by Time of Observation" width="672" />
+<p class="caption">Figure 1: Density Plot by Time of Observation</p>
+</div>
 
 ## Apple, If You're Listening...
 
