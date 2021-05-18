@@ -21,19 +21,8 @@ output:
     fig_height: 5
 ---
 
-```{r setup, include=FALSE, echo = FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE, out.width = "100%",
-                      knitr.table.format = "html")
-# knitr.table.format is for kable. Needed this to get blogdown table to format correctly.
-```
-```{r libraries, message = FALSE, warning = FALSE, echo = FALSE}
-# <!--more-->
 
-library(tidyverse, quietly = TRUE)
-library(knitr, quietly = TRUE)
-library(scales, quietly = TRUE)
-library(kableExtra, quietly = TRUE)
-```
+
 
 A relative link: [here](/img/for_site/UR_a_joke.png)
 

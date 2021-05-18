@@ -16,6 +16,7 @@ output:
   blogdown::html_page:
     # figure parameters based on recommendation in Hadley's book
     highlight: pygments
+  code_download: yes
 ---
 
 ### Post content

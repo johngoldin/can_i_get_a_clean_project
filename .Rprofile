@@ -24,9 +24,9 @@ options(
   blogdown.knit.on_save = FALSE,
   # full markdown mode
   # build .Rmd to .html (via Pandoc); to build to Markdown, set this option to 'markdown'
-  blogdown.method = "markdown", # rather than html
+  blogdown.method = "markdown" # rather than html
   # so the live preview actually live previews
-  blogdown.hugo.server = c('--disableFastRender', '-D', '-F', '--navigateToChanged')
+ # blogdown.hugo.server = c('--disableFastRender', '-D', '-F', '--navigateToChanged')
 )
 
 

@@ -180,3 +180,23 @@ will endure over time would probably push me to
 use markdown rather than Rmd. Given my situation where I can be
 a bit more casual, relying on .Rmd seems like the easy
 way to go. But I should think about this more for the future.
+
+I decided to follow Alison Hill's advice and
+have my blogdown knit .Rmd files to .md rather than to .html.
+And I now use the **knitr** button to manually knit the page.
+It no longer automatically knits on save. The .md files are
+converted to .html by Hugo running on Netlify. I accomplished
+this change by adding to the .RProfile file in my blog's main
+folder:
+
+```r
+  # to automatically serve the site on RStudio startup, set this option to TRUE
+  blogdown.serve_site.startup = FALSE,
+  # to disable knitting Rmd files on save, set this option to FALSE
+  blogdown.knit.on_save = FALSE,
+  # full markdown mode
+  # build .Rmd to .html (via Pandoc); to build to Markdown, set this option to 'markdown'
+  blogdown.method = "markdown", # rather than html
+  # so the live preview actually live previews
+  blogdown.hugo.server = c('--disableFastRender', '-D', '-F', '--navigateToChanged')
+```

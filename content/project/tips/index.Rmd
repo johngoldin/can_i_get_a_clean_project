@@ -35,7 +35,7 @@ excerpt: |
 draft: no
 output: 
   blogdown::html_page:
-    # figure parameters based on recommendation in Hadley's book 
+    # figure parameters based on recommendation in Hadley's book
     toc: yes
     number_sections: false
     fig_width: 7
@@ -64,7 +64,7 @@ leaflet map sample: http://leaflet-extras.github.io/leaflet-providers/preview/
 
 ### Tables
 
-[How to Make Beautiful Tables](https://rfortherestofus.com/2019/11/how-to-make-beautiful-tables-in-r/)    
+[How to Make Beautiful Tables](https://rfortherestofus.com/2019/11/how-to-make-beautiful-tables-in-r/)     
 
 ### Census
 
@@ -141,9 +141,7 @@ Although it's likely this is not a correct reference.
 
 - [Choosing a path]({{< relref "2017-03-11-american-walker-in-britain-part-2.md#choosing-a-path" >}})
 
-If your writing documentation for Hugo shortcodes, you will need to 
-escape the shortcode processing. e.g., 
-{{</* code */>}} will be rendered as {{< code >}}.
+
 ```
 
 [Hugo figure shortcode](https://gohugo.io/content-management/shortcodes/#figure)
@@ -175,4 +173,10 @@ blogdown::shortcode("figure", src = "/img/taxi.png#floatright", caption = "Calle
 
 [^1] -- put this where the footnote appears    
 [^1]: The footnote is contained in this line of text and can include more markdown formatting.    
+
+### Regular Expressions
+
+Some [tips](https://www.jumpingrivers.com/blog/regular-expressions-every-r-programmer-should-know/) from the Jumping Rivers blog
+
+
 

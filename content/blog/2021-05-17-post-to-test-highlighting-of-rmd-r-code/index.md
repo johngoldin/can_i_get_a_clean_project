@@ -12,11 +12,11 @@ images: ~
 series: ~
 layout: single
 draft: yes
-raw: "index.Rmd"
 output:
   blogdown::html_page:
     # figure parameters based on recommendation in Hadley's book
     highlight: pygments
+  code_download: yes
 ---
 
 ### Post content
@@ -30,14 +30,14 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
 ```
 
 ```
 ## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
-## ✓ tibble  3.1.0     ✓ dplyr   1.0.5
+## ✓ tibble  3.1.1     ✓ dplyr   1.0.6
 ## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-## ✓ readr   1.4.0     ✓ forcats 0.5.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.1
 ```
 
 ```

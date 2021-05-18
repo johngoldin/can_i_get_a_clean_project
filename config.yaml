@@ -37,7 +37,7 @@ markup:
   highlight:
     style: github
   tableOfContents:
-    endLevel: 2
+    endLevel: 3
     ordered: no
     startLevel: 2
 params:
