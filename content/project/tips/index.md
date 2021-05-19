@@ -2,13 +2,7 @@
 
     - [Choosing a path]({{< relref "2017-03-11-american-walker-in-britain-part-2.md#choosing-a-path" >}})
 
-<<<<<<< HEAD
-    If your writing documentation for Hugo shortcodes, you will need to 
-    escape the shortcode processing. e.g., 
 
-    {{</* code */>}} will be rendered as {{< code >}}.
-=======
->>>>>>> master
 [Hugo figure shortcode](https://gohugo.io/content-management/shortcodes/#figure)
 
     and {{%/* figure src="/img/taxi.png#floatright" caption="Need a taxi Hadrians Wall Path?" */%}}
