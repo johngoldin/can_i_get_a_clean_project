@@ -234,16 +234,21 @@ box_score %>%
   ) %>% 
   cols_align(align = "right") %>% 
   cols_align(align = "left", columns = c(1)) %>% 
+  cols_width(
+    starts_with("Conn") ~ px(200),
+    TRUE ~ px(130)
+  ) %>%
+  # tab_options(
+  #   table.width = pct(100)
+  # ) %>% 
+  tab_options(row.striping.include_table_body = FALSE) %>% 
   tab_source_note(source_note =  md("Source: Multiple tables from [Connecticut Open Data](https://data.ct.gov/stories/s/COVID-19-data/wa3g-tfvc/)")) %>% 
-    tab_footnote(
-    footnote = paste0('Nursing home data are reported only weekly so the dates for "today" and a "week ago" are ', format(recent_nursing_date,"%m/%d/%Y"), " and ", format(nursing_previous_date,"%m/%d/%Y"), "."),
+  tab_footnote(
+    footnote = md(paste0('Nursing home data are reported only weekly so the dates for "today" and a "week ago" are ', format(recent_nursing_date,"%m/%d/%Y"), " and ", format(nursing_previous_date,"%m/%d/%Y"), ".")),
     locations = cells_body(
       columns = vars(`Connecticut Covid-19`),
       rows = 7)
-  ) %>% 
-  # kable_styling(bootstrap_options = ".table", position = "left")
-  opt_row_striping(row_striping = FALSE)
-
+  ) 
 # issue about css and gt table 
 # https://github.com/rstudio/gt/issues/547
 

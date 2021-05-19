@@ -29,7 +29,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#kgiqjjiyju .gt_table {
+#mcuwlrjwmr .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -54,7 +54,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   border-left-color: #D3D3D3;
 }
 
-#kgiqjjiyju .gt_heading {
+#mcuwlrjwmr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -66,7 +66,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   border-right-color: #D3D3D3;
 }
 
-#kgiqjjiyju .gt_title {
+#mcuwlrjwmr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -76,7 +76,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   border-bottom-width: 0;
 }
 
-#kgiqjjiyju .gt_subtitle {
+#mcuwlrjwmr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -86,13 +86,13 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   border-top-width: 0;
 }
 
-#kgiqjjiyju .gt_bottom_border {
+#mcuwlrjwmr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kgiqjjiyju .gt_col_headings {
+#mcuwlrjwmr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -107,7 +107,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   border-right-color: #D3D3D3;
 }
 
-#kgiqjjiyju .gt_col_heading {
+#mcuwlrjwmr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -127,7 +127,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   overflow-x: hidden;
 }
 
-#kgiqjjiyju .gt_column_spanner_outer {
+#mcuwlrjwmr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -139,15 +139,15 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   padding-right: 4px;
 }
 
-#kgiqjjiyju .gt_column_spanner_outer:first-child {
+#mcuwlrjwmr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kgiqjjiyju .gt_column_spanner_outer:last-child {
+#mcuwlrjwmr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kgiqjjiyju .gt_column_spanner {
+#mcuwlrjwmr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -159,7 +159,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   width: 100%;
 }
 
-#kgiqjjiyju .gt_group_heading {
+#mcuwlrjwmr .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -181,7 +181,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   vertical-align: middle;
 }
 
-#kgiqjjiyju .gt_empty_group_heading {
+#mcuwlrjwmr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -196,15 +196,15 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   vertical-align: middle;
 }
 
-#kgiqjjiyju .gt_from_md > :first-child {
+#mcuwlrjwmr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kgiqjjiyju .gt_from_md > :last-child {
+#mcuwlrjwmr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kgiqjjiyju .gt_row {
+#mcuwlrjwmr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -223,7 +223,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   overflow-x: hidden;
 }
 
-#kgiqjjiyju .gt_stub {
+#mcuwlrjwmr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -235,7 +235,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   padding-left: 12px;
 }
 
-#kgiqjjiyju .gt_summary_row {
+#mcuwlrjwmr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -245,7 +245,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   padding-right: 5px;
 }
 
-#kgiqjjiyju .gt_first_summary_row {
+#mcuwlrjwmr .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -255,7 +255,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   border-top-color: #D3D3D3;
 }
 
-#kgiqjjiyju .gt_grand_summary_row {
+#mcuwlrjwmr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -265,7 +265,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   padding-right: 5px;
 }
 
-#kgiqjjiyju .gt_first_grand_summary_row {
+#mcuwlrjwmr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -275,11 +275,11 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   border-top-color: #D3D3D3;
 }
 
-#kgiqjjiyju .gt_striped {
+#mcuwlrjwmr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kgiqjjiyju .gt_table_body {
+#mcuwlrjwmr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -288,7 +288,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   border-bottom-color: #D3D3D3;
 }
 
-#kgiqjjiyju .gt_footnotes {
+#mcuwlrjwmr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -302,13 +302,13 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   border-right-color: #D3D3D3;
 }
 
-#kgiqjjiyju .gt_footnote {
+#mcuwlrjwmr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#kgiqjjiyju .gt_sourcenotes {
+#mcuwlrjwmr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -322,46 +322,46 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   border-right-color: #D3D3D3;
 }
 
-#kgiqjjiyju .gt_sourcenote {
+#mcuwlrjwmr .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#kgiqjjiyju .gt_left {
+#mcuwlrjwmr .gt_left {
   text-align: left;
 }
 
-#kgiqjjiyju .gt_center {
+#mcuwlrjwmr .gt_center {
   text-align: center;
 }
 
-#kgiqjjiyju .gt_right {
+#mcuwlrjwmr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kgiqjjiyju .gt_font_normal {
+#mcuwlrjwmr .gt_font_normal {
   font-weight: normal;
 }
 
-#kgiqjjiyju .gt_font_bold {
+#mcuwlrjwmr .gt_font_bold {
   font-weight: bold;
 }
 
-#kgiqjjiyju .gt_font_italic {
+#mcuwlrjwmr .gt_font_italic {
   font-style: italic;
 }
 
-#kgiqjjiyju .gt_super {
+#mcuwlrjwmr .gt_super {
   font-size: 65%;
 }
 
-#kgiqjjiyju .gt_footnote_marks {
+#mcuwlrjwmr .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="kgiqjjiyju" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table" style="table-layout: fixed;; width: 0px">
+<div id="mcuwlrjwmr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table" style="table-layout: fixed;; width: 0px">
   <colgroup>
     <col style="width:200px;"/>
     <col style="width:130px;"/>
@@ -373,7 +373,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
       <th colspan="4" class="gt_heading gt_title gt_font_normal" style>Latest Data on Covid-19 in Connecticut</th>
     </tr>
     <tr>
-      <th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Data as of  May 18, 2021</th>
+      <th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Data as of  May 14, 2021</th>
     </tr>
   </thead>
   <thead class="gt_col_headings">
@@ -387,33 +387,33 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
   <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">Cases</td>
-      <td class="gt_row gt_right">345,720</td>
-      <td class="gt_row gt_right">+81</td>
-      <td class="gt_row gt_right">+1,766</td>
+      <td class="gt_row gt_right">344,977</td>
+      <td class="gt_row gt_right">+365</td>
+      <td class="gt_row gt_right"> </td>
     </tr>
     <tr>
       <td class="gt_row gt_left">Deaths</td>
-      <td class="gt_row gt_right">8,198</td>
-      <td class="gt_row gt_right">+4</td>
-      <td class="gt_row gt_right">+42</td>
+      <td class="gt_row gt_right">8,173</td>
+      <td class="gt_row gt_right">+5</td>
+      <td class="gt_row gt_right"> </td>
     </tr>
     <tr>
       <td class="gt_row gt_left">Currently in Hospital</td>
-      <td class="gt_row gt_right">168</td>
-      <td class="gt_row gt_right">-2</td>
-      <td class="gt_row gt_right">-103</td>
+      <td class="gt_row gt_right">198</td>
+      <td class="gt_row gt_right">-24</td>
+      <td class="gt_row gt_right"> </td>
     </tr>
     <tr>
       <td class="gt_row gt_left">Tests</td>
-      <td class="gt_row gt_right">9,049,052</td>
-      <td class="gt_row gt_right">+7,239</td>
-      <td class="gt_row gt_right">+137,594</td>
+      <td class="gt_row gt_right">8,991,905</td>
+      <td class="gt_row gt_right">+32,583</td>
+      <td class="gt_row gt_right"> </td>
     </tr>
     <tr>
       <td class="gt_row gt_left">Rate of positive tests</td>
       <td class="gt_row gt_right"></td>
-      <td class="gt_row gt_right">1.3%</td>
-      <td class="gt_row gt_right">1.1%</td>
+      <td class="gt_row gt_right">0.9%</td>
+      <td class="gt_row gt_right">NA%</td>
     </tr>
     <tr>
       <td class="gt_row gt_left"> </td>
@@ -447,7 +447,7 @@ A relative link: [here](/img/for_site/UR_a_joke.png)
             <em>1</em>
           </sup>
            
-          Nursing home data are reported only weekly so the dates for "today" and a "week ago" are 06/19/2020 and 06/11/2020.
+          I have not updated nursing home data since last June.
           <br />
         </p>
       </td>
