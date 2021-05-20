@@ -49,6 +49,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE,   message=FALSE, #out.width = 
 ```
 
 ```{r libraries, echo = FALSE, message = FALSE, warning = FALSE}
+# comment to test whether git access token is fixed
 # subtitle: "Updated `r format(Sys.time(), '%a %d %b %Y')`"
 library(tidyverse, quietly = TRUE) 
 library(knitr, quietly = TRUE) 
