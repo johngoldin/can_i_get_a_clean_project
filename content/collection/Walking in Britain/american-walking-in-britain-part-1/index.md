@@ -197,7 +197,7 @@ acknowledge that it is a popular possibility.
 
 ### Multi-day Walks
 
-After doing the Sherpa-organized walk on the West Highland Way (almost twenty years ago)
+After doing the Sherpa-organized walk on the West Highland Way (more than twenty years ago)
 I thought to myself that I could arrange that myself. And that's what I have been
 doing.
 What I am hoping to do in these posts is to share some
@@ -222,21 +222,14 @@ and I am shocked to see that they seem to offer free shipping world wide.
 Of course there are other guide books available as well.
 
 If you rely on a guidebook for navigation, check whether they have
-<<<<<<< HEAD
 a page of errata or updates available online in case there is some amendment to some 
-=======
-a page of errata or updates available online in case there is some correction to some 
->>>>>>> ad622757d0a6cad83ca427dac6970f8160b26394
 detail of the route. [Here](https://trailblazer-guides.com/update/hadrians-wall-path) an
 example for the Trailblazer *Hadrian's Wall Path* guide book:
 
 > August 2020    
 > p137, Map 16. The location of the bridge abutment should be opposite the south east facing wall of Chesters fort on the straight section of the river ie north east of where it is currently marked on the map.
 
-<<<<<<< HEAD
 They also include some detailed feedback from previous readers.
-=======
->>>>>>> ad622757d0a6cad83ca427dac6970f8160b26394
 
 ### What Next?
 

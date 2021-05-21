@@ -156,7 +156,9 @@ If all of this sounds too tame and you have three months to spare, consider doin
 That requires a 1,111 mile walk. Part of the route follows the Pennine Way. 
 I met a couple from Australia there who had gotten leave from their jobs to take three months to do the whole route.
 Their routine was to walk six days a week and take one day off. I last saw them on the
-border between England and Scotland when they still had over 400 miles to go.
+border between England and Scotland when they still had over 400 miles to go. 
+(See [The Walking Englishman](https://www.walkingenglishman.com/greatbritishwalk.html)
+for a detailed description of a similar itinerary.)
 
 #### Some Resources
 
