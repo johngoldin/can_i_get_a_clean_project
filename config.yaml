@@ -15,7 +15,7 @@ disqusShortname: ''
 # MathJaxCDN: "//cdn.bootcss.com"
 # MathJaxVersion: "2.7.1"
 pygmentsCodeFences: yes
-pygmentsStyle: "pygments"  # try github or tango or pygments
+pygmentsStyle: "tango"  # try github or tango or pygments
 metaDataFormat: yaml
 footnoteReturnLinkContents: '&#8617;'
 paginate: 8

@@ -15,7 +15,8 @@ draft: yes
 output:
   blogdown::html_page:
     # figure parameters based on recommendation in Hadley's book
-    highlight: pygments
+    highlight: tango
+    toc: yes
   code_download: yes
 ---
 
@@ -37,4 +38,10 @@ b <- "Text in quoted string"
 
 ```
 
-What does R text look like?
+## What does R text look like?
+
+Of course this is just a test.
+
+### And does toc do anything?
+
+Still just a test.

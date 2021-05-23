@@ -200,3 +200,47 @@ folder:
   # so the live preview actually live previews
   blogdown.hugo.server = c('--disableFastRender', '-D', '-F', '--navigateToChanged')
 ```
+
+#### An Update[May 23]
+
+I have been struggling with the issue of going from .Rmd to 
+.md (markdown), which in turn is converted into
+html by Hugo, versus the normal process with .Rmd which is for
+the knitr code to use pandoc to turn it directly into html.
+I've been a bit confused by all this. 
+
+Alison Hill's advice (supported by others such as Maelle Salmon)
+is to have blogdown produce only a .md file rather than
+html and to leave the production of html to Hugo (which
+uses [Goldmark markdown](https://www.markdownguide.org/tools/hugo/))
+to produce the html page. 
+
+> I used to agonize over which file extension to use. But now I am squarely in .Rmarkdown camp with Maëlle- I like knitting to .markdown and wish this was easier in blogdown; see: https://github.com/rstudio/blogdown/issues/530    
+> https://alison.rbind.io/post/new-year-new-blogdown/
+
+I tried going directly to markdown for a while and
+it was working OK. But then I realized that I no
+longer had a table of contents at the top of any of
+my posts. I like to have `toc` as an option. 
+So I changed my .RProfile for the blog so that
+it no longer relied on .md files:
+
+```r
+  # build .Rmd to .html (via Pandoc); to build to Markdown, set this option to 'markdown'
+  blogdown.method = "html" #  html or markdown
+```
+
+When the method was "markdown" in each post entry
+bundle I had an index.Rmd file and index.md. 
+After changing to "html" I now have index.Rmd
+and index.html.
+
+I will try this way for a while to see how I like it.
+Maybe I will discover new reasons why I should prefer
+markdown to html.
+
+When blogdown is creating the html directly (via knitr and pandoc),
+it seems to have some options that are not available from
+the standard Goldmark markdown used by Hugo. The
+only thing I'm sure of is that I don't fully undersetand
+the issues involved.
