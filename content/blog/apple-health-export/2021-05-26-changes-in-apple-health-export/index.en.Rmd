@@ -72,7 +72,7 @@ theme_update(
 )
 ```
 
-This is a follow-up to an [earlier  post](/blog/apple-health-export-1/) 
+This is a follow-up to an [earlier post](https://www.johngoldin.com/blog/2020-02-apple-health-export-1/) 
 exploring the Apple Health Export. The earlier post describes how
 to export the Health data from the iPhone and import it into R.
 

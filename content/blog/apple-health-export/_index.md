@@ -30,8 +30,8 @@ sidebar:
     collected and displayed via the Health app on
     the Apple iPhone. The Health Export of the data from
     my iPhone and Apple Watch includes more than 
-    three million rows and is larger than an other 
-    data set I have worked with. What is all that data?
+    three million rows and is larger than any other 
+    dataset I have worked with. What is all that data?
   show_sidebar_adunit: false
   text_link_label: ""
   text_link_url: ""
