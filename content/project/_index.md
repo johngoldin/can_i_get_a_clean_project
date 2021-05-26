@@ -10,8 +10,8 @@ cascade:
     text_link_url: /project/
 description: "Some projects don't fit naturally into a blog post. I'm experimenting with using either Projects or Collections to accommodate them."
 layout: list-grid
-show_author_byline: true
-show_post_date: true
+show_author_byline: false
+show_post_date: false
 show_post_thumbnail: true
 sidebar:
   author: John Goldin

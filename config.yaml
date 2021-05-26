@@ -1,4 +1,5 @@
-baseURL: /
+baseURL: https://www.johngoldin.com
+# baseURL: /
 # baseURL: https://www.johngoldin.com/
 # baseURL: "https://johngoldin.com/"
 theme: hugo-apero
@@ -28,6 +29,11 @@ ignoreFiles:
   - \.utf8\.md$
 enableEmoji: yes
 # one of https://xyproto.github.io/splash/docs/all.html
+
+# Permalinks
+permalinks:
+  blog: "/blog/:year-:month-:slug/"
+  
 markup:
   defaultMarkdownHandler: goldmark
   goldmark:

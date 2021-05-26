@@ -1,7 +1,7 @@
 ---
 title: Changes in Apple Health Export
 author: John Goldin
-date: '2021-03-31'
+date: '2021-05-25'
 slug: changes-in-apple-health-export
 excerpt: Another post on the contents of the Apple Health Export. This post shows how some measures have changed as new version of Watch and iPhone have been released. The examples focus on resting heart rate and VO2 Max."
 categories:
@@ -363,7 +363,7 @@ That means we get a verbal description of what a measure is supposed to do, but 
 may not be able to understand the operational definition of what the measure
 actually does. The health measures in many cases are still in an early stage of
 development. They will be improved over time. Improvement means change, in a
-good way. But it also means that one must be very careful about<br />
+good way. But it also means that one must be very careful about
 the interpretation of long-term trends.</p>
 </div>
 <div id="appendix-some-of-the-r-code-used-to-make-this-post" class="section level2">
@@ -386,7 +386,7 @@ figures based on
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggforce)     <span class="do">## add missing functionality to ggplot2</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdist)      <span class="do">## add uncertainity visualizations to ggplot2</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)   <span class="do">## combine outputs from ggplot2</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Cairo)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># library(Cairo)</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is the code to create the Resting Heart Rate plots</span></span>
@@ -531,12 +531,13 @@ before looking for duplicates.</p>
 <p>Generally there is one row of resting heart rate data for each date. But
 sometimes a second rows is created, possibly when the iPhone is restarted
 as part of an update or if there is a time change for daylight savings.</p>
-<p>Here are the altered lines that eliminate the duplicate rows:</p>
+<p>Here are the revised lines that eliminate the duplicate rows:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>      health_df <span class="ot">&lt;-</span> XML<span class="sc">:::</span><span class="fu">xmlAttrsToDataFrame</span>(health_xml[<span class="st">&quot;//Record&quot;</span>], <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">value =</span> <span class="fu">as.numeric</span>(value)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(<span class="sc">-</span>device)  <span class="co"># device seems to cause some duplicate rows</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(<span class="sc">-</span>device)  <span class="co"># the device column seems to cause some duplicate rows</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      check_count <span class="ot">&lt;-</span> <span class="fu">nrow</span>(health_df)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      health_df <span class="ot">&lt;-</span> health_df <span class="sc">%&gt;%</span> <span class="fu">unique</span>()   <span class="co"># unique adds at least two minutes. Had found 42,364 rows, mostly Lose It!, SleepMatic, and Omron, but some came from Watch and iPhone</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      dup_count <span class="ot">&lt;-</span> check_count <span class="sc">-</span> <span class="fu">nrow</span>(health_df)</span></code></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      health_df <span class="ot">&lt;-</span> health_df <span class="sc">%&gt;%</span> <span class="fu">unique</span>()   <span class="co"># unique adds at least two minutes. </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Had found 42,364 rows, mostly Lose It!, SleepMatic, and Omron, but some came from Watch and iPhone</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      dup_count <span class="ot">&lt;-</span> check_count <span class="sc">-</span> <span class="fu">nrow</span>(health_df)</span></code></pre></div>
 </div>
 </div>

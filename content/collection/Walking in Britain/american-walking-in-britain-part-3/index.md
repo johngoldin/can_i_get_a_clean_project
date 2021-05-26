@@ -1,4 +1,4 @@
-# ---
+---
 title: An American Walking in Britain Part 3
 subtitle: Planning an Itinerary
 slug: "am-walker-3"

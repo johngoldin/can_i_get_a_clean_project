@@ -1,7 +1,7 @@
 ---
 title: Changes in Apple Health Export
 author: John Goldin
-date: '2021-03-31'
+date: '2021-05-25'
 slug: changes-in-apple-health-export
 excerpt: Another post on the contents of the Apple Health Export. This post shows how some measures have changed as new version of Watch and iPhone have been released. The examples focus on resting heart rate and VO2 Max."
 categories:
@@ -12,6 +12,7 @@ tags:
   - R
 subtitle: ''
 image: ''
+weight: 3
 draft: yes
 output: 
   blogdown::html_page:
@@ -40,7 +41,7 @@ library(ggforce)     ## add missing functionality to ggplot2
 library(ggdist)      ## add uncertainity visualizations to ggplot2
 # library(magick)      ## load images into R
 library(patchwork)   ## combine outputs from ggplot2
-library(Cairo)
+# library(Cairo)
 
 path_saved_export <- "~/Dropbox/Programming/R_Stuff/john_vitals/Apple-Health-Data/"
 path_to_healthexport1 <- "~/Documents/R_local_repos/applehealth1/R/"
@@ -535,7 +536,7 @@ That means we get a verbal description of what a measure is supposed to do, but 
 may not be able to understand the operational definition of what the measure
 actually does. The health measures in many cases are still in an early stage of
 development. They will be improved over time. Improvement means change, in a 
-good way. But it also means that one must be very careful about  
+good way. But it also means that one must be very careful about
 the interpretation of long-term trends.
 
 ## Appendix: Some of the R Code Used to Make This Post
@@ -561,7 +562,7 @@ library(ggtext)      ## add improved text rendering to ggplot2
 library(ggforce)     ## add missing functionality to ggplot2
 library(ggdist)      ## add uncertainity visualizations to ggplot2
 library(patchwork)   ## combine outputs from ggplot2
-library(Cairo)
+# library(Cairo)
 #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #
 #
 # Here is the code to create the Resting Heart Rate plots
@@ -709,13 +710,14 @@ Generally there is one row of resting heart rate data for each date. But
 sometimes a second rows is created, possibly when the iPhone is restarted
 as part of an update or if there is a time change for daylight savings.
 
-Here are the altered lines that eliminate the duplicate rows:
+Here are the revised lines that eliminate the duplicate rows:
 
 ```{r de-dup, eval= FALSE}
       health_df <- XML:::xmlAttrsToDataFrame(health_xml["//Record"], stringsAsFactors = FALSE) %>%
         as_tibble() %>% mutate(value = as.numeric(value)) %>%
-        select(-device)  # device seems to cause some duplicate rows
+        select(-device)  # the device column seems to cause some duplicate rows
       check_count <- nrow(health_df)
-      health_df <- health_df %>% unique()   # unique adds at least two minutes. Had found 42,364 rows, mostly Lose It!, SleepMatic, and Omron, but some came from Watch and iPhone
+      health_df <- health_df %>% unique()   # unique adds at least two minutes. 
+      # Had found 42,364 rows, mostly Lose It!, SleepMatic, and Omron, but some came from Watch and iPhone
       dup_count <- check_count - nrow(health_df)
 ```
