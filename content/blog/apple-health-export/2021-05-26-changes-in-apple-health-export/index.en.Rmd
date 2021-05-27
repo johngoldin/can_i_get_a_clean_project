@@ -13,7 +13,7 @@ tags:
 subtitle: ''
 image: ''
 weight: 3
-draft: yes
+draft: no
 output: 
   blogdown::html_page:
     # figure parameters based on recommendation in Hadley's book 
@@ -90,7 +90,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Heart_rate#Resting_heart_
 
 > resting heart rate … is defined as the heart rate when a person is awake, 
 > in a neutrally temperate environment, and has not been subject to any recent 
-> exertion or stimulation, such as stress or surprise. 
+> exertion or stimulation, such as stress or surprise.     
 
 But note the passive voice. In practice I have not found clarity about
 the conceptual definition of resting heart rate. One must
@@ -541,7 +541,7 @@ the interpretation of long-term trends.
 
 ## Appendix: Some of the R Code Used to Make This Post
 
-In my [earlier post](/blog/apple-health-export-1/)  
+In my [earlier post](https://www.johngoldin.com/blog/2020-02-apple-health-export-1/)
 I included a lot of R code for setting
 up the Health Export data. Here I'll describe some of the
 additional code used for this post. Some of this

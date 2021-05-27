@@ -33,7 +33,7 @@ intro: |
   I started using R in 2006 and it satisfied my itch
   for a programming language that provided an
   interactive connection with the data and the power of 
-  visualizations. Since then I have pretty much stuck to R.
+  visualizations. Since then I have pretty much stuck with R.
 
   I enjoy having a project to work on that combines some R coding and some
   simple data analysis. For the last year that has been Connecticut Covid stats

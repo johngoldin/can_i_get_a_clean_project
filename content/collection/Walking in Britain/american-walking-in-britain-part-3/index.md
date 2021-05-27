@@ -160,8 +160,9 @@ Of course you will need an adapter plug so you can charge your phone. Electronic
 <img style="float: right;" src="/img/electric_outlet.png" alt="a British electrical outlet">
 devices these days run a wide range of voltages, but you won't be carrying
 something like a hair dryer where a change of voltage would be required.
-One small trick about UK electric outlets: there is
+One important tip about UK electric outlets: there is
 a small on/off switch for each plug. When it is powered on, a small bit of
 red color will show. 
 Keep this in mind or you may be surprised to find that
-your phone has not charged overnight.
+your phone has not charged overnight because you never
+turned on the juice.
