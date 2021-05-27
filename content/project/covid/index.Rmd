@@ -70,7 +70,7 @@ library(fuzzyjoin) # for interval_left_join
 library(broom)
 library(RSocrata) 
 library(RcppRoll)
-library(gt) 
+library(gt)
 library(formattable) 
 # note that both scales and formattable have a comma function and they take different parameters
 ```

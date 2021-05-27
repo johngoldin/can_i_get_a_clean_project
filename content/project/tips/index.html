@@ -131,7 +131,9 @@ And <a href="https://david.frigge.nz/posts/2019-10-rugby-world-cup/" class="uri
 &lt;/figure&gt; </code></pre>
 <div id="a-relative-reference" class="section level4">
 <h4>A relative reference</h4>
-<p>Although it’s likely this is not a correct reference.</p>
+<p>In an .md document:
+[Choosing a path]({{&lt; relref “2017-03-11-american-walker-in-britain-part-2.md#choosing-a-path” &gt;}})
+In an RMarkdown document, it’s different if pandoc is turning the document into html rather than Hugo.</p>
 <pre><code>#### [Back to UK Walking Topics]({{&lt; relref &quot;2017-03-07-an-american-walking-in-britain.md#topics&quot; &gt;}})
 
 - [Choosing a path]({{&lt; relref &quot;2017-03-11-american-walker-in-britain-part-2.md#choosing-a-path&quot; &gt;}})
@@ -145,6 +147,8 @@ And <a href="https://david.frigge.nz/posts/2019-10-rugby-world-cup/" class="uri
   &lt;figcaption&gt;Isn&#39;t this better than camping?&lt;/figcaption&gt;
    
 &lt;/figure&gt;
+
+{{&lt; tweet 1390602863651573760 &gt;}}
 
 markdown code for figure: (html parameters within curly braces)
 ![(*Text, italic in ()*)](/img/hugo_pool/page_inspector.jpg){width=100%}

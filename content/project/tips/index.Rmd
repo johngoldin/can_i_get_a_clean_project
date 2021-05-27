@@ -134,7 +134,9 @@ Figure which contains a link in the caption:
 
 #### A relative reference
 
-Although it's likely this is not a correct reference.
+In an .md document:
+[Choosing a path]({{< relref "2017-03-11-american-walker-in-britain-part-2.md#choosing-a-path" >}})
+In an RMarkdown document, it's different if pandoc is turning the document into html rather than Hugo.
 
 ```
 #### [Back to UK Walking Topics]({{< relref "2017-03-07-an-american-walking-in-britain.md#topics" >}})
@@ -154,6 +156,8 @@ and {{%/* figure src="/img/taxi.png#floatright" caption="Need a taxi Hadrians Wa
   <figcaption>Isn't this better than camping?</figcaption>
    
 </figure>
+
+{{< tweet 1390602863651573760 >}}
 
 markdown code for figure: (html parameters within curly braces)
 ![(*Text, italic in ()*)](/img/hugo_pool/page_inspector.jpg){width=100%}

@@ -430,7 +430,7 @@ to do with my fitness.
 What about the trend within each version of Watch OS? For example, during
 Version 7 my VO2 Max has been on a steady upward march. No, I can't relate
 that to the personal experience of my fitness. I do a challenging three-mile
-walk in the woods almost every day with an occasioinal longer walk thrown in
+walk in the woods almost every day with an occasional longer walk thrown in
 from time to time. It's hard to imagine what estimation procedure would 
 produce these trends. In Version 7 of Watch OS perhaps the procedure starts
 with an estimate based only on height, weight, age, and gender and then
@@ -438,7 +438,7 @@ modifies it based on observation of workouts. Looking at the period during
 Version 6, there was a big drop on March 17, 2020 and then a big increase
 on April 9. When I look at the details of the workouts during that time
 period I don't see anything that would relate to a change in estimated
-VO2 Max. My concludion is that I should not attribute short-run changes in
+VO2 Max. My conclusion is that I should not attribute short-run changes in
 the estimated VO2 Max to actual changes in my cardio fitness.
 
 The [press release for Watch OS 7](https://www.apple.com/newsroom/2020/09/apple-watch-series-6-delivers-breakthrough-wellness-and-fitness-capabilities/)  introduced "low range VO2 Max"
@@ -453,7 +453,7 @@ procedure was never needed.
 Including an estimate of VO2 Max is an interesting concept, but so far it seem that
 both the short run variations the long-term trend are affected by changes
 in the estimation procedure. VO2 Max won't be useful until Apple settles on
-a stabe methodology. I look forward to seeing that someday. 
+a stable methodology. I look forward to seeing that someday. 
 
 An overall theme of this post is that one should expect there will be additional
 future changes in the Apple Health Kit
