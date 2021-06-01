@@ -1,7 +1,8 @@
 ---
 title: A New Look for This Web Site
 author: John Goldin
-date: '2021-05-03'
+publishDate: '2021-05-03'
+date: '2021-05-29'
 slug: a-new-look-may-2021
 categories:
   - personal

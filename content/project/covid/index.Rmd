@@ -1,6 +1,6 @@
 ---
 title: Tracking Covid-19 in Connecticut
-# covid tracking in the project section
+# covid tracking in the PROJECT section
 author: John Goldin
 date: '2020-06-22'
 categories:
