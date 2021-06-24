@@ -1,5 +1,5 @@
 ---
-title: My Apple Watch Visits the ER -- Twice
+title: A Nerd Visits the ER with His Apple Watch -- Twice
 author: John Goldin
 date: '2021-06-07'
 weight: 5
@@ -29,9 +29,9 @@ point to the correct spot. Perhaps the information presented here may
 have some clinical value, but I don't have the expertise to say one
 way or the other.**
 
-Here I will tell the tale of two visits to a local ER. 
+Here I will tell the tale of two visits to the ER. 
 At the end of the post I will include a note about
-why I am not concerned about diminishing my privacy
+why I am not concerned about diminishing my privacy,
 and why I would advise most people to think twice before
 publishing something like this. 
 
@@ -41,7 +41,7 @@ I feel a tinge of embarrassment about this visit because
 one can argue it was not necessary. But in part by accident
 it had favorable health consequences.
 
-About 1:30 AM early in a day in February I had
+About 1:30 AM, that is, in the middle of the nightin 2019 I had
 a brief but intense period of digestive upset.
 I won't go into the details except to say that
 it probably was related to GERD and that I 
@@ -71,7 +71,7 @@ stop at triage I was in a bed getting an ECG, which was
 normal. I told them that I felt my heart rate had
 been sustained at a fast rate until part way during the
 trip to the ER. That's what I thought, but part of the
-point of this post is that we'll see my perception 
+point of this post is that we'll see that my perception 
 (and what I reported to the ER doc) was not accurate.
 I reported my digestive episode from earlier in the
 night and a blood test showed that my lipase (a pancreatic enzyme)
