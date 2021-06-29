@@ -26,10 +26,13 @@ draft: yes
 **A disclaimer: Not only am I not a cardiologist, but if you asked me to point
 to the location of the heart in my chest, I wonder whether I would
 point to the correct spot. Perhaps the information presented here may
-have some clinical value, but I don't have the expertise to say one
+have be of some use, but I don't have the expertise to say one
 way or the other.**
 
-Here I will tell the tale of two visits to the ER. 
+Here I will tell the tale of two visits to the ER,
+and how I used data from the Apple Health Export
+to provide some context for what went on before
+and during these visits.
 At the end of the post I will include a note about
 why I am not concerned about diminishing my privacy,
 and why I would advise most people to think twice before
@@ -41,7 +44,7 @@ I feel a tinge of embarrassment about this visit because
 one can argue it was not necessary. But in part by accident
 it had favorable health consequences.
 
-About 1:30 AM, that is, in the middle of the nightin 2019 I had
+About 1:30 AM, that is, in the middle of the night in 2019 I had
 a brief but intense period of digestive upset.
 I won't go into the details except to say that
 it probably was related to GERD and that I 
@@ -86,7 +89,7 @@ high, but not as high as one would expect with
 pancreatitis. It turned out I didn't have pancreatitis.
 In fact, I redid the blood work the next
 day and it was completely normal. Let's ignore
-the digestive story because that is a dull story that has nothing to
+the digestive story because that is an uneventful story that has nothing to
 do with my Apple Watch; instead let's focus on
 heart [palpitations](https://en.wikipedia.org/wiki/Palpitations), 
 the symptom that I presented with at the ER. (I haven't had
@@ -101,15 +104,24 @@ most I can muster in this case.
 So what was actually going on with my heart rate during this incident?
 That takes us to the Apple Health Export. After getting home from the ER
 I was a bit unsettled by the whole experience and my typical reaction 
-was to gather data. It was this episode that sent me to the web looking
-for information about the Apple heart rate data that led me to learn
+was to gather data. 
+<img style="float: right;" src="heart_app_sample.PNG" height=224 width=179  figcaption="As I write this post"> 
+While I was at the ER, I looked at the simple heart rate history
+that is provided by the Apple Watch when you click on the "current"
+tab in the Heart app. It doesn't really allow you to see the
+trend over time.
+
+
+I was looking
+for better Apple heart rate data that led me to learn
 about the Health Export. I found a [post by Ryan Praskievicz](https://www.ryanpraski.com/apple-health-data-how-to-export-analyze-visualize-guide/)
 that showed me how to get the Health Export and load it into R.
 I had a an appointment with my primary care physician early in the next
 week, and before that visit I had prepared a plot showing my heart rate
 throughout the incident, as recorded on my Apple Watch.[^1]
 
-[^1]:The actual ER incident was not a major health event. But it resulted
+[^1]:The actual ER incident was not a major health event, and it
+may be legitimtate to view it as an unnecessary ER visit. But it resulted
 in a significant improvement in my health via a route which also
 has an RStudio connection. When I left the ER, the
 doctor suggested that I might want to go on a liquid diet for a day or two.
@@ -117,7 +129,8 @@ I didn't know what a doctor means by a "liquid diet," and I still don't.
 But for a couple of days I subsisted on juice and broth. I wanted to avoid
 fatty food so I started using the LoseIt! app to track fat in what I was eating.
 I noted that I immediately lost a noticeable amount of weight without much
-difficulty. So for the next year and a half I faithfully used LoseIt! to
+difficulty. So for the next year and a half I faithfully used the
+[LoseIt!app](https://www.loseit.com) to
 track calories and ended up losing about 25 pounds. One of the creators
 of LoseIt! was J.J. Allaire, the co-founder of RStudio. I am confident
 that losing that weight has lowered my blood pressure and improved my
