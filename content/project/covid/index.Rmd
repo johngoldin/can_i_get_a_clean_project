@@ -94,7 +94,12 @@ Five_Connecticuts <- read_delim(paste0(path_to_ctcorona, "Five_Connecticuts.txt"
 load(paste0(path_to_ctcorona, "dph_datasets.RData"))
 # load effective R from https://rt.live/
 # rt_live <- read_csv("https://d14wlfuexuxgcm.cloudfront.net/covid/rt.csv") %>% 
-covid_estim <- read_csv("https://covidestim.s3.us-east-2.amazonaws.com/latest/state/estimates.csv") %>% 
+covid_estim <- read_csv("https://covidestim.s3.us-east-2.amazonaws.com/latest/state/estimates.csv",
+  col_types = cols(
+    state = col_character(),
+    date = col_date(format = ""),
+    data.available = col_logical(),
+    .default = col_double())) %>% 
   filter(state != "Puerto Rico") %>% 
   mutate(
     region = case_when(
