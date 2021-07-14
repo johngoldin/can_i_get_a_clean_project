@@ -136,10 +136,14 @@ Figure which contains a link in the caption:
 </figure> 
 ```
 
+#### Rmarkdown tips from Indrajeet Patil @patilindrajeets 
+
+see [these tweets](https://indrajeetpatil.github.io/RmarkdownTips/).
+
 #### A relative reference
 
-In an .md document:
-[Choosing a path]({{< relref "2017-03-11-american-walker-in-britain-part-2.md#choosing-a-path" >}})
+In an .md document:    
+[Choosing a path]({{< relref "2017-03-11-american-walker-in-britain-part-2.md#choosing-a-path" >}})    
 In an RMarkdown document, it's different if pandoc is turning the document into html rather than Hugo.
 
 ```
