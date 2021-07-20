@@ -1,0 +1,15 @@
+img[src$='#floatleft']
+{
+	float:left;
+    margin-right: 10px;  
+
+        //etc. etc/
+}
+
+img[src$='#floatright']
+{
+	float:right;
+	border: 10px solid transparent;  
+	style:"border:5px solid black";
+       //etc. etc.
+}

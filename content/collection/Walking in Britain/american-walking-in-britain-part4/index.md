@@ -69,13 +69,23 @@ the Explorer maps are a good alternative.
 
 The Ordnance Survey offers maps on Android or iPhone
 via their OS Maps app. My most recent holiday in the UK
-was in 2019 so I used other electronic aids,
-primarily AllTrails on my iPhone and a Garmin
-GPS (SatNav in Britspeak) loaded with Open Street Map.
-For my next trip I expect to rely on OS Maps.
+was in 2019 before OS Maps was released
+so I used other electronic aids,
+primarily [AllTrails](https://www.alltrails.com)
+on my iPhone and a Garmin GPS (or SatNav in Britspeak) 
+loaded with Open Street Map for the UK obtained
+via an outfit called [Talkytoaster](https://shop.talkytoaster.me.uk/product/tt-150k-look-n-feel-map-for-self-install-automatic-delivery-british-isles-only-dem).
+For my next trip I expect to rely on the Ordnance Survey OS Maps app.
 Access is by subscription, but you can get a 
 one-month premium access for £3.99, which is a good deal.
 By comparison, a single Landranger paper maps costs £8.99.
+
+{{< figure src="img/os_maps_sample-1.png#floatleft"  
+  margin="50px 50px 50px 50px"
+  xcaption="OS Maps sample" >}}
+{{< figure src="img/sample_off_route1.png"  
+  xcaption="GPS off-route Open Street Map" >}}
+
 
 My most embarrassing navigation mistake happened on the Pennine Way.
 It was raining so I was a bit buttoned up. I walked down the
