@@ -8,8 +8,20 @@ img[src$='#floatleft']
 
 img[src$='#floatright']
 {
-	float:right;
-	border: 10px solid transparent;  
-	style:"border:5px solid black";
+	float:left;
+    margin-left: 10px;  
        //etc. etc.
+}
+
+figure {
+    display: inline-block;
+    /* border: 1px dotted gray; */
+    /* margin: 10px; */  /* adjust as needed */
+}
+figure img {
+    vertical-align: top;
+}
+figure figcaption {
+    /* border: 1px dotted blue; */
+    text-align: center;
 }
