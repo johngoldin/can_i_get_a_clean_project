@@ -37,8 +37,7 @@ about it sooner rather than later.
 ### Maps
 
 The Ordnance Survey is the government organization that does 
-maps for the UK. It's comparable the US Geological Survey in
-the US, except it's products are much more pervasive and relied on.
+maps for the UK. 
 OS paper maps are widely available in bookstores and local shops.
 The OS Explorer series is aimed at walkers. The scale is 
 very tight: 4cm on the map is equal to 1km in the real world 
@@ -57,7 +56,8 @@ can see the spot you need. They are printed on
 waterproof paper, a good feature for a map you plan
 to need for a week.
 
-There is also the OS Landranger series. At a 
+There is also the OS Landranger series, which is
+also useful for walks. At a 
 scale of 1:50K you can see a much larger area for a given
 size of paper. It's not as detailed as the 
 Explorer maps, but it's generally good enough to help
@@ -67,9 +67,14 @@ the Explorer maps are a good alternative.
 
 #### Maps on Your Phone
 
+On catch with using a paper map is that it's not
+very useful unless you locate where you are on the 
+map. One attractive feature of a map on your phone is
+that the GPS can show you where you are on the map.
+
 The Ordnance Survey offers maps on Android or iPhone
 via their OS Maps app. My most recent holiday in the UK
-was in 2019 before OS Maps was released
+was in 2019 before this app was released
 so I used other electronic aids,
 primarily [AllTrails](https://www.alltrails.com)
 on my iPhone and a Garmin GPS (or SatNav in Britspeak) 
@@ -92,7 +97,7 @@ area where the Two Moors Way passes through the town of
 Ivybridge and enters Dartmoor. The first version shows
 the Landranger style and the second zooms into a smaller area
 and shows Explorer style. It's a bit disconcerting when
-the style changes suddenly as one zooms in, 
+the style changes suddenly as one zooms in using the app, 
 but it's not bothersome.
 
 {{< figure src="img/Landranger Ivybridge.jpg#floatleft"  
@@ -104,14 +109,13 @@ but it's not bothersome.
   
 Unfortunately the details of the legends are different
 on the two separate map formats. For example, 
-on Landranger a long distance trail  such as the
+on Landranger a long distance trail such as the
 Two Moors Way is marked as
 a red diamond while on Explorer it appears as a
 green diamond. On Landranger contour lines are in
 red while on Explorer they are more of a brown color.
 It's not too bad. Your brain will sort it out almost
-automatically. (Click 
-[here])
+automatically. 
   
 The OS Maps app is designed to work with your account on their web
 site. You can use the web version of the map on a large
@@ -121,18 +125,41 @@ is signed into the same Ordnance Survey account.
 
 #### Don't Forget to Download!
 
-You need to remember that OS Maps works differently
+You need to remember that using a map on your phone 
+(such as the OS Maps app) works differently
 depending on whether you are connected to the internet.
 When connected you can move around the map freely to
 look at different areas. But in the center of Dartmoor
 or some other isolated spot, you can't rely on a cell
 signal to connect you to the internet. Before you
-venture out on your walk, you need to display the area
+venture out on a walk without internet access, 
+you need to display the area
 on the screen where you expect to walk and then use
 the menu to explicitly download that map to your phone.
-They suggest switching to airplane mode to disconnect from
-the internet an verify that you can still see the map
-for the area you need.
+As a test, switch to airplane mode to disconnect from
+the internet to verify that you can still see the map
+for the area you need once you are out of cell phone coverage.
+
+### Navigation the Old-Fashioned Way: Compass and Paper Map
+
+The Ordnance Survey web site has an 
+[introduction to compass and maps](https://getoutside.ordnancesurvey.co.uk/guides/beginners-guides-map-reading/). 
+There's an [avanced](https://getoutside.ordnancesurvey.co.uk/guides/map-reading-skills-advanced-guides/) page as well.
+There are many other resources on the web, 
+but one advantage of the OS site is it is oriented toward the
+specifics of the UK, Ordnance Survey maps, and the UK grid 
+system used by OS maps.
+
+### Using Your Phone as a Compass
+
+Most smart phones can also serve as a compass. 
+The iPhone comes with the [Compass app](https://support.apple.com/guide/iphone/compass-iph1ac0b663/ios).
+
+There also is a free app from the Ordnance Survey called 
+OS Locate (for [iPhone](https://apps.apple.com/us/app/os-locate/id810024913)
+or [Android](https://play.google.com/store/apps/details?id=uk.co.ordnancesurvey.oslocate.android&hl=en_US&gl=US)).
+OS Locate will show your location in terms of standard
+UK grid coordinates and can serve as a baseplate compass.
 
 ### Just in Case
 
@@ -190,7 +217,9 @@ based on OSGB36.
 
 ### More Map Resources
 
-
+If you are looking for a tutorial
+in the details of taking advantage of map and
+compass there is a series of posts by Glyn Dodwell [map reading & navigation](https://onthehills.uk/2019/01/28/map-reading-navigation-part-1/)
 
 {{< figure src="img/os_maps_sample-1.png#floatleft"  
   caption="<font size=2>OS Maps sample</font>" >}}
