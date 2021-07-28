@@ -11,8 +11,10 @@ show_author_byline: false
 show_post_date: false
 show_post_thumbnail: true
 weight: 36
-draft: true
+draft: false
 ---
+
+*Note: this entry is still very much a work in progress.*
 
 ## There are Lots of Aids to Navigation
 
@@ -32,7 +34,8 @@ and assume you know where you are. When in doubt, check.
 You're on foot so if you start going in an incorrect direction it
 can take you a long time to fix your mistake. Better to notice
 quickly that you are off your intended route and do something
-about it sooner rather than later.
+about it sooner rather than later. So how do you know where
+you are and whether you are on track?
 
 ### Maps
 
@@ -67,7 +70,7 @@ the Explorer maps are a good alternative.
 
 #### Maps on Your Phone
 
-On catch with using a paper map is that it's not
+One catch with using a paper map is that it's not
 very useful unless you locate where you are on the 
 map. One attractive feature of a map on your phone is
 that the GPS can show you where you are on the map.
@@ -180,10 +183,10 @@ at the bottom of the screen. Tap on the pin and you'll see a
 numerical value for latitude and longitude. That's where you 
 are. 
 
-But there's a catch. It turns out that because the earth
-is not a perfect sphere there are multiple systems for
+But there's a catch. It turns the earth
+is not a perfect sphere and as a result there are multiple systems for
 mapping latitude and longitude to its imperfect shape.
-Google and GPS use a coordinate system called [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System).
+Google Maps and GPS use a coordinate system called [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System).
 The catch is the UK Ordnance Survey maps use 
 [OSGB36](https://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid).
 
@@ -206,13 +209,15 @@ be looking for a bridge or a trail intersection that might
 be 100 or so meters off from what you expected. It's something
 to keep in mind. If you have a handheld satnav (such as from 
 Garmin) there usually is a setting that let's you choose
-what coordinate system you want to choose.
+what coordinate system you want to use.
+
+#### OS Locate
 
 In the UK people often communicate location in terms of the
 grid reference system that is specific to the UK rather than using
-latitude and longitude There's an app called [OS Locate] for
-iPhone and Android that will report your location in 
-UK grid reference terms and also in latitude and longitude
+latitude and longitude There's an app called [OS Locate](https://shop.ordnancesurvey.co.uk/apps/os-locate/) 
+for iPhone and Android that will report your location in 
+UK grid reference terms or in latitude and longitude
 based on OSGB36.
 
 ### More Map Resources
