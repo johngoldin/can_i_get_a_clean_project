@@ -6,7 +6,7 @@ excerpt: 'Tips on how to find your way using guide books, maps, and your phone.'
 categories:
   - British Walking
 layout: single-series
-publishDate: '2021-08-15'
+publishDate: '2021-07-28'
 show_author_byline: false
 show_post_date: false
 show_post_thumbnail: true
