@@ -75,7 +75,7 @@ very useful unless you locate where you are on the
 map. One attractive feature of a map on your phone is
 that the GPS can show you where you are on the map.
 
-The Ordnance Survey offers maps on Android or iPhone
+The Ordnance Survey offers access t their maps on Android or iPhone
 via their OS Maps app. My most recent holiday in the UK
 was in 2019 before this app was released
 so I used other electronic aids,
@@ -88,7 +88,7 @@ Access is by subscription, but you can get a
 one-month premium access for £3.99, which is a good deal.
 By comparison, a single Landranger paper maps costs £8.99.
 
-The app is designed to mimic the appearance of the paper
+The app is mimics the appearance of the paper
 Ordnance Survey maps. If you are looking at a wider
 area, the format follows the Landranger series (where
 the paper maps show a scale of 1:50K). As you zoom in,
@@ -187,7 +187,7 @@ But there's a catch. It turns the earth
 is not a perfect sphere and as a result there are multiple systems for
 mapping latitude and longitude to its imperfect shape.
 Google Maps and GPS use a coordinate system called [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System).
-The catch is the UK Ordnance Survey maps use 
+The catch is the UK Ordnance Survey maps uses a UK-centric system
 [OSGB36](https://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid).
 
 > In Cornwall, the WGS 84 longitude lines are about 70 metres east of their OSGB 36 equivalents, this value rising gradually to about 120 m east on the east coast of East Anglia. The WGS 84 latitude lines are about 70 m south of the OSGB 36 lines in South Cornwall, the difference diminishing to zero in the Scottish Borders, and then increasing to about 50 m north on the north coast of Scotland.
@@ -218,7 +218,7 @@ grid reference system that is specific to the UK rather than using
 latitude and longitude There's an app called [OS Locate](https://shop.ordnancesurvey.co.uk/apps/os-locate/) 
 for iPhone and Android that will report your location in 
 UK grid reference terms or in latitude and longitude
-based on OSGB36.
+based on OSGB36.It also can be used as a compass.
 
 ### More Map Resources
 
@@ -231,6 +231,7 @@ compass there is a series of posts by Glyn Dodwell [map reading & navigation](ht
 {{< figure src="img/sample_off_route1.png"  
   caption="<font size=2>GPS off-route Open Street Map</font>" >}}
 
+### Ways You Can Go Wrong and How to Avoid Them
 
 My most embarrassing navigation mistake happened on the Pennine Way.
 It was raining so I was a bit buttoned up. I walked down the

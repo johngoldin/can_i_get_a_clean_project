@@ -184,11 +184,12 @@ directions, and can also arrange to transport your luggage. Guided tours mean th
 I have done two group tours using REI, one in the US and one in Greece,
 but my walks in the UK have either been self-guided or else
 I've made all the arrangements myself.
-I can't claim to have any expertise about organized tours in the UK. It's a definite possibility, and well
+I can't claim to have any expertise about guided tours in the UK. 
+Relying on a tour company to organize your walking holiday
+is a good way to get started.
+It's a definite possibility, and well
 worth your consideration. Just search "walking" and "tours" and "britain" or "England" or "Scotland" and you will 
-find a lot of options. Having professional help to
-organize your walking holiday is a good way
-to get started. 
+find a lot of options. 
 
 [^2]:More language issues: they say "holiday" where we say "vacation."
 
