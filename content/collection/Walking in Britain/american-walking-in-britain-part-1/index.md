@@ -1,6 +1,6 @@
 ---
 title: Why Walking in Britain
-subtitle: There are a vaiety of ways to have a walking holiday in Britain.
+subtitle: There are a variety of ways to have a walking holiday in Britain.
 slug: "am-walker-1"
 aliases:
     - /2017/03/am_walker_1/
@@ -171,14 +171,23 @@ the car entirely (a big plus if one has qualms about driving on the left side of
 
 ### Tour Companies
 
-There are many companies that arrange walking holidays[^2]. I used [Sherpa](https://www.sherpaexpeditions.com/United-Kingdom) for a self-guided
-tour on the West Highland Way. There are many others. 
-A "self-guided" tour means that they will organize a route and accommodations, provide you with a map and
-directions, and usually also arrange to transport your luggage. Guided tours mean that you walk with a group. 
-I have done two group tours woth REI tour, one in the US and one in Greece. 
-I can't claim to have any expertise about organized tours. It's a definite possibility, and well
-worth your consideration. Just Google "walking" and "britain" or "England" or "Scotland" and you will 
-find a lot of options. An organized tour is a good way
+There are many companies that arrange walking holidays[^2]. 
+More than 20 years ago, I used [Walkers' Britain](https://www.walkersbritain.co.uk/United-Kingdom) 
+(formerly Sherpa Expeditions) for a self-guided
+tour on the West Highland Way. 
+More recently I've used [Encounter Walking](https://encounterwalkingholidays.com)
+to do the [Two Moors Way](https://encounterwalkingholidays.com/two-moors-way-dartmoor-route-walk-map) 
+in Devon. Encounter
+specializes in the Wales and the South West area of England.
+A "self-guided" tour means that the tour company will organize a route and accommodations, provide you with a map and
+directions, and can also arrange to transport your luggage. Guided tours mean that you walk with a group. 
+I have done two group tours using REI, one in the US and one in Greece,
+but my walks in the UK have either been self-guided or else
+I've made all the arrangements myself.
+I can't claim to have any expertise about organized tours in the UK. It's a definite possibility, and well
+worth your consideration. Just search "walking" and "tours" and "britain" or "England" or "Scotland" and you will 
+find a lot of options. Having professional help to
+organize your walking holiday is a good way
 to get started. 
 
 [^2]:More language issues: they say "holiday" where we say "vacation."
@@ -243,7 +252,7 @@ know before my first walking holiday. Here's the plan. Next step will be for me 
 
 ### Topics
 
-- [Choosing a path]({{< relref "2017-03-11-american-walker-in-britain-part-2.md#choosing-a-path" >}})
+- [Choosing a path]({{< relref "/collection/Walking in Britain/american-walking-in-britain-part-2" >}})
 - Planning an itinerary
 - Arranging for accommodations
 - Luggage transport
@@ -251,7 +260,7 @@ know before my first walking holiday. Here's the plan. Next step will be for me 
 - Money
 - What to bring
 - Packing
-- Navigation
+- [Navigation]({{< relref  "/collection/Walking in Britain/american-walking-in-britain-part4" >}})
 - Rain (and how to cope)
 - Training, Fitness, and Foot Care
 - Safety

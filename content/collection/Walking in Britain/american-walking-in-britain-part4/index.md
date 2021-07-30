@@ -49,7 +49,7 @@ very tight: 4cm on the map is equal to 1km in the real world
 A paper map at that scale turns out
 to be fairly bulky and unweildy. I confess I have almost never
 used the 1:25K scale OS maps. 
-Instead on multi-day walks I have relied on Harvey Maps, 
+Instead on multi-day walks I have relied on [Harvey Maps](http://www.harveymaps.co.uk), 
 whose slogan is "a good week's walking on one map".
 Harvey maps are availble for the national trails and
 other popular longer routes. The scale is 1:40K rather
