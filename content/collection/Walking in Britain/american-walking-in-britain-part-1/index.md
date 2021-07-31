@@ -59,7 +59,6 @@ Good question. On a number of multi-mile trudges across boggy moorland I have ha
 [^1]: A "fell" is a term primarily used in northern England or Scotland for a hill top. Often appears in place names such as Cross Fell.  See also [fell running](https://en.wikipedia.org/wiki/Fell_running).
 
 The UK has a great infrastructure for walking, both short and long distances.
-<img style="float: right;" src="/img/finger_pointer.png">
 One frequently sees the ubiquitous "public footpath" finger posts marking some local public [right of way](https://en.wikipedia.org/wiki/Right_of_way). These footpaths originated as actual transportation routes.
 There must have been quite a bit of that in colonial New England as well.
 I don't know the legal and cultural circumstances that caused those right
@@ -69,6 +68,11 @@ The Ramblers lobby for
 [legislation favorable to walkers](https://en.wikipedia.org/wiki/Countryside_and_Rights_of_Way_Act_2000) 
 and [actively police](https://www.ramblers.org.uk/get-involved/campaign-with-us/paths.aspxy-2026.aspx) existing
 rights of way.
+<figure style="float: right;margin:5px 5px 8px 5px">
+  <img  src="/img/finger_pointer.png" alt="Finger Post" >
+  <figcaption>Finger Post Points the Way</figcaption>
+</figure> 
+
 
 In the US hiking routes are associated with wilderness or less desirable land
 that is away from populated areas. In the UK, because many paths grew out of 
@@ -91,9 +95,10 @@ a comfortable bed (we hope). The type of walking I do in the UK is
 fundamentally different from the Appalachian Trail. Plus there are no
 bears or mountain lions or rattlesnakes to trouble my calm reflections
 during the walk.
-<figure> 
+<!-- Margin parameters: top right bottom left -->
+<figure style="float: left;margin:5px 10px 8px 5px">
   <img  src="/img/canopy_bed.png" alt="Canopy Bed" width="304" height="228">
-  <figcaption>Isn't this better than camping?</figcaption>
+  <figcaption>More comfortable than camping?</figcaption>
 </figure> 
 
 Another plus is public transportation, even away from cities and towns. 
@@ -104,10 +109,13 @@ there is a very nice set of trails (the
 almost none of them are near bus routes or motels or places to get food.
 Invariably one has to drive to a trail head. That's true for many foot paths in the 
 UK as well, but there are also many that are available via public transportation.
-<img style="float: right;" src="/img/Port_Isaac_Shuttle.png">
 A couple of times I have decided to cut the day short and catch a bus for
 the rest of the trip. Sometimes there are even simple ferries to get you across
 an estuary. And even in rural areas there often is some sort of taxi service available.
+<figure style="float: right;">
+<img  src="/img/Port_Isaac_Shuttle.png">
+  <figcaption>Need a lift?</figcaption>
+</figure>
 
 There are other aspects of the UK that probably make a difference. There is less suburban sprawl and less dependence on cars. In my part of the world one does
 not expect to find a motel or hotel anywhere except in a city or near a highway exit. In the UK B&B's and small-scale hotels seem more plentiful. I don't claim to understand all the political, cultural, and legal factors that create those differences in

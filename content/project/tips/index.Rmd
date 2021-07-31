@@ -136,6 +136,15 @@ Figure which contains a link in the caption:
 </figure> 
 ```
 
+Floating figure via html:    
+
+```
+<!-- Margin parameters: top right bottom left -->
+<figure style="float: left;margin:5px 10px 8px 5px">
+  <img  src="/img/canopy_bed.png" alt="Canopy Bed" width="304" height="228">
+  <figcaption>More comfortable than camping?</figcaption>
+</figure> ```
+
 #### Rmarkdown tips from Indrajeet Patil @patilindrajeets 
 
 see [these tweets](https://indrajeetpatil.github.io/RmarkdownTips/).

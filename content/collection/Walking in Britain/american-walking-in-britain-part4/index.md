@@ -120,7 +120,7 @@ red while on Explorer they are more of a brown color.
 It's not too bad. Your brain will sort it out almost
 automatically. 
   
-The OS Maps app is designed to work with your account on their web
+The OS Maps app is designed to work with your account on the OS web
 site. You can use the web version of the map on a large
 screen computer to draw a route. That route is 
 automatically available on an iPhone or Android that
@@ -231,7 +231,7 @@ compass there is a series of posts by Glyn Dodwell [map reading & navigation](ht
 {{< figure src="img/sample_off_route1.png"  
   caption="<font size=2>GPS off-route Open Street Map</font>" >}}
 
-### Ways You Can Go Wrong and How to Avoid Them
+## Ways You Can Go Wrong and How to Avoid Them
 
 My most embarrassing navigation mistake happened on the Pennine Way.
 It was raining so I was a bit buttoned up. I walked down the
@@ -255,7 +255,7 @@ drawn map that may go along with a pamphlet like that
 is not enough to keep you from getting lost. 
 You need a good map or a good mapping app on your phone.
 
-### Ordnance Survey
+## Ordnance Survey
 
 ### Ordnance Survey Trig Points
 
@@ -268,6 +268,7 @@ a good view, one generally feels a sense of accompishment
 having reached one.
 
 
-The [original version](https://en.wikipedia.org/wiki/Principal_Triangulation_of_Great_Britain) 
+The [original version](https://en.wikipedia.org/wiki/Principal_Triangulation_of_Great_Britain)
+of the Ordnance Survey mapping
 was done between 1791 and 1853.
 
