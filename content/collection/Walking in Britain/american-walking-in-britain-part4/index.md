@@ -196,8 +196,8 @@ check this [Wikipedia article](https://en.wikipedia.org/wiki/Geodetic_datum).
 
 GPS and Google Maps and other world-wide maps use WGS84. The UK uses OSGB36
 (or something similar). The practrical issue is that the same latitude
-and logitude values expressed in WGS84 can be about 500 meters away
-from the same values expressed in OSGB36. 
+and logitude coordinates expressed in WGS84 can be about 500 meters away
+from the same coordinates expressed in OSGB36. 
 
 The upshot is that if you report your location to emergency service
 via latitude and longitude from Google maps, they might
