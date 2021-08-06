@@ -70,12 +70,13 @@ the Explorer maps are a good alternative.
 
 #### Maps on Your Phone
 
-One catch with using a paper map is that it's not
+
+A paper map is not
 very useful unless you locate where you are on the 
 map. One attractive feature of a map on your phone is
 that the GPS can show you where you are on the map.
 
-The Ordnance Survey offers access t their maps on Android or iPhone
+The Ordnance Survey offers access to their maps on Android or iPhone
 via their OS Maps app. My most recent holiday in the UK
 was in 2019 before this app was released
 so I used other electronic aids,
@@ -88,7 +89,7 @@ Access is by subscription, but you can get a
 one-month premium access for £3.99, which is a good deal.
 By comparison, a single Landranger paper maps costs £8.99.
 
-The app is mimics the appearance of the paper
+The app mimics the appearance of the paper
 Ordnance Survey maps. If you are looking at a wider
 area, the format follows the Landranger series (where
 the paper maps show a scale of 1:50K). As you zoom in,
@@ -151,7 +152,7 @@ There's an [avanced](https://getoutside.ordnancesurvey.co.uk/guides/map-reading-
 There are many other resources on the web, 
 but one advantage of the OS site is it is oriented toward the
 specifics of the UK, Ordnance Survey maps, and the UK grid 
-system used by OS maps.
+system used by OS maps and other map suppliers in the UK.
 
 ### Using Your Phone as a Compass
 
@@ -189,24 +190,26 @@ mapping latitude and longitude to its imperfect shape.
 Google Maps and GPS use a coordinate system called [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System).
 The catch is the UK Ordnance Survey maps uses a UK-centric system
 [OSGB36](https://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid).
-
-> In Cornwall, the WGS 84 longitude lines are about 70 metres east of their OSGB 36 equivalents, this value rising gradually to about 120 m east on the east coast of East Anglia. The WGS 84 latitude lines are about 70 m south of the OSGB 36 lines in South Cornwall, the difference diminishing to zero in the Scottish Borders, and then increasing to about 50 m north on the north coast of Scotland.
-
 In case you want to nerd out on why there's more than one way
 to map latitude and longitude to the earth's surface,
 check this [Wikipedia article](https://en.wikipedia.org/wiki/Geodetic_datum).
 
+GPS and Google Maps and other world-wide maps use WGS84. The UK uses OSGB36
+(or something similar). The practrical issue is that the same latitude
+and logitude values expressed in WGS84 can be about 500 meters away
+from the same values expressed in OSGB36. 
+
 The upshot is that if you report your location to emergency service
 via latitude and longitude from Google maps, they might
-interpret that as being from the UK system. The difference
-might be about the length of an American football field
-so for emergency purposes, that's probably good enough. 
+interpret that as being from the UK system.  
 
-On the other hand, if you download waypoints for a guide
-book that uses the UK system (OSGB36) and feed them
-into something such as AllTrails that uses WGS84, you might
+I first encountered this issue when I
+downloaded waypoints from a guide
+book that uses the UK system (OSGB36) and imported them
+into Open Street Maps on my Garmin GPS which uses WGS84.
+I quickly saw that something was off. One might
 be looking for a bridge or a trail intersection that might
-be 100 or so meters off from what you expected. It's something
+be 500 or so meters off from what you expected. It's something
 to keep in mind. If you have a handheld satnav (such as from 
 Garmin) there usually is a setting that let's you choose
 what coordinate system you want to use.
@@ -218,7 +221,26 @@ grid reference system that is specific to the UK rather than using
 latitude and longitude There's an app called [OS Locate](https://shop.ordnancesurvey.co.uk/apps/os-locate/) 
 for iPhone and Android that will report your location in 
 UK grid reference terms or in latitude and longitude
-based on OSGB36.It also can be used as a compass.
+based on OSGB36. It also can be used as a compass.
+
+#### The UK Grid System
+
+Ordnance Survey maps (and therefore many other maps for the UK)
+emphasize identification of locations in terms of the [national
+grid system](https://getoutside.ordnancesurvey.co.uk/guides/beginners-guide-to-grid-references/). 
+There's a section on each OS paper map that describes
+the grid system. A grid reference consists of two letters which
+describe the general area followed by 4 or 6 numeric digits
+(more digits, more precision). 
+
+For example, the grid reference for the start of South West Coast Path
+in Minehead is SS971467. Expressed as latitude and longitude, that's
+51°12′37″N , 003°28′24″W (degrees, minutes, seconds) 
+or 51.210351 , -3.4733859 (degrees). The UK grid reference
+is totally unfamiliar to an American audience. 
+
+
+
 
 ### More Map Resources
 
