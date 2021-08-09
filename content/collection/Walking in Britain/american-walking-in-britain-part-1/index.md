@@ -132,20 +132,21 @@ an old stone wall enclosing the grove. There are lots of wooded areas in the UK 
 But I associate areas like North Yorkshire with rolling green hills clear
 of trees. In Connecticut a long walk invariably involves a walk in the woods.
 
-All in all, walking in the UK seems to be a much more visible and popular activity than hiking is in the US.
+All in all, walking in the UK is a more visible and popular activity than hiking is in the US.
 There are TV shows, books, guides, and maps in far greater volume than
 in the US. [Alfred Wainwright](https://en.wikipedia.org/wiki/Alfred_Wainwright)
-seems to be regarded as the the key figure in the modern popularity
+is the the key figure in the modern popularity
 of walking in Britain, especially the Lake District. He basically
 invented the route for the Coast to Coast Path, which is one of the most
 popular routes even though it is not one of the official [National Trails](http://www.nationaltrail.co.uk/).
 The original [Wainwright guide books](https://www.amazon.com/Alfred-Wainwright/e/B001HPUBVK/ref=sr_tc_2_0?qid=1489257346&sr=1-2-ent) are
 now somewhat out of date, but his enthusiasm is contagious and
-his drawings are quite charming. If your local public library
-has a copy, take a look.
+his [drawings](https://www.wainwright.org.uk/sketchbook-project/) are quite charming. If your local public library
+has a copy of one of his pictorial guides
+(such as [A Coast to Coast Walk](https://amazon.com/Coast-Walk-Wainwright-Pictorial-Guides/dp/0718140079/ref=sr_1_10?crid=10W8TUSL67LC0&dchild=1&keywords=wainwright+guides&qid=1628357521&s=books&sprefix=wainwright%2Caps%2C168&sr=1-10)), take a look.
 
 There are lots of other examples of the popularity of walking in Britain.
-Julia Bradbury has a whole series of TV programs on walking including the [Coast
+Julia Bradbury has a series of TV programs on walking including the [Coast
 to Coast Path](https://www.youtube.com/watch?v=PRjhfaxOSyo) and another on [Best Walks](https://www.youtube.com/watch?v=96PUMMzARDo) and even [railway walks](https://www.youtube.com/watch?v=qHX-ZBC_d80&index=3&list=PLwJ3dKGiVfLKsZ5YVkkkIUrq28oC0bQHt). 
 
 There are plenty of books extolling the pleasures of walking in Britain. [The National Trails of England, Scotland and Wales](http://www.paddydillon.co.uk/guidebook/the-national-trails/) by Paddy Dillon provides
@@ -258,6 +259,34 @@ for the city-bound in London.
 I will try to address particular topics and try to
 include the kinds of details that I didn't
 know before my first walking holiday. Here's the plan. Next step will be for me to fill this in.
+
+### My Experiences Walking in the UK
+
+What experience are these notes based on?
+By the standards of someone who has lived in Britain,
+perhaps not very much. 
+I did some day walks during a car tour of Yorkshire in 1997.
+Based on a Rick Steve guide I stayed one night in Thwaite in
+North Yorkshire. I did a wonderful half-day walk almost to the top
+of the Great Shunner Fell. In Thwaite there was a finger post
+pointing to the Pennine Way, which goes through Thwaite, and 
+the Coast to Coast Path which passes nearby through Keld. I was
+intrigued about what those referred to and did some research
+after I returned home. Based on some advice, I did the West Highland
+Way in 1998. I didn't return to England until 2007 when I walked
+the stretch of the South West Coast Path between Padstow and
+St. Ives. I had a marvelous trip, which included two days in
+Dartmoor and one day on the final stretch of the South Downs Way that
+follows the white cliffs along the English Channel into Eastbourne. 
+Some foot problems kept me away for a couple of years, in 2011 I
+did a couple of days along Hadrian's Wall and in 2012 some walks
+on the Pembrokeshire Coast Path in Wales. That went so well that
+I really caught the walking bug. I did most of the Coast to Coast
+Path in 2012. In 2012 and 2013 I did the Pennine Way, broken into
+two trips. In 2015 I did the South West Coast Path from the start
+in Minehead to my earlier start in Padstow. And in 2019 I did
+the Two Moors Way (with bits of Dartmoor and Exmoor in Devon)
+and the Cleveland Way in Yorkshire.
 
 ### Topics
 

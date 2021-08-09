@@ -233,11 +233,12 @@ the grid system. A grid reference consists of two letters which
 describe the general area followed by 4 or 6 numeric digits
 (more digits, more precision). 
 
-For example, the grid reference for the start of South West Coast Path
+For example, the grid reference for the start of the South West Coast Path
 in Minehead is SS971467. Expressed as latitude and longitude, that's
 51°12′37″N , 003°28′24″W (degrees, minutes, seconds) 
 or 51.210351 , -3.4733859 (degrees). The UK grid reference
-is totally unfamiliar to an American audience. 
+is totally unfamiliar to an American audience, but I gather
+is widely used in the UK.
 
 
 
