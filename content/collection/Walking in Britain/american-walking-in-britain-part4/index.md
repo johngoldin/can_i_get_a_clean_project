@@ -102,24 +102,44 @@ Ivybridge and enters Dartmoor. The first version shows
 the Landranger style and the second zooms into a smaller area
 and shows Explorer style. It's a bit disconcerting when
 the style changes suddenly as one zooms in using the app, 
-but it's not bothersome.
+but it's not bothersome. 
 
-{{< figure src="img/Landranger Ivybridge.jpg#floatleft"  
-  width="300"
-  caption="<font size=2>Landranger 1:50K</font>" >}}
-{{< figure src="img/Explorer Ivybridge.jpg"  
-  width="300"
-  caption="<font size=2>Explorer 1:25K</font>" >}}
+<figure>
+  <figcaption style="font-size:1.2em">OS Maps Examples at Different Zoom Levels</figcaption>
+  <figure>
+    <figcaption style="font-size:1.2em">Landranger 1:50K</figcaption> 
+    <img src="img/Landranger Ivybridge.jpg#floatleft"
+    width="300" attr="Ordnance Survey Crown Copyright"
+    alt="Sample Landranger map for Ivybridge" >
+  </figure>
+  <figure>
+    <figcaption style="font-size:1.2em">Explorer 1:25K</figcaption>
+    <img src="img/Explorer Ivybridge.jpg#right"
+    width="300" attr="Ordnance Survey Crown Copyright"
+    alt="Sample Landranger map for Ivybridge" >
+  </figure>
+  <figcaption style="color:gray;font-size:0.8em;"><a href="https://shop.ordnancesurvey.co.uk/apps/os-maps/">Ordnance Survey Crown Copyright</a></figcaption>
+</figure>
+      
   
 Unfortunately the details of the legends are different
 on the two separate map formats. For example, 
 on Landranger a long distance trail such as the
-Two Moors Way is marked as
-a red diamond while on Explorer it appears as a
-green diamond. On Landranger contour lines are in
+Two Moors Way is marked with red diamonds 
+while on Explorer it appears as
+green diamonds. On Landranger contour lines are in
 red while on Explorer they are more of a brown color.
 It's not too bad. Your brain will sort it out almost
-automatically. 
+automatically. The important thing is that when you zoom
+in you get more detail. For example, when
+you zoom in to Landranger format
+you see individual field boundaries (stone walls, fences,
+or hedgerows shown as thin black lines) 
+which can be extremely useful when you are 
+following a path through a farming area. It's
+useful to see if you are be on the wrong side of
+a field boundary because otherwise you may find
+yourself ending up in a dead end with no outlet.
   
 The OS Maps app is designed to work with your account on the OS web
 site. You can use the web version of the map on a large
@@ -143,6 +163,27 @@ the menu to explicitly download that map to your phone.
 As a test, switch to airplane mode to disconnect from
 the internet to verify that you can still see the map
 for the area you need once you are out of cell phone coverage.
+
+#### Open Street Maps
+
+Open Street Maps (OSM) is similar to Wikipedia, except for maps.
+Anyone can contribute. A community of volunteer mappers
+maintains information of roads, trails, and tons of geographic
+detail all over the world. Coverage of information about 
+paths and roads in the UK is generally quite good. 
+
+For an overview of walking routes in the UK (and elsewhere)
+see the site [hiking.waymarkedtrails.org](https://hiking.waymarkedtrails.org/#?map=12!54.5331!-3.4289).
+
+### An Illustrative Comparison of Different Tools
+
+To show how various mapping tools compare, let's focus on an
+area near the eastern end of the Coast to Coast Path (C2C).
+For a long distance walk such as the C2C, you're likely
+to have a guide book which will include some sort of map as
+well as some detailed route notes. 
+Trailblazer offers a popular guide book for the 
+Coast to Coast.
 
 ### Navigation the Old-Fashioned Way: Compass and Paper Map
 
@@ -278,17 +319,31 @@ drawn map that may go along with a pamphlet like that
 is not enough to keep you from getting lost. 
 You need a good map or a good mapping app on your phone.
 
-## Ordnance Survey
-
 ### Ordnance Survey Trig Points
 
+The Ordnance Survey is not just maps. It actually
+has a visible presence on the ground.
 On many high points one finds a concrete pillar that
 marks one of the known points that make up the
 [survey points](https://en.wikipedia.org/wiki/Retriangulation_of_Great_Britain)
 that anchor the maps created by the Ordance Survey.
 Because the trip pillars are located at a high spot with
-a good view, one generally feels a sense of accompishment
+a good view, one generally feels a sense of accomplishment
 having reached one.
+Between 1935 and 1962 more than 6,500 concrete pillars
+marked the basis for the UK Ordnance Survey grid.
+Traditional survey techniques required that in
+clear weather it be possible to see at least two
+other trig points from any one trig point. 
+(Or so they say. I can't say that I've been
+able to verify that.)
+{{< figure 
+  src="img/On Roseberry Topping.jpeg#floatright"  
+  width="300" 
+  caption="Trig Point on Roseberry Topping </font><br><br>" >}}
+
+
+
 
 
 The [original version](https://en.wikipedia.org/wiki/Principal_Triangulation_of_Great_Britain)

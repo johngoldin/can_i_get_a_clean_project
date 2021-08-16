@@ -1,18 +1,29 @@
 img[src$='#floatleft']
 {
 	float:left;
+	  margin-top: 0px;
+	  margin-bottom: 0px;
     margin-right: 10px;  
 
         //etc. etc/
 }
 
-img[src$='#floatright']
+img[src$='#right']
 {
 	float:left;
     margin-left: 10px;  
+	  margin-bottom: 0px;
+	  margin-top: 1px;
        //etc. etc.
 }
-
+img[src$='#floatright']
+{
+	float:right;
+    margin-left: 10px;  
+	  margin-bottom: 0px;
+	  margin-top: 1px;
+       //etc. etc.
+}
 figure {
     display: inline-block;
     /* border: 1px dotted gray; */
