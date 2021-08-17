@@ -69,7 +69,7 @@ The Ramblers lobby for
 and [actively police](https://www.ramblers.org.uk/get-involved/campaign-with-us/paths.aspxy-2026.aspx) existing
 rights of way.
 <figure style="float: right;margin:5px 5px 8px 5px">
-  <img  src="/img/finger_pointer.png" alt="Finger Post" >
+  <img  src="/img/finger_pointer.png" alt="Finger Post"  >
   <figcaption>Finger Post Points the Way</figcaption>
 </figure> 
 

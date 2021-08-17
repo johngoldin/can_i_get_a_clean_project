@@ -1,0 +1,7 @@
+<figure style="float: right;margin:5px 5px 8px 5px">
+  <img  src="{{ .Get "photo" }}" 
+  {{ with .Get "photo_alt" }} alt="{{.}}"{{ end }}
+   width="288" >
+  {{ with .Get "photo_caption" }} <figcaption>{{ . }}</figcaption>{{ end }}
+</figure> 
+

@@ -310,6 +310,7 @@ GPS track and realized I was retracing my steps.
 Nagging doubt is your friend! Listen to it.
 When in doubt, check!
 
+
 Some of my difficult navigation experiences have
 occurred while I was following a local route suggested
 by a pamphlet from the local TIC (tourist informaiton center).
@@ -321,6 +322,10 @@ You need a good map or a good mapping app on your phone.
 
 ### Ordnance Survey Trig Points
 
+{{< photo_right photo="img/On Roseberry Topping.jpeg"
+  photo_alt="Trig Point"
+  photo_caption="Trig Point on Roseberry Topping" >}}
+
 The Ordnance Survey is not just maps. It actually
 has a visible presence on the ground.
 On many high points one finds a concrete pillar that
@@ -330,6 +335,7 @@ that anchor the maps created by the Ordance Survey.
 Because the trip pillars are located at a high spot with
 a good view, one generally feels a sense of accomplishment
 having reached one.
+
 Between 1935 and 1962 more than 6,500 concrete pillars
 marked the basis for the UK Ordnance Survey grid.
 Traditional survey techniques required that in
@@ -337,14 +343,6 @@ clear weather it be possible to see at least two
 other trig points from any one trig point. 
 (Or so they say. I can't say that I've been
 able to verify that.)
-{{< figure 
-  src="img/On Roseberry Topping.jpeg#floatright"  
-  width="300" 
-  caption="Trig Point on Roseberry Topping </font><br><br>" >}}
-
-
-
-
 
 The [original version](https://en.wikipedia.org/wiki/Principal_Triangulation_of_Great_Britain)
 of the Ordnance Survey mapping

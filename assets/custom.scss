@@ -24,6 +24,11 @@ img[src$='#floatright']
 	  margin-top: 1px;
        //etc. etc.
 }
+figure[src$='#figfloatright']
+{
+  float: right;
+  margin: 5px 5px 8px 5px;
+}
 figure {
     display: inline-block;
     /* border: 1px dotted gray; */
