@@ -69,8 +69,8 @@ The Ramblers lobby for
 and [actively police](https://www.ramblers.org.uk/get-involved/campaign-with-us/paths.aspxy-2026.aspx) existing
 rights of way.
 
-{{< photo_right src="/img/finger_pointer.png"
-  alt="Finger Post"
+{{< insert_photo src="/img/finger_pointer.png"
+  alt="Finger Post" right="yes"
   caption="Finger Post Points the Way" >}}
 
 In the US hiking routes are associated with wilderness or less desirable land
@@ -94,12 +94,11 @@ a comfortable bed (we hope). The type of walking I do in the UK is
 fundamentally different from the Appalachian Trail. Plus there are no
 bears or mountain lions or rattlesnakes to trouble my calm reflections
 during the walk.
-<!-- Margin parameters: top right bottom left -->
-<figure style="float: left;margin:5px 10px 8px 5px">
-  <img  src="/img/canopy_bed.png" alt="Canopy Bed" width="304" height="228">
-  <figcaption>More comfortable than camping?</figcaption>
-</figure> 
 
+{{< insert_photo src="/img/canopy_bed.png"
+  alt="Canopy Bed" left="yes" width="304" 
+  caption="More comfortable than camping?" >}}
+  
 Another plus is public transportation, even away from cities and towns. 
 If one wants to do a simple walk, it is often possible to take bus out
 somewhere and walk back to your hotel. Here in Connecticut where I live,

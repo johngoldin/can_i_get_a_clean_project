@@ -322,8 +322,8 @@ You need a good map or a good mapping app on your phone.
 
 ### Ordnance Survey Trig Points
 
-{{< photo_right src="img/On Roseberry Topping.jpeg"
-  alt="Trig Point"
+{{< insert_photo src="img/On Roseberry Topping.jpeg"
+  alt="Trig Point"  right="yes"
   caption="Trig Point on Roseberry Topping" >}}
 
 The Ordnance Survey is not just maps. It actually

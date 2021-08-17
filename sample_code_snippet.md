@@ -1,7 +1,21 @@
+photo_right shortcode
+
+{{< photo_right photo="img/On Roseberry Topping.jpeg"
+  photo_alt="Trig Point"
+  photo_caption="Trig Point on Roseberry Topping" >}}
+
 Here's what I used in my original walking posts:
+(Must have blank lines before and after.)
+
 <figure style="float: right;margin:5px 5px 8px 5px">
   <img  src="/img/finger_pointer.png" alt="Finger Post" >
   <figcaption>Finger Post Points the Way</figcaption>
+</figure> 
+
+<figure style="float: right;margin:5px 5px 8px 5px">
+  <img  src="img/On Roseberry Topping.jpeg" 
+  alt="Trig Point"  width="288" >
+  <figcaption>Trig Point on Roseberry Topping</figcaption>
 </figure> 
 
 
