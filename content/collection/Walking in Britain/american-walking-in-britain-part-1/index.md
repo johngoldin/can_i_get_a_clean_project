@@ -68,11 +68,10 @@ The Ramblers lobby for
 [legislation favorable to walkers](https://en.wikipedia.org/wiki/Countryside_and_Rights_of_Way_Act_2000) 
 and [actively police](https://www.ramblers.org.uk/get-involved/campaign-with-us/paths.aspxy-2026.aspx) existing
 rights of way.
-<figure style="float: right;margin:5px 5px 8px 5px">
-  <img  src="/img/finger_pointer.png" alt="Finger Post"  >
-  <figcaption>Finger Post Points the Way</figcaption>
-</figure> 
 
+{{< photo_right src="/img/finger_pointer.png"
+  alt="Finger Post"
+  caption="Finger Post Points the Way" >}}
 
 In the US hiking routes are associated with wilderness or less desirable land
 that is away from populated areas. In the UK, because many paths grew out of 

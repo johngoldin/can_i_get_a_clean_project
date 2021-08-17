@@ -322,9 +322,9 @@ You need a good map or a good mapping app on your phone.
 
 ### Ordnance Survey Trig Points
 
-{{< photo_right photo="img/On Roseberry Topping.jpeg"
-  photo_alt="Trig Point"
-  photo_caption="Trig Point on Roseberry Topping" >}}
+{{< photo_right src="img/On Roseberry Topping.jpeg"
+  alt="Trig Point"
+  caption="Trig Point on Roseberry Topping" >}}
 
 The Ordnance Survey is not just maps. It actually
 has a visible presence on the ground.

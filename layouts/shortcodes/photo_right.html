@@ -1,7 +1,18 @@
-<figure style="float: right;margin:5px 5px 8px 5px">
-  <img  src="{{ .Get "photo" }}" 
-  {{ with .Get "photo_alt" }} alt="{{.}}"{{ end }}
-   width="288" >
-  {{ with .Get "photo_caption" }} <figcaption>{{ . }}</figcaption>{{ end }}
-</figure> 
-
+<!-- Margin parameters: top right bottom left -->
+<figure {{ with .Get "class" }}class="{{.}}"{{ end }}
+  style="float: right;margin:5px 5px 8px 5px">
+    {{ with .Get "link" }}<a href="{{ . }}">{{ end }}
+        <img src="{{ .Get "src" }}" {{ if or (.Get "alt") (.Get "caption") }}alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" }}{{ end }}"{{ end }} width="288" />
+    {{ if .Get "link" }}</a>{{ end }}
+    {{ if or (or (.Get "title") (.Get "caption")) (.Get "attr") }}
+    <figcaption>{{ if isset .Params "title" }}
+        <h4>{{ .Get "title" }}</h4>{{ end }}
+        {{ if or (.Get "caption") (.Get "attr") }}<p>
+        {{ .Get "caption" }}
+        {{ with .Get "attrlink" }}<a href="{{ . }}"> {{ end }}
+            {{ .Get "attr" }}
+        {{ if .Get "attrlink" }}</a> {{ end }}
+        </p> {{ end }}
+    </figcaption>
+    {{ end }}
+</figure>
