@@ -32,7 +32,7 @@ figure[src$='#figfloatright']
 figure {
     display: inline-block;
     /* border: 1px dotted gray; */
-    /* margin: 10px; */  /* adjust as needed */
+    margin: 10px;   /* adjust as needed */
 }
 figure img {
     vertical-align: top;
@@ -40,4 +40,5 @@ figure img {
 figure figcaption {
     /* border: 1px dotted blue; */
     text-align: center;
+    font-size: 1em; 
 }

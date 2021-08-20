@@ -221,6 +221,7 @@ box_score <- tribble(
 ```
 
 ```{r format-box-score-table, echo = FALSE}
+# latest weekly report: dph_reports$url[dph_reports$date == max(dph_reports$date)]
 # columns for box scores:
 # town, category, population, cases, cases per 100K, recent cases per 100K, percent positive tests
 # deaths, percent of deaths in nh, 
@@ -230,7 +231,7 @@ box_score %>%
                   yesterday = paste0(round(test_rate_day * 100, 1.1), "%"), `week ago` = paste0(round(test_rate_week * 100, 1.1), "%"), .after = 4) %>% 
   gt() %>% 
   tab_header(title = "Latest Data on Covid-19 in Connecticut",
-             # subtitle = md(paste0('Should correspond to [', dph_reports$name[1],
+             # subtitle = md(paste0('Latest weekly report [', dph_reports$name[1],
              #                      '](', dph_reports$url[1], ') from the Department of Public Health'))) %>% 
              subtitle = md(paste("Data as of ", format(max(dph_counties$date, na.rm = TRUE), "%B %d, %Y")))) %>% 
   cols_label(
@@ -262,6 +263,10 @@ box_score %>%
   # tab_options(row.striping.include_table_body = FALSE)
 
 ```
+
+See most recent [weekly report](`r dph_reports$url[dph_reports$date == max(dph_reports$date)]`) 
+from the Department of Public Health for detail about cases, hospitalizations,
+and deaths among vaccinated compared with unvaccinated.
 
 There is a Connecticut [data tracker
 map](https://portal.ct.gov/Coronavirus/COVID-19-Data-Tracker) that

@@ -1,24 +1,22 @@
 <!-- Margin parameters: top right bottom left -->
-<!-- ;margin:5px 5px 8px 5px -->
 <figure
   {{ if .Get "right" }}style="float: right;margin:5px 5px 8px 5px"{{ end }}
   {{ if .Get "left" }}style="float: left;margin:5px 10px 8px 5px"{{ end }}
   >
    {{ with .Get "link" }}<a href="{{ . }}">{{ end }}
         <img src="{{ .Get "src" }}" {{ if or (.Get "alt") (.Get "caption") }}alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" }}{{ end }}"{{ end }} 
-        {{ if .Get "width"}}width="{{.Get "width"}}"{{ else }} width="288"{{ end }}
-        {{ if .Get "height"}}height="{{.Get "height"}}"{{ end }}
+        {{ if .Get "width"}}width=.Get "width"{{ else }} width="288"{{ end }}
+        {{ if .Get "height"}}height=.Get "height"{{ end }}
         />
     {{ if .Get "link" }}</a>{{ end }}
     {{ if or (or (.Get "title") (.Get "caption")) (.Get "attr") }}
-    <!-- was: figcaption style="color:black;font-size:1em;" -->
-    <figcaption>
+    <figcaption style="color:black;font-size:1em;">
       {{ if isset .Params "title" }}
-        <b>{{ .Get "title" }}</b>{{ end }}
+        <h4>{{ .Get "title" }}</h4>{{ end }}
         {{ if or (.Get "caption") (.Get "attr") }}<p>
         {{ .Get "caption" }} 
         {{ with .Get "attrlink" }}<a href="{{ . }}"> {{ end }}
-            <p>{{ .Get "attr" }}</p>
+            {{ .Get "attr" }}
         {{ if .Get "attrlink" }}</a> {{ end }}
         </p> {{ end }}
     </figcaption>
