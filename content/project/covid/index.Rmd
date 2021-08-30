@@ -461,7 +461,8 @@ print(p_daily_deaths)
 print(p_hospitalizations)
 ```
 
-<br/> TA key issue
+<br/> 
+A key issue
 is how fast epidemic is expanding or contracting. One indicator of that
 is to estimate the parameter R<sub>t</sub>, the average number of people
 who become infected by an infectious person. When R<sub>t</sub> is
