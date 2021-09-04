@@ -102,6 +102,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#vo2-max">VO2 Max</a></li>
 <li><a href="#what-happened-to-my-million-rows-of-data">What Happened to My Million Rows of Data?</a></li>
 <li><a href="#how-do-we-know-what-the-health-measures-actually-measure">How Do We Know What the Health Measures Actually Measure?</a></li>
+<li><a href="#an-update-concerning-vo2-max">An Update Concerning VO2 Max</a></li>
 <li><a href="#appendix-some-of-the-r-code-used-to-make-this-post">Appendix: Some of the R Code Used to Make This Post</a>
 <ul>
 <li><a href="#r-code-for-the-ggplot2-figures">R Code for the <code>ggplot2</code> Figures</a></li>
@@ -110,6 +111,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 
+<p>[Updated September 4, 2021]</p>
 <p>This is a follow-up to an <a href="https://www.johngoldin.com/blog/2020-02-apple-health-export-1/">earlier post</a>
 exploring the Apple Health Export. The earlier post describes how
 to export the Health data from the iPhone and import it into R.</p>
@@ -266,7 +268,7 @@ to do with my fitness.</p>
 <p>What about the trend within each version of Watch OS? For example, during
 Version 7 my VO2 Max has been on a steady upward march. No, I can’t relate
 that to the personal experience of my fitness. I do a challenging three-mile
-walk in the woods almost every day with an occasioinal longer walk thrown in
+walk in the woods almost every day with an occasional longer walk thrown in
 from time to time. It’s hard to imagine what estimation procedure would
 produce these trends. In Version 7 of Watch OS perhaps the procedure starts
 with an estimate based only on height, weight, age, and gender and then
@@ -274,7 +276,7 @@ modifies it based on observation of workouts. Looking at the period during
 Version 6, there was a big drop on March 17, 2020 and then a big increase
 on April 9. When I look at the details of the workouts during that time
 period I don’t see anything that would relate to a change in estimated
-VO2 Max. My concludion is that I should not attribute short-run changes in
+VO2 Max. My conclusion is that I should not attribute short-run changes in
 the estimated VO2 Max to actual changes in my cardio fitness.</p>
 <p>The <a href="https://www.apple.com/newsroom/2020/09/apple-watch-series-6-delivers-breakthrough-wellness-and-fitness-capabilities/">press release for Watch OS 7</a> introduced “low range VO2 Max”</p>
 <blockquote>
@@ -287,7 +289,7 @@ procedure was never needed.</p>
 <p>Including an estimate of VO2 Max is an interesting concept, but so far it seem that
 both the short run variations the long-term trend are affected by changes
 in the estimation procedure. VO2 Max won’t be useful until Apple settles on
-a stabe methodology. I look forward to seeing that someday.</p>
+a stable methodology. I look forward to seeing that someday.</p>
 <p>An overall theme of this post is that one should expect there will be additional
 future changes in the Apple Health Kit
 as Apple works to improve their health and fitness information. Of course
@@ -366,6 +368,30 @@ actually does. The health measures in many cases are still in an early stage of
 development. They will be improved over time. Improvement means change, in a
 good way. But it also means that one must be very careful about
 the interpretation of long-term trends.</p>
+</div>
+<div id="an-update-concerning-vo2-max" class="section level3">
+<h3>An Update Concerning VO2 Max</h3>
+<p>In September 2021, after I first published this post,
+a web search led me to a
+<a href="https://www.apple.com/healthcare/docs/site/Using_Apple_Watch_to_Estimate_Cardio_Fitness_with_VO2_max.pdf">technical article</a>
+that provides a great deal of detail about how
+Apple created their estimate of VO2 Max. The article is posted
+in the <a href="https://www.apple.com/healthcare/">healthcare</a> section of their
+web site, although I only found it as a result of a web search. I
+don’t see where it is listed at the healthcare site.
+In any case, I give credit for creating some substantial background
+information rather than simply asking us to accept their measures on
+faith.</p>
+<blockquote>
+<p>A VO2 max value may be generated after walking, running, or hiking outdoors on relatively flat ground (that is, a grade of less than 5 percent incline or decline) with adequate GPS, heart rate signal quality, and exertion (an approximate increase of 30 percent of the range from resting heart rate to max).</p>
+</blockquote>
+<p>They study describes the study used to create the estimates of VO2 Max introduced with
+OS7.
+I was happy to see that 38% of the participants is the study were over 65.
+They report that the correlation between their estimate of VO2 Max
+with a direct measure
+via cardiopulmonary exercise testing
+is 0.89 for men and 0.86 for women.</p>
 </div>
 <div id="appendix-some-of-the-r-code-used-to-make-this-post" class="section level2">
 <h2>Appendix: Some of the R Code Used to Make This Post</h2>

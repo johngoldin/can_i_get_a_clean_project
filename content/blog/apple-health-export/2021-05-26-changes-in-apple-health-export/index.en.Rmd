@@ -72,6 +72,8 @@ theme_update(
 )
 ```
 
+[Updated September 4, 2021]    
+
 This is a follow-up to an [earlier post](https://www.johngoldin.com/blog/2020-02-apple-health-export-1/) 
 exploring the Apple Health Export. The earlier post describes how
 to export the Health data from the iPhone and import it into R.
@@ -538,6 +540,31 @@ actually does. The health measures in many cases are still in an early stage of
 development. They will be improved over time. Improvement means change, in a 
 good way. But it also means that one must be very careful about
 the interpretation of long-term trends.
+
+### An Update Concerning VO2 Max
+
+In September 2021, after I first published this post,
+a web search led me to a
+[technical article](https://www.apple.com/healthcare/docs/site/Using_Apple_Watch_to_Estimate_Cardio_Fitness_with_VO2_max.pdf)
+that provides a great deal of detail about how
+Apple created their estimate of VO2 Max. The article is posted
+in the [healthcare](https://www.apple.com/healthcare/) section of their
+web site, although I only found it as a result of a web search. I
+don't see where it is listed at the healthcare site.
+In any case, I give credit for creating some substantial background
+information rather than simply asking us to accept their measures on 
+faith.
+
+> A VO2 max value may be generated after walking, running, or hiking outdoors on relatively flat ground (that is, a grade of less than 5 percent incline or decline) with adequate GPS, heart rate signal quality, and exertion (an approximate increase of 30 percent of the range from resting heart rate to max). 
+
+They study describes the study used to create the estimates of VO2 Max introduced with
+OS7.
+I was happy to see that 38% of the participants is the study were over 65.
+They report that the correlation between their estimate of VO2 Max
+with a direct measure
+via cardiopulmonary exercise testing
+is 0.89 for men and 0.86 for women.
+
 
 ## Appendix: Some of the R Code Used to Make This Post
 
