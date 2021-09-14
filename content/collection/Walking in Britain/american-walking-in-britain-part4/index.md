@@ -150,7 +150,7 @@ is signed into the same Ordnance Survey account.
 #### Don't Forget to Download!
 
 You need to remember that using a map on your phone 
-(such as the OS Maps app) works differently
+(such as the OS Maps app or AllTrails) works differently
 depending on whether you are connected to the internet.
 When connected you can move around the map freely to
 look at different areas. But in the center of Dartmoor
@@ -173,17 +173,19 @@ detail all over the world. Coverage of information about
 paths and roads in the UK is generally quite good. 
 
 For an overview of walking routes in the UK (and elsewhere)
-see the site [hiking.waymarkedtrails.org](https://hiking.waymarkedtrails.org/#?map=12!54.5331!-3.4289).
+see the site [Waymarked Trails](https://hiking.waymarkedtrails.org/#?map=12!54.5331!-3.4289).
+The link here shows the western start of the Coast to Coast Path.
 
 ### An Illustrative Comparison of Different Tools
 
 To show how various mapping tools compare, let's focus on an
-area near the eastern end of the Coast to Coast Path (C2C).
+area near the western start of the Coast to Coast Path (C2C).
 For a long distance walk such as the C2C, you're likely
 to have a guide book which will include some sort of map as
 well as some detailed route notes. 
-Trailblazer offers a popular guide book for the 
-Coast to Coast.
+[Trailblazer](https://trailblazer-guides.com/book/coast-to-coast-path) 
+offers a popular guide book for the 
+Coast to Coast. They offer free delivery world wide.
 
 ### Navigation the Old-Fashioned Way: Compass and Paper Map
 
