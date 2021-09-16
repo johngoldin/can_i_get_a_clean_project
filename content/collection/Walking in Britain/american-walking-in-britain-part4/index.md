@@ -182,10 +182,30 @@ To show how various mapping tools compare, let's focus on an
 area near the western start of the Coast to Coast Path (C2C).
 For a long distance walk such as the C2C, you're likely
 to have a guide book which will include some sort of map as
-well as some detailed route notes. 
+well as some detailed route notes.
+
+#### Trailblazer Guide Books
+
 [Trailblazer](https://trailblazer-guides.com/book/coast-to-coast-path) 
-offers a popular guide book for the 
-Coast to Coast. They offer free delivery world wide.
+offers a series of popular guide books, including one for the 
+Coast to Coast. 
+
+{{< insert_photo src="img/c2c trailblazer sample.jpg"
+  alt="Trailblazer Sample"  right="yes" width=500
+  caption="Typical Route Map in a Trailblazer Guide" >}}
+  
+The Trailblazer maps combine route notes with a simple, chatty map
+that is not as detailed as an Ordnance Survey map, but
+has enough information to get you where you need to go.
+I've used them for the several trips.
+They are effective.
+
+
+
+Trailblazer offer free delivery world wide. 
+If you buy one online from place such as Amazon,
+make sure you have the latest edition. And remember to [check their web site
+for updates](https://trailblazer-guides.com/updates).
 
 ### Navigation the Old-Fashioned Way: Compass and Paper Map
 
