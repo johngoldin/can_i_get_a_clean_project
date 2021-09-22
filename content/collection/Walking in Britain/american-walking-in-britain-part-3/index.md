@@ -1,17 +1,19 @@
 ---
-title: An American Walking in Britain Part 3
-subtitle: Planning an Itinerary
-slug: "am-walker-3"
-aliases:
-    - /2017/03/am_walker_3/
-excerpt: 'Tips on how to plan a multi-day itinerary with some advice on how to arrange for accommodations.'
+title: Part 3 More on Planning an Itinerary
+author: John Goldin
+date: '2021-09-21'
 categories:
   - British Walking
+slug: am-walker-3
+aliases:
+  - /2017/03/am_walker_3/
+excerpt: Tips on how to plan a multi-day itinerary with some advice on how to arrange
+  for accommodations.
 layout: single-series
 publishDate: '2017-03-15'
-show_author_byline: false
-show_post_date: false
-show_post_thumbnail: true
+show_author_byline: no
+show_post_date: no
+show_post_thumbnail: yes
 weight: 34
 ---
 

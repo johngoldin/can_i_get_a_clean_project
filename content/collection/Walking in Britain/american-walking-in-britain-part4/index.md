@@ -1,22 +1,22 @@
 ---
-title: An American Walking in Britain Part 4
-subtitle: Navigation and Finding Your Way
-slug: "am-walker-4"
-excerpt: 'Tips on how to find your way using guide books, maps, and your phone.'
+title: Part 4 Navigation and Finding Your Way
+author: John Goldin
+date: '2021-09-21'
 categories:
   - British Walking
+subtitle: Don't Lose Your Way
+slug: am-walker-4
+excerpt: Tips on how to find your way using guide books, maps, and your phone.
 layout: single-series
 publishDate: '2021-07-28'
-show_author_byline: false
-show_post_date: false
-show_post_thumbnail: true
+show_author_byline: no
+show_post_date: no
+show_post_thumbnail: yes
 weight: 36
-draft: false
+draft: no
 ---
 
-*Note: this entry is still very much a work in progress.*
-
-## There are Lots of Aids to Navigation
+## Finding Your Way
 
 For the official long-distance routes on the coast, navigation is
 easy. Just keep the ocean to your left 
@@ -31,7 +31,7 @@ The point is that it's possible to get off track.
 
 My most important piece of advice is don't be over confident
 and assume you know where you are. When in doubt, check.
-You're on foot so if you start going in an incorrect direction it
+You're on foot so if you continue in an incorrect direction it
 can take you a long time to fix your mistake. Better to notice
 quickly that you are off your intended route and do something
 about it sooner rather than later. So how do you know where
@@ -47,11 +47,11 @@ very tight: 4cm on the map is equal to 1km in the real world
 (a scale of 1:25000). 
 
 A paper map at that scale turns out
-to be fairly bulky and unweildy. I confess I have almost never
+to be fairly bulky and unwieldy. I confess I have almost never
 used the 1:25K scale OS maps. 
 Instead on multi-day walks I have relied on [Harvey Maps](http://www.harveymaps.co.uk), 
 whose slogan is "a good week's walking on one map".
-Harvey maps are availble for the national trails and some
+Harvey maps are available for the national trails and some
 popular long routes. The scale is 1:40K rather
 than 1:25K. There's enough detail to find your way,
 but it's easier to get the map unfolded so that you 
@@ -59,7 +59,7 @@ can see the spot you need. They are printed on
 waterproof paper, a good feature for a map you plan
 to need for a week.
 
-The Ordnance Surveyt also offers the OS Landranger series, which is
+The Ordnance Survey also offers the OS Landranger series, which is
 useful for walks but with less detail and less paper. At a 
 scale of 1:50K you can see a much larger area for a given
 size of paper. It's not as detailed as the 
@@ -95,7 +95,7 @@ the paper maps show a scale of 1:50K). As you zoom in,
 the format changes to the Explorer maps (designed
 for a scale of 1:25K).
 
-Here are two screenshots of OS Maps dispaying the
+Here are two screenshots of OS Maps displaying the
 area where the Two Moors Way passes through the town of
 Ivybridge and enters Dartmoor. The first version shows
 the Landranger style and the second zooms into a smaller area
@@ -255,7 +255,7 @@ There also is a free app from the Ordnance Survey called
 OS Locate (for [iPhone](https://apps.apple.com/us/app/os-locate/id810024913)
 or [Android](https://play.google.com/store/apps/details?id=uk.co.ordnancesurvey.oslocate.android&hl=en_US&gl=US)).
 OS Locate will show your location in terms of standard
-UK grid coordinates and can serve as a baseplate compass.
+UK grid coordinates and can serve as a base plate compass.
 
 ### Just in Case
 
@@ -295,7 +295,7 @@ check this [Wikipedia article](https://en.wikipedia.org/wiki/Geodetic_datum).
 
 GPS and Google Maps and other world-wide maps use WGS84. The UK uses OSGB36
 (or something similar). The practical issue is that the same latitude
-and logitude coordinates expressed in WGS84 can be about 500 meters away
+and longitude coordinates expressed in WGS84 can be about 500 meters away
 from the same coordinates expressed in OSGB36. 
 
 The upshot is that if you report your location to emergency service
@@ -303,7 +303,7 @@ via latitude and longitude from Google maps, they might
 interpret that as being from the UK system.  
 
 I first encountered this issue when I
-downloaded waypoints from a guide
+downloaded way points from a guide
 book that uses the UK system (OSGB36) and imported them
 into Open Street Maps on my Garmin GPS which uses WGS84.
 I quickly saw that something was off. One might
@@ -363,7 +363,7 @@ When in doubt, check!
 
 Some of my difficult navigation experiences have
 occurred while I was following a local route suggested
-by a pamphlet from the local TIC (tourist informaiton center).
+by a pamphlet from the local TIC (tourist information center).
 The local route may not be that heavily used and may
 or may not have signs when you need. A crude hand
 drawn map that may go along with a pamphlet like that
@@ -411,9 +411,9 @@ here I went wrong.
 The Ordnance Survey is not just maps. It actually
 has a visible presence on the ground.
 On many high points one finds a concrete pillar that
-marks one of the known points that make up the
+marks one of the known
 [survey points](https://en.wikipedia.org/wiki/Retriangulation_of_Great_Britain)
-that anchor the maps created by the Ordance Survey.
+that anchor the maps created by the Ordnance Survey.
 Because the trig pillars are located at a high spot with
 a good view, one generally feels a sense of accomplishment
 having reached one.

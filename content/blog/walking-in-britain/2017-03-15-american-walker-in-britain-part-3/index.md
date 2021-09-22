@@ -1,14 +1,12 @@
 ---
-title: American Walker in Britain Part 3
-author: ~
+title: Part 3 More on How to Plan an Itinerary
+author: John Goldin
 date: '2017-03-15'
-slug: "am-walker-3"
 categories:
   - British Walking
-tags: []
-excerpt: 'Tips on country walking in Britain from the point of view of an American. The third of three parts.'
+slug: am-walker-3
+excerpt: Things to keep in mind while planning a route, including accommodations.
 weight: 3
-keywords: []
 ---
 
 ### Planning an Itinerary

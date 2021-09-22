@@ -1,10 +1,11 @@
 ---
-title: An American Walking in Britain Part 2
-subtitle: Choosing a Path
+title: Part 2 Choosing a Path
+subtitle: Description of Some of the UK National Trails
 slug: "am-walker-2"
 aliases:
     - /2017/03/am_walker_2/
-excerpt: 'A description of some of the popular multi-day walks in Britain.'
+excerpt: 'Brief descriptions of some of the UK National Trails and some tips on how
+  to choose an itinerary'
 categories:
   - British Walking
 layout: single-series

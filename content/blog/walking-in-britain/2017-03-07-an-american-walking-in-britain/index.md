@@ -1,10 +1,12 @@
 ---
 title: An American Walking in Britain
+author: John Goldin
 date: '2017-03-07'
-slug: "am-walker-1"
-excerpt: 'Tips on country walking in Britain from the point of view of an American. The first of three parts.'
 categories:
   - British Walking
+slug: am-walker-1
+excerpt: Tips on country walking in Britain from the point of view of an American.
+  The first of three parts.
 weight: 1
 ---
 

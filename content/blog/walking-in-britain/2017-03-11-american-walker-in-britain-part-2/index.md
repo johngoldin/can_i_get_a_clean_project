@@ -1,14 +1,14 @@
 ---
-title: American Walker in Britain Part 2
+title: Part 2 Choosing a Path
+author: John Goldin
 date: '2017-03-11'
-slug: "am-walker-2"
-excerpt: 'Tips on country walking in Britain from the point of view of an American. The second of three parts.'
 categories:
   - British Walking
+slug: am-walker-2
+excerpt: Brief descriptions of some of the UK National Trails and some tips on how
+  to choose an itinerary
 weight: 2
 ---
-
-## Choosing a Path
 
 Obviously choosing a path is a matter of personal taste. In the first
 post I included some links where you could find ideas on where to walk.
