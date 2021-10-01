@@ -1127,3 +1127,9 @@ update:](https://portal.ct.gov/-/media/Coronavirus/CTDPHCOVID19summary8182020.pd
 > That included over 270 positive cases out of 23,130 tests conducted
 > between September 26 and October 8 that are newly reported as part of
 > catch-up reporting.
+
+[Note as of September 30, 2021:](https://portal.ct.gov/-/media/Coronavirus/CTDPHCOVID19summary9302021.pdf)
+
+> Today’s total deaths reflects an increase of 146. This total includes 53 deaths newly reported in the
+> last week and a reconciliation of 93 deaths that occurred among Connecticut residents who died out of
+> state. These out of state deaths span the entire course of the pandemic with the majority occurring in 2020.
