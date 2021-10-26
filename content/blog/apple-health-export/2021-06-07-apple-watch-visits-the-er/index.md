@@ -15,8 +15,6 @@ tags:
 subtitle: ~
 excerpt: |
   Using the Apple Health Export data to show the context of a visit to the ER. 
-  The same principles apply to using heart rate data to provide a context for
-  an ECG recording.
 images: ~
 series: ~
 layout: single
@@ -26,7 +24,7 @@ draft: yes
 **A disclaimer: Not only am I not a cardiologist, but if you asked me to point
 to the location of the heart in my chest, I wonder whether I would
 point to the correct spot. Perhaps the information presented here may
-have be of some use, but I don't have the expertise to say one
+be of some use, but I don't have the expertise to say one
 way or the other.**
 
 Here I will tell the tale of two visits to the ER,
@@ -78,7 +76,7 @@ point of this post is that we'll see that my perception
 (and what I reported to the ER doc) was not accurate.
 I reported my digestive episode from earlier in the
 night and a blood test showed that my lipase (a pancreatic enzyme)
-was abnormal. Eventually I realized they were unconcerned about
+was abnormal. Eventually I realized they were less concerned about
 my heart and instead poking my abdomen. They were considering
 whether I had pancreatitis, which I had never heard of.
 (Not only am I not a cardiologist, I also am not a 
@@ -94,7 +92,7 @@ do with my Apple Watch; instead let's focus on
 heart [palpitations](https://en.wikipedia.org/wiki/Palpitations), 
 the symptom that I presented with at the ER. (I haven't had
 a significant repeat of the digestive episode since then so it doesn't seem to be 
-an issue I need to worry about.)
+an issue I need to worry about. I regularly take acid blockers for GERD.)
 
 I am not 100% clear about the meaning of the word "palpitations." Generally it
 seems to imply a sensation of irregular heart beat, but the Wikipedia
@@ -103,17 +101,36 @@ most I can muster in this case.
 
 So what was actually going on with my heart rate during this incident?
 That takes us to the Apple Health Export. After getting home from the ER
-I was a bit unsettled by the whole experience and my typical reaction 
+I was a bit unsettled by the whole experience and my characteristic reaction 
 was to gather data. 
 <img style="float: right;" src="heart_app_sample.PNG" height=224 width=179  figcaption="As I write this post"> 
 While I was at the ER, I looked at the simple heart rate history
 that is provided by the Apple Watch when you click on the "current"
 tab in the Heart app. It doesn't really allow you to see the
-trend over time.
+trend over time. Shown here is a screenshot of my Apple Watch
+in an afeternoon after I have taken my daily walk. It shows
+heart rate readings broken down by 30-minute intervals. When there's a lot going on within
+a 30-minute interval basically what you see is a solid bar for that interval
+with the low and high heart rate. The result is a fairly muddy view of what
+is happening. During a workout (and often when there are substantial changes
+in heart rate), the watch is recording heart rate every few seconds.
+With the default display, you don't see that level of detail.
+
+I wish I could show you a screenshot from my time in the ER, but at the
+time I don't think I knew how to make a screenshot and I had other things
+on my mind. I could see that my heart rate had been high and maxed out at 150.
+I couldn't see clearly what had happened right before I arrived at the ER.
+
+After several days at home I prepared for my follow-up visit with my
+primary care physician by creating a detailed record of my heart rate
+during the day in question. See my earier post for a detailed
+description of how to use R to download the Health Export and import
+and set it up in R. I acknowledge this is not something a normal person
+is going to do. 
 
 
 I was looking
-for better Apple heart rate data that led me to learn
+for better Apple heart rate data and that led me to learn
 about the Health Export. I found a [post by Ryan Praskievicz](https://www.ryanpraski.com/apple-health-data-how-to-export-analyze-visualize-guide/)
 that showed me how to get the Health Export and load it into R.
 I had a an appointment with my primary care physician early in the next
@@ -135,4 +152,4 @@ track calories and ended up losing about 25 pounds. One of the creators
 of LoseIt! was J.J. Allaire, the co-founder of RStudio. I am confident
 that losing that weight has lowered my blood pressure and improved my
 health in general and discovering RStudio has improved my intellectual health as well.
-
+The weight loss was a direct result of the visit to the ER.
