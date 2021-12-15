@@ -337,10 +337,11 @@ p_rt_live <- ggplot(data = r_data_ct, aes(x = date, y = Rt)) +
   geom_line(aes(colour = above_one), size = 1) + theme_minimal() + 
   geom_hline(yintercept = 1, colour = "gray") +
   geom_line(data = r_data_az, aes(colour = above_one), size = 1) + theme_minimal() + 
-  geom_text(data = r_data_ct %>% filter(region %in% c("CT", "AZ")) %>%
+  geom_text(data = bind_rows(r_data_ct, r_data_az) %>% 
+              filter(region %in% c("CT", "AZ")) %>%
               group_by(region, state) %>% arrange(region, state, date) %>%
-              summarise(date = min(date), recent_rt = last(recent_rt)),
-            aes(label = state, x = ymd("2020-03-23"), y = recent_rt), hjust = 1, size = 3, nudge_x = 2) +
+              summarise(date = min(date), recent_rt = last(recent_rt), above_one = last(above_one)),
+            aes(label = state, x = ymd("2021-07-11"), y = recent_rt, colour = above_one), hjust = 0.5, size = 3, nudge_x = 2) +
   theme(legend.position = "none") +
   theme(axis.title.y = element_text(angle=0, vjust = 0.5)) +
   scale_color_manual(values = c("<= 1" = "#7fbf7b", "> 1" = "#af8dc3")) +
