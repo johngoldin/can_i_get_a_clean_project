@@ -421,6 +421,7 @@ p_states_map <- ggplot(data = cdc_covid %>%
        caption = "Source: CDC, geofacet package",
        colour = expression(paste("Recent ", R[t]))) +
   facet_geo(~ state)
+#
 ```
 
 The first plot will
