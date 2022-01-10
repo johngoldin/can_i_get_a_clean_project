@@ -85,6 +85,8 @@ leaflet map sample: http://leaflet-extras.github.io/leaflet-providers/preview/
 [GitHub merge](http://allendowney.github.io/amgit/conflict)    
 [pull request helpers](https://usethis.r-lib.org/articles/articles/pr-functions.html)    
 
+[How to chabnge package name](https://www.njtierney.com/post/2017/10/27/change-pkg-name/)
+
 ### ggplot2
 
 [ggridges](https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html)   
