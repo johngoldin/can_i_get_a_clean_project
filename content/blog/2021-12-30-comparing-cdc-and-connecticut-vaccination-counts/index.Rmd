@@ -1,0 +1,656 @@
+---
+title: Comparing CDC and Connecticut Vaccination Counts
+author: John Goldin
+date: '2021-12-30'
+slug: comparing-cdc-and-connecticut-vaccination-counts
+categories:
+  - COVID19
+tags:
+  - COVID19
+subtitle: ''
+excerpt: 'A comparison of vaccination counts in Connecticut according to the CDC and the CT Department of Public Health.'
+draft: yes
+images: null
+series: null
+layout: single
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE, echo = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning=FALSE,   message=FALSE, #out.width = "100%",
+                      knitr.table.format = "html") 
+# knitr.table.format is for kable. Needed this to get blogdown table to format correctly. 
+```
+
+```{r libraries, echo = FALSE, warning= FALSE, message = FALSE}
+library(tidyverse, quietly = TRUE)
+library(tidycensus, quietly = TRUE)
+library(lubridate, quietly = TRUE)
+library(sf, quietly = TRUE)
+library(tigris, quietly = TRUE)
+# library(viridisLite, quietly = TRUE)
+library(knitr, quietly = TRUE)
+library(scales, quietly = TRUE)
+library(kableExtra, quietly = TRUE)
+library(gt)
+library(glue)
+library(janitor, quietly = TRUE)
+library(ggnewscale, quietly = TRUE) # see [https://ggplot2-book.org/scales-guides.html#splitting-legends] ggnewscale::new_scale_colour() 
+library(broom, quietly = TRUE)
+library(RSocrata, quietly = TRUE)
+library(RcppRoll)
+options(tigris_use_cache = TRUE)
+options(tigris_class = "sf")
+```
+
+```{r ggplot2_defaults}
+library(scico)       ## scico color palettes(http://www.fabiocrameri.ch/colourmaps.php) in R 
+library(ggtext)      ## add improved text rendering to ggplot2
+library(ggforce)     ## add missing functionality to ggplot2
+library(ggdist)      ## add uncertainity visualizations to ggplot2
+library(patchwork)   ## combine outputs from ggplot2
+theme_set(theme_minimal(base_size = 12, base_family = "Open Sans")) #originally 12
+## modify plot elements globally (for all following plots)
+theme_update(
+  axis.ticks = element_line(color = "grey92"),
+  axis.ticks.length = unit(.5, "lines"),
+  panel.grid.minor = element_blank(),
+  legend.title = element_text(size = 12),
+  legend.text = element_text(color = "grey30"), 
+  plot.title = element_text(size = 14, face = "bold"),  # originally 18
+  plot.subtitle = element_text(size = 10, color = "grey30"), # originally 12
+  plot.caption = element_text(size = 9, margin = margin(t = 15))
+)
+
+```
+
+```{r setup_data, echo = FALSE, warning=FALSE, message = FALSE}
+covid_project <- "can_i_get_a_clean_project"
+path_to_post <- paste0("~/Documents/R_local_repos/",covid_project, "/content/blog/2020-03-29-covid19-cases-in-connecticut/")
+path_to_post_june <- paste0("~/Documents/R_local_repos/", covid_project, "/content/blog/2020-06-22-tracking-covid-19-in-connecticut/index.en_files/")
+path_to_static_june <- paste0("~/Documents/R_local_repos/", covid_project, "/static/blog/2020-06-22-tracking-covid-19-in-connecticut/") # maybe no longer used
+path_to_covid_project <- paste0("~/Documents/R_local_repos/", covid_project, "/content/project/covid/index_files/")
+path_to_ctcorona <- "~/Documents/R_local_repos/ctcorona/data/"
+# load(paste0(path_to_ctcorona, "dph_datasets.RData"))
+# load(paste0(path_to_ctcorona, "vote2020.RData"))
+load(paste0(path_to_ctcorona, "census_population.RData")) # created in setup_geometries.R
+source('~/Documents/R_local_repos/ctcorona/R/setup_ct_table.R')
+
+```
+
+```{r get_vaccine_counts}
+# CT DPH Vaccinations by County: https://data.ct.gov/Health-and-Human-Services/COVID-19-Vaccinations-by-County/5g42-tpzq
+dph_vaccine_by_county <- read.socrata(
+  str_c("https://data.ct.gov/resource/5g42-tpzq.json",
+        "?$where=date>'2021-12-13T00:00:00.000'"),
+  app_token = 
+    Sys.getenv("CTDATA_APP1_TOKEN") ) |>  
+  as_tibble() |>
+  rename(county = county_of_residence) |> 
+  mutate(initiated_vaccination = as.numeric(initiated_vaccination),
+         initiated_vaccination_percent = as.numeric(initiated_vaccination_percent),
+         dph_population = as.numeric(population),
+         fully_vaccinated = as.numeric(fully_vaccinated),
+         fully_vaccinated_percent = as.numeric(fully_vaccinated_percent),
+         date = as_date(date)) |> 
+  filter(date == max(date, na.rm = TRUE))
+
+# does not include all age range groups (ie under 5) so cannot sum to get total pop
+dph_vaccine_by_age_full <- read.socrata(
+  str_c("https://data.ct.gov/resource/gngw-ukpw.json",
+        "?$where=dateupdated>'2021-12-13T00:00:00.000'"),
+    app_token = 
+      Sys.getenv("CTDATA_APP1_TOKEN") ) |>  
+  as_tibble() |>
+  mutate(initiated_vaccination = as.numeric(initiated_vaccination),
+         initiated_vaccination_percent = as.numeric(initiated_vaccination_percent),
+         population = as.numeric(population),
+         fully_vaccinated = as.numeric(fully_vaccinated),
+         fully_vaccinated_percent = as.numeric(fully_vaccinated_percent),
+         dateupdated = as_date(dateupdated),
+         social_vulnerability_index = at_least_one_census_tract,
+         at_least_one_census_tract = at_least_one_census_tract == "Yes") |> 
+  filter(dateupdated == max(dateupdated, na.rm = TRUE))
+dph_vaccine_by_town <- dph_vaccine_by_age_full |>
+  group_by(town, date = dateupdated) |>
+  summarise(fully_vaccinated = sum(fully_vaccinated),
+            initiated_vaccination = sum(initiated_vaccination),
+            social_vulnerability_index = last(social_vulnerability_index),
+            .groups = "drop")
+
+dph_towns <- read.socrata(
+  str_c("https://data.ct.gov/resource/28fr-iqnx.json",
+        "?$where=lastupdatedate>'2021-12-13T00:00:00.000'"),
+  app_token = Sys.getenv("CTDATA_APP1_TOKEN")) |>
+  as_tibble() |>
+  rename(cases = towntotalcases, deaths = towntotaldeaths,
+         tests = numberoftests, tests_positive = numberofpositives,
+         confirmedcases = townconfirmedcases, confirmeddeaths = townconfirmeddeaths,
+         probablecases = townprobablecases, probabledeaths = townprobabledeaths) |>
+  mutate(date = as_date(lastupdatedate),
+         cases = as.numeric(cases), deaths = as.numeric(deaths),
+         confirmedcases = as.numeric(confirmedcases),
+         confirmeddeaths = as.numeric(confirmeddeaths),
+         probablecases = as.numeric(probablecases),
+         probabledeaths = as.numeric(probabledeaths),
+         towncaserate = as.numeric(towncaserate),
+         tests = as.numeric(tests),
+         ratetested100k = as.numeric(ratetested100k),
+         tests_positive = as.numeric(tests_positive),
+         numberofnegatives = as.numeric(numberofnegatives),
+         numberofindeterminates = as.numeric(numberofindeterminates)) |>
+  rename(per_100k = towncaserate) |>
+  select(-lastupdatedate,  -town_no) |>
+  group_by(town) |>
+  setup_ct_tables() |>
+  left_join(town_info |> select(town, county, category, total_pop)) |>
+  group_by(town) |>
+  mutate(rnew_cases_per100k = rnew_cases / (total_pop / 100000),
+         rnew_deaths_per100k = rnew_deaths / (total_pop / 100000))
+dph_towns <- dph_towns |> ungroup()
+dph_towns$category <- factor(dph_towns$category,
+                             c("Urban Core", "Urban Periphery",
+                               "Wealthy", "Suburban", "Rural"))
+# dph_towns$county <- factor(dph_towns$county,
+#                             levels = c("Litchfield", "Hartford", "Tolland", "Windham", "Fairfield", "New Haven", "Middlesex", "New London"),
+#                             labels = c("Litchfield County", "Hartford County", "Tolland County", "Windham County", "Fairfield County", "New Haven County", "Middlesex County", "New London County"))
+county_town <- dph_towns |> count(county, town) |> select(-n)
+
+
+# https://data.ct.gov/api/views/5g42-tpzq/rows.csv?accessType=DOWNLOAD
+dph_vaccine_by_age_full <- read.socrata(
+  str_c("https://data.ct.gov/resource/gngw-ukpw.json",
+        "?$where=dateupdated>'2021-12-13T00:00:00.000'"),
+  app_token = 
+    Sys.getenv("CTDATA_APP1_TOKEN") ) |>  
+  as_tibble() |>
+  mutate(initiated_vaccination = as.numeric(initiated_vaccination),
+         initiated_vaccination_percent = as.numeric(initiated_vaccination_percent),
+         dph_population = as.numeric(population),
+         fully_vaccinated = as.numeric(fully_vaccinated),
+         fully_vaccinated_percent = as.numeric(fully_vaccinated_percent),
+         dateupdated = as_date(dateupdated),
+         social_vulnerability_index = at_least_one_census_tract,
+         at_least_one_census_tract = at_least_one_census_tract == "Yes")
+
+dph_vaccine_by_town <- dph_vaccine_by_age_full |>
+  group_by(town, date = dateupdated) |>
+  summarise(fully_vaccinated = sum(fully_vaccinated),
+            initiated_vaccination = sum(initiated_vaccination),
+            social_vulnerability_index = last(social_vulnerability_index),
+            .groups = "drop") |>
+  left_join(dph_towns |> filter(date == max(date)) |>
+    select(town, dph_total_pop = total_pop), by = "town") |>
+  left_join(total2020, by = "town") |>
+  left_join(county_town, by = "town")
+# xx <- read.socrata("https://data.ct.gov/resource/5g42-tpzq.json")
+
+ct_vax <- dph_vaccine_by_town |> 
+  filter(date == max(date), town != "xResident out of state") |> 
+  mutate(county = if_else(is.na(county), town, county), state = "CT") |> 
+  group_by(state, county, date) |> 
+  summarise(fully_vaccinated = sum(fully_vaccinated, na.rm = TRUE),
+            initiated_vaccination = sum(initiated_vaccination, na.rm = TRUE),
+            dph_total_pop = sum(dph_total_pop, na.rm = TRUE),
+            pop2020 = sum(pop2020, na.rm = TRUE)
+           )
+ct_vax_table <- 
+  bind_rows(ct_vax, 
+            tibble(county = "Total",
+                   fully_vaccinated = sum(ct_vax$fully_vaccinated),
+                   initiated_vaccination = sum(ct_vax$initiated_vaccination),
+                   pop2020 = sum(ct_vax$pop2020, na.rm = TRUE),
+                   dph_total_pop = sum(ct_vax$dph_total_pop, na.rm = TRUE))
+  )
+
+# https://data.cdc.gov/Vaccinations/COVID-19-Vaccinations-in-the-United-States-County/8xkx-amqh
+# note the approximate date limit that may need to be adjusted 
+# Using date  and state limit in socrata query to speed things up.
+cdc_ct_vax <- read.socrata(
+  validateUrl(str_c("https://data.cdc.gov/resource/8xkx-amqh.json",
+                    "?$where=date>'2021-12-13T00:00:00.000'&$limit=1000&recip_state=CT"),
+              app_token = 
+                Sys.getenv("CTDATA_APP1_TOKEN"))) |>
+  as_tibble() |>
+  rename(state = recip_state, county = recip_county) |>
+  mutate(date = as.Date(date),
+         state = ifelse(state == "NYC", "NY", state),
+         county = ifelse(county == "Unknown County",
+                         "Address pending validation", county) |>
+           str_replace(" County", ""),
+         across(c(series_complete_yes, series_complete_pop_pct,
+                  administered_dose1_recip, administered_dose1_pop_pct),
+                as.numeric)) |>
+  rename(cdc_fully_pct = series_complete_pop_pct,
+         cdc_fully_vaccinated = series_complete_yes,
+         cdc_initiated_vaccination = administered_dose1_recip,
+         cdc_initiated_pct = administered_dose1_pop_pct) |>
+  relocate(date, state, county, cdc_fully_vaccinated, cdc_fully_pct,
+           cdc_initiated_vaccination, cdc_initiated_pct) |>
+  filter(date == max(date, na.rm = TRUE)) # latest data only
+
+three_sources_detail <- ct_vax |> 
+  left_join(cdc_ct_vax |> 
+              select(cdc_date = date, state, county, cdc_fully_vaccinated,
+                     cdc_fully_pct, cdc_initiated_vaccination, cdc_initiated_pct,
+                     series_complete_65plus, 
+                     cdc_completeness_pct = completeness_pct) |> 
+              mutate(cdc_pop = case_when(
+                       cdc_fully_pct <= 0 ~ NA_real_,
+                       TRUE ~ cdc_fully_vaccinated / (cdc_fully_pct / 100))),
+            by = c("state", "county")) |> 
+  left_join(dph_vaccine_by_county |> 
+              select(dph_county_pop = population,
+                     dph_county_fully = fully_vaccinated,
+                     dph_county_initiated = initiated_vaccination,
+                     dph_fully_pct = fully_vaccinated_percent,
+                     dph_any_pct = initiated_vaccination_percent,
+                     dph_county_date = date,
+                     county), by = "county") |> 
+  mutate(dph_init_only = dph_county_initiated - dph_county_fully,
+         cdc_init_only = cdc_initiated_vaccination - cdc_fully_vaccinated)
+three_source_state_total <- three_sources_detail |> 
+  filter(county != "Resident out of state") |> 
+  ungroup() |> 
+  summarise(across(c(fully_vaccinated:dph_county_initiated, 
+                     dph_init_only, cdc_init_only, !cdc_date) &
+                     where(~((class(.) != "Date") & is.numeric(.))),
+                     sum, na.rm = TRUE)) |> 
+  mutate(state = "CT", county = "Total CT", date = three_sources_detail$date[[1]],
+         cdc_date = max(three_sources_detail$date, na.rm = TRUE))
+cdc_asof <- format(max(three_source_state_total$cdc_date, na.rm = TRUE), "%d-%b-%Y")
+dph_asof <- format(dph_vaccine_by_county$date[1], "%d-%b-%Y")
+three_sources <- three_sources_detail |> bind_rows(three_source_state_total) |> 
+  mutate(county = factor(county,
+                         levels = c("Litchfield", "Hartford", "Tolland", "Windham", 
+                           "Fairfield", "New Haven", "Middlesex", "New London", 
+                           "Address pending validation", "Total CT",
+                           "Resident out of state"),
+                         labels = c("Litchfield", "Hartford", "Tolland", "Windham", 
+                           "Fairfield", "New Haven", "Middlesex", "New London", 
+                           "Address pending", "Total",
+                           "Non-CT resident")),
+         full_vax_dif = (cdc_fully_vaccinated - dph_county_fully) / cdc_fully_vaccinated,
+         init_vax_dif = (cdc_init_only - dph_init_only) / cdc_init_only,
+         any_vax_dif = (cdc_initiated_vaccination - dph_county_initiated) / cdc_initiated_vaccination) |> 
+  arrange(as.numeric(county))  |> 
+  relocate(county, cdc_fully_vaccinated, dph_county_fully, full_vax_dif,
+           cdc_init_only, dph_init_only, init_vax_dif, any_vax_dif)
+
+for_table <- three_sources |> ungroup() |> 
+  select(county, cdc_fully_vaccinated, dph_county_fully, full_vax_dif,
+         cdc_init_only, dph_init_only, init_vax_dif,
+         cdc_fully_pct, dph_fully_pct
+  ) |> 
+  gt() |> 
+  tab_header(title = "Comparison of CDC and CT DPH Vaccination Counts") |> 
+  tab_spanner(label = "'fully' vaccinated",
+              columns = c(cdc_fully_vaccinated, dph_county_fully,
+              full_vax_dif)) |> 
+  tab_spanner(label = "initial dose only",
+              columns = c(cdc_init_only, dph_init_only,
+              init_vax_dif)) |> 
+  cols_label(cdc_fully_vaccinated = "CDC 'fully'\nvaccinated",
+             dph_county_fully = "CT 'fully'\nvaccinated",
+             full_vax_dif = "CDC / CT DPH\ndifference",
+             init_vax_dif = " CDC / CT DPH\ndifference",
+             cdc_init_only = "CDC initial\ndose only",
+             dph_init_only = "CT initial\ndose only") |> 
+  fmt_number(columns = c(cdc_fully_vaccinated, dph_county_fully, cdc_init_only,
+                         dph_init_only),
+             decimals = 0,
+             use_seps = TRUE) |> 
+  fmt_percent(columns = c(init_vax_dif, full_vax_dif),
+              decimals = 0, force_sign = TRUE) |> 
+  tab_source_note(glue("CDC data as of {cdc_asof}, CT DPH data as of {dph_asof}")) |> 
+  tab_source_note("'fully' in this table refers to one dose of J&J or two does of Moderna or Pfizer.") |> 
+  #Apply new style to all column headers
+  tab_style(
+    locations = cells_column_labels(columns = everything()),
+    style     = list(
+      #Give a thick border below
+      cell_borders(sides = "bottom", weight = px(3)),
+      cell_text(weight = "normal") #Make text bold or normal
+    )
+  ) |> 
+  #Apply different style to the title
+  tab_style(
+    locations = cells_title(groups = "title"),
+    style     = list(
+      cell_text(weight = "bold", size = 24)
+    )
+  ) 
+```
+
+This post will compare COVID vaccination rates reported by Connecticut
+Department of Public Health with the reports from the CDC. The table
+below shows the most recent counts. In this table "fully vaccinated"
+means either two doses of Pfizer or Moderna or one does of J&J. The may
+be changing. In any case, the CDC reports about 8% more individuals who
+are fully vaccinated than does DPH. Looking at partially vaccinated (one
+dose of Moderna or Pfizer), CDC reports 46% more individuals.
+
+This pattern has been observed in other states. There are a number of
+attempts to go into the details of CDC versus state counts for
+particular states. See this [recent analysis of county level counts in
+Wisconsin](https://law.marquette.edu/facultyblog/2021/12/county-level-cdc-and-dhs-vaccination-statistics-for-wisconsin-vary-in-important-ways/).
+See also comments by Washington State on [differences between their
+counts and
+CDC](https://www.coronavirus.wa.gov/news/vaccine-data-reconciliation-between-state-and-federal-sources-will-take-time).
+
+There seem to be two big issues.
+
+```{r print-table}
+for_table
+```
+
+Below is a visual summary of the vaccination counts by source. The brown
+bars show vaccinations reported by CDC and the green bars show
+Connecticut Department of Health. As elsewhere in this post, "full"
+vaccination means two shots of Moderna or Pfizer or one of J&J. It's
+possible that the CDC definitioin of "fully vaccinated" will change in
+the future. The figure includes a data point to show the total poplation
+of each county according to the 2020 Census.
+
+```{r plot_vaccine_counts}
+three_sources_simple <- three_sources |> 
+  filter(county != "Non-CT resident", county != "Total") |> 
+  ungroup() |> 
+  select(county, dph_county_fully, cdc_fully_vaccinated, 
+         cdc_init_only,dph_init_only) |> 
+  pivot_longer(cols = dph_county_fully:dph_init_only) |> 
+  mutate(source = ifelse(str_detect(name, "dph"), "CT DPH", "CDC") |> 
+           factor(levels = c("CDC", "CT DPH")),
+         status = ifelse(str_detect(name, "fully"), "Full", "Initial") |> 
+           factor(levels = c("Initial", "Full")),
+         county = factor(county),
+         grouping = paste0(source,"-", status) |> 
+           factor(levels = c("CDC-Initial", "CDC-Full", "CT DPH-Initial", "CT DPH-Full")))
+# stacked bar wiith dodge: https://stackoverflow.com/questions/46597278/how-to-plot-a-stacked-and-grouped-bar-chart-in-ggplot/46597859#46597859
+base_col1 <- brewer_pal(palette= "BrBG")(5)[1] #"#a6611a"
+light_col1 <- brewer_pal(palette= "BrBG")(5)[2] #"#dfc27d"
+# #f5f5f5
+light_col2 <- brewer_pal(palette= "BrBG")(5)[4] #"#80cdc1"
+base_col2 <- brewer_pal(palette= "BrBG")(5)[5] #"#018571"
+my_pal <- palette(c(light_col1, light_col2, base_col1, base_col2))
+bigsep <-0.2
+barsep<- 0.05 
+barwidth <- (1 - bigsep - barsep) / 2 
+if ((barwidth > 0.5) | (barwidth <= 0)) stop("barwidth is out of range.") # has to be <= 0.5 (two bars per integer value of county)
+p_vax_bars = ggplot(data = three_sources_simple |> filter(source == "CDC"), 
+                    aes(x = as.numeric(county), y = value, fill = grouping)) +
+  geom_bar(data = three_sources_simple |> filter(source == "CDC"), 
+           aes(x = as.numeric(county) - (barwidth + barsep) / 2),
+           stat="identity", position = "stack", width = barwidth) +
+  geom_bar(data = three_sources_simple |> filter(source == "CT DPH"),
+           aes(x = as.numeric(county) + (barwidth + barsep) / 2, y = value), # barwidth + barsep
+           stat = "identity", position = "stack", width = barwidth) + 
+  geom_point(data = three_sources |> 
+               filter(county != "Non-CT resident", county != "Total") |> 
+               mutate(county = factor(county),
+                      pop2020 = ifelse(pop2020 == 0, NA_real_, pop2020),
+                      grouping = NA_character_)  |> 
+               ungroup(),
+             aes(x = as.numeric(county), y = pop2020, fill = NULL),
+             show.legend = FALSE) + 
+  coord_flip() + xlab(NULL) + ylab("Number Vaccinated") +
+  scale_y_continuous(labels = scales::comma) +
+  scale_x_reverse(breaks = seq(1, 9), labels = levels(three_sources_simple$county)) +
+  scale_fill_manual(values = c("CDC-Full" = base_col1,
+                               "CDC-Initial" = light_col1, 
+                               "CT DPH-Full" = base_col2,
+                               "CT DPH-Initial" = light_col2), name = NULL)
+
+  # p_vax_bars + geom_point(data = three_sources |> 
+  #              filter(county != "Non-CT resident", county != "Total") |> 
+  #              mutate(county = factor(county),
+  #                     pop2020 = ifelse(pop2020 == 0, NA_real_, pop2020),
+  #                     grouping = NA_character_)  |> 
+  #              ungroup(),
+  #            aes(x = as.numeric(county), y = pop2020, fill = NULL),
+  #            show.legend = FALSE, size = 2.5, colour = "darkgray")
+```
+
+```{r county_plot2, echo = FALSE}
+print(p_vax_bars)
+```
+
+This post will compare vaccination counts (and vaccination rates)
+published by the CDC and by the Connecticut Department of Public Health.
+
+Often there are differences between COVID vaccination rates reported by
+the CDC and rates produced by individual state health agencies. The
+counts don't agree largely because there are important differences in
+what they are including in the counts. Counting things can be hard, and
+the details of how the counts are done makes a difference.
+
+First, let's look at a summary of county-by-county COVID vaccinations in
+Connecticut reported by CDC and by CT DPH. Then we will dig into why
+these counts are different.
+
+```{r county_summaries_by_source, echo = FALSE}
+
+```
+
+This [Kaiser Health
+News](https://khn.org/news/article/cdc-senior-covid-vaccination-rates-appear-inflated/)
+article suggested that CDC vaccination rates may be too high.
+
+There have been significant issues surrounding data quality throughout
+the COVID pandemic. In 2020 the [COVID Tracking
+Project](https://covidtracking.com) emerged from multiple efforts to try
+to obtain comparable statistics about the path of the epidemic in the
+United States. It was a volunteer effort and suspended operation in
+March 2021 at a point when they felt the data could be obtained from
+\[federal
+sources\](<https://covidtracking.com/analysis-updates/federal-covid-data-101-how-to-find-data>.
+
+First I'll do a direct comparison of county by county vaccination data
+for Connecticut reported by the CDC and the tallies from the Connecticut
+[Department of Public
+Health](https://data.ct.gov/stories/s/CoVP-COVID-Vaccine-Distribution-Data/bhcd-4mnv/).
+Then I will dig into the known differences between these reports. Both
+the CDC and CT DPH have made a real effort to be transparent about their
+reports. There's quite a bit of information available on the Web
+describing how they are tabulating vaccinations.
+
+### Connecticut Department of Public Health Vaccination Reporting
+
+This post will focus on my home state of Connecticut. DPH reports weekly
+on [vaccinations administered through Connecticut
+providers](https://data.ct.gov/stories/s/CoVP-COVID-Vaccine-Distribution-Data/bhcd-4mnv/).
+The basic source they rely on is the Connec
+
+### How the CDC Tracks Vaccinations
+
+[![Flow of info about vaccinations across
+systems](images/cdc_data_pathway.png "Flow of records of COVID vaccinations")](https://www.cdc.gov/vaccines/covid-19/reporting/downloads/vaccine-administration-data-agreement.pdf)
+
+In 2020 before vaccines were ready for distribution, plans were made
+about tracking the COVID vaccines.
+
+### Difficulties in Counting "Fully" Vaccinated
+
+The CDC gives a [full
+discussion](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/reporting-vaccinations.html)
+reasons why it may be hard for them to track different doses of COVID
+vaccines at the national level. That's especially true for boosters
+because there is a long internval after the second dose and a booster is
+more likely to have been given by a different provider or in a different
+location. The de-identified data that CDC receives does not include the
+identifer that may be in use at the state level.
+
+> To protect the privacy of vaccine recipients, CDC receives data
+> without any personally identifiable information (de-identified data)
+> about vaccine doses. Each jurisdiction or provider uses a unique
+> person identifier to link records within their own systems. However,
+> CDC cannot use the unique person identifier to identify individual
+> people by name.
+
+> There are challenges in linking doses when someone is vaccinated in
+> different jurisdictions or from different providers. Even with the
+> high-quality data CDC receives from jurisdictions and federal
+> entities, there are limits to how CDC can analyze those data. If a
+> person received doses in more than one jurisdiction or from different
+> providers within the same jurisdiction, they could receive different
+> unique person identifiers for different doses. CDC may not be able to
+> link multiple unique person identifiers for different jurisdictions or
+> providers to a single person.
+
+> For example, most people receive their first and second dose of a
+> 2-dose vaccine from the same provider because those doses are given
+> within just a few weeks of each other. As they receive their booster
+> dose months later, it's possible they will go to a new location for
+> that dose. The person may have moved or the provider who gave them
+> their initial doses may no longer offer vaccination. This often
+> happens for people who went to mass vaccination clinics that have
+> since closed. In such a scenario, the person's booster dose may appear
+> to be their first dose when reported. This is just one example of how
+> CDC's data may over-estimate first doses and under-estimate booster
+> doses
+
+CDC provides an [overview of IT systems for tracking COVID
+vaccinations](https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html).
+The information architecture depends on 64 Immunization Information
+Systems (IIS), which are mostly state based. The system was develop
+before COVID and was primarily aimed at childhood immunizations, but
+always covered other immunizations as well. That's why I can see my many
+of my non-COVID vaccinations in my Connecticut IIS (CT WiZ).
+
+They describe a lot of detail about the legal process.
+
+It looks like there are supposed to be [explicit
+provision](https://www.cdc.gov/vaccines/covid-19/reporting/iz-gateway/gateway-qa.html)
+for how data goes from federal providers (such as DOD) to the state (via
+its IIS).
+
+> In the Connect component of the IZ Gateway, will participating IISs
+> receive data (push) from VAMS and other non-traditional vaccination
+> providers (e.g., DoD) who administered vaccinations within the IIS's
+> jurisdiction?
+>
+> Yes, in the Connect component of IZ Gateway, participating IISs will
+> receive data from VAMS for patients in their jurisdictions.
+> Participating IISs will also receive data for patients in their
+> jurisdictions from non-traditional vaccination providers that are
+> onboarded to IZ Gateway Connect and not already connected to IISs.
+>
+> How does provider-initiated multijurisdictional data exchange work?
+>
+> The Provider-Initiated Multijurisdictional Data Exchange component of
+> IZ Gateway allows providers to initiate a query for immunization
+> information from multiple jurisdictions.
+
+## On the General Issue of the Role of Data in Responding to the Pandemic
+
+In January 2022 Bob Wachter did an interview with Eric Topol that
+reviewed the state of pandemic at that moment. Near the end of the
+interview, there's an interesting section where BW asks about why the US
+seems to need to rely on data from other countries. Here is a transcript
+of that portion of the interview (which starts at 48:03 on the YouTube
+video):
+
+The Omicron Whirlwind: A Conversation with Eric Topol about the Current
+and Future State of the Pandemic January 13, 2022 Bob Wachter
+interviewing Eric Topol Bob Watchter is Chair, UCSF Department of
+Medicine. Eric Topol is a cardiologist and founder and director of the
+Scripps Research Institute
+
+> BW: That's a good pivot to something you were beginning to talk about
+> but I sort of moved it along, but let's get back to it. Up until two
+> years ago, you'd see a paper in a journal and it was from UK or from
+> Israel or from South Africa, you'd say, 'Oh, that's not America. I'm
+> waiting for the study.' Whereas for the last two years, it seems like
+> almost all of the insights, or many of them, come from studies from
+> other countries. They have better data systems, they are investing
+> more in clinical research. What's going on and what do we need to do
+> to be leaders in this area? Because it really feels like we're
+> followers.
+>
+> ET: We are followers. And we have pathetic data systems. I mean,
+> pathetic. And the one thing that really strikes me, Bob, is that we of
+> course support the current administration and the fact that the mantra
+> sticking to the science. But there has been all these announcements
+> from day one of taking on administration through today, there has not
+> been one mention of improving our data system. Not a mention. And this
+> is just preposterous. Yes, we are forced to rely on other country's
+> data, but when these advisory committees for FDA and CDC convene, they
+> basically are unwilling to accept that data even though there's not
+> data here in this country, because, like for example, right now we
+> want to know whether these Omicron boosters, how well they're working
+> to prevent hospitalizations and deaths. And when do they wane? When
+> does their protection \[wane?\]. Those people who are getting
+> hospitalized who had a third shot, what's going on there? We were
+> promised by the CDC in May that they would track every breakthrough
+> hospitalization and death. Never happened. And so we don't have
+> critical data. We have 150,000-plus people in the hospital. And I have
+> begged at the HHS level that we have granular data on each of those
+> people. Their vaccination status, which vaccine, when they got it,
+> their age, their co-existing conditions, and all the basal stuff,
+> right? And they say, "Well, we're gonna look into it." Even though it
+> can be mandated by HHS authority. So we have just a dreadful situation
+> here where we don't have real-time capture of data. The only data that
+> gets posted on the CDC is a month old, and it's de minimus about
+> things like hospitalizations or deaths, and this is unacceptable. If
+> you're gonna go in a pandemic and try to deliver and guidance, you
+> have to have data. That's how you develop trust. That's how you have
+> the best navigation system. And we don't have it. But the most
+> important thing to me, Bob, is there's no seeming will to get one. And
+> that is distressing and it has to change.
+>
+> BW: Why do you think that is?
+>
+> ET: Well, the main thing to me is that we have a Secretary of HHS, who
+> came from California, the attorney general, he hasn't shown up for the
+> pandemic. Have you seen him? Have you seen him make a statement?
+>
+> BW: I saw him talking about how the CDC director doesn't have a degree
+> in marketing the other day. That was interesting.
+>
+> ET: I see, I see, Yeah we have a serious problem. HHS, there's been a
+> lot of infighting between the agencies. And the HHS secretary should
+> be bringing that together. And so we have a serious problem is we have
+> a no-show HHS secretary. We have an HHS that could mandate this data
+> capture, but they're afraid, in my view, of political backlash. That's
+> why they're not doing it. And you just can't. Yeah, we're a big
+> country, but yo know what, a big country without data is in a horrible
+> situation. So we have to rely on other countries. And fortunately we
+> have amazing data that comes out of places like the UK and Israel and
+> Denmark and South Africa. So many that has been terrific for us. But
+> it's amazing we have a different population here, we're much less
+> vaccinated, much less boosted, we have lots of co-existing conditions
+> that are not as prevalent in some of these other countries, and yet we
+> don't have data. I don't know. I mean, I just don't think that the
+> administration has delivered to sticking to the science because part
+> of the science is having the data.
+>
+> BW: Yeah, that makes sense.
+
+```{r include-video, echo = FALSE}
+blogdown::shortcode("youtube", "lCAvFHd3B38?start=2883")
+```
+
+John Burn-Murdoch sites an example where better monitoring in the UK
+provides information relevant to interpreting COVID trends in the US
+because of a [random sample survey of prevalence of
+COVID](https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/conditionsanddiseases/bulletins/coronaviruscovid19infectionsurveypilot/latest)
+in the UK.
+
+> Once again, we should really be immensely grateful to the team at
+> [&#x0040;ONS](https://twitter.com/ONS), whose random sample survey
+> providing regular and representative estimates of prevalence is truly
+> world-leading, and the absolute gold standard in pandemic
+> surveillance."
+
+```{r include-tweet, echo = FALSE}
+blogdown::shortcode("tweet","1483062311971704833")
+```
+
+### 
+
+Would better data tracking have made a difference in fighting the
+pandemic in the US? Possibly not. But individuals and local governments
+have been struggling to figure out best practices while the facts are
+uncertain and knowledge is still being developed.
