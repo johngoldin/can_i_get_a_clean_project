@@ -81,6 +81,29 @@ source('~/Documents/R_local_repos/ctcorona/R/setup_ct_table.R')
 ```
 
 ```{r get_vaccine_counts}
+# statewide by age with booster count: https://data.ct.gov/Health-and-Human-Services/COVID-19-Vaccinations-by-Age-Group/vjim-iz5e
+# so far this is the only dph dataset with boosters
+dph_vaccine_total_detail <- read_delim("https://data.ct.gov/api/views/vjim-iz5e/rows.tsv", 
+    delim = "\t", escape_double = FALSE, 
+    col_types = cols(`Additional Dose Received Count` = col_double(), 
+        `Additional Dose Received Percent` = col_double(), 
+        Date = col_date(format = "%m/%d/%Y")), 
+    trim_ws = TRUE) |> 
+  rename(dph_age_group = `Age group`, population = Population,
+         dph_initiated_vaccine = `At least one dose`,
+         dph_fully_vaccinated = `Fully Vaccinated`,
+         dph_booster = `Additional Dose Received Count`, dph_date = Date) |> 
+  mutate(across(c(population, dph_initiated_vaccine, dph_fully_vaccinated, dph_booster), 
+                ~ ifelse(is.na(.x), 0, .x))) |> 
+  filter(dph_date == max(dph_date, na.rm = TRUE))
+  
+dph_vaccine_by_total <- dph_vaccine_total_detail |>
+  group_by(dph_date) |>
+  summarise(dph_fully_vaccinated = sum(dph_fully_vaccinated),
+            dph_initiated_vaccine = sum(dph_initiated_vaccine),
+            dph_booster = sum(dph_booster, na.rm = TRUE),
+            dph_population = sum(population, na.rm = TRUE),
+            .groups = "drop")
 # CT DPH Vaccinations by County: https://data.ct.gov/Health-and-Human-Services/COVID-19-Vaccinations-by-County/5g42-tpzq
 dph_vaccine_by_county <- read.socrata(
   str_c("https://data.ct.gov/resource/5g42-tpzq.json",
@@ -113,6 +136,10 @@ dph_vaccine_by_age_full <- read.socrata(
          social_vulnerability_index = at_least_one_census_tract,
          at_least_one_census_tract = at_least_one_census_tract == "Yes") |> 
   filter(dateupdated == max(dateupdated, na.rm = TRUE))
+dph_vaccine_by_age_full_total <- dph_vaccine_by_age_full |> 
+  group_by(dateupdated) |> 
+  summarise(fully_vaccinated = sum(fully_vaccinated, na.rm = TRUE),
+            initiated_vaccination = sum(initiated_vaccination, na.rm = TRUE))
 dph_vaccine_by_town <- dph_vaccine_by_age_full |>
   group_by(town, date = dateupdated) |>
   summarise(fully_vaccinated = sum(fully_vaccinated),
@@ -220,16 +247,22 @@ cdc_ct_vax <- read.socrata(
          county = ifelse(county == "Unknown County",
                          "Address pending validation", county) |>
            str_replace(" County", ""),
-         across(c(series_complete_yes, series_complete_pop_pct,
+         across(c(series_complete_yes, series_complete_pop_pct, booster_doses,
                   administered_dose1_recip, administered_dose1_pop_pct),
                 as.numeric)) |>
   rename(cdc_fully_pct = series_complete_pop_pct,
          cdc_fully_vaccinated = series_complete_yes,
+         cdc_booster = booster_doses,
          cdc_initiated_vaccination = administered_dose1_recip,
          cdc_initiated_pct = administered_dose1_pop_pct) |>
   relocate(date, state, county, cdc_fully_vaccinated, cdc_fully_pct,
-           cdc_initiated_vaccination, cdc_initiated_pct) |>
+           cdc_initiated_vaccination, cdc_initiated_pct, cdc_booster) |>
   filter(date == max(date, na.rm = TRUE)) # latest data only
+cdc_ct_vax_total <- cdc_ct_vax |> 
+  group_by(date) |> 
+  summarise(cdc_fully_vaccinated = sum(cdc_fully_vaccinated, na.rm = TRUE),
+            cdc_initiated_vaccination = sum(cdc_initiated_vaccination, na.rm = TRUE),
+            cdc_booster = sum(cdc_booster, na.rm = TRUE))
 
 three_sources_detail <- ct_vax |> 
   left_join(cdc_ct_vax |> 
@@ -260,7 +293,7 @@ three_source_state_total <- three_sources_detail |>
                      sum, na.rm = TRUE)) |> 
   mutate(state = "CT", county = "Total CT", date = three_sources_detail$date[[1]],
          cdc_date = max(three_sources_detail$date, na.rm = TRUE))
-cdc_asof <- format(max(three_source_state_total$cdc_date, na.rm = TRUE), "%d-%b-%Y")
+cdc_asof <- format(max(three_sources_detail$cdc_date, na.rm = TRUE), "%d-%b-%Y")
 dph_asof <- format(dph_vaccine_by_county$date[1], "%d-%b-%Y")
 three_sources <- three_sources_detail |> bind_rows(three_source_state_total) |> 
   mutate(county = factor(county,
@@ -286,7 +319,7 @@ for_table <- three_sources |> ungroup() |>
   ) |> 
   gt() |> 
   tab_header(title = "Comparison of CDC and CT DPH Vaccination Counts") |> 
-  tab_spanner(label = "'fully' vaccinated",
+  tab_spanner(label = "two doses",
               columns = c(cdc_fully_vaccinated, dph_county_fully,
               full_vax_dif)) |> 
   tab_spanner(label = "initial dose only",
@@ -325,34 +358,20 @@ for_table <- three_sources |> ungroup() |>
 ```
 
 This post will compare COVID vaccination rates reported by Connecticut
-Department of Public Health with the reports from the CDC. The table
-below shows the most recent counts. In this table "fully vaccinated"
-means either two doses of Pfizer or Moderna or one does of J&J. The may
-be changing. In any case, the CDC reports about 8% more individuals who
-are fully vaccinated than does DPH. Looking at partially vaccinated (one
-dose of Moderna or Pfizer), CDC reports 46% more individuals.
-
-This pattern has been observed in other states. There are a number of
-attempts to go into the details of CDC versus state counts for
-particular states. See this [recent analysis of county level counts in
-Wisconsin](https://law.marquette.edu/facultyblog/2021/12/county-level-cdc-and-dhs-vaccination-statistics-for-wisconsin-vary-in-important-ways/).
-See also comments by Washington State on [differences between their
-counts and
-CDC](https://www.coronavirus.wa.gov/news/vaccine-data-reconciliation-between-state-and-federal-sources-will-take-time).
-
-There seem to be two big issues.
+Department of Public Health with the reports from the CDC. We'll display
+the comparison two ways, first with a table and then with a bar chart.
+Until recently "fully vaccinated" referred to individuals with two doses
+of Pfizer or Moderna or one dose of J&J. In this post we'll refer to
+those people as "two does" even if they have had only one dose of J&J.
 
 ```{r print-table}
 for_table
 ```
 
-Below is a visual summary of the vaccination counts by source. The brown
-bars show vaccinations reported by CDC and the green bars show
-Connecticut Department of Health. As elsewhere in this post, "full"
-vaccination means two shots of Moderna or Pfizer or one of J&J. It's
-possible that the CDC definitioin of "fully vaccinated" will change in
-the future. The figure includes a data point to show the total poplation
-of each county according to the 2020 Census.
+Below is a visual summary of the same vaccination counts by source. The
+brown bars show vaccinations reported by CDC and the green bars show
+Connecticut Department of Health. The figure includes a data point to
+show the total population of each county according to the 2020 Census.
 
 ```{r plot_vaccine_counts}
 three_sources_simple <- three_sources |> 
@@ -420,19 +439,66 @@ print(p_vax_bars)
 This post will compare vaccination counts (and vaccination rates)
 published by the CDC and by the Connecticut Department of Public Health.
 
-Often there are differences between COVID vaccination rates reported by
-the CDC and rates produced by individual state health agencies. The
-counts don't agree largely because there are important differences in
-what they are including in the counts. Counting things can be hard, and
-the details of how the counts are done makes a difference.
-
 First, let's look at a summary of county-by-county COVID vaccinations in
-Connecticut reported by CDC and by CT DPH. Then we will dig into why
-these counts are different.
+Connecticut reported by CDC and by CT DPH. After that we will dig into
+why these counts are different.
 
 ```{r county_summaries_by_source, echo = FALSE}
 
 ```
+
+For Connecticut, the CDC reports about 8% more individuals who are fully
+vaccinated than does DPH. Looking at partially vaccinated (one dose of
+Moderna or Pfizer), CDC reports 46% more individuals. Counting things
+can be hard. The details of what is included and how the counts are done
+makes a difference.
+
+This pattern has been observed in other states. There are a number of
+attempts to go into the details of CDC versus state counts for
+particular states. See this [recent analysis of county level counts in
+Wisconsin](https://law.marquette.edu/facultyblog/2021/12/county-level-cdc-and-dhs-vaccination-statistics-for-wisconsin-vary-in-important-ways/).
+See also comments by Washington State on [differences between their
+counts and
+CDC](https://www.coronavirus.wa.gov/news/vaccine-data-reconciliation-between-state-and-federal-sources-will-take-time).
+
+There seem to be two big issues.
+
+The major reason that the CT DPH count are lower is that they do not
+include vaccinations by "federal sources" such as the VA or DOD.
+
+> ...does not included doses administered to CT residents by
+> out-of-state providers or by some Federal entities (including
+> Department of Defense, Department of Correction, Department of
+> Veteran's Affairs, Indian Health Service) because they are not yet
+> reported to CT WiZ (the CT immunization Information System)
+
+States may vary as to whether they include data from federal providers
+and whether they have information about vaccination of residents that
+were administered in other states. In neighboring Massachusetts, their
+[vaccination
+report](https://www.mass.gov/doc/daily-covid-19-vaccine-report-january-21-2022/download)
+states that their numbers only included vaccinations reported from the
+Veterans Administration for MA residents as of 11/4/2021. State
+immunization information systems may not have information from all
+providers in the state.
+
+How comprehensive is the information for Connecticut? I don't really
+know. I received my first two doses from a clinic operated by Yale New
+Haven Hospital. My booster dose came from Walgreens. When I looked up my
+vaccination record in CT WiZ I was pleased to see that all three doses
+were recorded (as were my flu shots for 2020 and 2021). I receive my
+primary care through a system that uses the Yale New Haven Hospital
+electronic health record, but in that system my third dose of COVID
+vaccination is *not* recorded. (I'll need to communicate that to them
+separately.)
+
+Another problem for the state totals is the possibility of vaccination
+done out of state. This may be an issue for college students and
+"snowbird" retirees who spend part of the year in different states.
+Also, the state of residence listed at the time of a vaccination for
+such individuals may not be the same place the individual is counted in
+the 2020 census. Uncertainty about residence is an issue for both the
+numerator and denominator of reported vaccination rates by locality.
 
 This [Kaiser Health
 News](https://khn.org/news/article/cdc-senior-covid-vaccination-rates-appear-inflated/)
@@ -444,8 +510,8 @@ Project](https://covidtracking.com) emerged from multiple efforts to try
 to obtain comparable statistics about the path of the epidemic in the
 United States. It was a volunteer effort and suspended operation in
 March 2021 at a point when they felt the data could be obtained from
-\[federal
-sources\](<https://covidtracking.com/analysis-updates/federal-covid-data-101-how-to-find-data>.
+$$federal
+sources$$(<https://covidtracking.com/analysis-updates/federal-covid-data-101-how-to-find-data>.
 
 First I'll do a direct comparison of county by county vaccination data
 for Connecticut reported by the CDC and the tallies from the Connecticut
@@ -581,7 +647,7 @@ Scripps Research Institute
 > data here in this country, because, like for example, right now we
 > want to know whether these Omicron boosters, how well they're working
 > to prevent hospitalizations and deaths. And when do they wane? When
-> does their protection \[wane?\]. Those people who are getting
+> does their protection $$wane?$$. Those people who are getting
 > hospitalized who had a third shot, what's going on there? We were
 > promised by the CDC in May that they would track every breakthrough
 > hospitalization and death. Never happened. And so we don't have
@@ -639,8 +705,8 @@ COVID](https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/c
 in the UK.
 
 > Once again, we should really be immensely grateful to the team at
-> [&#x0040;ONS](https://twitter.com/ONS), whose random sample survey
-> providing regular and representative estimates of prevalence is truly
+> [\@ONS](https://twitter.com/ONS), whose random sample survey providing
+> regular and representative estimates of prevalence is truly
 > world-leading, and the absolute gold standard in pandemic
 > surveillance."
 
