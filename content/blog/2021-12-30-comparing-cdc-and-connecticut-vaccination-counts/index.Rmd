@@ -83,17 +83,18 @@ source('~/Documents/R_local_repos/ctcorona/R/setup_ct_table.R')
 ```{r get_vaccine_counts}
 # statewide by age with booster count: https://data.ct.gov/Health-and-Human-Services/COVID-19-Vaccinations-by-Age-Group/vjim-iz5e
 # so far this is the only dph dataset with boosters
-dph_vaccine_total_detail <- read_delim("https://data.ct.gov/api/views/vjim-iz5e/rows.tsv", 
+dph_vaccine_total_detail <- read_delim("https://data.ct.gov/api/views/vjim-iz5e/rows.tsv",
     delim = "\t", escape_double = FALSE, 
     col_types = cols(`Additional Dose Received Count` = col_double(), 
         `Additional Dose Received Percent` = col_double(), 
         Date = col_date(format = "%m/%d/%Y")), 
     trim_ws = TRUE) |> 
+  mutate(dph_initiated_only = dph_initiated_vaccine - dph_fully_vaccinated) |> 
   rename(dph_age_group = `Age group`, population = Population,
          dph_initiated_vaccine = `At least one dose`,
          dph_fully_vaccinated = `Fully Vaccinated`,
          dph_booster = `Additional Dose Received Count`, dph_date = Date) |> 
-  mutate(across(c(population, dph_initiated_vaccine, dph_fully_vaccinated, dph_booster), 
+  mutate(across(c(population, dph_initiated_vaccine, dph_fully_vaccinated, dph_booster, dph_initiated_only), 
                 ~ ifelse(is.na(.x), 0, .x))) |> 
   filter(dph_date == max(dph_date, na.rm = TRUE))
   
@@ -101,6 +102,7 @@ dph_vaccine_by_total <- dph_vaccine_total_detail |>
   group_by(dph_date) |>
   summarise(dph_fully_vaccinated = sum(dph_fully_vaccinated),
             dph_initiated_vaccine = sum(dph_initiated_vaccine),
+            dph_initiated_only = sum(dph_initiated_only),
             dph_booster = sum(dph_booster, na.rm = TRUE),
             dph_population = sum(population, na.rm = TRUE),
             .groups = "drop")
@@ -187,6 +189,7 @@ county_town <- dph_towns |> count(county, town) |> select(-n)
 
 
 # https://data.ct.gov/api/views/5g42-tpzq/rows.csv?accessType=DOWNLOAD
+# spreadsheet data that includes booster info
 dph_vaccine_by_age_full <- read.socrata(
   str_c("https://data.ct.gov/resource/gngw-ukpw.json",
         "?$where=dateupdated>'2021-12-13T00:00:00.000'"),
@@ -215,19 +218,32 @@ dph_vaccine_by_town <- dph_vaccine_by_age_full |>
 # xx <- read.socrata("https://data.ct.gov/resource/5g42-tpzq.json")
 
 ct_vax <- dph_vaccine_by_town |> 
+  group_by(town) |>  # need this in case date not same for all towns
   filter(date == max(date), town != "xResident out of state") |> 
+  ungroup() |> 
   mutate(county = if_else(is.na(county), town, county), state = "CT") |> 
   group_by(state, county, date) |> 
   summarise(fully_vaccinated = sum(fully_vaccinated, na.rm = TRUE),
             initiated_vaccination = sum(initiated_vaccination, na.rm = TRUE),
             dph_total_pop = sum(dph_total_pop, na.rm = TRUE),
             pop2020 = sum(pop2020, na.rm = TRUE)
-           )
+           ) |> 
+  mutate(first_dose_only = initiated_vaccination - fully_vaccinated)
+
+ct_with_non_resident <- ct_vax 
+ct_vax <- ct_vax |> 
+  filter(county != "Resident out of state")
+ct_total_with_non_resident <- ct_with_non_resident |> ungroup() |> 
+  summarise(across(c(fully_vaccinated, initiated_vaccination, first_dose_only, dph_total_pop), sum, na.rm = TRUE))
+            
+
+
 ct_vax_table <- 
   bind_rows(ct_vax, 
             tibble(county = "Total",
                    fully_vaccinated = sum(ct_vax$fully_vaccinated),
                    initiated_vaccination = sum(ct_vax$initiated_vaccination),
+                   first_dose_only = sum(ct_vax$first_dose_only),
                    pop2020 = sum(ct_vax$pop2020, na.rm = TRUE),
                    dph_total_pop = sum(ct_vax$dph_total_pop, na.rm = TRUE))
   )
@@ -258,6 +274,7 @@ cdc_ct_vax <- read.socrata(
   relocate(date, state, county, cdc_fully_vaccinated, cdc_fully_pct,
            cdc_initiated_vaccination, cdc_initiated_pct, cdc_booster) |>
   filter(date == max(date, na.rm = TRUE)) # latest data only
+
 cdc_ct_vax_total <- cdc_ct_vax |> 
   group_by(date) |> 
   summarise(cdc_fully_vaccinated = sum(cdc_fully_vaccinated, na.rm = TRUE),
