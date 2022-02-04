@@ -89,11 +89,11 @@ dph_vaccine_total_detail <- read_delim("https://data.ct.gov/api/views/vjim-iz5e/
         `Additional Dose Received Percent` = col_double(), 
         Date = col_date(format = "%m/%d/%Y")), 
     trim_ws = TRUE) |> 
-  mutate(dph_initiated_only = dph_initiated_vaccine - dph_fully_vaccinated) |> 
   rename(dph_age_group = `Age group`, population = Population,
          dph_initiated_vaccine = `At least one dose`,
          dph_fully_vaccinated = `Fully Vaccinated`,
          dph_booster = `Additional Dose Received Count`, dph_date = Date) |> 
+    mutate(dph_initiated_only = dph_initiated_vaccine - dph_fully_vaccinated) |> 
   mutate(across(c(population, dph_initiated_vaccine, dph_fully_vaccinated, dph_booster, dph_initiated_only), 
                 ~ ifelse(is.na(.x), 0, .x))) |> 
   filter(dph_date == max(dph_date, na.rm = TRUE))
