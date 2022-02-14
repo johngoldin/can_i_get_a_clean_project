@@ -107,6 +107,7 @@ dph_vaccine_by_total <- dph_vaccine_total_detail |>
             dph_population = sum(population, na.rm = TRUE),
             .groups = "drop")
 # CT DPH Vaccinations by County: https://data.ct.gov/Health-and-Human-Services/COVID-19-Vaccinations-by-County/5g42-tpzq
+# as of Feb 12, additional_dose_received not yet in dataset.
 dph_vaccine_by_county <- read.socrata(
   str_c("https://data.ct.gov/resource/5g42-tpzq.json",
         "?$where=date>'2021-12-13T00:00:00.000'"),
@@ -134,6 +135,7 @@ dph_vaccine_by_age_full <- read.socrata(
          population = as.numeric(population),
          fully_vaccinated = as.numeric(fully_vaccinated),
          fully_vaccinated_percent = as.numeric(fully_vaccinated_percent),
+         additional_dose_received = as.numeric(additional_dose_received),
          dateupdated = as_date(dateupdated),
          social_vulnerability_index = at_least_one_census_tract,
          at_least_one_census_tract = at_least_one_census_tract == "Yes") |> 
@@ -146,6 +148,7 @@ dph_vaccine_by_town <- dph_vaccine_by_age_full |>
   group_by(town, date = dateupdated) |>
   summarise(fully_vaccinated = sum(fully_vaccinated),
             initiated_vaccination = sum(initiated_vaccination),
+            additional_dose_received = sum(additional_dose_received, na.rm = TRUE),
             social_vulnerability_index = last(social_vulnerability_index),
             .groups = "drop")
 
@@ -209,6 +212,7 @@ dph_vaccine_by_town <- dph_vaccine_by_age_full |>
   group_by(town, date = dateupdated) |>
   summarise(fully_vaccinated = sum(fully_vaccinated),
             initiated_vaccination = sum(initiated_vaccination),
+            additional_dose_received = sum(additional_dose_received, na.rm = TRUE),
             social_vulnerability_index = last(social_vulnerability_index),
             .groups = "drop") |>
   left_join(dph_towns |> filter(date == max(date)) |>
@@ -217,7 +221,7 @@ dph_vaccine_by_town <- dph_vaccine_by_age_full |>
   left_join(county_town, by = "town")
 # xx <- read.socrata("https://data.ct.gov/resource/5g42-tpzq.json")
 
-ct_vax <- dph_vaccine_by_town |> 
+dph_ct_vax <- dph_vaccine_by_town |> 
   group_by(town) |>  # need this in case date not same for all towns
   filter(date == max(date), town != "xResident out of state") |> 
   ungroup() |> 
@@ -225,27 +229,39 @@ ct_vax <- dph_vaccine_by_town |>
   group_by(state, county, date) |> 
   summarise(fully_vaccinated = sum(fully_vaccinated, na.rm = TRUE),
             initiated_vaccination = sum(initiated_vaccination, na.rm = TRUE),
+            additional_dose_received = sum(additional_dose_received, na.rm = TRUE),
             dph_total_pop = sum(dph_total_pop, na.rm = TRUE),
-            pop2020 = sum(pop2020, na.rm = TRUE)
+            pop2020 = sum(pop2020, na.rm = TRUE),
+            fully_vaccinated_percent = fully_vaccinated / pop2020,
+            initiated_vaccination_percent = initiated_vaccination / pop2020,
+            additional_dose_received_percent = additional_dose_received / pop2020
            ) |> 
   mutate(first_dose_only = initiated_vaccination - fully_vaccinated)
 
-ct_with_non_resident <- ct_vax 
-ct_vax <- ct_vax |> 
+ct_with_non_resident <- dph_ct_vax 
+dph_ct_vax <- dph_ct_vax |> 
   filter(county != "Resident out of state")
 ct_total_with_non_resident <- ct_with_non_resident |> ungroup() |> 
-  summarise(across(c(fully_vaccinated, initiated_vaccination, first_dose_only, dph_total_pop), sum, na.rm = TRUE))
+  summarise(across(c(fully_vaccinated, initiated_vaccination, additional_dose_received,
+                     first_dose_only, dph_total_pop, pop2020), sum, na.rm = TRUE)) |> 
+  mutate(fully_vaccinated_percent = fully_vaccinated / pop2020,
+            initiated_vaccination_percent = initiated_vaccination / pop2020,
+            additional_dose_received_percent = additional_dose_received / pop2020)
             
 
 
-ct_vax_table <- 
-  bind_rows(ct_vax, 
+dph_ct_vax_table <- 
+  bind_rows(dph_ct_vax, 
             tibble(county = "Total",
-                   fully_vaccinated = sum(ct_vax$fully_vaccinated),
-                   initiated_vaccination = sum(ct_vax$initiated_vaccination),
-                   first_dose_only = sum(ct_vax$first_dose_only),
-                   pop2020 = sum(ct_vax$pop2020, na.rm = TRUE),
-                   dph_total_pop = sum(ct_vax$dph_total_pop, na.rm = TRUE))
+                   fully_vaccinated = sum(dph_ct_vax$fully_vaccinated),
+                   initiated_vaccination = sum(dph_ct_vax$initiated_vaccination),
+                   additional_dose_received = sum(dph_ct_vax$additional_dose_received),
+                   first_dose_only = sum(dph_ct_vax$first_dose_only),
+                   pop2020 = sum(dph_ct_vax$pop2020, na.rm = TRUE),
+                   dph_total_pop = sum(dph_ct_vax$dph_total_pop, na.rm = TRUE)) |> 
+              mutate(fully_vaccinated_percent = fully_vaccinated / pop2020,
+                     initiated_vaccination_percent = initiated_vaccination / pop2020,
+                     additional_dose_received_percent = additional_dose_received / pop2020)
   )
 
 # https://data.cdc.gov/Vaccinations/COVID-19-Vaccinations-in-the-United-States-County/8xkx-amqh
@@ -281,38 +297,39 @@ cdc_ct_vax_total <- cdc_ct_vax |>
             cdc_initiated_vaccination = sum(cdc_initiated_vaccination, na.rm = TRUE),
             cdc_booster = sum(cdc_booster, na.rm = TRUE))
 
-three_sources_detail <- ct_vax |> 
-  left_join(cdc_ct_vax |> 
-              select(cdc_date = date, state, county, cdc_fully_vaccinated,
-                     cdc_fully_pct, cdc_initiated_vaccination, cdc_initiated_pct,
-                     series_complete_65plus, 
-                     cdc_completeness_pct = completeness_pct) |> 
+# as of Feb 12, dph_vaccine_by_county does not have booster doses, but
+# ct_vax does because town by town data does.
+
+both_sources_detail <- cdc_ct_vax |> ungroup() |> 
               mutate(cdc_pop = case_when(
                        cdc_fully_pct <= 0 ~ NA_real_,
-                       TRUE ~ cdc_fully_vaccinated / (cdc_fully_pct / 100))),
-            by = c("state", "county")) |> 
-  left_join(dph_vaccine_by_county |> 
-              select(dph_county_pop = population,
+                       TRUE ~ cdc_fully_vaccinated / (cdc_fully_pct / 100))) |> 
+              select(cdc_date = date, state, county, cdc_fully_vaccinated,
+                     cdc_booster,
+                     cdc_initiated_vaccination, 
+                     series_complete_65plus) |> 
+  left_join(dph_ct_vax |> ungroup() |> 
+              select(dph_county_pop = pop2020,
                      dph_county_fully = fully_vaccinated,
                      dph_county_initiated = initiated_vaccination,
-                     dph_fully_pct = fully_vaccinated_percent,
-                     dph_any_pct = initiated_vaccination_percent,
+                     dph_first_dose_only = first_dose_only,
+                     dph_additional_dose_received = additional_dose_received,
                      dph_county_date = date,
-                     county), by = "county") |> 
+                     county), by = "county") |>
   mutate(dph_init_only = dph_county_initiated - dph_county_fully,
          cdc_init_only = cdc_initiated_vaccination - cdc_fully_vaccinated)
-three_source_state_total <- three_sources_detail |> 
-  filter(county != "Resident out of state") |> 
+both_sources_state_total <- both_sources_detail |> 
+  filter(county != "Resident out of state") |> # probably don't need this
   ungroup() |> 
-  summarise(across(c(fully_vaccinated:dph_county_initiated, 
-                     dph_init_only, cdc_init_only, !cdc_date) &
+  summarise(across(c(cdc_fully_vaccinated:cdc_init_only, 
+                     # dph_init_only, cdc_init_only, !cdc_date) &
                      where(~((class(.) != "Date") & is.numeric(.))),
                      sum, na.rm = TRUE)) |> 
-  mutate(state = "CT", county = "Total CT", date = three_sources_detail$date[[1]],
-         cdc_date = max(three_sources_detail$date, na.rm = TRUE))
-cdc_asof <- format(max(three_sources_detail$cdc_date, na.rm = TRUE), "%d-%b-%Y")
+  mutate(state = "CT", county = "Total CT", date = both_sources_detail$date[[1]],
+         cdc_date = max(both_sources_detail$date, na.rm = TRUE))
+cdc_asof <- format(max(both_sources_detail$cdc_date, na.rm = TRUE), "%d-%b-%Y")
 dph_asof <- format(dph_vaccine_by_county$date[1], "%d-%b-%Y")
-three_sources <- three_sources_detail |> bind_rows(three_source_state_total) |> 
+both_sources <- both_sources_detail |> bind_rows(both_sources_state_total) |> 
   mutate(county = factor(county,
                          levels = c("Litchfield", "Hartford", "Tolland", "Windham", 
                            "Fairfield", "New Haven", "Middlesex", "New London", 
@@ -329,7 +346,7 @@ three_sources <- three_sources_detail |> bind_rows(three_source_state_total) |>
   relocate(county, cdc_fully_vaccinated, dph_county_fully, full_vax_dif,
            cdc_init_only, dph_init_only, init_vax_dif, any_vax_dif)
 
-for_table <- three_sources |> ungroup() |> 
+for_table <- both_sources |> ungroup() |> 
   select(county, cdc_fully_vaccinated, dph_county_fully, full_vax_dif,
          cdc_init_only, dph_init_only, init_vax_dif,
          cdc_fully_pct, dph_fully_pct
@@ -375,8 +392,12 @@ for_table <- three_sources |> ungroup() |>
 ```
 
 This post will compare COVID vaccination rates reported by Connecticut
-Department of Public Health with the reports from the CDC. We'll display
-the comparison two ways, first with a table and then with a bar chart.
+Department of Public Health with the reports from the CDC. The goal is 
+to understand how vaccinations are counted and how data makes
+its way into the CDC summaries.
+
+Below are two comparisons of CDC to DPH,
+first with a table and then with a bar chart.
 Until recently "fully vaccinated" referred to individuals with two doses
 of Pfizer or Moderna or one dose of J&J. In this post we'll refer to
 those people as "two does" even if they have had only one dose of J&J.
@@ -391,7 +412,7 @@ Connecticut Department of Health. The figure includes a data point to
 show the total population of each county according to the 2020 Census.
 
 ```{r plot_vaccine_counts}
-three_sources_simple <- three_sources |> 
+both_sources_simple <- both_sources |> 
   filter(county != "Non-CT resident", county != "Total") |> 
   ungroup() |> 
   select(county, dph_county_fully, cdc_fully_vaccinated, 
@@ -415,15 +436,15 @@ bigsep <-0.2
 barsep<- 0.05 
 barwidth <- (1 - bigsep - barsep) / 2 
 if ((barwidth > 0.5) | (barwidth <= 0)) stop("barwidth is out of range.") # has to be <= 0.5 (two bars per integer value of county)
-p_vax_bars = ggplot(data = three_sources_simple |> filter(source == "CDC"), 
+p_vax_bars = ggplot(data = both_sources_simple |> filter(source == "CDC"), 
                     aes(x = as.numeric(county), y = value, fill = grouping)) +
-  geom_bar(data = three_sources_simple |> filter(source == "CDC"), 
+  geom_bar(data = both_sources_simple |> filter(source == "CDC"), 
            aes(x = as.numeric(county) - (barwidth + barsep) / 2),
            stat="identity", position = "stack", width = barwidth) +
-  geom_bar(data = three_sources_simple |> filter(source == "CT DPH"),
+  geom_bar(data = both_sources_simple |> filter(source == "CT DPH"),
            aes(x = as.numeric(county) + (barwidth + barsep) / 2, y = value), # barwidth + barsep
            stat = "identity", position = "stack", width = barwidth) + 
-  geom_point(data = three_sources |> 
+  geom_point(data = both_sources |> 
                filter(county != "Non-CT resident", county != "Total") |> 
                mutate(county = factor(county),
                       pop2020 = ifelse(pop2020 == 0, NA_real_, pop2020),
@@ -433,13 +454,13 @@ p_vax_bars = ggplot(data = three_sources_simple |> filter(source == "CDC"),
              show.legend = FALSE) + 
   coord_flip() + xlab(NULL) + ylab("Number Vaccinated") +
   scale_y_continuous(labels = scales::comma) +
-  scale_x_reverse(breaks = seq(1, 9), labels = levels(three_sources_simple$county)) +
+  scale_x_reverse(breaks = seq(1, 9), labels = levels(both_sources_simple$county)) +
   scale_fill_manual(values = c("CDC-Full" = base_col1,
                                "CDC-Initial" = light_col1, 
                                "CT DPH-Full" = base_col2,
                                "CT DPH-Initial" = light_col2), name = NULL)
 
-  # p_vax_bars + geom_point(data = three_sources |> 
+  # p_vax_bars + geom_point(data = both_sources |> 
   #              filter(county != "Non-CT resident", county != "Total") |> 
   #              mutate(county = factor(county),
   #                     pop2020 = ifelse(pop2020 == 0, NA_real_, pop2020),
