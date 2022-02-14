@@ -80,7 +80,7 @@ source('~/Documents/R_local_repos/ctcorona/R/setup_ct_table.R')
 
 ```
 
-```{r get_vaccine_counts}
+```{r get_dph_vaccine_counts}
 # statewide by age with booster count: https://data.ct.gov/Health-and-Human-Services/COVID-19-Vaccinations-by-Age-Group/vjim-iz5e
 # so far this is the only dph dataset with boosters
 dph_vaccine_total_detail <- read_delim("https://data.ct.gov/api/views/vjim-iz5e/rows.tsv",
@@ -136,6 +136,7 @@ dph_vaccine_by_age_full <- read.socrata(
          fully_vaccinated = as.numeric(fully_vaccinated),
          fully_vaccinated_percent = as.numeric(fully_vaccinated_percent),
          additional_dose_received = as.numeric(additional_dose_received),
+         additional_dose_received_percent = as.numeric(additional_dose_received_percent),
          dateupdated = as_date(dateupdated),
          social_vulnerability_index = at_least_one_census_tract,
          at_least_one_census_tract = at_least_one_census_tract == "Yes") |> 
@@ -143,14 +144,15 @@ dph_vaccine_by_age_full <- read.socrata(
 dph_vaccine_by_age_full_total <- dph_vaccine_by_age_full |> 
   group_by(dateupdated) |> 
   summarise(fully_vaccinated = sum(fully_vaccinated, na.rm = TRUE),
-            initiated_vaccination = sum(initiated_vaccination, na.rm = TRUE))
-dph_vaccine_by_town <- dph_vaccine_by_age_full |>
-  group_by(town, date = dateupdated) |>
-  summarise(fully_vaccinated = sum(fully_vaccinated),
-            initiated_vaccination = sum(initiated_vaccination),
-            additional_dose_received = sum(additional_dose_received, na.rm = TRUE),
-            social_vulnerability_index = last(social_vulnerability_index),
-            .groups = "drop")
+            initiated_vaccination = sum(initiated_vaccination, na.rm = TRUE),
+            additional_dose_received = sum(additional_dose_received, na.rm = TRUE))
+# dph_vaccine_by_town <- dph_vaccine_by_age_full |>
+#   group_by(town, date = dateupdated) |>
+#   summarise(fully_vaccinated = sum(fully_vaccinated),
+#             initiated_vaccination = sum(initiated_vaccination),
+#             additional_dose_received = sum(additional_dose_received, na.rm = TRUE),
+#             social_vulnerability_index = last(social_vulnerability_index),
+#             .groups = "drop")
 
 dph_towns <- read.socrata(
   str_c("https://data.ct.gov/resource/28fr-iqnx.json",
@@ -191,22 +193,23 @@ dph_towns$category <- factor(dph_towns$category,
 county_town <- dph_towns |> count(county, town) |> select(-n)
 
 
-# https://data.ct.gov/api/views/5g42-tpzq/rows.csv?accessType=DOWNLOAD
-# spreadsheet data that includes booster info
-dph_vaccine_by_age_full <- read.socrata(
-  str_c("https://data.ct.gov/resource/gngw-ukpw.json",
-        "?$where=dateupdated>'2021-12-13T00:00:00.000'"),
-  app_token = 
-    Sys.getenv("CTDATA_APP1_TOKEN") ) |>  
-  as_tibble() |>
-  mutate(initiated_vaccination = as.numeric(initiated_vaccination),
-         initiated_vaccination_percent = as.numeric(initiated_vaccination_percent),
-         dph_population = as.numeric(population),
-         fully_vaccinated = as.numeric(fully_vaccinated),
-         fully_vaccinated_percent = as.numeric(fully_vaccinated_percent),
-         dateupdated = as_date(dateupdated),
-         social_vulnerability_index = at_least_one_census_tract,
-         at_least_one_census_tract = at_least_one_census_tract == "Yes")
+# this section is a candidate for deletion because it is a repeat
+# # https://data.ct.gov/api/views/5g42-tpzq/rows.csv?accessType=DOWNLOAD
+# # spreadsheet data that includes booster info
+# dph_vaccine_by_age_full <- read.socrata(
+#   str_c("https://data.ct.gov/resource/gngw-ukpw.json",
+#         "?$where=dateupdated>'2021-12-13T00:00:00.000'"),
+#   app_token = 
+#     Sys.getenv("CTDATA_APP1_TOKEN") ) |>  
+#   as_tibble() |>
+#   mutate(initiated_vaccination = as.numeric(initiated_vaccination),
+#          initiated_vaccination_percent = as.numeric(initiated_vaccination_percent),
+#          dph_population = as.numeric(population),
+#          fully_vaccinated = as.numeric(fully_vaccinated),
+#          fully_vaccinated_percent = as.numeric(fully_vaccinated_percent),
+#          dateupdated = as_date(dateupdated),
+#          social_vulnerability_index = at_least_one_census_tract,
+#          at_least_one_census_tract = at_least_one_census_tract == "Yes")
 
 dph_vaccine_by_town <- dph_vaccine_by_age_full |>
   group_by(town, date = dateupdated) |>
@@ -236,7 +239,8 @@ dph_ct_vax <- dph_vaccine_by_town |>
             initiated_vaccination_percent = initiated_vaccination / pop2020,
             additional_dose_received_percent = additional_dose_received / pop2020
            ) |> 
-  mutate(first_dose_only = initiated_vaccination - fully_vaccinated)
+  mutate(first_dose_only = initiated_vaccination - fully_vaccinated,
+         pop2020 = ifelse(pop2020 == 0, NA_real_, pop2020))
 
 ct_with_non_resident <- dph_ct_vax 
 dph_ct_vax <- dph_ct_vax |> 
@@ -263,7 +267,8 @@ dph_ct_vax_table <-
                      initiated_vaccination_percent = initiated_vaccination / pop2020,
                      additional_dose_received_percent = additional_dose_received / pop2020)
   )
-
+```
+```{r get_cdc_vaccine_counts}
 # https://data.cdc.gov/Vaccinations/COVID-19-Vaccinations-in-the-United-States-County/8xkx-amqh
 # note the approximate date limit that may need to be adjusted 
 # Using date  and state limit in socrata query to speed things up.
@@ -300,16 +305,17 @@ cdc_ct_vax_total <- cdc_ct_vax |>
 # as of Feb 12, dph_vaccine_by_county does not have booster doses, but
 # ct_vax does because town by town data does.
 
+```
+```{r combine_cdc_dph}
 both_sources_detail <- cdc_ct_vax |> ungroup() |> 
               mutate(cdc_pop = case_when(
                        cdc_fully_pct <= 0 ~ NA_real_,
                        TRUE ~ cdc_fully_vaccinated / (cdc_fully_pct / 100))) |> 
               select(cdc_date = date, state, county, cdc_fully_vaccinated,
                      cdc_booster,
-                     cdc_initiated_vaccination, 
-                     series_complete_65plus) |> 
+                     cdc_initiated_vaccination) |>  # removed series_complete_65plus
   left_join(dph_ct_vax |> ungroup() |> 
-              select(dph_county_pop = pop2020,
+              select(pop2020,
                      dph_county_fully = fully_vaccinated,
                      dph_county_initiated = initiated_vaccination,
                      dph_first_dose_only = first_dose_only,
@@ -321,15 +327,16 @@ both_sources_detail <- cdc_ct_vax |> ungroup() |>
 both_sources_state_total <- both_sources_detail |> 
   filter(county != "Resident out of state") |> # probably don't need this
   ungroup() |> 
-  summarise(across(c(cdc_fully_vaccinated:cdc_init_only, 
+  summarise(across(c(cdc_fully_vaccinated:cdc_init_only) & 
                      # dph_init_only, cdc_init_only, !cdc_date) &
                      where(~((class(.) != "Date") & is.numeric(.))),
                      sum, na.rm = TRUE)) |> 
   mutate(state = "CT", county = "Total CT", date = both_sources_detail$date[[1]],
-         cdc_date = max(both_sources_detail$date, na.rm = TRUE))
+         cdc_date = max(both_sources_detail$cdc_date, na.rm = TRUE))
+
 cdc_asof <- format(max(both_sources_detail$cdc_date, na.rm = TRUE), "%d-%b-%Y")
 dph_asof <- format(dph_vaccine_by_county$date[1], "%d-%b-%Y")
-both_sources <- both_sources_detail |> bind_rows(both_sources_state_total) |> 
+both_sources0 <- both_sources_detail |> bind_rows(both_sources_state_total) |> 
   mutate(county = factor(county,
                          levels = c("Litchfield", "Hartford", "Tolland", "Windham", 
                            "Fairfield", "New Haven", "Middlesex", "New London", 
@@ -345,11 +352,20 @@ both_sources <- both_sources_detail |> bind_rows(both_sources_state_total) |>
   arrange(as.numeric(county))  |> 
   relocate(county, cdc_fully_vaccinated, dph_county_fully, full_vax_dif,
            cdc_init_only, dph_init_only, init_vax_dif, any_vax_dif)
+# let's add calculations
+both_sources <- both_sources0 |> 
+  mutate(cdc_fully_pct = cdc_fully_vaccinated / pop2020,
+           dph_fully_pct = dph_county_fully / pop2020,
+         cdc_booster_pct = cdc_booster / pop2020,
+         dph_booster_pct = dph_additional_dose_received / pop2020)
 
 for_table <- both_sources |> ungroup() |> 
   select(county, cdc_fully_vaccinated, dph_county_fully, full_vax_dif,
          cdc_init_only, dph_init_only, init_vax_dif,
-         cdc_fully_pct, dph_fully_pct
+         cdc_booster, dph_additional_dose_received, 
+         cdc_fully_pct, dph_fully_pct, 
+         cdc_booster_pct,
+         dph_booster_pct
   ) |> 
   gt() |> 
   tab_header(title = "Comparison of CDC and CT DPH Vaccination Counts") |> 
@@ -359,18 +375,32 @@ for_table <- both_sources |> ungroup() |>
   tab_spanner(label = "initial dose only",
               columns = c(cdc_init_only, dph_init_only,
               init_vax_dif)) |> 
+  tab_spanner(label = "booster dose",
+              columns = c(cdc_booster, dph_additional_dose_received)) |> 
+  tab_spanner(label = "vaccination rates",
+              columns = c(cdc_fully_pct, dph_fully_pct,
+                          cdc_booster_pct, dph_booster_pct)) |> 
   cols_label(cdc_fully_vaccinated = "CDC 'fully'\nvaccinated",
              dph_county_fully = "CT 'fully'\nvaccinated",
              full_vax_dif = "CDC / CT DPH\ndifference",
              init_vax_dif = " CDC / CT DPH\ndifference",
              cdc_init_only = "CDC initial\ndose only",
-             dph_init_only = "CT initial\ndose only") |> 
+             dph_init_only = "CT initial\ndose only",
+             cdc_fully_pct = "CDC 'fully'\nvaccinated", 
+             dph_fully_pct = "CT 'fully'\nvaccinated",
+             cdc_booster_pct = "CDC booster", 
+             dph_booster_pct = "CT booster",
+             cdc_booster = "CDC booster",
+             dph_additional_dose_received = "CT DPH booster") |> 
   fmt_number(columns = c(cdc_fully_vaccinated, dph_county_fully, cdc_init_only,
-                         dph_init_only),
+                         dph_init_only, cdc_booster, dph_additional_dose_received),
              decimals = 0,
              use_seps = TRUE) |> 
   fmt_percent(columns = c(init_vax_dif, full_vax_dif),
               decimals = 0, force_sign = TRUE) |> 
+  fmt_percent(columns = c(cdc_fully_pct, dph_fully_pct,
+                          cdc_booster_pct, dph_booster_pct),
+              decimals = 0) |> 
   tab_source_note(glue("CDC data as of {cdc_asof}, CT DPH data as of {dph_asof}")) |> 
   tab_source_note("'fully' in this table refers to one dose of J&J or two does of Moderna or Pfizer.") |> 
   #Apply new style to all column headers
