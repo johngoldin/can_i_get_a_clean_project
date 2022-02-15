@@ -252,7 +252,7 @@ ct_total_with_non_resident <- ct_with_non_resident |> ungroup() |>
             initiated_vaccination_percent = initiated_vaccination / pop2020,
             additional_dose_received_percent = additional_dose_received / pop2020)
             
-
+ct_pop2020 <- sum(dph_ct_vax$pop2020, na.rm = TRUE)
 
 dph_ct_vax_table <- 
   bind_rows(dph_ct_vax, 
@@ -323,7 +323,9 @@ both_sources_detail <- cdc_ct_vax |> ungroup() |>
                      dph_county_date = date,
                      county), by = "county") |>
   mutate(dph_init_only = dph_county_initiated - dph_county_fully,
-         cdc_init_only = cdc_initiated_vaccination - cdc_fully_vaccinated)
+         cdc_init_only = cdc_initiated_vaccination - cdc_fully_vaccinated,
+         dph_two_only = dph_county_fully - dph_additional_dose_received,
+         cdc_two_only = )
 both_sources_state_total <- both_sources_detail |> 
   filter(county != "Resident out of state") |> # probably don't need this
   ungroup() |> 
@@ -403,6 +405,7 @@ for_table <- both_sources |> ungroup() |>
               decimals = 0) |> 
   tab_source_note(glue("CDC data as of {cdc_asof}, CT DPH data as of {dph_asof}")) |> 
   tab_source_note("'fully' in this table refers to one dose of J&J or two does of Moderna or Pfizer.") |> 
+  tab_source_note(paste0("Total population for Connecticut as of 2020 census was ", scales::comma(ct_pop2020), ".")) |> 
   #Apply new style to all column headers
   tab_style(
     locations = cells_column_labels(columns = everything()),
@@ -446,15 +449,17 @@ both_sources_simple <- both_sources |>
   filter(county != "Non-CT resident", county != "Total") |> 
   ungroup() |> 
   select(county, dph_county_fully, cdc_fully_vaccinated, 
-         cdc_init_only,dph_init_only) |> 
-  pivot_longer(cols = dph_county_fully:dph_init_only) |> 
+         cdc_init_only,dph_init_only, cdc_booster, dph_additional_dose_received) |> 
+  pivot_longer(cols = dph_county_fully:dph_additional_dose_received) |> 
   mutate(source = ifelse(str_detect(name, "dph"), "CT DPH", "CDC") |> 
            factor(levels = c("CDC", "CT DPH")),
-         status = ifelse(str_detect(name, "fully"), "Full", "Initial") |> 
-           factor(levels = c("Initial", "Full")),
+         status = ifelse(str_detect(name, "fully"), "Full", 
+                         ifelse(str_detect(name, "init"), 
+                                "Initial", "Booster")) |> 
+           factor(levels = c("Initial", "Full", "Booster")),
          county = factor(county),
          grouping = paste0(source,"-", status) |> 
-           factor(levels = c("CDC-Initial", "CDC-Full", "CT DPH-Initial", "CT DPH-Full")))
+           factor(levels = c("CDC-Initial", "CDC-Full", "CDC-Booster", "CT DPH-Initial", "CT DPH-Full", "CT DPH-Booster")))
 # stacked bar wiith dodge: https://stackoverflow.com/questions/46597278/how-to-plot-a-stacked-and-grouped-bar-chart-in-ggplot/46597859#46597859
 base_col1 <- brewer_pal(palette= "BrBG")(5)[1] #"#a6611a"
 light_col1 <- brewer_pal(palette= "BrBG")(5)[2] #"#dfc27d"
