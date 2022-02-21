@@ -268,6 +268,7 @@ dph_ct_vax_table <-
                      additional_dose_received_percent = additional_dose_received / pop2020)
   )
 ```
+
 ```{r get_cdc_vaccine_counts}
 # https://data.cdc.gov/Vaccinations/COVID-19-Vaccinations-in-the-United-States-County/8xkx-amqh
 # note the approximate date limit that may need to be adjusted 
@@ -306,6 +307,7 @@ cdc_ct_vax_total <- cdc_ct_vax |>
 # ct_vax does because town by town data does.
 
 ```
+
 ```{r combine_cdc_dph}
 both_sources_detail <- cdc_ct_vax |> ungroup() |> 
               mutate(cdc_pop = case_when(
@@ -333,7 +335,7 @@ both_sources_state_total <- both_sources_detail |>
                      # dph_init_only, cdc_init_only, !cdc_date) &
                      where(~((class(.) != "Date") & is.numeric(.))),
                      sum, na.rm = TRUE)) |> 
-  mutate(state = "CT", county = "Total CT", date = both_sources_detail$date[[1]],
+  mutate(state = "CT", county = "Total CT", date = both_sources_detail$dph_county_date[[1]],
          cdc_date = max(both_sources_detail$cdc_date, na.rm = TRUE))
 
 cdc_asof <- format(max(both_sources_detail$cdc_date, na.rm = TRUE), "%d-%b-%Y")
@@ -348,63 +350,71 @@ both_sources0 <- both_sources_detail |> bind_rows(both_sources_state_total) |>
                            "Fairfield", "New Haven", "Middlesex", "New London", 
                            "Address pending", "Total",
                            "Non-CT resident")),
-         full_vax_dif = (cdc_fully_vaccinated - dph_county_fully) / cdc_fully_vaccinated,
+         cdc_second_dose = cdc_fully_vaccinated - cdc_booster,
+         dph_second_dose = dph_county_fully - dph_additional_dose_received,
+         second_vax_dif = (cdc_second_dose - dph_second_dose) / cdc_second_dose,
          init_vax_dif = (cdc_init_only - dph_init_only) / cdc_init_only,
+         booster_vax_dif = (cdc_booster - dph_additional_dose_received) / cdc_booster,
          any_vax_dif = (cdc_initiated_vaccination - dph_county_initiated) / cdc_initiated_vaccination) |> 
   arrange(as.numeric(county))  |> 
-  relocate(county, cdc_fully_vaccinated, dph_county_fully, full_vax_dif,
-           cdc_init_only, dph_init_only, init_vax_dif, any_vax_dif)
+  relocate(county, cdc_init_only, dph_init_only, init_vax_dif, 
+           cdc_second_dose, dph_second_dose, second_vax_dif,
+           cdc_booster, dph_additional_dose_received, booster_vax_dif)
 # let's add calculations
 both_sources <- both_sources0 |> 
   mutate(cdc_fully_pct = cdc_fully_vaccinated / pop2020,
            dph_fully_pct = dph_county_fully / pop2020,
          cdc_booster_pct = cdc_booster / pop2020,
+         cdc_second_pct = cdc_second_dose / pop2020,
+         dph_second_pct = dph_second_dose / pop2020,
          dph_booster_pct = dph_additional_dose_received / pop2020)
 
 for_table <- both_sources |> ungroup() |> 
-  select(county, cdc_fully_vaccinated, dph_county_fully, full_vax_dif,
-         cdc_init_only, dph_init_only, init_vax_dif,
-         cdc_booster, dph_additional_dose_received, 
-         cdc_fully_pct, dph_fully_pct, 
-         cdc_booster_pct,
-         dph_booster_pct
+  select(county, cdc_init_only, dph_init_only, init_vax_dif,
+         cdc_second_dose, dph_second_dose, second_vax_dif,
+         cdc_booster, dph_additional_dose_received, booster_vax_dif
+         # cdc_fully_pct, dph_fully_pct, 
+         # cdc_booster_pct,
+         # dph_booster_pct
   ) |> 
   gt() |> 
   tab_header(title = "Comparison of CDC and CT DPH Vaccination Counts") |> 
-  tab_spanner(label = "two doses",
-              columns = c(cdc_fully_vaccinated, dph_county_fully,
-              full_vax_dif)) |> 
   tab_spanner(label = "initial dose only",
               columns = c(cdc_init_only, dph_init_only,
               init_vax_dif)) |> 
+  tab_spanner(label = "second dose",
+              columns = c(cdc_second_dose, dph_second_dose,
+              second_vax_dif)) |> 
   tab_spanner(label = "booster dose",
-              columns = c(cdc_booster, dph_additional_dose_received)) |> 
-  tab_spanner(label = "vaccination rates",
-              columns = c(cdc_fully_pct, dph_fully_pct,
-                          cdc_booster_pct, dph_booster_pct)) |> 
-  cols_label(cdc_fully_vaccinated = "CDC 'fully'\nvaccinated",
-             dph_county_fully = "CT 'fully'\nvaccinated",
-             full_vax_dif = "CDC / CT DPH\ndifference",
+              columns = c(cdc_booster, dph_additional_dose_received,
+                          booster_vax_dif)) |> 
+  # tab_spanner(label = "vaccination rates",
+  #             columns = c(cdc_fully_pct, dph_fully_pct,
+  #                         cdc_booster_pct, dph_booster_pct)) |>
+  cols_label(cdc_second_dose = "CDC second\ndose",
+             dph_second_dose = "CT second\ndose",
+             booster_vax_dif = "CDC / CT DPH\ndifference",
+             second_vax_dif = "CDC / CT DPH\ndifference",
              init_vax_dif = " CDC / CT DPH\ndifference",
              cdc_init_only = "CDC initial\ndose only",
              dph_init_only = "CT initial\ndose only",
-             cdc_fully_pct = "CDC 'fully'\nvaccinated", 
-             dph_fully_pct = "CT 'fully'\nvaccinated",
-             cdc_booster_pct = "CDC booster", 
-             dph_booster_pct = "CT booster",
+             # cdc_fully_pct = "CDC 'fully'\nvaccinated", 
+             # dph_fully_pct = "CT 'fully'\nvaccinated",
+             # cdc_booster_pct = "CDC booster", 
+             # dph_booster_pct = "CT booster",
              cdc_booster = "CDC booster",
              dph_additional_dose_received = "CT DPH booster") |> 
-  fmt_number(columns = c(cdc_fully_vaccinated, dph_county_fully, cdc_init_only,
+  fmt_number(columns = c(cdc_second_dose, dph_second_dose, cdc_init_only,
                          dph_init_only, cdc_booster, dph_additional_dose_received),
              decimals = 0,
              use_seps = TRUE) |> 
-  fmt_percent(columns = c(init_vax_dif, full_vax_dif),
+  fmt_percent(columns = c(init_vax_dif, second_vax_dif, booster_vax_dif),
               decimals = 0, force_sign = TRUE) |> 
-  fmt_percent(columns = c(cdc_fully_pct, dph_fully_pct,
-                          cdc_booster_pct, dph_booster_pct),
-              decimals = 0) |> 
+  # fmt_percent(columns = c(cdc_fully_pct, dph_fully_pct,
+  #                         cdc_booster_pct, dph_booster_pct),
+  #             decimals = 0) |> 
   tab_source_note(glue("CDC data as of {cdc_asof}, CT DPH data as of {dph_asof}")) |> 
-  tab_source_note("'fully' in this table refers to one dose of J&J or two does of Moderna or Pfizer.") |> 
+  tab_source_note("An initial J&J dose is counted in the `second dose` column rather than in the `initial dose` column.") |> 
   tab_source_note(paste0("Total population for Connecticut as of 2020 census was ", scales::comma(ct_pop2020), ".")) |> 
   #Apply new style to all column headers
   tab_style(
@@ -424,16 +434,87 @@ for_table <- both_sources |> ungroup() |>
   ) 
 ```
 
-This post will compare COVID vaccination rates reported by Connecticut
-Department of Public Health with the reports from the CDC. The goal is 
-to understand how vaccinations are counted and how data makes
-its way into the CDC summaries.
+```{r state_summary_table}
+ct_total <- both_sources |> filter(county == "Total") |> 
+  # ungroup() |> select(-state, -county, -dph_county_date, -cdc_date,
+  ungroup() |> select(
+    cdc_init_only, dph_init_only,
+    cdc_second_dose, dph_second_dose,
+    cdc_booster, dph_additional_dose_received,
+    init_vax_dif, second_vax_dif, booster_vax_dif) |>
+  pivot_longer(cols = everything(), 
+               names_to = "type") |> 
+  mutate(var = case_when(
+    str_detect(type, "init_") ~ "Initial dose only",
+    str_detect(type, "second_") ~ "Two doses",
+    str_detect(type, "booster") | (type == "dph_additional_dose_received") ~ "With booster"
+    ),
+    col_name = case_when(
+      str_detect(type, "_dif") ~ "Difference",
+      str_detect(type, "cdc") ~ "CDC",
+      str_detect(type, "dph") ~ "CT DPH"
+    )) |> 
+  select(col_name, value, var) |> 
+  pivot_wider(id_cols = var, names_from = col_name, values_from = value)
+ct_total <- 
+  bind_rows(ct_total,
+            tibble(var = "Total",
+                     CDC = sum(ct_total$CDC),
+                     `CT DPH` = sum(ct_total$`CT DPH`),
+                     Difference = (CDC - `CT DPH`) / CDC))
+ct_total_table <- ct_total |> 
+    gt() |> 
+  tab_header(title = "Comparison of CDC and CT DPH Vaccination Counts for Connecticut") |> 
+  cols_label(var = "",
+             CDC = "Reported by CDC",
+             `CT DPH` = "Reported by CT",
+             Difference = "% CDC vs CT DPH") |> 
+  fmt_number(columns = c(CDC, `CT DPH`),
+             decimals = 0,
+             use_seps = TRUE) |> 
+  fmt_percent(columns = Difference,
+              decimals = 0, force_sign = TRUE) |> 
+  tab_source_note(glue("CDC data as of {cdc_asof}, CT DPH data as of {dph_asof}")) |> 
+  tab_source_note("An initial J&J dose is counted in the 'two doses' column rather than in the 'initial dose' column.") |> 
+  tab_source_note(paste0("Total population for Connecticut as of 2020 census was ", scales::comma(ct_pop2020), ".")) |> 
+  #Apply new style to all column headers
+  tab_style(
+    locations = cells_column_labels(columns = everything()),
+    style     = list(
+      #Give a thick border below
+      cell_borders(sides = "bottom", weight = px(3)),
+      cell_text(weight = "normal") #Make text bold or normal
+    )
+  ) |> 
+  #Apply different style to the title
+  tab_style(
+    locations = cells_title(groups = "title"),
+    style     = list(
+      cell_text(weight = "bold", size = 24)
+    )
+  ) 
+```
 
-Below are two comparisons of CDC to DPH,
-first with a table and then with a bar chart.
-Until recently "fully vaccinated" referred to individuals with two doses
-of Pfizer or Moderna or one dose of J&J. In this post we'll refer to
-those people as "two does" even if they have had only one dose of J&J.
+Here are the current Connecticut totals from the CDC and from the
+Connecticut Department of Public Health (DPH).
+
+```{r ct-total-table}
+ct_total_table
+```
+
+Note that CDC reports 14% more individuals with some vaccination,
+including 54% more who have received only the initial dose.
+
+This post will to into more detail to compare COVID vaccination rates
+reported by Connecticut Department of Public Health with the reports
+from the CDC. The goal is to understand how vaccinations are counted and
+how data makes its way into the CDC summaries.
+
+Below are two comparisons county-level data from the CDC to DPH, first
+with a table and then with a bar chart. Until recently "fully
+vaccinated" referred to individuals with two doses of Pfizer or Moderna
+or one dose of J&J. In this post we'll refer to those people as "two
+does" even if they have had only one dose of J&J.
 
 ```{r print-table}
 for_table
@@ -448,25 +529,29 @@ show the total population of each county according to the 2020 Census.
 both_sources_simple <- both_sources |> 
   filter(county != "Non-CT resident", county != "Total") |> 
   ungroup() |> 
-  select(county, dph_county_fully, cdc_fully_vaccinated, 
+  select(county, dph_second_dose, cdc_second_dose, 
          cdc_init_only,dph_init_only, cdc_booster, dph_additional_dose_received) |> 
-  pivot_longer(cols = dph_county_fully:dph_additional_dose_received) |> 
+  pivot_longer(cols = dph_second_dose:dph_additional_dose_received) |> 
   mutate(source = ifelse(str_detect(name, "dph"), "CT DPH", "CDC") |> 
            factor(levels = c("CDC", "CT DPH")),
-         status = ifelse(str_detect(name, "fully"), "Full", 
+         status = ifelse(str_detect(name, "second"), "Second", 
                          ifelse(str_detect(name, "init"), 
                                 "Initial", "Booster")) |> 
-           factor(levels = c("Initial", "Full", "Booster")),
+           factor(levels = c("Initial", "Second", "Booster")),
          county = factor(county),
          grouping = paste0(source,"-", status) |> 
-           factor(levels = c("CDC-Initial", "CDC-Full", "CDC-Booster", "CT DPH-Initial", "CT DPH-Full", "CT DPH-Booster")))
+           factor(levels = c("CDC-Initial", "CDC-Second", "CDC-Booster", "CT DPH-Initial", "CT DPH-Second", "CT DPH-Booster")))
 # stacked bar wiith dodge: https://stackoverflow.com/questions/46597278/how-to-plot-a-stacked-and-grouped-bar-chart-in-ggplot/46597859#46597859
-base_col1 <- brewer_pal(palette= "BrBG")(5)[1] #"#a6611a"
-light_col1 <- brewer_pal(palette= "BrBG")(5)[2] #"#dfc27d"
-# #f5f5f5
-light_col2 <- brewer_pal(palette= "BrBG")(5)[4] #"#80cdc1"
-base_col2 <- brewer_pal(palette= "BrBG")(5)[5] #"#018571"
-my_pal <- palette(c(light_col1, light_col2, base_col1, base_col2))
+
+# to see palete:  RColorBrewer::display.brewer.pal(name="BrBG", n = 11)
+one_col1 <- brewer_pal(palette= "BrBG")(11)[2]
+two_col1 <- brewer_pal(palette= "BrBG")(11)[3]
+three_col1 <- brewer_pal(palette= "BrBG")(11)[4]
+
+one_col2 <- brewer_pal(palette= "BrBG")(11)[10]
+two_col2 <- brewer_pal(palette= "BrBG")(11)[9] 
+three_col2 <- brewer_pal(palette= "BrBG")(11)[8]
+my_pal <- palette(c(one_col1, one_col2, two_col1, two_col2, three_col1, three_col2))
 bigsep <-0.2
 barsep<- 0.05 
 barwidth <- (1 - bigsep - barsep) / 2 
@@ -490,10 +575,10 @@ p_vax_bars = ggplot(data = both_sources_simple |> filter(source == "CDC"),
   coord_flip() + xlab(NULL) + ylab("Number Vaccinated") +
   scale_y_continuous(labels = scales::comma) +
   scale_x_reverse(breaks = seq(1, 9), labels = levels(both_sources_simple$county)) +
-  scale_fill_manual(values = c("CDC-Full" = base_col1,
-                               "CDC-Initial" = light_col1, 
-                               "CT DPH-Full" = base_col2,
-                               "CT DPH-Initial" = light_col2), name = NULL)
+  scale_fill_manual(values = c(
+    "CDC-Initial" = three_col1, "CDC-Second" = two_col1, "CDC-Booster" = one_col1,
+    "CT DPH-Initial" = three_col2, "CT DPH-Second" = two_col2, "CT DPH-Booster" = one_col2),
+     name = NULL)
 
   # p_vax_bars + geom_point(data = both_sources |> 
   #              filter(county != "Non-CT resident", county != "Total") |> 
