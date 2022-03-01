@@ -43,7 +43,7 @@ editor_options:
     wrap: 72
 ---
 
-```{r setup, include=FALSE, echo = FALSE} 
+```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE,   message=FALSE, #out.width = "100%",
                       knitr.table.format = "html") 
 # knitr.table.format is for kable. Needed this to get blogdown table to format correctly. 
@@ -125,11 +125,12 @@ covid_estim <- read_csv("https://covidestim.s3.us-east-2.amazonaws.com/latest/st
 #   ungroup() 
 ```
 
-I started publishing this in as a blog post in June 2020. 
-Each weekday I would update that post with the data from Connecticut state sources.
-The blog format never made sense for doing a frequent update of that type of data. I have moved the daily charts into *Projects*. 
-The original post remains. 
-I plan to redirect the old URL for that blog post so that it leads to this project page.
+I started publishing this in as a blog post in June 2020. Each weekday I
+would update that post with the data from Connecticut state sources. The
+blog format never made sense for doing a frequent update of that type of
+data. I have moved the daily charts into *Projects*. The original post
+remains. I plan to redirect the old URL for that blog post so that it
+leads to this project page.
 
 ## Latest Connecticut Data from the Department of Public Health
 
@@ -264,9 +265,11 @@ box_score %>%
 
 ```
 
-See most recent [weekly report](`r dph_reports$url[dph_reports$date == max(dph_reports$date)]`) 
-from the Department of Public Health for detail about cases, hospitalizations,
-and deaths among vaccinated compared with unvaccinated.
+See most recent [weekly
+report](%60r%20dph_reports$url%5Bdph_reports$date%20==%20max(dph_reports$date)%5D%60)
+from the Department of Public Health for detail about cases,
+hospitalizations, and deaths among vaccinated compared with
+unvaccinated.
 
 There is a Connecticut [data tracker
 map](https://portal.ct.gov/Coronavirus/COVID-19-Data-Tracker) that
@@ -424,11 +427,10 @@ p_states_map <- ggplot(data = cdc_covid %>%
 #
 ```
 
-The first plot will
-show the average number of new cases reported each day along with a line
-that displays the rolling seven-day average. Typically there are
-day-of-the-week effects in the reporting so it's best to focus on the
-seven-day average.
+The first plot will show the average number of new cases reported each
+day along with a line that displays the rolling seven-day average.
+Typically there are day-of-the-week effects in the reporting so it's
+best to focus on the seven-day average.
 
 ### New Covid-19 Cases in Connecticut
 
@@ -440,7 +442,7 @@ print(p_new_cases)
 
 ```
 
-<br/><br/><br/> 
+<br/><br/><br/>
 
 ```{r p-rt-live, echo = FALSE, fig.asp = 0.3, fig.cap = "Estimated R<sub>t</sub>"}
 print(p_rt_live) 
@@ -463,24 +465,23 @@ print(p_daily_deaths)
 print(p_hospitalizations)
 ```
 
-<br/> 
-A key issue
-is how fast epidemic is expanding or contracting. One indicator of that
-is to estimate the parameter R<sub>t</sub>, the average number of people
-who become infected by an infectious person. When R<sub>t</sub> is
-greater than 1 the number of daily new cases is increasing, If
-R<sub>t</sub> is less than 1, it is decreasing. See the site
-[covidestim · COVID-19 nowcasting](https://covidestim.org) for an estimate by state of the effective
-value for R<sub>t</sub>. The site is described in [this
+<br/> A key issue is how fast epidemic is expanding or contracting. One
+indicator of that is to estimate the parameter R<sub>t</sub>, the
+average number of people who become infected by an infectious person.
+When R<sub>t</sub> is greater than 1 the number of daily new cases is
+increasing, If R<sub>t</sub> is less than 1, it is decreasing. See the
+site [covidestim · COVID-19 nowcasting](https://covidestim.org) for an
+estimate by state of the effective value for R<sub>t</sub>. The site is
+described in [this
 article](https://www.vox.com/recode/2020/4/21/21227855/coronavirus-spreading-by-state-instagram-effective-reproduction-rate)
 at Vox.com. I don't claim to have the expertise to evaluate the quality
-of the calculation of R at the [covidestim](https://covidestim.org) site, but it 
-seems to jive with other information about the pattern of the epidemic
-among states.
+of the calculation of R at the [covidestim](https://covidestim.org)
+site, but it seems to jive with other information about the pattern of
+the epidemic among states.
 
-I have included R<sub>t</sub> for
-Arizona as well as Connecticut to provide a contrast with a state that
-has lately shown [signs of a growing
+I have included R<sub>t</sub> for Arizona as well as Connecticut to
+provide a contrast with a state that has lately shown [signs of a
+growing
 outbreak](https://www.fox10phoenix.com/news/arizona-medical-experts-alarmed-over-surge-in-covid-19-cases).
 The goal in Connecticut and in the entire New York City area is to keep
 R<sub>t</sub> well under 1. As of
@@ -582,8 +583,8 @@ data to say anything firm about this
 
 ## Nursing Homes
 
-I discussed nursing homes and prisons in the post last June. I have
-not been updating that data since the summer.
+I discussed nursing homes and prisons in the post last June. I have not
+been updating that data since the summer.
 
 ## Variations by County in Connecticut
 
@@ -885,8 +886,8 @@ Below are links to a separate web page by for each of the eight counties
 in Connecticut. Click on the county name for detail about individual
 towns within that county.
 
-|                                                                                                               |                                                                                                             |                                                                                                             |                                                                                                               |
-|---------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+|                                                                                                         |                                                                                                       |                                                                                                       |                                                                                                         |
+|---------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
 | [Litchfield County](/project/covid-19-in-connecticut-2/index_files/county_html/litchfield_summary.html) | [Hartford County](/project/covid-19-in-connecticut-2/index_files/county_html/hartford_summary.html)   | [Tolland County](/project/covid-19-in-connecticut-2/index_files/county_html/tolland_summary.html)     | [Windham County](/project/covid-19-in-connecticut-2/index_files/county_html/windham_summary.html)       |
 | [Fairfield County](/project/covid-19-in-connecticut-2/index_files/county_html/fairfield_summary.html)   | [New Haven County](/project/covid-19-in-connecticut-2/index_files/county_html/new_haven_summary.html) | [Middlesex County](/project/covid-19-in-connecticut-2/index_files/county_html/middlesex_summary.html) | [New London County](/project/covid-19-in-connecticut-2/index_files/county_html/new_london_summary.html) |
 
@@ -951,8 +952,10 @@ towns within that county.
 -   [New York Times Tracking the
     Coronavirus](https://www.nytimes.com/interactive/2020/world/coronavirus-maps.html)
 
--   For Rt I am [using covidestim · COVID-19 nowcasting](https://covidestim.org). I previously used [rt.live](https://rt.live), but they stopped doing estimates and
-referred me to Covid-19 nowcasting. 
+-   For Rt I am [using covidestim · COVID-19
+    nowcasting](https://covidestim.org). I previously used
+    [rt.live](https://rt.live), but they stopped doing estimates and
+    referred me to Covid-19 nowcasting.
 
 -   [Covid ActNow](https://covidactnow.org/?s=61890) I only learned
     about this project today, but it seems quite interesting.
@@ -968,7 +971,7 @@ referred me to Covid-19 nowcasting.
 
 The R code used to download and process the data from Connecticut and
 elsewhere is in the file
-[daily\_ct\_stats](https://github.com/johngoldin/ctcorona/blob/master/R/daily_ct_stats.R).
+[daily_ct_stats](https://github.com/johngoldin/ctcorona/blob/master/R/daily_ct_stats.R).
 This post was created using RMarkdown so the code to create most of the
 figures is in the [.Rmd file for this
 post](https://github.com/johngoldin/can_i_blog_too/blob/master/content/post/2020-06-22-tracking-covid-19-in-connecticut/index.en.Rmd).
@@ -1130,8 +1133,11 @@ update:](https://portal.ct.gov/-/media/Coronavirus/CTDPHCOVID19summary8182020.pd
 > between September 26 and October 8 that are newly reported as part of
 > catch-up reporting.
 
-[Note as of September 30, 2021:](https://portal.ct.gov/-/media/Coronavirus/CTDPHCOVID19summary9302021.pdf)
+[Note as of September 30,
+2021:](https://portal.ct.gov/-/media/Coronavirus/CTDPHCOVID19summary9302021.pdf)
 
-> Today’s total deaths reflects an increase of 146. This total includes 53 deaths newly reported in the
-> last week and a reconciliation of 93 deaths that occurred among Connecticut residents who died out of
-> state. These out of state deaths span the entire course of the pandemic with the majority occurring in 2020.
+> Today's total deaths reflects an increase of 146. This total includes
+> 53 deaths newly reported in the last week and a reconciliation of 93
+> deaths that occurred among Connecticut residents who died out of
+> state. These out of state deaths span the entire course of the
+> pandemic with the majority occurring in 2020.

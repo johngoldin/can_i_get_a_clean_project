@@ -495,20 +495,29 @@ ct_total_table <- ct_total |>
   ) 
 ```
 
-Here are the current Connecticut totals from the CDC and from the
-Connecticut Department of Public Health (DPH).
+In this post I will dig into why CDC and CT Department of Public Health
+(CT DPH) are reporting different COVID-19 vaccine rates for Connecticut.
+The goal is to understand how vaccinations are counted and how data
+makes its way into the CDC summaries. Connecticut DPH is reporting
+tabulations based on [CT
+WiZ](https://portal.ct.gov/DPH/Immunizations/ALL-ABOUT-CT-WiZ), the
+Connecticut immunization information system.
+
+The table below shows the Connecticut COVID-19 vaccination of Connectiut
+residents reported by the CDC and by the Connecticut Department of
+Public Health as of
+`r  max(both_sources_state_total$cdc_date, both_sources_state_total$date)`.
 
 ```{r ct-total-table}
 ct_total_table
 ```
 
-Note that CDC reports 14% more individuals with some vaccination,
-including 54% more who have received only the initial dose.
-
-This post will to into more detail to compare COVID vaccination rates
-reported by Connecticut Department of Public Health with the reports
-from the CDC. The goal is to understand how vaccinations are counted and
-how data makes its way into the CDC summaries.
+The column on the right shows how many more vaccinations are reported by
+the CDC than by CT DPH. Note that CDC reports
+`r ct_total$Difference[nrow(ct_total)] |> scales::percent()` more
+individuals with some vaccination, including
+`r ct_total$Difference[ct_total$var == "Initial dose only"] |> scales::percent()`
+more who have received only the initial dose.
 
 Below are two comparisons county-level data from the CDC to DPH, first
 with a table and then with a bar chart. Until recently "fully
@@ -594,73 +603,64 @@ p_vax_bars = ggplot(data = both_sources_simple |> filter(source == "CDC"),
 print(p_vax_bars)
 ```
 
-This post will compare vaccination counts (and vaccination rates)
-published by the CDC and by the Connecticut Department of Public Health.
-
-First, let's look at a summary of county-by-county COVID vaccinations in
-Connecticut reported by CDC and by CT DPH. After that we will dig into
-why these counts are different.
-
 ```{r county_summaries_by_source, echo = FALSE}
-
 ```
 
-For Connecticut, the CDC reports about 8% more individuals who are fully
-vaccinated than does DPH. Looking at partially vaccinated (one dose of
-Moderna or Pfizer), CDC reports 46% more individuals. Counting things
-can be hard. The details of what is included and how the counts are done
-makes a difference.
-
-This pattern has been observed in other states. There are a number of
-attempts to go into the details of CDC versus state counts for
-particular states. See this [recent analysis of county level counts in
-Wisconsin](https://law.marquette.edu/facultyblog/2021/12/county-level-cdc-and-dhs-vaccination-statistics-for-wisconsin-vary-in-important-ways/).
-See also comments by Washington State on [differences between their
+Overall and county by county the pattern is that CDC reports more people
+vaccinated overall and more people who have received only the first
+dose. This pattern has been observed in other states. There are a number
+of attempts to go into the details of CDC versus state counts for
+particular states. See this [analysis of county level counts in
+Wisconsin](https://law.marquette.edu/facultyblog/2021/12/county-level-cdc-and-dhs-vaccination-statistics-for-wisconsin-vary-in-important-ways/)
+and also comments by Washington State on [differences between their
 counts and
 CDC](https://www.coronavirus.wa.gov/news/vaccine-data-reconciliation-between-state-and-federal-sources-will-take-time).
 
-There seem to be two big issues.
+There are several issues.
 
-The major reason that the CT DPH count are lower is that they do not
-include vaccinations by "federal sources" such as the VA or DOD.
+The major reason that the CT DPH count are lower overall is that DPH
+does not have data on all vaccinations by "federal sources" such as the
+VA or DOD.
 
-> ...does not included doses administered to CT residents by
-> out-of-state providers or by some Federal entities (including
-> Department of Defense, Department of Correction, Department of
-> Veteran's Affairs, Indian Health Service) because they are not yet
-> reported to CT WiZ (the CT immunization Information System)
+> Doses administered by some Federal entities (including Department of
+> Defense, Department of Correction, Department of Veteran's Affairs,
+> Indian Health Service) are not yet reported to CT WiZ.
 
-States may vary as to whether they include data from federal providers
-and whether they have information about vaccination of residents that
-were administered in other states. In neighboring Massachusetts, their
-[vaccination
-report](https://www.mass.gov/doc/daily-covid-19-vaccine-report-january-21-2022/download)
-states that their numbers only included vaccinations reported from the
-Veterans Administration for MA residents as of 11/4/2021. State
-immunization information systems may not have information from all
-providers in the state.
-
-How comprehensive is the information for Connecticut? I don't really
-know. I received my first two doses from a clinic operated by Yale New
-Haven Hospital. My booster dose came from Walgreens. When I looked up my
-vaccination record in CT WiZ I was pleased to see that all three doses
-were recorded (as were my flu shots for 2020 and 2021). I receive my
-primary care through a system that uses the Yale New Haven Hospital
-electronic health record, but in that system my third dose of COVID
-vaccination is *not* recorded. (I'll need to communicate that to them
-separately.)
+How comprehensive is the information for Connecticut? All vaccine
+providers who participate in the COVID-19 vaccination program [are
+required](https://portal.ct.gov/-/media/Coronavirus/20201207-DPH-Order-regarding-reporting-COVID-19-vaccinations.pdf)
+to report vaccinations to CT WiZ within 24 hours. I received my first
+two doses from a clinic operated by Yale New Haven Hospital. My booster
+dose came from Walgreens. When I looked up my vaccination record in CT
+WiZ I was pleased to see that all three doses were recorded (as were my
+flu shots for 2020 and 2021). I receive my primary care through a system
+that uses the Yale New Haven Hospital electronic health record, but in
+that system my third dose of COVID vaccination is *not* recorded. (I'll
+need to communicate that to them separately.)
 
 Another problem for the state totals is the possibility of vaccination
-done out of state. This may be an issue for college students and
-"snowbird" retirees who spend part of the year in different states.
-Also, the state of residence listed at the time of a vaccination for
-such individuals may not be the same place the individual is counted in
-the 2020 census. Uncertainty about residence is an issue for both the
-numerator and denominator of reported vaccination rates by locality.
+done out of state, such as college students, "snowbird" retirees who
+spend part of the year in different states, or workers commuting to a
+neighboring state. Also, the state of residence listed at the time of a
+vaccination for such individuals may not be the same place the
+individual is counted in the 2020 census. Uncertainty about residence is
+an issue for both the numerator and denominator of reported vaccination
+rates by locality.
+
+##### Why does CDC report more individuals as first dose only?
+
+"There are challenges in linking doses when someone is vaccinated in
+different jurisdictions or at different providers because of the need to
+remove personally identifiable information (de-identify) data to protect
+people's privacy," according to a footnote on the CDC's covid vaccine
+data tracker webpage. "This means that, even with the high-quality data
+CDC receives from jurisdictions and federal entities, there are limits
+to how CDC can analyze those data."
 
 This [Kaiser Health
 News](https://khn.org/news/article/cdc-senior-covid-vaccination-rates-appear-inflated/)
-article suggested that CDC vaccination rates may be too high.
+article suggested that CDC vaccination rates may be too high and cited
+the same issues cited in the CDC footnote.
 
 There have been significant issues surrounding data quality throughout
 the COVID pandemic. In 2020 the [COVID Tracking
@@ -668,26 +668,23 @@ Project](https://covidtracking.com) emerged from multiple efforts to try
 to obtain comparable statistics about the path of the epidemic in the
 United States. It was a volunteer effort and suspended operation in
 March 2021 at a point when they felt the data could be obtained from
-$$federal
-sources$$(<https://covidtracking.com/analysis-updates/federal-covid-data-101-how-to-find-data>.
+[federal
+sources](https://covidtracking.com/analysis-updates/federal-covid-data-101-how-to-find-data).
 
-First I'll do a direct comparison of county by county vaccination data
-for Connecticut reported by the CDC and the tallies from the Connecticut
-[Department of Public
+First I'll display a direct comparison of county by county vaccination
+data for Connecticut reported by the CDC and the tallies from the
+Connecticut [Department of Public
 Health](https://data.ct.gov/stories/s/CoVP-COVID-Vaccine-Distribution-Data/bhcd-4mnv/).
 Then I will dig into the known differences between these reports. Both
 the CDC and CT DPH have made a real effort to be transparent about their
 reports. There's quite a bit of information available on the Web
 describing how they are tabulating vaccinations.
 
-### Connecticut Department of Public Health Vaccination Reporting
-
-This post will focus on my home state of Connecticut. DPH reports weekly
-on [vaccinations administered through Connecticut
-providers](https://data.ct.gov/stories/s/CoVP-COVID-Vaccine-Distribution-Data/bhcd-4mnv/).
-The basic source they rely on is the Connec
-
 ### How the CDC Tracks Vaccinations
+
+CDC has a [web
+page](https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html)
+with an overview of the IT systems for tracking vaccinations.
 
 [![Flow of info about vaccinations across
 systems](images/cdc_data_pathway.png "Flow of records of COVID vaccinations")](https://www.cdc.gov/vaccines/covid-19/reporting/downloads/vaccine-administration-data-agreement.pdf)
@@ -767,7 +764,13 @@ its IIS).
 > IZ Gateway allows providers to initiate a query for immunization
 > information from multiple jurisdictions.
 
-## On the General Issue of the Role of Data in Responding to the Pandemic
+### Connecticut Department of Public Health Vaccination Reporting
+
+This post will focus on my home state of Connecticut. DPH reports weekly
+on [vaccinations administered through Connecticut
+providers](https://data.ct.gov/stories/s/CoVP-COVID-Vaccine-Distribution-Data/bhcd-4mnv/).
+The basic source they rely on is the Connec \#\# On the General Issue of
+the Role of Data in Responding to the Pandemic
 
 In January 2022 Bob Wachter did an interview with Eric Topol that
 reviewed the state of pandemic at that moment. Near the end of the
