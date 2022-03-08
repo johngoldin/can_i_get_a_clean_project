@@ -498,20 +498,12 @@ ct_total_table <- ct_total |>
 In this post I will dig into why CDC and CT Department of Public Health
 (CT DPH) are reporting different COVID-19 vaccine rates for Connecticut.
 The goal is to understand how vaccinations are counted and how data
-makes its way into the CDC summaries. Connecticut DPH is reporting
-tabulations based on [CT
-WiZ](https://portal.ct.gov/DPH/Immunizations/ALL-ABOUT-CT-WiZ), the
-Connecticut immunization information system.
+makes its way into the CDC summaries.
 
 The table below shows the Connecticut COVID-19 vaccination of Connectiut
 residents reported by the CDC and by the Connecticut Department of
 Public Health as of
 `r  max(both_sources_state_total$cdc_date, both_sources_state_total$date)`.
-
-```{r ct-total-table}
-ct_total_table
-```
-
 The column on the right shows how many more vaccinations are reported by
 the CDC than by CT DPH. Note that CDC reports
 `r ct_total$Difference[nrow(ct_total)] |> scales::percent()` more
@@ -519,11 +511,16 @@ individuals with some vaccination, including
 `r ct_total$Difference[ct_total$var == "Initial dose only"] |> scales::percent()`
 more who have received only the initial dose.
 
+```{r ct-total-table}
+ct_total_table
+```
+
+Until recently "fully vaccinated" referred to individuals with two doses
+of Pfizer or Moderna or one dose of J&J. In this post we'll refer to
+those people as "two doses" even if they have had only one dose of J&J.
+
 Below are two comparisons county-level data from the CDC to DPH, first
-with a table and then with a bar chart. Until recently "fully
-vaccinated" referred to individuals with two doses of Pfizer or Moderna
-or one dose of J&J. In this post we'll refer to those people as "two
-does" even if they have had only one dose of J&J.
+with a table and then with a bar chart.
 
 ```{r print-table}
 for_table
@@ -606,6 +603,15 @@ print(p_vax_bars)
 ```{r county_summaries_by_source, echo = FALSE}
 ```
 
+#### Where does vaccination data come from?
+
+Connecticut DPH is reporting vaccination tabulations based on [CT
+WiZ](https://portal.ct.gov/DPH/Immunizations/ALL-ABOUT-CT-WiZ), the
+Connecticut immunization information system. CDC gets data from CT DPH,
+but they also get data from other states which may include some
+Connecticut residents plus they also get vaccinations done by federal
+entities that are not reported to CT WiZ.
+
 Overall and county by county the pattern is that CDC reports more people
 vaccinated overall and more people who have received only the first
 dose. This pattern has been observed in other states. There are a number
@@ -636,7 +642,7 @@ WiZ I was pleased to see that all three doses were recorded (as were my
 flu shots for 2020 and 2021). I receive my primary care through a system
 that uses the Yale New Haven Hospital electronic health record, but in
 that system my third dose of COVID vaccination is *not* recorded. (I'll
-need to communicate that to them separately.)
+have to communicated that to them separately.)
 
 Another problem for the state totals is the possibility of vaccination
 done out of state, such as college students, "snowbird" retirees who
@@ -647,7 +653,14 @@ individual is counted in the 2020 census. Uncertainty about residence is
 an issue for both the numerator and denominator of reported vaccination
 rates by locality.
 
-##### Why does CDC report more individuals as first dose only?
+Early in December 2021, Kaiser Health News
+[questioned](<https://khn.org/news/article/cdc-senior-covid-vaccination-rates-appear-inflated/>
+why some senior vaccination rates seemed so high and also noted
+increased in the number of individuals reporting only a first dose.
+Later in December the CDC added a significant footnote to their vaccine
+tracking page.
+
+#### Why does CDC report more individuals as first dose only?
 
 "There are challenges in linking doses when someone is vaccinated in
 different jurisdictions or at different providers because of the need to
@@ -698,7 +711,7 @@ The CDC gives a [full
 discussion](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/reporting-vaccinations.html)
 reasons why it may be hard for them to track different doses of COVID
 vaccines at the national level. That's especially true for boosters
-because there is a long internval after the second dose and a booster is
+because there is a long interval after the second dose and a booster is
 more likely to have been given by a different provider or in a different
 location. The de-identified data that CDC receives does not include the
 identifer that may be in use at the state level.
