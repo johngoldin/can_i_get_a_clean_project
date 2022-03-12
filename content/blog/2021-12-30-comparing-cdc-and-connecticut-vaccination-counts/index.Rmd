@@ -516,7 +516,7 @@ ct_total_table
 ```
 
 Until recently "fully vaccinated" referred to individuals with two doses
-of Pfizer or Moderna or one dose of J&J. In this post we'll refer to
+of Pfizer or Moderna or one dose of J&J. In this post we will refer to
 those people as "two doses" even if they have had only one dose of J&J.
 
 Below are two comparisons county-level data from the CDC to DPH, first
@@ -624,7 +624,7 @@ CDC](https://www.coronavirus.wa.gov/news/vaccine-data-reconciliation-between-sta
 
 There are several issues.
 
-The major reason that the CT DPH count are lower overall is that DPH
+The major reason that the CT DPH counts are lower overall is that DPH
 does not have data on all vaccinations by "federal sources" such as the
 VA or DOD.
 
