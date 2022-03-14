@@ -21,26 +21,36 @@ editor_options:
 <script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 
-<p>In this post I will dig into why CDC and CT Department of Public Health
-(CT DPH) are reporting different COVID-19 vaccine rates for Connecticut.
-The goal is to understand how vaccinations are counted and how data
-makes its way into the CDC summaries.</p>
-<p>The table below shows the Connecticut COVID-19 vaccination of Connectiut
-residents reported by the CDC and by the Connecticut Department of
-Public Health as of
-2022-03-10.
+<style type="text/css">
+    body .main-container {
+      max-width: 2280px !important;
+      width: 1280px !important;
+    }
+    body {
+      max-width: 2280px !important;
+    }
+</style>
+<p>This post will explore why CDC and CT Department of Public Health (CT
+DPH) are reporting different COVID-19 vaccine rates for Connecticut. The
+goal is to understand how vaccinations are counted and how data makes
+its way into the CDC and Connecticut summaries. Below is a direct
+comparison of vaccination data for Connecticut reported by the CDC and
+the tallies from the Connecticut <a href="https://data.ct.gov/stories/s/CoVP-COVID-Vaccine-Distribution-Data/bhcd-4mnv/">Department of Public
+Health</a>
+county by county as of
+2022-03-12.
 The column on the right shows how many more vaccinations are reported by
 the CDC than by CT DPH. Note that CDC reports
 14% more
 individuals with some vaccination, including
 55%
 more who have received only the initial dose.</p>
-<div id="gbhnaxdbxm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="fexymiyujv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#gbhnaxdbxm .gt_table {
+#fexymiyujv .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -65,7 +75,7 @@ more who have received only the initial dose.</p>
   border-left-color: #D3D3D3;
 }
 
-#gbhnaxdbxm .gt_heading {
+#fexymiyujv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -77,7 +87,7 @@ more who have received only the initial dose.</p>
   border-right-color: #D3D3D3;
 }
 
-#gbhnaxdbxm .gt_title {
+#fexymiyujv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -87,7 +97,7 @@ more who have received only the initial dose.</p>
   border-bottom-width: 0;
 }
 
-#gbhnaxdbxm .gt_subtitle {
+#fexymiyujv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -97,13 +107,13 @@ more who have received only the initial dose.</p>
   border-top-width: 0;
 }
 
-#gbhnaxdbxm .gt_bottom_border {
+#fexymiyujv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gbhnaxdbxm .gt_col_headings {
+#fexymiyujv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -118,7 +128,7 @@ more who have received only the initial dose.</p>
   border-right-color: #D3D3D3;
 }
 
-#gbhnaxdbxm .gt_col_heading {
+#fexymiyujv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -138,7 +148,7 @@ more who have received only the initial dose.</p>
   overflow-x: hidden;
 }
 
-#gbhnaxdbxm .gt_column_spanner_outer {
+#fexymiyujv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -150,15 +160,15 @@ more who have received only the initial dose.</p>
   padding-right: 4px;
 }
 
-#gbhnaxdbxm .gt_column_spanner_outer:first-child {
+#fexymiyujv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gbhnaxdbxm .gt_column_spanner_outer:last-child {
+#fexymiyujv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gbhnaxdbxm .gt_column_spanner {
+#fexymiyujv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -170,7 +180,7 @@ more who have received only the initial dose.</p>
   width: 100%;
 }
 
-#gbhnaxdbxm .gt_group_heading {
+#fexymiyujv .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -192,7 +202,7 @@ more who have received only the initial dose.</p>
   vertical-align: middle;
 }
 
-#gbhnaxdbxm .gt_empty_group_heading {
+#fexymiyujv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -207,15 +217,15 @@ more who have received only the initial dose.</p>
   vertical-align: middle;
 }
 
-#gbhnaxdbxm .gt_from_md > :first-child {
+#fexymiyujv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gbhnaxdbxm .gt_from_md > :last-child {
+#fexymiyujv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gbhnaxdbxm .gt_row {
+#fexymiyujv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -234,7 +244,7 @@ more who have received only the initial dose.</p>
   overflow-x: hidden;
 }
 
-#gbhnaxdbxm .gt_stub {
+#fexymiyujv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -246,7 +256,7 @@ more who have received only the initial dose.</p>
   padding-left: 12px;
 }
 
-#gbhnaxdbxm .gt_summary_row {
+#fexymiyujv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -256,7 +266,7 @@ more who have received only the initial dose.</p>
   padding-right: 5px;
 }
 
-#gbhnaxdbxm .gt_first_summary_row {
+#fexymiyujv .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -266,7 +276,7 @@ more who have received only the initial dose.</p>
   border-top-color: #D3D3D3;
 }
 
-#gbhnaxdbxm .gt_grand_summary_row {
+#fexymiyujv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -276,7 +286,7 @@ more who have received only the initial dose.</p>
   padding-right: 5px;
 }
 
-#gbhnaxdbxm .gt_first_grand_summary_row {
+#fexymiyujv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -286,11 +296,11 @@ more who have received only the initial dose.</p>
   border-top-color: #D3D3D3;
 }
 
-#gbhnaxdbxm .gt_striped {
+#fexymiyujv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gbhnaxdbxm .gt_table_body {
+#fexymiyujv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -299,7 +309,7 @@ more who have received only the initial dose.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#gbhnaxdbxm .gt_footnotes {
+#fexymiyujv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -313,13 +323,13 @@ more who have received only the initial dose.</p>
   border-right-color: #D3D3D3;
 }
 
-#gbhnaxdbxm .gt_footnote {
+#fexymiyujv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#gbhnaxdbxm .gt_sourcenotes {
+#fexymiyujv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -333,41 +343,41 @@ more who have received only the initial dose.</p>
   border-right-color: #D3D3D3;
 }
 
-#gbhnaxdbxm .gt_sourcenote {
+#fexymiyujv .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#gbhnaxdbxm .gt_left {
+#fexymiyujv .gt_left {
   text-align: left;
 }
 
-#gbhnaxdbxm .gt_center {
+#fexymiyujv .gt_center {
   text-align: center;
 }
 
-#gbhnaxdbxm .gt_right {
+#fexymiyujv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gbhnaxdbxm .gt_font_normal {
+#fexymiyujv .gt_font_normal {
   font-weight: normal;
 }
 
-#gbhnaxdbxm .gt_font_bold {
+#fexymiyujv .gt_font_bold {
   font-weight: bold;
 }
 
-#gbhnaxdbxm .gt_font_italic {
+#fexymiyujv .gt_font_italic {
   font-style: italic;
 }
 
-#gbhnaxdbxm .gt_super {
+#fexymiyujv .gt_super {
   font-size: 65%;
 }
 
-#gbhnaxdbxm .gt_footnote_marks {
+#fexymiyujv .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -390,25 +400,25 @@ more who have received only the initial dose.</p>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">Initial dose only</td>
-<td class="gt_row gt_right">576,055</td>
+<td class="gt_row gt_right">576,646</td>
 <td class="gt_row gt_right">260,456</td>
 <td class="gt_row gt_right">+55&percnt;</td></tr>
     <tr><td class="gt_row gt_left">Two doses</td>
-<td class="gt_row gt_right">1,391,166</td>
+<td class="gt_row gt_right">1,386,641</td>
 <td class="gt_row gt_right">1,206,436</td>
 <td class="gt_row gt_right">+13&percnt;</td></tr>
     <tr><td class="gt_row gt_left">With booster</td>
-<td class="gt_row gt_right">1,390,905</td>
+<td class="gt_row gt_right">1,397,186</td>
 <td class="gt_row gt_right">1,410,556</td>
 <td class="gt_row gt_right">&minus;1&percnt;</td></tr>
     <tr><td class="gt_row gt_left">Total</td>
-<td class="gt_row gt_right">3,358,126</td>
+<td class="gt_row gt_right">3,360,473</td>
 <td class="gt_row gt_right">2,877,448</td>
 <td class="gt_row gt_right">+14&percnt;</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="4">CDC data as of 10-Mar-2022, CT DPH data as of 09-Mar-2022</td>
+      <td class="gt_sourcenote" colspan="4">CDC data as of 12-Mar-2022, CT DPH data as of 09-Mar-2022</td>
     </tr>
     <tr>
       <td class="gt_sourcenote" colspan="4">An initial J&amp;J dose is counted in the 'two doses' column rather than in the 'initial dose' column.</td>
@@ -423,14 +433,14 @@ more who have received only the initial dose.</p>
 <p>Until recently “fully vaccinated” referred to individuals with two doses
 of Pfizer or Moderna or one dose of J&amp;J. In this post we will refer to
 those people as “two doses” even if they have had only one dose of J&amp;J.</p>
-<p>Below are two comparisons county-level data from the CDC to DPH, first
-with a table and then with a bar chart.</p>
-<div id="ogyvtgiypb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<p>Below are comparisons of county-level data from the CDC to DPH, first
+with a table and then displayed via a bar chart.</p>
+<div id="xqxjinaoxb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ogyvtgiypb .gt_table {
+#xqxjinaoxb .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -455,7 +465,7 @@ with a table and then with a bar chart.</p>
   border-left-color: #D3D3D3;
 }
 
-#ogyvtgiypb .gt_heading {
+#xqxjinaoxb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -467,7 +477,7 @@ with a table and then with a bar chart.</p>
   border-right-color: #D3D3D3;
 }
 
-#ogyvtgiypb .gt_title {
+#xqxjinaoxb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -477,7 +487,7 @@ with a table and then with a bar chart.</p>
   border-bottom-width: 0;
 }
 
-#ogyvtgiypb .gt_subtitle {
+#xqxjinaoxb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -487,13 +497,13 @@ with a table and then with a bar chart.</p>
   border-top-width: 0;
 }
 
-#ogyvtgiypb .gt_bottom_border {
+#xqxjinaoxb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ogyvtgiypb .gt_col_headings {
+#xqxjinaoxb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -508,7 +518,7 @@ with a table and then with a bar chart.</p>
   border-right-color: #D3D3D3;
 }
 
-#ogyvtgiypb .gt_col_heading {
+#xqxjinaoxb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -528,7 +538,7 @@ with a table and then with a bar chart.</p>
   overflow-x: hidden;
 }
 
-#ogyvtgiypb .gt_column_spanner_outer {
+#xqxjinaoxb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -540,15 +550,15 @@ with a table and then with a bar chart.</p>
   padding-right: 4px;
 }
 
-#ogyvtgiypb .gt_column_spanner_outer:first-child {
+#xqxjinaoxb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ogyvtgiypb .gt_column_spanner_outer:last-child {
+#xqxjinaoxb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ogyvtgiypb .gt_column_spanner {
+#xqxjinaoxb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -560,7 +570,7 @@ with a table and then with a bar chart.</p>
   width: 100%;
 }
 
-#ogyvtgiypb .gt_group_heading {
+#xqxjinaoxb .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -582,7 +592,7 @@ with a table and then with a bar chart.</p>
   vertical-align: middle;
 }
 
-#ogyvtgiypb .gt_empty_group_heading {
+#xqxjinaoxb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -597,15 +607,15 @@ with a table and then with a bar chart.</p>
   vertical-align: middle;
 }
 
-#ogyvtgiypb .gt_from_md > :first-child {
+#xqxjinaoxb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ogyvtgiypb .gt_from_md > :last-child {
+#xqxjinaoxb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ogyvtgiypb .gt_row {
+#xqxjinaoxb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -624,7 +634,7 @@ with a table and then with a bar chart.</p>
   overflow-x: hidden;
 }
 
-#ogyvtgiypb .gt_stub {
+#xqxjinaoxb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -636,7 +646,7 @@ with a table and then with a bar chart.</p>
   padding-left: 12px;
 }
 
-#ogyvtgiypb .gt_summary_row {
+#xqxjinaoxb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -646,7 +656,7 @@ with a table and then with a bar chart.</p>
   padding-right: 5px;
 }
 
-#ogyvtgiypb .gt_first_summary_row {
+#xqxjinaoxb .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -656,7 +666,7 @@ with a table and then with a bar chart.</p>
   border-top-color: #D3D3D3;
 }
 
-#ogyvtgiypb .gt_grand_summary_row {
+#xqxjinaoxb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -666,7 +676,7 @@ with a table and then with a bar chart.</p>
   padding-right: 5px;
 }
 
-#ogyvtgiypb .gt_first_grand_summary_row {
+#xqxjinaoxb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -676,11 +686,11 @@ with a table and then with a bar chart.</p>
   border-top-color: #D3D3D3;
 }
 
-#ogyvtgiypb .gt_striped {
+#xqxjinaoxb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ogyvtgiypb .gt_table_body {
+#xqxjinaoxb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -689,7 +699,7 @@ with a table and then with a bar chart.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#ogyvtgiypb .gt_footnotes {
+#xqxjinaoxb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -703,13 +713,13 @@ with a table and then with a bar chart.</p>
   border-right-color: #D3D3D3;
 }
 
-#ogyvtgiypb .gt_footnote {
+#xqxjinaoxb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ogyvtgiypb .gt_sourcenotes {
+#xqxjinaoxb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -723,41 +733,41 @@ with a table and then with a bar chart.</p>
   border-right-color: #D3D3D3;
 }
 
-#ogyvtgiypb .gt_sourcenote {
+#xqxjinaoxb .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ogyvtgiypb .gt_left {
+#xqxjinaoxb .gt_left {
   text-align: left;
 }
 
-#ogyvtgiypb .gt_center {
+#xqxjinaoxb .gt_center {
   text-align: center;
 }
 
-#ogyvtgiypb .gt_right {
+#xqxjinaoxb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ogyvtgiypb .gt_font_normal {
+#xqxjinaoxb .gt_font_normal {
   font-weight: normal;
 }
 
-#ogyvtgiypb .gt_font_bold {
+#xqxjinaoxb .gt_font_bold {
   font-weight: bold;
 }
 
-#ogyvtgiypb .gt_font_italic {
+#xqxjinaoxb .gt_font_italic {
   font-style: italic;
 }
 
-#ogyvtgiypb .gt_super {
+#xqxjinaoxb .gt_super {
   font-size: 65%;
 }
 
-#ogyvtgiypb .gt_footnote_marks {
+#xqxjinaoxb .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -789,124 +799,124 @@ dose only</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-weight: normal;">CT initial
 dose only</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-weight: normal;"> CDC / CT DPH
-difference</th>
+dif</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-weight: normal;">CDC second
 dose</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-weight: normal;">CT second
 dose</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-weight: normal;">CDC / CT DPH
-difference</th>
+dif</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-weight: normal;">CDC booster</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-weight: normal;">CT DPH booster</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-weight: normal;">CDC / CT DPH
-difference</th>
+dif</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_center">Litchfield</td>
-<td class="gt_row gt_right">21,002</td>
+<td class="gt_row gt_right">21,010</td>
 <td class="gt_row gt_right">10,787</td>
 <td class="gt_row gt_right">+49&percnt;</td>
-<td class="gt_row gt_right">63,890</td>
+<td class="gt_row gt_right">63,744</td>
 <td class="gt_row gt_right">58,278</td>
 <td class="gt_row gt_right">+9&percnt;</td>
-<td class="gt_row gt_right">71,266</td>
+<td class="gt_row gt_right">71,475</td>
 <td class="gt_row gt_right">73,955</td>
-<td class="gt_row gt_right">&minus;4&percnt;</td></tr>
+<td class="gt_row gt_right">&minus;3&percnt;</td></tr>
     <tr><td class="gt_row gt_center">Hartford</td>
-<td class="gt_row gt_right">106,248</td>
+<td class="gt_row gt_right">106,289</td>
 <td class="gt_row gt_right">57,733</td>
 <td class="gt_row gt_right">+46&percnt;</td>
-<td class="gt_row gt_right">322,923</td>
+<td class="gt_row gt_right">321,936</td>
 <td class="gt_row gt_right">293,470</td>
 <td class="gt_row gt_right">+9&percnt;</td>
-<td class="gt_row gt_right">345,775</td>
+<td class="gt_row gt_right">347,132</td>
 <td class="gt_row gt_right">358,797</td>
-<td class="gt_row gt_right">&minus;4&percnt;</td></tr>
+<td class="gt_row gt_right">&minus;3&percnt;</td></tr>
     <tr><td class="gt_row gt_center">Tolland</td>
-<td class="gt_row gt_right">14,243</td>
+<td class="gt_row gt_right">14,252</td>
 <td class="gt_row gt_right">7,678</td>
 <td class="gt_row gt_right">+46&percnt;</td>
-<td class="gt_row gt_right">42,753</td>
+<td class="gt_row gt_right">42,696</td>
 <td class="gt_row gt_right">40,983</td>
 <td class="gt_row gt_right">+4&percnt;</td>
-<td class="gt_row gt_right">57,354</td>
+<td class="gt_row gt_right">57,451</td>
 <td class="gt_row gt_right">59,517</td>
 <td class="gt_row gt_right">&minus;4&percnt;</td></tr>
     <tr><td class="gt_row gt_center">Windham</td>
-<td class="gt_row gt_right">11,560</td>
+<td class="gt_row gt_right">11,552</td>
 <td class="gt_row gt_right">6,653</td>
 <td class="gt_row gt_right">+42&percnt;</td>
-<td class="gt_row gt_right">38,283</td>
+<td class="gt_row gt_right">38,243</td>
 <td class="gt_row gt_right">34,556</td>
 <td class="gt_row gt_right">+10&percnt;</td>
-<td class="gt_row gt_right">35,897</td>
+<td class="gt_row gt_right">35,983</td>
 <td class="gt_row gt_right">36,605</td>
 <td class="gt_row gt_right">&minus;2&percnt;</td></tr>
     <tr><td class="gt_row gt_center">Fairfield</td>
-<td class="gt_row gt_right">189,372</td>
+<td class="gt_row gt_right">189,729</td>
 <td class="gt_row gt_right">89,285</td>
 <td class="gt_row gt_right">+53&percnt;</td>
-<td class="gt_row gt_right">406,057</td>
+<td class="gt_row gt_right">403,844</td>
 <td class="gt_row gt_right">351,974</td>
 <td class="gt_row gt_right">+13&percnt;</td>
-<td class="gt_row gt_right">352,996</td>
+<td class="gt_row gt_right">355,757</td>
 <td class="gt_row gt_right">366,378</td>
-<td class="gt_row gt_right">&minus;4&percnt;</td></tr>
+<td class="gt_row gt_right">&minus;3&percnt;</td></tr>
     <tr><td class="gt_row gt_center">New Haven</td>
-<td class="gt_row gt_right">146,457</td>
+<td class="gt_row gt_right">146,569</td>
 <td class="gt_row gt_right">59,724</td>
 <td class="gt_row gt_right">+59&percnt;</td>
-<td class="gt_row gt_right">332,829</td>
+<td class="gt_row gt_right">332,083</td>
 <td class="gt_row gt_right">286,007</td>
 <td class="gt_row gt_right">+14&percnt;</td>
-<td class="gt_row gt_right">321,649</td>
+<td class="gt_row gt_right">322,797</td>
 <td class="gt_row gt_right">327,702</td>
 <td class="gt_row gt_right">&minus;2&percnt;</td></tr>
     <tr><td class="gt_row gt_center">Middlesex</td>
-<td class="gt_row gt_right">21,485</td>
+<td class="gt_row gt_right">21,486</td>
 <td class="gt_row gt_right">9,323</td>
 <td class="gt_row gt_right">+57&percnt;</td>
-<td class="gt_row gt_right">58,694</td>
+<td class="gt_row gt_right">58,527</td>
 <td class="gt_row gt_right">50,183</td>
-<td class="gt_row gt_right">+15&percnt;</td>
-<td class="gt_row gt_right">75,474</td>
+<td class="gt_row gt_right">+14&percnt;</td>
+<td class="gt_row gt_right">75,809</td>
 <td class="gt_row gt_right">78,744</td>
 <td class="gt_row gt_right">&minus;4&percnt;</td></tr>
     <tr><td class="gt_row gt_center">New London</td>
-<td class="gt_row gt_right">36,576</td>
+<td class="gt_row gt_right">36,602</td>
 <td class="gt_row gt_right">16,729</td>
 <td class="gt_row gt_right">+54&percnt;</td>
-<td class="gt_row gt_right">105,245</td>
+<td class="gt_row gt_right">105,091</td>
 <td class="gt_row gt_right">82,975</td>
 <td class="gt_row gt_right">+21&percnt;</td>
-<td class="gt_row gt_right">103,058</td>
+<td class="gt_row gt_right">103,314</td>
 <td class="gt_row gt_right">105,069</td>
 <td class="gt_row gt_right">&minus;2&percnt;</td></tr>
     <tr><td class="gt_row gt_center">Address pending</td>
-<td class="gt_row gt_right">29,112</td>
+<td class="gt_row gt_right">29,157</td>
 <td class="gt_row gt_right">2,544</td>
 <td class="gt_row gt_right">+91&percnt;</td>
-<td class="gt_row gt_right">20,492</td>
+<td class="gt_row gt_right">20,477</td>
 <td class="gt_row gt_right">8,010</td>
 <td class="gt_row gt_right">+61&percnt;</td>
-<td class="gt_row gt_right">27,436</td>
+<td class="gt_row gt_right">27,468</td>
 <td class="gt_row gt_right">3,789</td>
 <td class="gt_row gt_right">+86&percnt;</td></tr>
     <tr><td class="gt_row gt_center">Total</td>
-<td class="gt_row gt_right">576,055</td>
+<td class="gt_row gt_right">576,646</td>
 <td class="gt_row gt_right">260,456</td>
 <td class="gt_row gt_right">+55&percnt;</td>
-<td class="gt_row gt_right">1,391,166</td>
+<td class="gt_row gt_right">1,386,641</td>
 <td class="gt_row gt_right">1,206,436</td>
 <td class="gt_row gt_right">+13&percnt;</td>
-<td class="gt_row gt_right">1,390,905</td>
+<td class="gt_row gt_right">1,397,186</td>
 <td class="gt_row gt_right">1,410,556</td>
 <td class="gt_row gt_right">&minus;1&percnt;</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="10">CDC data as of 10-Mar-2022, CT DPH data as of 09-Mar-2022</td>
+      <td class="gt_sourcenote" colspan="10">CDC data as of 12-Mar-2022, CT DPH data as of 09-Mar-2022</td>
     </tr>
     <tr>
       <td class="gt_sourcenote" colspan="10">An initial J&amp;J dose is counted in the `second dose` column rather than in the `initial dose` column.</td>
@@ -918,107 +928,22 @@ difference</th>
   
 </table>
 </div>
-<p>Below is a visual summary of the same vaccination counts by source. The
-brown bars show vaccinations reported by CDC and the green bars show
-Connecticut Department of Health. The figure includes a data point to
-show the total population of each county according to the 2020 Census.</p>
+<p>Below is a visual summary of the same vaccination counts reported in the
+table. The brown bars show vaccinations reported by CDC and the green
+bars show Connecticut Department of Health. The figure includes a data
+point to show the total population of each county according to the 2020
+Census.</p>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/county_plot2-1.png" width="672" /></p>
-<div id="where-does-vaccination-data-come-from" class="section level4">
-<h4>Where does vaccination data come from?</h4>
-<p>Connecticut DPH is reporting vaccination tabulations based on <a href="https://portal.ct.gov/DPH/Immunizations/ALL-ABOUT-CT-WiZ">CT
-WiZ</a>, the
-Connecticut immunization information system. CDC gets data from CT DPH,
-but they also get data from other states which may include some
-Connecticut residents plus they also get vaccinations done by federal
-entities that are not reported to CT WiZ.</p>
-<p>Overall and county by county the pattern is that CDC reports more people
-vaccinated overall and more people who have received only the first
-dose. This pattern has been observed in other states. There are a number
-of attempts to go into the details of CDC versus state counts for
-particular states. See this <a href="https://law.marquette.edu/facultyblog/2021/12/county-level-cdc-and-dhs-vaccination-statistics-for-wisconsin-vary-in-important-ways/">analysis of county level counts in
-Wisconsin</a>
-and also comments by Washington State on <a href="https://www.coronavirus.wa.gov/news/vaccine-data-reconciliation-between-state-and-federal-sources-will-take-time">differences between their
-counts and
-CDC</a>.</p>
-<p>There are several issues.</p>
-<p>The major reason that the CT DPH counts are lower overall is that DPH
-does not have data on all vaccinations by “federal sources” such as the
-VA or DOD.</p>
-<blockquote>
-<p>Doses administered by some Federal entities (including Department of
-Defense, Department of Correction, Department of Veteran’s Affairs,
-Indian Health Service) are not yet reported to CT WiZ.</p>
-</blockquote>
-<p>How comprehensive is the information for Connecticut? All vaccine
-providers who participate in the COVID-19 vaccination program <a href="https://portal.ct.gov/-/media/Coronavirus/20201207-DPH-Order-regarding-reporting-COVID-19-vaccinations.pdf">are
-required</a>
-to report vaccinations to CT WiZ within 24 hours. I received my first
-two doses from a clinic operated by Yale New Haven Hospital. My booster
-dose came from Walgreens. When I looked up my vaccination record in CT
-WiZ I was pleased to see that all three doses were recorded (as were my
-flu shots for 2020 and 2021). I receive my primary care through a system
-that uses the Yale New Haven Hospital electronic health record, but in
-that system my third dose of COVID vaccination is <em>not</em> recorded. (I’ll
-have to communicated that to them separately.)</p>
-<p>Another problem for the state totals is the possibility of vaccination
-done out of state, such as college students, “snowbird” retirees who
-spend part of the year in different states, or workers commuting to a
-neighboring state. Also, the state of residence listed at the time of a
-vaccination for such individuals may not be the same place the
-individual is counted in the 2020 census. Uncertainty about residence is
-an issue for both the numerator and denominator of reported vaccination
-rates by locality.</p>
-<p>Early in December 2021, Kaiser Health News
-[questioned](<a href="https://khn.org/news/article/cdc-senior-covid-vaccination-rates-appear-inflated/" class="uri">https://khn.org/news/article/cdc-senior-covid-vaccination-rates-appear-inflated/</a>
-why some senior vaccination rates seemed so high and also noted
-increased in the number of individuals reporting only a first dose.
-Later in December the CDC added a significant footnote to their vaccine
-tracking page.</p>
-</div>
 <div id="why-does-cdc-report-more-individuals-as-first-dose-only" class="section level4">
 <h4>Why does CDC report more individuals as first dose only?</h4>
-<p>“There are challenges in linking doses when someone is vaccinated in
-different jurisdictions or at different providers because of the need to
-remove personally identifiable information (de-identify) data to protect
-people’s privacy,” according to a footnote on the CDC’s covid vaccine
-data tracker webpage. “This means that, even with the high-quality data
-CDC receives from jurisdictions and federal entities, there are limits
-to how CDC can analyze those data.”</p>
-<p>This <a href="https://khn.org/news/article/cdc-senior-covid-vaccination-rates-appear-inflated/">Kaiser Health
-News</a>
-article suggested that CDC vaccination rates may be too high and cited
-the same issues cited in the CDC footnote.</p>
-<p>There have been significant issues surrounding data quality throughout
-the COVID pandemic. In 2020 the <a href="https://covidtracking.com">COVID Tracking
-Project</a> emerged from multiple efforts to try
-to obtain comparable statistics about the path of the epidemic in the
-United States. It was a volunteer effort and suspended operation in
-March 2021 at a point when they felt the data could be obtained from
-<a href="https://covidtracking.com/analysis-updates/federal-covid-data-101-how-to-find-data">federal
-sources</a>.</p>
-<p>First I’ll display a direct comparison of county by county vaccination
-data for Connecticut reported by the CDC and the tallies from the
-Connecticut <a href="https://data.ct.gov/stories/s/CoVP-COVID-Vaccine-Distribution-Data/bhcd-4mnv/">Department of Public
-Health</a>.
-Then I will dig into the known differences between these reports. Both
-the CDC and CT DPH have made a real effort to be transparent about their
-reports. There’s quite a bit of information available on the Web
-describing how they are tabulating vaccinations.</p>
-</div>
-<div id="how-the-cdc-tracks-vaccinations" class="section level3">
-<h3>How the CDC Tracks Vaccinations</h3>
-<p>CDC has a <a href="https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html">web
-page</a>
-with an overview of the IT systems for tracking vaccinations.</p>
-<p><a href="https://www.cdc.gov/vaccines/covid-19/reporting/downloads/vaccine-administration-data-agreement.pdf"><img src="images/cdc_data_pathway.png" title="Flow of records of COVID vaccinations" alt="Flow of info about vaccinations across systems" /></a></p>
-<p>In 2020 before vaccines were ready for distribution, plans were made
-about tracking the COVID vaccines.</p>
-</div>
-<div id="difficulties-in-counting-fully-vaccinated" class="section level3">
-<h3>Difficulties in Counting “Fully” Vaccinated</h3>
-<p>The CDC gives a <a href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/reporting-vaccinations.html">full
-discussion</a>
-reasons why it may be hard for them to track different doses of COVID
+<p>Early in December 2021, Kaiser Health News
+<a href="https://khn.org/news/article/cdc-senior-covid-vaccination-rates-appear-inflated/">questioned</a>
+why some senior vaccination rates seemed so high and also noted
+increased in the number of individuals reporting only a first dose.</p>
+<p>Later in December the CDC added a significant footnote to their vaccine
+tracking page gives a
+<a href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/reporting-vaccinations.html">full discussion</a>
+related to why it may be hard for them to track different doses of COVID
 vaccines at the national level. That’s especially true for boosters
 because there is a long interval after the second dose and a booster is
 more likely to have been given by a different provider or in a different
@@ -1056,6 +981,68 @@ to be their first dose when reported. This is just one example of how
 CDC’s data may over-estimate first doses and under-estimate booster
 doses</p>
 </blockquote>
+<p>Overall and county by county the pattern is that CDC reports more people
+vaccinated overall and more people who have received only the first
+dose. This pattern has been observed in other states. There are a number
+of attempts to go into the details of CDC versus state counts for
+particular states. See this <a href="https://law.marquette.edu/facultyblog/2021/12/county-level-cdc-and-dhs-vaccination-statistics-for-wisconsin-vary-in-important-ways/">analysis of county level counts in
+Wisconsin</a>
+and also comments by Washington State on <a href="https://www.coronavirus.wa.gov/news/vaccine-data-reconciliation-between-state-and-federal-sources-will-take-time">differences between their
+counts and
+CDC</a>.</p>
+</div>
+<div id="where-does-vaccination-data-come-from" class="section level4">
+<h4>Where does vaccination data come from?</h4>
+<p>To try to understand possible weakness in how CDC distinguishes
+among first dose, second dose, and boosters, it’s necessary to
+examine the details of how the data gets to the CDC. This will
+underscore some limits in the reports at the state level as well.</p>
+<p>Both the CDC and CT DPH have made a real effort to be transparent about
+their reports. There’s quite a bit of information available on the Web
+describing how they are tabulating vaccinations.</p>
+<p>Connecticut DPH is reporting vaccination tabulations based on <a href="https://portal.ct.gov/DPH/Immunizations/ALL-ABOUT-CT-WiZ">CT
+WiZ</a>, the
+Connecticut immunization information system. CDC gets data from CT DPH,
+but they also get data from other states which may include some
+Connecticut residents plus they also get vaccinations done by federal
+entities that are not reported to CT WiZ.</p>
+<p>There are several issues.</p>
+<p>The major reason that the CT DPH counts are lower overall is that DPH
+does not have data on all vaccinations by “federal sources” such as the
+VA or DOD.</p>
+<blockquote>
+<p>Doses administered by some Federal entities (including Department of
+Defense, Department of Correction, Department of Veteran’s Affairs,
+Indian Health Service) are not yet reported to CT WiZ.</p>
+</blockquote>
+<p>How comprehensive is the information for Connecticut? All vaccine
+providers who participate in the COVID-19 vaccination program <a href="https://portal.ct.gov/-/media/Coronavirus/20201207-DPH-Order-regarding-reporting-COVID-19-vaccinations.pdf">are
+required</a>
+to report vaccinations to CT WiZ within 24 hours. I received my first
+two doses from a clinic operated by Yale New Haven Hospital. My booster
+dose came from Walgreens. When I looked up my vaccination record in CT
+WiZ I was pleased to see that all three doses were recorded (as were my
+flu shots for 2020 and 2021). I receive my primary care through a system
+that uses the Yale New Haven Hospital electronic health record, but in
+that system my third dose of COVID vaccination is <em>not</em> recorded. (I’ll
+have to communicated that to them separately.)</p>
+<p>Another problem for the state totals is the possibility of vaccination
+done out of state, such as college students, “snowbird” retirees who
+spend part of the year in different states, or workers commuting to a
+neighboring state. Also, the state of residence listed at the time of a
+vaccination for such individuals may not be the same place the
+individual is counted in the 2020 census. Uncertainty about residence is
+an issue for both the numerator and denominator of reported vaccination
+rates by locality.</p>
+</div>
+<div id="how-the-cdc-tracks-vaccinations" class="section level3">
+<h3>How the CDC Tracks Vaccinations</h3>
+<p>CDC has a <a href="https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html">web
+page</a>
+with an overview of the IT systems for tracking vaccinations.</p>
+<p><a href="https://www.cdc.gov/vaccines/covid-19/reporting/downloads/vaccine-administration-data-agreement.pdf"><img src="images/cdc_data_pathway.png" title="Flow of records of COVID vaccinations" alt="Flow of info about vaccinations across systems" /></a></p>
+<p>In 2020 before vaccines were ready for distribution, plans were made
+about tracking the COVID vaccines.</p>
 <p>CDC provides an <a href="https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html">overview of IT systems for tracking COVID
 vaccinations</a>.
 The information architecture depends on 64 Immunization Information
@@ -1084,13 +1071,16 @@ IZ Gateway allows providers to initiate a query for immunization
 information from multiple jurisdictions.</p>
 </blockquote>
 </div>
-<div id="connecticut-department-of-public-health-vaccination-reporting" class="section level3">
-<h3>Connecticut Department of Public Health Vaccination Reporting</h3>
-<p>This post will focus on my home state of Connecticut. DPH reports weekly
-on <a href="https://data.ct.gov/stories/s/CoVP-COVID-Vaccine-Distribution-Data/bhcd-4mnv/">vaccinations administered through Connecticut
-providers</a>.
-The basic source they rely on is the Connec ## On the General Issue of
-the Role of Data in Responding to the Pandemic</p>
+<div id="general-issues-with-tracking-covid-data" class="section level3">
+<h3>General Issues with Tracking COVID Data</h3>
+<p>There have been significant issues surrounding data quality throughout
+the COVID pandemic. In 2020 the <a href="https://covidtracking.com">COVID Tracking
+Project</a> emerged from multiple efforts to try
+to obtain comparable statistics about the path of the epidemic in the
+United States. It was a volunteer effort and suspended operation in
+March 2021 at a point when they felt the data could be obtained from
+<a href="https://covidtracking.com/analysis-updates/federal-covid-data-101-how-to-find-data">federal
+sources</a>.</p>
 <p>In January 2022 Bob Wachter did an interview with Eric Topol that
 reviewed the state of pandemic at that moment. Near the end of the
 interview, there’s an interesting section where BW asks about why the US
@@ -1125,24 +1115,24 @@ basically are unwilling to accept that data even though there’s not
 data here in this country, because, like for example, right now we
 want to know whether these Omicron boosters, how well they’re working
 to prevent hospitalizations and deaths. And when do they wane? When
-does their protection <span class="math display">\[wane?\]</span>. Those people who are getting
-hospitalized who had a third shot, what’s going on there? We were
-promised by the CDC in May that they would track every breakthrough
-hospitalization and death. Never happened. And so we don’t have
-critical data. We have 150,000-plus people in the hospital. And I have
-begged at the HHS level that we have granular data on each of those
-people. Their vaccination status, which vaccine, when they got it,
-their age, their co-existing conditions, and all the basal stuff,
-right? And they say, “Well, we’re gonna look into it.” Even though it
-can be mandated by HHS authority. So we have just a dreadful situation
-here where we don’t have real-time capture of data. The only data that
-gets posted on the CDC is a month old, and it’s de minimus about
-things like hospitalizations or deaths, and this is unacceptable. If
-you’re gonna go in a pandemic and try to deliver and guidance, you
-have to have data. That’s how you develop trust. That’s how you have
-the best navigation system. And we don’t have it. But the most
-important thing to me, Bob, is there’s no seeming will to get one. And
-that is distressing and it has to change.</p>
+does their protection wane? Those people who are getting hospitalized
+who had a third shot, what’s going on there? We were promised by the
+CDC in May that they would track every breakthrough hospitalization
+and death. Never happened. And so we don’t have critical data. We have
+150,000-plus people in the hospital. And I have begged at the HHS
+level that we have granular data on each of those people. Their
+vaccination status, which vaccine, when they got it, their age, their
+co-existing conditions, and all the basal stuff, right? And they say,
+“Well, we’re gonna look into it.” Even though it can be mandated by
+HHS authority. So we have just a dreadful situation here where we
+don’t have real-time capture of data. The only data that gets posted
+on the CDC is a month old, and it’s de minimus about things like
+hospitalizations or deaths, and this is unacceptable. If you’re gonna
+go in a pandemic and try to deliver and guidance, you have to have
+data. That’s how you develop trust. That’s how you have the best
+navigation system. And we don’t have it. But the most important thing
+to me, Bob, is there’s no seeming will to get one. And that is
+distressing and it has to change.</p>
 <p>BW: Why do you think that is?</p>
 <p>ET: Well, the main thing to me is that we have a Secretary of HHS, who
 came from California, the attorney general, he hasn’t shown up for the
@@ -1181,11 +1171,8 @@ world-leading, and the absolute gold standard in pandemic
 surveillance."</p>
 </blockquote>
 <p>{{% tweet "1483062311971704833" %}}</p>
-</div>
-<div id="section" class="section level3">
-<h3></h3>
 <p>Would better data tracking have made a difference in fighting the
-pandemic in the US? Possibly not. But individuals and local governments
+pandemic in the US? Perhaps not. But individuals and local governments
 have been struggling to figure out best practices while the facts are
 uncertain and knowledge is still being developed.</p>
 </div>
