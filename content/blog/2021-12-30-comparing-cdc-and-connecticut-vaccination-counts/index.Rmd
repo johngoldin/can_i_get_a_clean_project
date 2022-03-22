@@ -92,30 +92,30 @@ source('~/Documents/R_local_repos/ctcorona/R/setup_ct_table.R')
 
 ```{r get_dph_vaccine_counts}
 # statewide by age with booster count: https://data.ct.gov/Health-and-Human-Services/COVID-19-Vaccinations-by-Age-Group/vjim-iz5e
-# so far this is the only dph dataset with boosters
-dph_vaccine_total_detail <- read_delim("https://data.ct.gov/api/views/vjim-iz5e/rows.tsv",
-    delim = "\t", escape_double = FALSE, 
-    col_types = cols(`Additional Dose Received Count` = col_double(), 
-        `Additional Dose Received Percent` = col_double(), 
-        Date = col_date(format = "%m/%d/%Y")), 
-    trim_ws = TRUE) |> 
-  rename(dph_age_group = `Age group`, population = Population,
-         dph_initiated_vaccine = `At least one dose`,
-         dph_fully_vaccinated = `Fully Vaccinated`,
-         dph_booster = `Additional Dose Received Count`, dph_date = Date) |> 
-    mutate(dph_initiated_only = dph_initiated_vaccine - dph_fully_vaccinated) |> 
-  mutate(across(c(population, dph_initiated_vaccine, dph_fully_vaccinated, dph_booster, dph_initiated_only), 
-                ~ ifelse(is.na(.x), 0, .x))) |> 
-  filter(dph_date == max(dph_date, na.rm = TRUE))
-  
-dph_vaccine_by_total <- dph_vaccine_total_detail |>
-  group_by(dph_date) |>
-  summarise(dph_fully_vaccinated = sum(dph_fully_vaccinated),
-            dph_initiated_vaccine = sum(dph_initiated_vaccine),
-            dph_initiated_only = sum(dph_initiated_only),
-            dph_booster = sum(dph_booster, na.rm = TRUE),
-            dph_population = sum(population, na.rm = TRUE),
-            .groups = "drop")
+# # so far this is the only dph dataset with boosters [no, now i get booster data from dph]
+# dph_vaccine_total_detail <- read_delim("https://data.ct.gov/api/views/vjim-iz5e/rows.tsv",
+#     delim = "\t", escape_double = FALSE, 
+#     col_types = cols(`Additional Dose Received Count` = col_double(), 
+#         `Additional Dose Received Percent` = col_double(), 
+#         Date = col_date(format = "%m/%d/%Y")), 
+#     trim_ws = TRUE) |> 
+#   rename(dph_age_group = `Age group`, population = Population,
+#          dph_initiated_vaccine = `At least one dose`,
+#          dph_fully_vaccinated = `Fully Vaccinated`,
+#          dph_booster = `Additional Dose Received Count`, dph_date = Date) |> 
+#     mutate(dph_initiated_only = dph_initiated_vaccine - dph_fully_vaccinated) |> 
+#   mutate(across(c(population, dph_initiated_vaccine, dph_fully_vaccinated, dph_booster, dph_initiated_only), 
+#                 ~ ifelse(is.na(.x), 0, .x))) |> 
+#   filter(dph_date == max(dph_date, na.rm = TRUE))
+#   
+# dph_vaccine_by_total <- dph_vaccine_total_detail |>
+#   group_by(dph_date) |>
+#   summarise(dph_fully_vaccinated = sum(dph_fully_vaccinated),
+#             dph_initiated_vaccine = sum(dph_initiated_vaccine),
+#             dph_initiated_only = sum(dph_initiated_only),
+#             dph_booster = sum(dph_booster, na.rm = TRUE),
+#             dph_population = sum(population, na.rm = TRUE),
+#             .groups = "drop")
 # CT DPH Vaccinations by County: https://data.ct.gov/Health-and-Human-Services/COVID-19-Vaccinations-by-County/5g42-tpzq
 # as of Feb 12, additional_dose_received not yet in dataset.
 dph_vaccine_by_county <- read.socrata(
@@ -280,6 +280,24 @@ dph_ct_vax_table <-
 ```
 
 ```{r get_cdc_vaccine_counts}
+cdc_vax <- read.socrata(
+  validateUrl(str_c("https://data.cdc.gov/resource/8xkx-amqh.json",
+                    "?$where=date='2022-01-15T00:00:00.000'&$limit=5000"),
+              app_token = 
+                Sys.getenv("CTDATA_APP1_TOKEN"))) |>
+  as_tibble() |>
+  mutate(date = as.Date(date),
+         across(c(series_complete_yes, series_complete_pop_pct, booster_doses,
+                  administered_dose1_recip, administered_dose1_pop_pct),
+                as.numeric)) |>
+  rename(cdc_fully_pct = series_complete_pop_pct,
+         cdc_fully_vaccinated = series_complete_yes,
+         cdc_booster = booster_doses,
+         cdc_initiated_vaccination = administered_dose1_recip,
+         cdc_initiated_pct = administered_dose1_pop_pct) |>
+  relocate(date, cdc_fully_vaccinated, cdc_fully_pct,
+           cdc_initiated_vaccination, cdc_initiated_pct, cdc_booster) 
+
 # https://data.cdc.gov/Vaccinations/COVID-19-Vaccinations-in-the-United-States-County/8xkx-amqh
 # note the approximate date limit that may need to be adjusted 
 # Using date  and state limit in socrata query to speed things up.
@@ -723,6 +741,15 @@ vaccination for such individuals may not be the same place the
 individual is counted in the 2020 census. Uncertainty about residence is
 an issue for both the numerator and denominator of reported vaccination
 rates by locality.
+
+### Comparison with Polling Data
+
+There are many opinion polls that ask about COVID vaccination.
+Unfortunate polling questions do not seem to distinguish among first dose, second dose,
+and booster dose. For example, Pew has published a 
+
+![Polling](https://www.pewresearch.org/wp-content/uploads/2021/09/FT_21.09.13_benchmarkingPollsVaccination.png?h=640)
+
 
 ### How the CDC Tracks Vaccinations
 
