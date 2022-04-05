@@ -355,7 +355,7 @@ both_sources_detail <- cdc_ct_vax |> ungroup() |>
   mutate(dph_init_only = dph_county_initiated - dph_county_fully,
          cdc_init_only = cdc_initiated_vaccination - cdc_fully_vaccinated,
          dph_two_only = dph_county_fully - dph_additional_dose_received,
-         cdc_two_only = )
+         cdc_two_only = cdc_fully_vaccinated - cdc_booster)
 both_sources_state_total <- both_sources_detail |> 
   filter(county != "Resident out of state") |> # probably don't need this
   ungroup() |> 
@@ -533,7 +533,7 @@ comparison of vaccination data for Connecticut reported by the CDC and
 the tallies from the Connecticut [Department of Public
 Health](https://data.ct.gov/stories/s/CoVP-COVID-Vaccine-Distribution-Data/bhcd-4mnv/)
 county by county as of
-`r  max(both_sources_state_total$cdc_date, both_sources_state_total$date)`.
+`r  cdc_asof`.
 The column on the right shows how many more vaccinations are reported by
 the CDC than by CT DPH. Note that CDC reports
 `r ct_total$Difference[nrow(ct_total)] |> scales::percent()` more
