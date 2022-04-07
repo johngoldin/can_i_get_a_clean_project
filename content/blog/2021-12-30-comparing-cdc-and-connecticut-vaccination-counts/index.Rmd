@@ -642,10 +642,20 @@ print(p_vax_bars)
 Early in December 2021, Kaiser Health News
 [questioned](https://khn.org/news/article/cdc-senior-covid-vaccination-rates-appear-inflated/)
 why some senior vaccination rates seemed so high and also noted
-increased in the number of individuals reporting only a first dose.
+increases in the number of individuals reporting only a first dose.
+
+Overall and county by county the pattern is that CDC reports more people
+vaccinated overall and more people who have received only the first
+dose. This pattern has been observed in other states. There are a number
+of attempts to go into the details of CDC versus state counts for
+particular states. See this [analysis of county level counts in
+Wisconsin](https://law.marquette.edu/facultyblog/2021/12/county-level-cdc-and-dhs-vaccination-statistics-for-wisconsin-vary-in-important-ways/)
+and also comments by Washington State on [differences between their
+counts and
+CDC](https://www.coronavirus.wa.gov/news/vaccine-data-reconciliation-between-state-and-federal-sources-will-take-time).
 
 Later in December the CDC added a significant footnote to their vaccine
-tracking page gives a 
+tracking page that gives a 
 [full discussion](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/reporting-vaccinations.html)
 related to why it may be hard for them to track different doses of COVID
 vaccines at the national level. That's especially true for boosters
@@ -682,16 +692,6 @@ identifer that may be in use at the state level.
 > to be their first dose when reported. This is just one example of how
 > CDC's data may over-estimate first doses and under-estimate booster
 > doses
-
-Overall and county by county the pattern is that CDC reports more people
-vaccinated overall and more people who have received only the first
-dose. This pattern has been observed in other states. There are a number
-of attempts to go into the details of CDC versus state counts for
-particular states. See this [analysis of county level counts in
-Wisconsin](https://law.marquette.edu/facultyblog/2021/12/county-level-cdc-and-dhs-vaccination-statistics-for-wisconsin-vary-in-important-ways/)
-and also comments by Washington State on [differences between their
-counts and
-CDC](https://www.coronavirus.wa.gov/news/vaccine-data-reconciliation-between-state-and-federal-sources-will-take-time).
 
 #### Where does vaccination data come from?
 
