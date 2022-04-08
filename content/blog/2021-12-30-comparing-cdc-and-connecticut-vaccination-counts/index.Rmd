@@ -528,7 +528,9 @@ ct_total_table <- ct_total |>
 This post will explore why CDC and CT Department of Public Health (CT
 DPH) are reporting different COVID-19 vaccine rates for Connecticut. The
 goal is to understand how vaccinations are counted and how data makes
-its way into the CDC and Connecticut summaries. Below is a direct
+its way into the CDC and Connecticut summaries. 
+
+Below is a direct
 comparison of vaccination data for Connecticut reported by the CDC and
 the tallies from the Connecticut [Department of Public
 Health](https://data.ct.gov/stories/s/CoVP-COVID-Vaccine-Distribution-Data/bhcd-4mnv/)
@@ -639,11 +641,6 @@ print(p_vax_bars)
 
 #### Why does CDC report more individuals as first dose only?
 
-Early in December 2021, Kaiser Health News
-[questioned](https://khn.org/news/article/cdc-senior-covid-vaccination-rates-appear-inflated/)
-why some senior vaccination rates seemed so high and also noted
-increases in the number of individuals reporting only a first dose.
-
 Overall and county by county the pattern is that CDC reports more people
 vaccinated overall and more people who have received only the first
 dose. This pattern has been observed in other states. There are a number
@@ -654,11 +651,16 @@ and also comments by Washington State on [differences between their
 counts and
 CDC](https://www.coronavirus.wa.gov/news/vaccine-data-reconciliation-between-state-and-federal-sources-will-take-time).
 
+Early in December 2021, Kaiser Health News
+[questioned](https://khn.org/news/article/cdc-senior-covid-vaccination-rates-appear-inflated/)
+why some senior vaccination rates seemed so high and also noted
+increases in the number of individuals reporting only a first dose.
+
 Later in December the CDC added a significant footnote to their vaccine
-tracking page that gives a 
-[full discussion](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/reporting-vaccinations.html)
-related to why it may be hard for them to track different doses of COVID
-vaccines at the national level. That's especially true for boosters
+tracking page that gives a discussion of 
+[why it may be hard for them to track different doses of COVID
+vaccines](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/reporting-vaccinations.html)
+at the national level. That's especially true for boosters
 because there is a long interval after the second dose and a booster is
 more likely to have been given by a different provider or in a different
 location. The de-identified data that CDC receives does not include the
@@ -722,9 +724,9 @@ VA or DOD.
 > Indian Health Service) are not yet reported to CT WiZ.
 
 How comprehensive is the information for Connecticut? All vaccine
-providers who participate in the COVID-19 vaccination program [are
-required](https://portal.ct.gov/-/media/Coronavirus/20201207-DPH-Order-regarding-reporting-COVID-19-vaccinations.pdf)
-to report vaccinations to CT WiZ within 24 hours. I received my first
+providers who participate in the COVID-19 vaccination program 
+[are required to report vaccinations to CT WiZ within 24 hours](https://portal.ct.gov/-/media/Coronavirus/20201207-DPH-Order-regarding-reporting-COVID-19-vaccinations.pdf). 
+For example, I received my first
 two doses from a clinic operated by Yale New Haven Hospital. My booster
 dose came from Walgreens. When I looked up my vaccination record in CT
 WiZ I was pleased to see that all three doses were recorded (as were my
@@ -753,19 +755,15 @@ and booster dose. For example, Pew has published a
 
 ### How the CDC Tracks Vaccinations
 
-CDC has a [web
+In 2020 before vaccines were ready for distribution, plans were made
+about tracking the COVID vaccines.CDC has a [web
 page](https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html)
-with an overview of the IT systems for tracking vaccinations.
+with an overview of the planned IT systems for tracking vaccinations.
 
 [![Flow of info about vaccinations across
 systems](images/cdc_data_pathway.png "Flow of records of COVID vaccinations")](https://www.cdc.gov/vaccines/covid-19/reporting/downloads/vaccine-administration-data-agreement.pdf)
 
-In 2020 before vaccines were ready for distribution, plans were made
-about tracking the COVID vaccines.
-
-CDC provides an [overview of IT systems for tracking COVID
-vaccinations](https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html).
-The information architecture depends on 64 Immunization Information
+The CDC vaccine information architecture depends on 64 Immunization Information
 Systems (IIS), which are mostly state based. The system was develop
 before COVID and was primarily aimed at childhood immunizations, but
 always covered other immunizations as well. That's why I can see my many
