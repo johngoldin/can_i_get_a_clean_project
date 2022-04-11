@@ -747,8 +747,8 @@ rates by locality.
 ### Comparison with Polling Data
 
 There are many opinion polls that ask about COVID vaccination.
-Unfortunate polling questions do not seem to distinguish among first dose, second dose,
-and booster dose. For example, Pew has published a 
+Unfortunately polling questions often do not distinguish among first dose, second dose,
+and booster dose. For example, Pew has published a   FINISH THIS SECTION!!!
 
 ![Polling](https://www.pewresearch.org/wp-content/uploads/2021/09/FT_21.09.13_benchmarkingPollsVaccination.png?h=640)
 
@@ -756,23 +756,25 @@ and booster dose. For example, Pew has published a
 ### How the CDC Tracks Vaccinations
 
 In 2020 before vaccines were ready for distribution, plans were made
-about tracking the COVID vaccines.CDC has a [web
+to track the COVID vaccines. CDC has a [web
 page](https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html)
-with an overview of the planned IT systems for tracking vaccinations.
+with an overview of the planned IT systems for tracking vaccinations and
+an elaborate chart that describe the plan for data flows. Keep in
+mind that this chart apparently represents a goal rather a description
+of what is actually happening.
 
 [![Flow of info about vaccinations across
 systems](images/cdc_data_pathway.png "Flow of records of COVID vaccinations")](https://www.cdc.gov/vaccines/covid-19/reporting/downloads/vaccine-administration-data-agreement.pdf)
 
 The CDC vaccine information architecture depends on 64 Immunization Information
 Systems (IIS), which are mostly state based. The system was develop
-before COVID and was primarily aimed at childhood immunizations, but
-always covered other immunizations as well. That's why I can see my many
+before COVID and was primarily aimed at childhood immunizations (but
+always covered other immunizations as well). That's why I can see many
 of my non-COVID vaccinations in my Connecticut IIS (CT WiZ).
 
-They describe a lot of detail about the legal process.
-
-It looks like there are supposed to be [explicit
-provision](https://www.cdc.gov/vaccines/covid-19/reporting/iz-gateway/gateway-qa.html)
+Their plan describe a lot of detail about the legal process.
+It looks like there are supposed to be 
+[explicit legal provision](https://www.cdc.gov/vaccines/covid-19/reporting/iz-gateway/gateway-qa.html)
 for how data goes from federal providers (such as DOD) to the state (via
 its IIS).
 
