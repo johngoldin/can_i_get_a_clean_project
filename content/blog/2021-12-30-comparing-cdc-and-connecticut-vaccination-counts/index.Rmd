@@ -695,6 +695,10 @@ identifer that may be in use at the state level.
 > CDC's data may over-estimate first doses and under-estimate booster
 > doses
 
+In December 2021 there were a number of articles that discussed
+issues with the quality of the CDC vaccination tabulations
+(for example, [Matt Yglesias](https://www.slowboring.com/p/the-cdcs-vaccine-data-is-all-wrong?s=w)).
+
 #### Where does vaccination data come from?
 
 To try to understand possible weakness in how CDC distinguishes
@@ -774,7 +778,7 @@ of my non-COVID vaccinations in my Connecticut IIS (CT WiZ).
 
 Their plan describe a lot of detail about the legal process.
 It looks like there are supposed to be 
-[explicit legal provision](https://www.cdc.gov/vaccines/covid-19/reporting/iz-gateway/gateway-qa.html)
+[explicit legal agreemenets](https://www.cdc.gov/vaccines/covid-19/reporting/iz-gateway/gateway-qa.html)
 for how data goes from federal providers (such as DOD) to the state (via
 its IIS).
 
@@ -794,6 +798,43 @@ its IIS).
 > The Provider-Initiated Multijurisdictional Data Exchange component of
 > IZ Gateway allows providers to initiate a query for immunization
 > information from multiple jurisdictions.
+
+The theory is that the IZ Gateway is a central hub through
+which data can move back and forth among the various
+state-based IIS's.
+I don't have an understanding of what is actually happening, but
+my impression is that for the most part the agreements have not
+been made to exchange this data and that data mostly goes
+one-way from the state IIS to the central IZ Gateway. As a result,
+states IIS's do not learn about out of state vaccinations of their
+residents. Vaccinations by federal agencies are recorded via
+VAMS. That goes into to the IZ Gateway but does not seem to be
+passed on the state IIS's. 
+
+The planning diagram shown above has lots of multi-way arrows,
+but in practice the arrows seem to go on way into the IZ Gateway
+and dead end there. That limits the comprehensiveness of the
+reporting done by state agencies such as the CT Department of Public Health.
+
+#### Is "Privacy Theater" Hobbling the Data?
+
+It appears that one major problem for the CDC analysts is
+that they do not have access to all the identifying information
+that is reported in from the state IIS's. That makes it hard
+to identify whether a particular shot is a first shot or
+a follow-on shot.
+
+There is an [HHS Privacy Assessment](https://www.hhs.gov/sites/default/files/cdc-ncird-immunization-datalake-and-data-storefront-izdl.pdf)
+that describes in detail the data that goes from state IIS's into the
+central system. This includes information that identifies individuals
+such as name, date of birth, and contact information.
+There's exists a central national database that contains
+individually identified inoculation data. But that is
+not the database used by CDC analysts to tabulate
+that vaccination rates by state and county.
+Before tabulation, there is an additional step
+that creates another database with most individual
+identifying information redacted. 
 
 ### General Issues with Tracking COVID Data
 
