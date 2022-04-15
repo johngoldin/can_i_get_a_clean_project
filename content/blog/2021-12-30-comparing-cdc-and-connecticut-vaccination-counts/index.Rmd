@@ -93,31 +93,33 @@ source('~/Documents/R_local_repos/ctcorona/R/setup_ct_table.R')
 ```{r get_dph_vaccine_counts}
 # statewide by age with booster count: https://data.ct.gov/Health-and-Human-Services/COVID-19-Vaccinations-by-Age-Group/vjim-iz5e
 # # so far this is the only dph dataset with boosters [no, now i get booster data from dph]
-# dph_vaccine_total_detail <- read_delim("https://data.ct.gov/api/views/vjim-iz5e/rows.tsv",
-#     delim = "\t", escape_double = FALSE, 
-#     col_types = cols(`Additional Dose Received Count` = col_double(), 
-#         `Additional Dose Received Percent` = col_double(), 
-#         Date = col_date(format = "%m/%d/%Y")), 
-#     trim_ws = TRUE) |> 
-#   rename(dph_age_group = `Age group`, population = Population,
-#          dph_initiated_vaccine = `At least one dose`,
-#          dph_fully_vaccinated = `Fully Vaccinated`,
-#          dph_booster = `Additional Dose Received Count`, dph_date = Date) |> 
-#     mutate(dph_initiated_only = dph_initiated_vaccine - dph_fully_vaccinated) |> 
-#   mutate(across(c(population, dph_initiated_vaccine, dph_fully_vaccinated, dph_booster, dph_initiated_only), 
-#                 ~ ifelse(is.na(.x), 0, .x))) |> 
-#   filter(dph_date == max(dph_date, na.rm = TRUE))
-#   
-# dph_vaccine_by_total <- dph_vaccine_total_detail |>
-#   group_by(dph_date) |>
-#   summarise(dph_fully_vaccinated = sum(dph_fully_vaccinated),
-#             dph_initiated_vaccine = sum(dph_initiated_vaccine),
-#             dph_initiated_only = sum(dph_initiated_only),
-#             dph_booster = sum(dph_booster, na.rm = TRUE),
-#             dph_population = sum(population, na.rm = TRUE),
-#             .groups = "drop")
+dph_vaccine_age_total_detail <- read_delim("https://data.ct.gov/api/views/vjim-iz5e/rows.tsv",
+    delim = "\t", escape_double = FALSE,
+    col_types = cols(`Additional Dose Received Count` = col_double(),
+        `Additional Dose Received Percent` = col_double(),
+        Date = col_date(format = "%m/%d/%Y")),
+    trim_ws = TRUE) |>
+  rename(dph_age_group = `Age group`, population = Population,
+         dph_initiated_vaccine = `At least one dose`,
+         dph_fully_vaccinated = `Fully Vaccinated`,
+         dph_booster = `Additional Dose Received Count`, dph_date = Date) |>
+    mutate(dph_initiated_only = dph_initiated_vaccine - dph_fully_vaccinated) |>
+  mutate(across(c(population, dph_initiated_vaccine, dph_fully_vaccinated, dph_booster, dph_initiated_only),
+                ~ ifelse(is.na(.x), 0, .x))) |>
+  filter(dph_date == max(dph_date, na.rm = TRUE))
+
+dph_vaccine_by_age_total <- dph_vaccine_age_total_detail |>
+  group_by(dph_date) |>
+  summarise(dph_fully_vaccinated = sum(dph_fully_vaccinated),
+            dph_initiated_vaccine = sum(dph_initiated_vaccine),
+            dph_initiated_only = sum(dph_initiated_only),
+            dph_booster = sum(dph_booster, na.rm = TRUE),
+            dph_population = sum(population, na.rm = TRUE),
+            .groups = "drop")
+
 # CT DPH Vaccinations by County: https://data.ct.gov/Health-and-Human-Services/COVID-19-Vaccinations-by-County/5g42-tpzq
 # as of Feb 12, additional_dose_received not yet in dataset.
+# no booster info!!!
 dph_vaccine_by_county <- read.socrata(
   str_c("https://data.ct.gov/resource/5g42-tpzq.json",
         "?$where=date>'2021-12-13T00:00:00.000'"),
@@ -134,6 +136,7 @@ dph_vaccine_by_county <- read.socrata(
   filter(date == max(date, na.rm = TRUE))
 
 # does not include all age range groups (ie under 5) so cannot sum to get total pop
+# gngw-upkw includes age and town
 dph_vaccine_by_age_full <- read.socrata(
   str_c("https://data.ct.gov/resource/gngw-ukpw.json",
         "?$where=dateupdated>'2021-12-13T00:00:00.000'"),
@@ -232,8 +235,8 @@ dph_vaccine_by_town <- dph_vaccine_by_age_full |>
     select(town, dph_total_pop = total_pop), by = "town") |>
   left_join(total2020, by = "town") |>
   left_join(county_town, by = "town")
-# xx <- read.socrata("https://data.ct.gov/resource/5g42-tpzq.json")
 
+# Some time in early 2022 dph_vaccine_by_town stopped including non-CT residents
 dph_ct_vax <- dph_vaccine_by_town |> 
   group_by(town) |>  # need this in case date not same for all towns
   filter(date == max(date), town != "xResident out of state") |> 
@@ -523,6 +526,15 @@ ct_total_table <- ct_total |>
       cell_text(weight = "bold", size = 24)
     )
   ) 
+
+usethis::ui_info("dph_vaccine_by_age_total: fully = {usethis::ui_value(sum(dph_vaccine_by_age_total$dph_fully_vaccinated, na.rm = TRUE) )} booster={usethis::ui_value(sum(dph_vaccine_by_age_total$dph_booster, na.rm = TRUE))}")
+usethis::ui_info("dph_vaccine_by_county: fully = {usethis::ui_value(sum(dph_vaccine_by_county$fully_vaccinated, na.rm = TRUE) )} ")
+usethis::ui_info("dph_vaccine_by_age_full_total: fully = {usethis::ui_value(sum(dph_vaccine_by_age_full_total$fully_vaccinated, na.rm = TRUE) )} booster={usethis::ui_value(sum(dph_vaccine_by_age_full_total$additional_dose_received, na.rm = TRUE))}")
+usethis::ui_info("dph_vaccine_by_town: fully = {usethis::ui_value(sum(dph_vaccine_by_town$fully_vaccinated, na.rm = TRUE) )} booster={usethis::ui_value(sum(dph_vaccine_by_town$additional_dose_received, na.rm = TRUE))}")
+
+
+
+
 ```
 
 This post will explore why CDC and CT Department of Public Health (CT
@@ -641,8 +653,8 @@ print(p_vax_bars)
 
 #### Why does CDC report more individuals as first dose only?
 
-Overall and county by county the pattern is that CDC reports more people
-vaccinated overall and more people who have received only the first
+State-wide and county by county the pattern is that CDC reports more people
+vaccinated with at least one dose and more people who have received only the first
 dose. This pattern has been observed in other states. There are a number
 of attempts to go into the details of CDC versus state counts for
 particular states. See this [analysis of county level counts in
@@ -742,11 +754,12 @@ have to communicated that to them separately.)
 Another problem for the state totals is the possibility of vaccination
 done out of state, such as college students, "snowbird" retirees who
 spend part of the year in different states, or workers commuting to a
-neighboring state. Also, the state of residence listed at the time of a
-vaccination for such individuals may not be the same place the
+neighboring state. When someone gets a vaccination they are most
+likely to give their residence as their current location at the time
+of the vaccination. That may not be the same place the
 individual is counted in the 2020 census. Uncertainty about residence is
 an issue for both the numerator and denominator of reported vaccination
-rates by locality.
+rates by locality. 
 
 ### Comparison with Polling Data
 
@@ -815,6 +828,10 @@ The planning diagram shown above has lots of multi-way arrows,
 but in practice the arrows seem to go on way into the IZ Gateway
 and dead end there. That limits the comprehensiveness of the
 reporting done by state agencies such as the CT Department of Public Health.
+
+<a href="https://www.aphl.org/programs/informatics/Pages/COVID-19-resources.aspx">
+<img class="ms-rtePosition-2" alt="COVID-19 Data Flow on AIMS Platform" src="https://www.aphl.org/PublishingImages/INFO-2020-AIMS-COVID-19-Data-Flow-Infographic.jpg" style="margin&#58;10px 15px;width&#58;495px;height&#58;387px;"/>
+</a>
 
 #### Is "Privacy Theater" Hobbling the Data?
 
@@ -931,6 +948,8 @@ Scripps Research Institute
 > BW: Yeah, that makes sense.
 
 ```{r include-video, echo = FALSE}
+
+# HTML for APHL diagram: <img class="ms-rtePosition-2" alt="COVID-19 Data Flow on AIMS Platform" src="/PublishingImages/INFO-2020-AIMS-COVID-19-Data-Flow-Infographic.jpg" style="margin&#58;10px 15px;width&#58;330px;height&#58;258px;"/>
 blogdown::shortcode("youtube", "lCAvFHd3B38?start=2883")
 ```
 
