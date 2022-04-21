@@ -538,8 +538,8 @@ usethis::ui_info("dph_vaccine_by_town: fully = {usethis::ui_value(sum(dph_vaccin
 ```
 
 This post will explore why CDC and CT Department of Public Health (CT
-DPH) are reporting different COVID-19 vaccine rates for Connecticut. The
-goal is to understand how vaccinations are counted and how data makes
+DPH) are reporting different COVID-19 vaccination counts for Connecticut. The
+goal is to understand how the data makes
 its way into the CDC and Connecticut summaries. 
 
 Below is a direct
@@ -675,8 +675,8 @@ vaccines](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/reporting-vaccinati
 at the national level. That's especially true for boosters
 because there is a long interval after the second dose and a booster is
 more likely to have been given by a different provider or in a different
-location. The de-identified data that CDC receives does not include the
-identifer that may be in use at the state level.
+location. The de-identified data that CDC analysts work with does not include the
+identifier that may be in use at the state level.
 
 > To protect the privacy of vaccine recipients, CDC receives data
 > without any personally identifiable information (de-identified data)
@@ -772,13 +772,18 @@ and booster dose. For example, Pew has published a   FINISH THIS SECTION!!!
 
 ### How the CDC Tracks Vaccinations
 
-In 2020 before vaccines were ready for distribution, plans were made
-to track the COVID vaccines. CDC has a [web
+Internet searching of the CDC web site turns up a lot of
+information about CDC tracking COVID vaccinations, but almost all of it
+refers to planning done during late 2020 in preparatioin for the roll
+out of vaccines. CDC has a [web
 page](https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html)
 with an overview of the planned IT systems for tracking vaccinations and
-an elaborate chart that describe the plan for data flows. Keep in
-mind that this chart apparently represents a goal rather a description
-of what is actually happening.
+an elaborate chart that describe the plan for data flows. 
+
+*Keep in
+mind that this chart and other planning documents represent a goal 
+and cannot be taken as a description
+of what is actually happening.*
 
 [![Flow of info about vaccinations across
 systems](images/cdc_data_pathway.png "Flow of records of COVID vaccinations")](https://www.cdc.gov/vaccines/covid-19/reporting/downloads/vaccine-administration-data-agreement.pdf)
@@ -815,8 +820,9 @@ its IIS).
 The theory is that the IZ Gateway is a central hub through
 which data can move back and forth among the various
 state-based IIS's.
-I don't have an understanding of what is actually happening, but
-my impression is that for the most part the agreements have not
+
+What is actually happening?
+My impression is that for the most part the agreements have not
 been made to exchange this data and that data mostly goes
 one-way from the state IIS to the central IZ Gateway. As a result,
 states IIS's do not learn about out of state vaccinations of their
