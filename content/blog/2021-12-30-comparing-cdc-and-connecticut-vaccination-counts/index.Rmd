@@ -748,18 +748,35 @@ dose came from Walgreens. When I looked up my vaccination record in CT
 WiZ I was pleased to see that all three doses were recorded (as were my
 flu shots for 2020 and 2021). I receive my primary care through a system
 that uses the Yale New Haven Hospital electronic health record, but in
-that system my third dose of COVID vaccination is *not* recorded. (I'll
+that system my third and fourth doses of COVID vaccination are *not* recorded. (I'll
 have to communicated that to them separately.)
 
-Another problem for the state totals is the possibility of vaccination
-done out of state, such as college students, "snowbird" retirees who
-spend part of the year in different states, or workers commuting to a
-neighboring state. When someone gets a vaccination they are most
-likely to give their residence as their current location at the time
-of the vaccination. That may not be the same place the
-individual is counted in the 2020 census. Uncertainty about residence is
-an issue for both the numerator and denominator of reported vaccination
-rates by locality. 
+#### Issues That Affect Both CDC and State Vaccination Rates
+
+A major issue for vaccination rates by geographic area is that the
+residence reported at the time of vaccination may
+not be the same residence reported to the Census tabulations which drives 
+the denominator of the rate calculation.
+College students, "snowbird" retirees who
+spend part of the year in different states, or migrant workers
+may not be counted consistently in the
+numerator and the denominator. When someone gets a vaccination they are most
+likely to give their location at the time
+of the vaccination as their residence. That may not be the same place the
+individual is counted in the 2020 census. 
+
+For example, the town of Mansfield is the home of the 
+University of Connecticut. It has the lowest reported vaccination
+rate of any town in Connecticut. In the Census, students who live on
+campus are counted as residents of Mansfield and are in the denominator
+of the rate calculation. At the time they were vaccinated many of those
+students may have reported their home address as the address where
+they live with their families when school is not in session.
+Younger populations
+are less likely to be vaccinated, but a large part of what produces
+the reported low vaccination rate in Mansfield is 
+that "home address" in the vaccination data often does
+not match where the student was counted by the Census Bureau.
 
 ### Comparison with Polling Data
 
