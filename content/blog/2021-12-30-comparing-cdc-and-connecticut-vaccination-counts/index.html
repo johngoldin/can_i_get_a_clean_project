@@ -12,13 +12,34 @@ excerpt: 'A comparison of vaccination counts in Connecticut according to the CDC
 draft: yes
 images: null
 series: null
-layout: single
-editor_options: 
+output: 
+  blogdown::html_page:
+    # figure parameters based on recommendation in Hadley's book 
+    toc: yes
+    highlight: tango
+    number_sections: false
+    fig_width: 7
+    out.width: "100%" 
+    fig.align: "center"
+    fig.asp: 0.618  
+editor_options:
   markdown: 
     wrap: 72
 ---
 
 
+<div id="TOC">
+<ul>
+<li><a href="#why-does-cdc-report-more-individuals-as-first-dose-only">Why does CDC report more individuals as first dose only?</a></li>
+<li><a href="#where-does-vaccination-data-come-from">Where does vaccination data come from?</a></li>
+<li><a href="#issues-that-affect-both-cdc-and-state-vaccination-rates">Issues That Affect Both CDC and State Vaccination Rates</a></li>
+<li><a href="#comparison-with-polling-data">Comparison with Polling Data</a></li>
+<li><a href="#how-the-cdc-tracks-vaccinations">How the CDC Tracks Vaccinations</a></li>
+<li><a href="#is-privacy-theater-hobbling-the-data">Is “Privacy Theater” Hobbling the Data?</a></li>
+<li><a href="#general-issues-with-tracking-covid-data">General Issues with Tracking COVID Data</a></li>
+<li><a href="#county-level-data-for-connecticut">County Level Data for Connecticut</a></li>
+</ul>
+</div>
 
 <style type="text/css">
     body .main-container {
@@ -45,12 +66,12 @@ the CDC than by CT DPH. Note that CDC reports
 individuals with some vaccination, including
 56%
 more who have received only the initial dose.</p>
-<div id="rxgzfcelno" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="smokiuatqd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#rxgzfcelno .gt_table {
+#smokiuatqd .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -75,7 +96,7 @@ more who have received only the initial dose.</p>
   border-left-color: #D3D3D3;
 }
 
-#rxgzfcelno .gt_heading {
+#smokiuatqd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -87,7 +108,7 @@ more who have received only the initial dose.</p>
   border-right-color: #D3D3D3;
 }
 
-#rxgzfcelno .gt_title {
+#smokiuatqd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -99,7 +120,7 @@ more who have received only the initial dose.</p>
   border-bottom-width: 0;
 }
 
-#rxgzfcelno .gt_subtitle {
+#smokiuatqd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -111,13 +132,13 @@ more who have received only the initial dose.</p>
   border-top-width: 0;
 }
 
-#rxgzfcelno .gt_bottom_border {
+#smokiuatqd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rxgzfcelno .gt_col_headings {
+#smokiuatqd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -132,7 +153,7 @@ more who have received only the initial dose.</p>
   border-right-color: #D3D3D3;
 }
 
-#rxgzfcelno .gt_col_heading {
+#smokiuatqd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -152,7 +173,7 @@ more who have received only the initial dose.</p>
   overflow-x: hidden;
 }
 
-#rxgzfcelno .gt_column_spanner_outer {
+#smokiuatqd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -164,15 +185,15 @@ more who have received only the initial dose.</p>
   padding-right: 4px;
 }
 
-#rxgzfcelno .gt_column_spanner_outer:first-child {
+#smokiuatqd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rxgzfcelno .gt_column_spanner_outer:last-child {
+#smokiuatqd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rxgzfcelno .gt_column_spanner {
+#smokiuatqd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -184,7 +205,7 @@ more who have received only the initial dose.</p>
   width: 100%;
 }
 
-#rxgzfcelno .gt_group_heading {
+#smokiuatqd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -209,7 +230,7 @@ more who have received only the initial dose.</p>
   vertical-align: middle;
 }
 
-#rxgzfcelno .gt_empty_group_heading {
+#smokiuatqd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -224,15 +245,15 @@ more who have received only the initial dose.</p>
   vertical-align: middle;
 }
 
-#rxgzfcelno .gt_from_md > :first-child {
+#smokiuatqd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rxgzfcelno .gt_from_md > :last-child {
+#smokiuatqd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rxgzfcelno .gt_row {
+#smokiuatqd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -251,7 +272,7 @@ more who have received only the initial dose.</p>
   overflow-x: hidden;
 }
 
-#rxgzfcelno .gt_stub {
+#smokiuatqd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -264,7 +285,7 @@ more who have received only the initial dose.</p>
   padding-right: 5px;
 }
 
-#rxgzfcelno .gt_stub_row_group {
+#smokiuatqd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -278,11 +299,11 @@ more who have received only the initial dose.</p>
   vertical-align: top;
 }
 
-#rxgzfcelno .gt_row_group_first td {
+#smokiuatqd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rxgzfcelno .gt_summary_row {
+#smokiuatqd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -292,16 +313,16 @@ more who have received only the initial dose.</p>
   padding-right: 5px;
 }
 
-#rxgzfcelno .gt_first_summary_row {
+#smokiuatqd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rxgzfcelno .gt_first_summary_row.thick {
+#smokiuatqd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rxgzfcelno .gt_last_summary_row {
+#smokiuatqd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -311,7 +332,7 @@ more who have received only the initial dose.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#rxgzfcelno .gt_grand_summary_row {
+#smokiuatqd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -321,7 +342,7 @@ more who have received only the initial dose.</p>
   padding-right: 5px;
 }
 
-#rxgzfcelno .gt_first_grand_summary_row {
+#smokiuatqd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -331,11 +352,11 @@ more who have received only the initial dose.</p>
   border-top-color: #D3D3D3;
 }
 
-#rxgzfcelno .gt_striped {
+#smokiuatqd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rxgzfcelno .gt_table_body {
+#smokiuatqd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -344,7 +365,7 @@ more who have received only the initial dose.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#rxgzfcelno .gt_footnotes {
+#smokiuatqd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -358,7 +379,7 @@ more who have received only the initial dose.</p>
   border-right-color: #D3D3D3;
 }
 
-#rxgzfcelno .gt_footnote {
+#smokiuatqd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -367,7 +388,7 @@ more who have received only the initial dose.</p>
   padding-right: 5px;
 }
 
-#rxgzfcelno .gt_sourcenotes {
+#smokiuatqd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -381,7 +402,7 @@ more who have received only the initial dose.</p>
   border-right-color: #D3D3D3;
 }
 
-#rxgzfcelno .gt_sourcenote {
+#smokiuatqd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -389,60 +410,60 @@ more who have received only the initial dose.</p>
   padding-right: 5px;
 }
 
-#rxgzfcelno .gt_left {
+#smokiuatqd .gt_left {
   text-align: left;
 }
 
-#rxgzfcelno .gt_center {
+#smokiuatqd .gt_center {
   text-align: center;
 }
 
-#rxgzfcelno .gt_right {
+#smokiuatqd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rxgzfcelno .gt_font_normal {
+#smokiuatqd .gt_font_normal {
   font-weight: normal;
 }
 
-#rxgzfcelno .gt_font_bold {
+#smokiuatqd .gt_font_bold {
   font-weight: bold;
 }
 
-#rxgzfcelno .gt_font_italic {
+#smokiuatqd .gt_font_italic {
   font-style: italic;
 }
 
-#rxgzfcelno .gt_super {
+#smokiuatqd .gt_super {
   font-size: 65%;
 }
 
-#rxgzfcelno .gt_footnote_marks {
+#smokiuatqd .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#rxgzfcelno .gt_asterisk {
+#smokiuatqd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rxgzfcelno .gt_slash_mark {
+#smokiuatqd .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#rxgzfcelno .gt_fraction_numerator {
+#smokiuatqd .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#rxgzfcelno .gt_fraction_denominator {
+#smokiuatqd .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -498,14 +519,330 @@ more who have received only the initial dose.</p>
 <p>Until recently “fully vaccinated” referred to individuals with two doses
 of Pfizer or Moderna or one dose of J&amp;J. In this post we will refer to
 those people as “two doses” even if they have had only one dose of J&amp;J.</p>
+<div id="why-does-cdc-report-more-individuals-as-first-dose-only" class="section level3">
+<h3>Why does CDC report more individuals as first dose only?</h3>
+<p>State-wide and county by county the pattern is that CDC reports more people
+vaccinated with at least one dose and more people who have received only the first
+dose. This pattern has been observed in other states. There are a number
+of attempts to go into the details of CDC versus state counts for
+particular states. See this <a href="https://law.marquette.edu/facultyblog/2021/12/county-level-cdc-and-dhs-vaccination-statistics-for-wisconsin-vary-in-important-ways/">analysis of county level counts in
+Wisconsin</a>
+and also comments by Washington State on <a href="https://www.coronavirus.wa.gov/news/vaccine-data-reconciliation-between-state-and-federal-sources-will-take-time">differences between their
+counts and
+CDC</a>.</p>
+<p>Early in December 2021, Kaiser Health News
+<a href="https://khn.org/news/article/cdc-senior-covid-vaccination-rates-appear-inflated/">questioned</a>
+why some senior vaccination rates seemed so high and also noted
+increases in the number of individuals reporting only a first dose.</p>
+<p>Later in December the CDC added a significant footnote to their vaccine
+tracking page that gives a discussion of
+<a href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/reporting-vaccinations.html">why it may be hard for them to track different doses of COVID
+vaccines</a>
+at the national level. That’s especially true for boosters
+because there is a long interval after the second dose and a booster is
+more likely to have been given by a different provider or in a different
+location. The de-identified data that CDC analysts work with does not include the
+identifier that may be in use at the state level.</p>
+<blockquote>
+<p>To protect the privacy of vaccine recipients, CDC receives data
+without any personally identifiable information (de-identified data)
+about vaccine doses. Each jurisdiction or provider uses a unique
+person identifier to link records within their own systems. However,
+CDC cannot use the unique person identifier to identify individual
+people by name.</p>
+</blockquote>
+<blockquote>
+<p>There are challenges in linking doses when someone is vaccinated in
+different jurisdictions or from different providers. Even with the
+high-quality data CDC receives from jurisdictions and federal
+entities, there are limits to how CDC can analyze those data. If a
+person received doses in more than one jurisdiction or from different
+providers within the same jurisdiction, they could receive different
+unique person identifiers for different doses. CDC may not be able to
+link multiple unique person identifiers for different jurisdictions or
+providers to a single person.</p>
+</blockquote>
+<blockquote>
+<p>For example, most people receive their first and second dose of a
+2-dose vaccine from the same provider because those doses are given
+within just a few weeks of each other. As they receive their booster
+dose months later, it’s possible they will go to a new location for
+that dose. The person may have moved or the provider who gave them
+their initial doses may no longer offer vaccination. This often
+happens for people who went to mass vaccination clinics that have
+since closed. In such a scenario, the person’s booster dose may appear
+to be their first dose when reported. This is just one example of how
+CDC’s data may over-estimate first doses and under-estimate booster
+doses</p>
+</blockquote>
+<p>In December 2021 there were a number of articles that discussed
+issues with the quality of the CDC vaccination tabulations
+(for example, <a href="https://www.slowboring.com/p/the-cdcs-vaccine-data-is-all-wrong?s=w">Matt Yglesias</a>).</p>
+</div>
+<div id="where-does-vaccination-data-come-from" class="section level3">
+<h3>Where does vaccination data come from?</h3>
+<p>To try to understand possible weakness in how CDC distinguishes
+among first dose, second dose, and boosters, it’s necessary to
+examine the details of how the data gets to the CDC. This will
+underscore some limits in the reports at the state level as well.</p>
+<p>Both the CDC and CT DPH have made a real effort to be transparent about
+their reports. There’s quite a bit of information available on the Web
+describing how they are tabulating vaccinations.</p>
+<p>Connecticut DPH is reporting vaccination tabulations based on <a href="https://portal.ct.gov/DPH/Immunizations/ALL-ABOUT-CT-WiZ">CT
+WiZ</a>, the
+Connecticut immunization information system. CDC gets data from CT DPH,
+but they also get data from other states which may include some
+Connecticut residents plus they also get vaccinations done by federal
+entities that are not reported to CT WiZ.</p>
+<p>There are several issues.</p>
+<p>The major reason that the CT DPH counts are lower overall is that DPH
+does not have data on all vaccinations by “federal sources” such as the
+VA or DOD.</p>
+<blockquote>
+<p>Doses administered by some Federal entities (including Department of
+Defense, Department of Correction, Department of Veteran’s Affairs,
+Indian Health Service) are not yet reported to CT WiZ.</p>
+</blockquote>
+<p>How comprehensive is the information for Connecticut? All vaccine
+providers who participate in the COVID-19 vaccination program
+<a href="https://portal.ct.gov/-/media/Coronavirus/20201207-DPH-Order-regarding-reporting-COVID-19-vaccinations.pdf">are required to report vaccinations to CT WiZ within 24 hours</a>.
+For example, I received my first
+two doses from a clinic operated by Yale New Haven Hospital. My booster
+dose came from Walgreens. When I looked up my vaccination record in CT
+WiZ I was pleased to see that all three doses were recorded (as were my
+flu shots for 2020 and 2021). I receive my primary care through a system
+that uses the Yale New Haven Hospital electronic health record, but in
+that system my third and fourth doses of COVID vaccination are <em>not</em> recorded. (I’ll
+have to communicated that to them separately.)</p>
+</div>
+<div id="issues-that-affect-both-cdc-and-state-vaccination-rates" class="section level3">
+<h3>Issues That Affect Both CDC and State Vaccination Rates</h3>
+<p>A major issue for vaccination rates by geographic area is that the
+residence reported at the time of vaccination may
+not be the same residence reported to the Census tabulations which drives
+the denominator of the rate calculation.
+College students, “snowbird” retirees who
+spend part of the year in different states, or migrant workers
+may not be counted consistently in the
+numerator and the denominator. When someone gets a vaccination they are most
+likely to give their location at the time
+of the vaccination as their residence. That may not be the same place the
+individual is counted in the 2020 census.</p>
+<p>For example, the town of Mansfield is the home of the
+University of Connecticut. It has the lowest reported vaccination
+rate of any town in Connecticut. In the Census, students who live on
+campus are counted as residents of Mansfield and are in the denominator
+of the rate calculation. At the time they were vaccinated many of those
+students may have reported their home address as the address where
+they live with their families when school is not in session.
+Younger populations
+are less likely to be vaccinated, but a large part of what produces
+the reported low vaccination rate in Mansfield is
+that “home address” in the vaccination data often does
+not match where the student was counted by the Census Bureau.</p>
+</div>
+<div id="comparison-with-polling-data" class="section level3">
+<h3>Comparison with Polling Data</h3>
+<p>There are many opinion polls that ask about COVID vaccination.
+Unfortunately polling questions often do not distinguish among first dose, second dose,
+and booster dose. For example, Pew has published a FINISH THIS SECTION!!!</p>
+<div class="figure">
+<img src="https://www.pewresearch.org/wp-content/uploads/2021/09/FT_21.09.13_benchmarkingPollsVaccination.png?h=640" alt="" />
+<p class="caption">Polling</p>
+</div>
+</div>
+<div id="how-the-cdc-tracks-vaccinations" class="section level3">
+<h3>How the CDC Tracks Vaccinations</h3>
+<p>Internet searching of the CDC web site turns up a lot of
+information about CDC tracking COVID vaccinations, but almost all of it
+refers to planning done during late 2020 in preparatioin for the roll
+out of vaccines. CDC has a <a href="https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html">web
+page</a>
+with an overview of the planned IT systems for tracking vaccinations and
+an elaborate chart that describe the plan for data flows.</p>
+<p><em>Keep in
+mind that this chart and other planning documents represent a goal
+and cannot be taken as a description
+of what is actually happening.</em></p>
+<p><a href="https://www.cdc.gov/vaccines/covid-19/reporting/downloads/vaccine-administration-data-agreement.pdf"><img src="images/cdc_data_pathway.png" title="Flow of records of COVID vaccinations" alt="Flow of info about vaccinations across systems" /></a></p>
+<p>The CDC vaccine information architecture depends on 64 Immunization Information
+Systems (IIS), which are mostly state based. The system was develop
+before COVID and was primarily aimed at childhood immunizations (but
+always covered other immunizations as well). That’s why I can see many
+of my non-COVID vaccinations in my Connecticut IIS (CT WiZ).</p>
+<p>Their plan describe a lot of detail about the legal process.
+It looks like there are supposed to be
+<a href="https://www.cdc.gov/vaccines/covid-19/reporting/iz-gateway/gateway-qa.html">explicit legal agreemenets</a>
+for how data goes from federal providers (such as DOD) to the state (via
+its IIS).</p>
+<blockquote>
+<p>In the Connect component of the IZ Gateway, will participating IISs
+receive data (push) from VAMS and other non-traditional vaccination
+providers (e.g., DoD) who administered vaccinations within the IIS’s
+jurisdiction?</p>
+<p>Yes, in the Connect component of IZ Gateway, participating IISs will
+receive data from VAMS for patients in their jurisdictions.
+Participating IISs will also receive data for patients in their
+jurisdictions from non-traditional vaccination providers that are
+onboarded to IZ Gateway Connect and not already connected to IISs.</p>
+<p>How does provider-initiated multijurisdictional data exchange work?</p>
+<p>The Provider-Initiated Multijurisdictional Data Exchange component of
+IZ Gateway allows providers to initiate a query for immunization
+information from multiple jurisdictions.</p>
+</blockquote>
+<p>The theory is that the IZ Gateway is a central hub through
+which data can move back and forth among the various
+state-based IIS’s.</p>
+<p>What is actually happening?
+My impression is that for the most part the agreements have not
+been made to exchange this data and that data mostly goes
+one-way from the state IIS to the central IZ Gateway. As a result,
+states IIS’s do not learn about out of state vaccinations of their
+residents. Vaccinations by federal agencies are recorded via
+VAMS. That goes into to the IZ Gateway but does not seem to be
+passed on the state IIS’s.</p>
+<p>The planning diagram shown above has lots of multi-way arrows,
+but in practice the arrows seem to go on way into the IZ Gateway
+and dead end there. That limits the comprehensiveness of the
+reporting done by state agencies such as the CT Department of Public Health.</p>
+<p><a href="https://www.aphl.org/programs/informatics/Pages/COVID-19-resources.aspx">
+<img class="ms-rtePosition-2" alt="COVID-19 Data Flow on AIMS Platform" src="https://www.aphl.org/PublishingImages/INFO-2020-AIMS-COVID-19-Data-Flow-Infographic.jpg" style="margin&#58;10px 15px;width&#58;495px;height&#58;387px;"/>
+</a></p>
+</div>
+<div id="is-privacy-theater-hobbling-the-data" class="section level3">
+<h3>Is “Privacy Theater” Hobbling the Data?</h3>
+<p>It appears that one major problem for the CDC analysts is
+that they do not have access to all the identifying information
+that is reported in from the state IIS’s. That makes it hard
+to identify whether a particular shot is a first shot or
+a follow-on shot.</p>
+<p>There is an <a href="https://www.hhs.gov/sites/default/files/cdc-ncird-immunization-datalake-and-data-storefront-izdl.pdf">HHS Privacy Assessment</a>
+that describes in detail the data that goes from state IIS’s into the
+central system. This includes information that identifies individuals
+such as name, date of birth, and contact information.
+There’s exists a central national database that contains
+individually identified inoculation data. But that is
+not the database used by CDC analysts to tabulate
+that vaccination rates by state and county.
+Before tabulation, there is an additional step
+that creates another database with most individual
+identifying information redacted.</p>
+</div>
+<div id="general-issues-with-tracking-covid-data" class="section level3">
+<h3>General Issues with Tracking COVID Data</h3>
+<p>There have been significant issues surrounding data quality throughout
+the COVID pandemic. In 2020 the <a href="https://covidtracking.com">COVID Tracking
+Project</a> emerged from multiple efforts to try
+to obtain comparable statistics about the path of the epidemic in the
+United States. It was a volunteer effort and suspended operation in
+March 2021 at a point when they felt the data could be obtained from
+<a href="https://covidtracking.com/analysis-updates/federal-covid-data-101-how-to-find-data">federal
+sources</a>.</p>
+<p>In January 2022 Bob Wachter did an interview with Eric Topol that
+reviewed the state of pandemic at that moment. Near the end of the
+interview, there’s an interesting section where BW asks about why the US
+seems to need to rely on data from other countries. Here is a transcript
+of that portion of the interview (which starts at 48:03 on the YouTube
+video):</p>
+<p>The Omicron Whirlwind: A Conversation with Eric Topol about the Current
+and Future State of the Pandemic January 13, 2022 Bob Wachter
+interviewing Eric Topol Bob Watchter is Chair, UCSF Department of
+Medicine. Eric Topol is a cardiologist and founder and director of the
+Scripps Research Institute</p>
+<blockquote>
+<p>BW: That’s a good pivot to something you were beginning to talk about
+but I sort of moved it along, but let’s get back to it. Up until two
+years ago, you’d see a paper in a journal and it was from UK or from
+Israel or from South Africa, you’d say, ‘Oh, that’s not America. I’m
+waiting for the study.’ Whereas for the last two years, it seems like
+almost all of the insights, or many of them, come from studies from
+other countries. They have better data systems, they are investing
+more in clinical research. What’s going on and what do we need to do
+to be leaders in this area? Because it really feels like we’re
+followers.</p>
+<p>ET: We are followers. And we have pathetic data systems. I mean,
+pathetic. And the one thing that really strikes me, Bob, is that we of
+course support the current administration and the fact that the mantra
+sticking to the science. But there has been all these announcements
+from day one of taking on administration through today, there has not
+been one mention of improving our data system. Not a mention. And this
+is just preposterous. Yes, we are forced to rely on other country’s
+data, but when these advisory committees for FDA and CDC convene, they
+basically are unwilling to accept that data even though there’s not
+data here in this country, because, like for example, right now we
+want to know whether these Omicron boosters, how well they’re working
+to prevent hospitalizations and deaths. And when do they wane? When
+does their protection wane? Those people who are getting hospitalized
+who had a third shot, what’s going on there? We were promised by the
+CDC in May that they would track every breakthrough hospitalization
+and death. Never happened. And so we don’t have critical data. We have
+150,000-plus people in the hospital. And I have begged at the HHS
+level that we have granular data on each of those people. Their
+vaccination status, which vaccine, when they got it, their age, their
+co-existing conditions, and all the basal stuff, right? And they say,
+“Well, we’re gonna look into it.” Even though it can be mandated by
+HHS authority. So we have just a dreadful situation here where we
+don’t have real-time capture of data. The only data that gets posted
+on the CDC is a month old, and it’s de minimus about things like
+hospitalizations or deaths, and this is unacceptable. If you’re gonna
+go in a pandemic and try to deliver and guidance, you have to have
+data. That’s how you develop trust. That’s how you have the best
+navigation system. And we don’t have it. But the most important thing
+to me, Bob, is there’s no seeming will to get one. And that is
+distressing and it has to change.</p>
+<p>BW: Why do you think that is?</p>
+<p>ET: Well, the main thing to me is that we have a Secretary of HHS, who
+came from California, the attorney general, he hasn’t shown up for the
+pandemic. Have you seen him? Have you seen him make a statement?</p>
+<p>BW: I saw him talking about how the CDC director doesn’t have a degree
+in marketing the other day. That was interesting.</p>
+<p>ET: I see, I see, Yeah we have a serious problem. HHS, there’s been a
+lot of infighting between the agencies. And the HHS secretary should
+be bringing that together. And so we have a serious problem is we have
+a no-show HHS secretary. We have an HHS that could mandate this data
+capture, but they’re afraid, in my view, of political backlash. That’s
+why they’re not doing it. And you just can’t. Yeah, we’re a big
+country, but yo know what, a big country without data is in a horrible
+situation. So we have to rely on other countries. And fortunately we
+have amazing data that comes out of places like the UK and Israel and
+Denmark and South Africa. So many that has been terrific for us. But
+it’s amazing we have a different population here, we’re much less
+vaccinated, much less boosted, we have lots of co-existing conditions
+that are not as prevalent in some of these other countries, and yet we
+don’t have data. I don’t know. I mean, I just don’t think that the
+administration has delivered to sticking to the science because part
+of the science is having the data.</p>
+<p>BW: Yeah, that makes sense.</p>
+</blockquote>
+<p>{{% youtube "lCAvFHd3B38?start=2883" %}}</p>
+<p>John Burn-Murdoch sites an example where better monitoring in the UK
+provides information relevant to interpreting COVID trends in the US
+because of a <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/conditionsanddiseases/bulletins/coronaviruscovid19infectionsurveypilot/latest">random sample survey of prevalence of
+COVID</a>
+in the UK.</p>
+<blockquote>
+<p>Once again, we should really be immensely grateful to the team at
+<a href="https://twitter.com/ONS">@ONS</a>, whose random sample survey providing
+regular and representative estimates of prevalence is truly
+world-leading, and the absolute gold standard in pandemic
+surveillance.”</p>
+</blockquote>
+<p>{{% tweet "1483062311971704833" %}}</p>
+<p>Would better data tracking have made a difference in fighting the
+pandemic in the US? Perhaps not. But individuals and local governments
+have been struggling to figure out best practices while the facts are
+uncertain and knowledge is still being developed.</p>
+</div>
+<div id="county-level-data-for-connecticut" class="section level2">
+<h2>County Level Data for Connecticut</h2>
 <p>Below are comparisons of county-level data from the CDC to DPH, first
 with a table and then displayed via a bar chart.</p>
-<div id="hslkhhotmx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="sbesakrfsf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#hslkhhotmx .gt_table {
+#sbesakrfsf .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -530,7 +867,7 @@ with a table and then displayed via a bar chart.</p>
   border-left-color: #D3D3D3;
 }
 
-#hslkhhotmx .gt_heading {
+#sbesakrfsf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -542,7 +879,7 @@ with a table and then displayed via a bar chart.</p>
   border-right-color: #D3D3D3;
 }
 
-#hslkhhotmx .gt_title {
+#sbesakrfsf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -554,7 +891,7 @@ with a table and then displayed via a bar chart.</p>
   border-bottom-width: 0;
 }
 
-#hslkhhotmx .gt_subtitle {
+#sbesakrfsf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -566,13 +903,13 @@ with a table and then displayed via a bar chart.</p>
   border-top-width: 0;
 }
 
-#hslkhhotmx .gt_bottom_border {
+#sbesakrfsf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hslkhhotmx .gt_col_headings {
+#sbesakrfsf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -587,7 +924,7 @@ with a table and then displayed via a bar chart.</p>
   border-right-color: #D3D3D3;
 }
 
-#hslkhhotmx .gt_col_heading {
+#sbesakrfsf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -607,7 +944,7 @@ with a table and then displayed via a bar chart.</p>
   overflow-x: hidden;
 }
 
-#hslkhhotmx .gt_column_spanner_outer {
+#sbesakrfsf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -619,15 +956,15 @@ with a table and then displayed via a bar chart.</p>
   padding-right: 4px;
 }
 
-#hslkhhotmx .gt_column_spanner_outer:first-child {
+#sbesakrfsf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hslkhhotmx .gt_column_spanner_outer:last-child {
+#sbesakrfsf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hslkhhotmx .gt_column_spanner {
+#sbesakrfsf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -639,7 +976,7 @@ with a table and then displayed via a bar chart.</p>
   width: 100%;
 }
 
-#hslkhhotmx .gt_group_heading {
+#sbesakrfsf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -664,7 +1001,7 @@ with a table and then displayed via a bar chart.</p>
   vertical-align: middle;
 }
 
-#hslkhhotmx .gt_empty_group_heading {
+#sbesakrfsf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -679,15 +1016,15 @@ with a table and then displayed via a bar chart.</p>
   vertical-align: middle;
 }
 
-#hslkhhotmx .gt_from_md > :first-child {
+#sbesakrfsf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hslkhhotmx .gt_from_md > :last-child {
+#sbesakrfsf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hslkhhotmx .gt_row {
+#sbesakrfsf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -706,7 +1043,7 @@ with a table and then displayed via a bar chart.</p>
   overflow-x: hidden;
 }
 
-#hslkhhotmx .gt_stub {
+#sbesakrfsf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -719,7 +1056,7 @@ with a table and then displayed via a bar chart.</p>
   padding-right: 5px;
 }
 
-#hslkhhotmx .gt_stub_row_group {
+#sbesakrfsf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -733,11 +1070,11 @@ with a table and then displayed via a bar chart.</p>
   vertical-align: top;
 }
 
-#hslkhhotmx .gt_row_group_first td {
+#sbesakrfsf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hslkhhotmx .gt_summary_row {
+#sbesakrfsf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -747,16 +1084,16 @@ with a table and then displayed via a bar chart.</p>
   padding-right: 5px;
 }
 
-#hslkhhotmx .gt_first_summary_row {
+#sbesakrfsf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hslkhhotmx .gt_first_summary_row.thick {
+#sbesakrfsf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hslkhhotmx .gt_last_summary_row {
+#sbesakrfsf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -766,7 +1103,7 @@ with a table and then displayed via a bar chart.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#hslkhhotmx .gt_grand_summary_row {
+#sbesakrfsf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -776,7 +1113,7 @@ with a table and then displayed via a bar chart.</p>
   padding-right: 5px;
 }
 
-#hslkhhotmx .gt_first_grand_summary_row {
+#sbesakrfsf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -786,11 +1123,11 @@ with a table and then displayed via a bar chart.</p>
   border-top-color: #D3D3D3;
 }
 
-#hslkhhotmx .gt_striped {
+#sbesakrfsf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hslkhhotmx .gt_table_body {
+#sbesakrfsf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -799,7 +1136,7 @@ with a table and then displayed via a bar chart.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#hslkhhotmx .gt_footnotes {
+#sbesakrfsf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -813,7 +1150,7 @@ with a table and then displayed via a bar chart.</p>
   border-right-color: #D3D3D3;
 }
 
-#hslkhhotmx .gt_footnote {
+#sbesakrfsf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -822,7 +1159,7 @@ with a table and then displayed via a bar chart.</p>
   padding-right: 5px;
 }
 
-#hslkhhotmx .gt_sourcenotes {
+#sbesakrfsf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -836,7 +1173,7 @@ with a table and then displayed via a bar chart.</p>
   border-right-color: #D3D3D3;
 }
 
-#hslkhhotmx .gt_sourcenote {
+#sbesakrfsf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -844,60 +1181,60 @@ with a table and then displayed via a bar chart.</p>
   padding-right: 5px;
 }
 
-#hslkhhotmx .gt_left {
+#sbesakrfsf .gt_left {
   text-align: left;
 }
 
-#hslkhhotmx .gt_center {
+#sbesakrfsf .gt_center {
   text-align: center;
 }
 
-#hslkhhotmx .gt_right {
+#sbesakrfsf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hslkhhotmx .gt_font_normal {
+#sbesakrfsf .gt_font_normal {
   font-weight: normal;
 }
 
-#hslkhhotmx .gt_font_bold {
+#sbesakrfsf .gt_font_bold {
   font-weight: bold;
 }
 
-#hslkhhotmx .gt_font_italic {
+#sbesakrfsf .gt_font_italic {
   font-style: italic;
 }
 
-#hslkhhotmx .gt_super {
+#sbesakrfsf .gt_super {
   font-size: 65%;
 }
 
-#hslkhhotmx .gt_footnote_marks {
+#sbesakrfsf .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#hslkhhotmx .gt_asterisk {
+#sbesakrfsf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hslkhhotmx .gt_slash_mark {
+#sbesakrfsf .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#hslkhhotmx .gt_fraction_numerator {
+#sbesakrfsf .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#hslkhhotmx .gt_fraction_denominator {
+#sbesakrfsf .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -1064,317 +1401,4 @@ bars show Connecticut Department of Health. The figure includes a data
 point to show the total population of each county according to the 2020
 Census.</p>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/county_plot2-1.png" width="672" /></p>
-<div id="why-does-cdc-report-more-individuals-as-first-dose-only" class="section level4">
-<h4>Why does CDC report more individuals as first dose only?</h4>
-<p>State-wide and county by county the pattern is that CDC reports more people
-vaccinated with at least one dose and more people who have received only the first
-dose. This pattern has been observed in other states. There are a number
-of attempts to go into the details of CDC versus state counts for
-particular states. See this <a href="https://law.marquette.edu/facultyblog/2021/12/county-level-cdc-and-dhs-vaccination-statistics-for-wisconsin-vary-in-important-ways/">analysis of county level counts in
-Wisconsin</a>
-and also comments by Washington State on <a href="https://www.coronavirus.wa.gov/news/vaccine-data-reconciliation-between-state-and-federal-sources-will-take-time">differences between their
-counts and
-CDC</a>.</p>
-<p>Early in December 2021, Kaiser Health News
-<a href="https://khn.org/news/article/cdc-senior-covid-vaccination-rates-appear-inflated/">questioned</a>
-why some senior vaccination rates seemed so high and also noted
-increases in the number of individuals reporting only a first dose.</p>
-<p>Later in December the CDC added a significant footnote to their vaccine
-tracking page that gives a discussion of
-<a href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/reporting-vaccinations.html">why it may be hard for them to track different doses of COVID
-vaccines</a>
-at the national level. That’s especially true for boosters
-because there is a long interval after the second dose and a booster is
-more likely to have been given by a different provider or in a different
-location. The de-identified data that CDC analysts work with does not include the
-identifier that may be in use at the state level.</p>
-<blockquote>
-<p>To protect the privacy of vaccine recipients, CDC receives data
-without any personally identifiable information (de-identified data)
-about vaccine doses. Each jurisdiction or provider uses a unique
-person identifier to link records within their own systems. However,
-CDC cannot use the unique person identifier to identify individual
-people by name.</p>
-</blockquote>
-<blockquote>
-<p>There are challenges in linking doses when someone is vaccinated in
-different jurisdictions or from different providers. Even with the
-high-quality data CDC receives from jurisdictions and federal
-entities, there are limits to how CDC can analyze those data. If a
-person received doses in more than one jurisdiction or from different
-providers within the same jurisdiction, they could receive different
-unique person identifiers for different doses. CDC may not be able to
-link multiple unique person identifiers for different jurisdictions or
-providers to a single person.</p>
-</blockquote>
-<blockquote>
-<p>For example, most people receive their first and second dose of a
-2-dose vaccine from the same provider because those doses are given
-within just a few weeks of each other. As they receive their booster
-dose months later, it’s possible they will go to a new location for
-that dose. The person may have moved or the provider who gave them
-their initial doses may no longer offer vaccination. This often
-happens for people who went to mass vaccination clinics that have
-since closed. In such a scenario, the person’s booster dose may appear
-to be their first dose when reported. This is just one example of how
-CDC’s data may over-estimate first doses and under-estimate booster
-doses</p>
-</blockquote>
-<p>In December 2021 there were a number of articles that discussed
-issues with the quality of the CDC vaccination tabulations
-(for example, <a href="https://www.slowboring.com/p/the-cdcs-vaccine-data-is-all-wrong?s=w">Matt Yglesias</a>).</p>
-</div>
-<div id="where-does-vaccination-data-come-from" class="section level4">
-<h4>Where does vaccination data come from?</h4>
-<p>To try to understand possible weakness in how CDC distinguishes
-among first dose, second dose, and boosters, it’s necessary to
-examine the details of how the data gets to the CDC. This will
-underscore some limits in the reports at the state level as well.</p>
-<p>Both the CDC and CT DPH have made a real effort to be transparent about
-their reports. There’s quite a bit of information available on the Web
-describing how they are tabulating vaccinations.</p>
-<p>Connecticut DPH is reporting vaccination tabulations based on <a href="https://portal.ct.gov/DPH/Immunizations/ALL-ABOUT-CT-WiZ">CT
-WiZ</a>, the
-Connecticut immunization information system. CDC gets data from CT DPH,
-but they also get data from other states which may include some
-Connecticut residents plus they also get vaccinations done by federal
-entities that are not reported to CT WiZ.</p>
-<p>There are several issues.</p>
-<p>The major reason that the CT DPH counts are lower overall is that DPH
-does not have data on all vaccinations by “federal sources” such as the
-VA or DOD.</p>
-<blockquote>
-<p>Doses administered by some Federal entities (including Department of
-Defense, Department of Correction, Department of Veteran’s Affairs,
-Indian Health Service) are not yet reported to CT WiZ.</p>
-</blockquote>
-<p>How comprehensive is the information for Connecticut? All vaccine
-providers who participate in the COVID-19 vaccination program
-<a href="https://portal.ct.gov/-/media/Coronavirus/20201207-DPH-Order-regarding-reporting-COVID-19-vaccinations.pdf">are required to report vaccinations to CT WiZ within 24 hours</a>.
-For example, I received my first
-two doses from a clinic operated by Yale New Haven Hospital. My booster
-dose came from Walgreens. When I looked up my vaccination record in CT
-WiZ I was pleased to see that all three doses were recorded (as were my
-flu shots for 2020 and 2021). I receive my primary care through a system
-that uses the Yale New Haven Hospital electronic health record, but in
-that system my third and fourth doses of COVID vaccination are <em>not</em> recorded. (I’ll
-have to communicated that to them separately.)</p>
-</div>
-<div id="issues-that-affect-both-cdc-and-state-vaccination-rates" class="section level4">
-<h4>Issues That Affect Both CDC and State Vaccination Rates</h4>
-<p>A major issue for vaccination rates by geographic area is that the
-residence reported at the time of vaccination may
-not be the same residence reported to the Census tabulations which drives
-the denominator of the rate calculation.
-College students, “snowbird” retirees who
-spend part of the year in different states, or migrant workers
-may not be counted consistently in the
-numerator and the denominator. When someone gets a vaccination they are most
-likely to give their location at the time
-of the vaccination as their residence. That may not be the same place the
-individual is counted in the 2020 census.</p>
-<p>For example, the town of Mansfield is the home of the
-University of Connecticut. It has the lowest reported vaccination
-rate of any town in Connecticut. In the Census, students who live on
-campus are counted as residents of Mansfield and are in the denominator
-of the rate calculation. At the time they were vaccinated many of those
-students may have reported their home address as the address where
-they live with their families when school is not in session.
-Younger populations
-are less likely to be vaccinated, but a large part of what produces
-the reported low vaccination rate in Mansfield is
-that “home address” in the vaccination data often does
-not match where the student was counted by the Census Bureau.</p>
-</div>
-<div id="comparison-with-polling-data" class="section level3">
-<h3>Comparison with Polling Data</h3>
-<p>There are many opinion polls that ask about COVID vaccination.
-Unfortunately polling questions often do not distinguish among first dose, second dose,
-and booster dose. For example, Pew has published a FINISH THIS SECTION!!!</p>
-<div class="figure">
-<img src="https://www.pewresearch.org/wp-content/uploads/2021/09/FT_21.09.13_benchmarkingPollsVaccination.png?h=640" alt="" />
-<p class="caption">Polling</p>
-</div>
-</div>
-<div id="how-the-cdc-tracks-vaccinations" class="section level3">
-<h3>How the CDC Tracks Vaccinations</h3>
-<p>Internet searching of the CDC web site turns up a lot of
-information about CDC tracking COVID vaccinations, but almost all of it
-refers to planning done during late 2020 in preparatioin for the roll
-out of vaccines. CDC has a <a href="https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html">web
-page</a>
-with an overview of the planned IT systems for tracking vaccinations and
-an elaborate chart that describe the plan for data flows.</p>
-<p><em>Keep in
-mind that this chart and other planning documents represent a goal
-and cannot be taken as a description
-of what is actually happening.</em></p>
-<p><a href="https://www.cdc.gov/vaccines/covid-19/reporting/downloads/vaccine-administration-data-agreement.pdf"><img src="images/cdc_data_pathway.png" title="Flow of records of COVID vaccinations" alt="Flow of info about vaccinations across systems" /></a></p>
-<p>The CDC vaccine information architecture depends on 64 Immunization Information
-Systems (IIS), which are mostly state based. The system was develop
-before COVID and was primarily aimed at childhood immunizations (but
-always covered other immunizations as well). That’s why I can see many
-of my non-COVID vaccinations in my Connecticut IIS (CT WiZ).</p>
-<p>Their plan describe a lot of detail about the legal process.
-It looks like there are supposed to be
-<a href="https://www.cdc.gov/vaccines/covid-19/reporting/iz-gateway/gateway-qa.html">explicit legal agreemenets</a>
-for how data goes from federal providers (such as DOD) to the state (via
-its IIS).</p>
-<blockquote>
-<p>In the Connect component of the IZ Gateway, will participating IISs
-receive data (push) from VAMS and other non-traditional vaccination
-providers (e.g., DoD) who administered vaccinations within the IIS’s
-jurisdiction?</p>
-<p>Yes, in the Connect component of IZ Gateway, participating IISs will
-receive data from VAMS for patients in their jurisdictions.
-Participating IISs will also receive data for patients in their
-jurisdictions from non-traditional vaccination providers that are
-onboarded to IZ Gateway Connect and not already connected to IISs.</p>
-<p>How does provider-initiated multijurisdictional data exchange work?</p>
-<p>The Provider-Initiated Multijurisdictional Data Exchange component of
-IZ Gateway allows providers to initiate a query for immunization
-information from multiple jurisdictions.</p>
-</blockquote>
-<p>The theory is that the IZ Gateway is a central hub through
-which data can move back and forth among the various
-state-based IIS’s.</p>
-<p>What is actually happening?
-My impression is that for the most part the agreements have not
-been made to exchange this data and that data mostly goes
-one-way from the state IIS to the central IZ Gateway. As a result,
-states IIS’s do not learn about out of state vaccinations of their
-residents. Vaccinations by federal agencies are recorded via
-VAMS. That goes into to the IZ Gateway but does not seem to be
-passed on the state IIS’s.</p>
-<p>The planning diagram shown above has lots of multi-way arrows,
-but in practice the arrows seem to go on way into the IZ Gateway
-and dead end there. That limits the comprehensiveness of the
-reporting done by state agencies such as the CT Department of Public Health.</p>
-<p><a href="https://www.aphl.org/programs/informatics/Pages/COVID-19-resources.aspx">
-<img class="ms-rtePosition-2" alt="COVID-19 Data Flow on AIMS Platform" src="https://www.aphl.org/PublishingImages/INFO-2020-AIMS-COVID-19-Data-Flow-Infographic.jpg" style="margin&#58;10px 15px;width&#58;495px;height&#58;387px;"/>
-</a></p>
-<div id="is-privacy-theater-hobbling-the-data" class="section level4">
-<h4>Is “Privacy Theater” Hobbling the Data?</h4>
-<p>It appears that one major problem for the CDC analysts is
-that they do not have access to all the identifying information
-that is reported in from the state IIS’s. That makes it hard
-to identify whether a particular shot is a first shot or
-a follow-on shot.</p>
-<p>There is an <a href="https://www.hhs.gov/sites/default/files/cdc-ncird-immunization-datalake-and-data-storefront-izdl.pdf">HHS Privacy Assessment</a>
-that describes in detail the data that goes from state IIS’s into the
-central system. This includes information that identifies individuals
-such as name, date of birth, and contact information.
-There’s exists a central national database that contains
-individually identified inoculation data. But that is
-not the database used by CDC analysts to tabulate
-that vaccination rates by state and county.
-Before tabulation, there is an additional step
-that creates another database with most individual
-identifying information redacted.</p>
-</div>
-</div>
-<div id="general-issues-with-tracking-covid-data" class="section level3">
-<h3>General Issues with Tracking COVID Data</h3>
-<p>There have been significant issues surrounding data quality throughout
-the COVID pandemic. In 2020 the <a href="https://covidtracking.com">COVID Tracking
-Project</a> emerged from multiple efforts to try
-to obtain comparable statistics about the path of the epidemic in the
-United States. It was a volunteer effort and suspended operation in
-March 2021 at a point when they felt the data could be obtained from
-<a href="https://covidtracking.com/analysis-updates/federal-covid-data-101-how-to-find-data">federal
-sources</a>.</p>
-<p>In January 2022 Bob Wachter did an interview with Eric Topol that
-reviewed the state of pandemic at that moment. Near the end of the
-interview, there’s an interesting section where BW asks about why the US
-seems to need to rely on data from other countries. Here is a transcript
-of that portion of the interview (which starts at 48:03 on the YouTube
-video):</p>
-<p>The Omicron Whirlwind: A Conversation with Eric Topol about the Current
-and Future State of the Pandemic January 13, 2022 Bob Wachter
-interviewing Eric Topol Bob Watchter is Chair, UCSF Department of
-Medicine. Eric Topol is a cardiologist and founder and director of the
-Scripps Research Institute</p>
-<blockquote>
-<p>BW: That’s a good pivot to something you were beginning to talk about
-but I sort of moved it along, but let’s get back to it. Up until two
-years ago, you’d see a paper in a journal and it was from UK or from
-Israel or from South Africa, you’d say, ‘Oh, that’s not America. I’m
-waiting for the study.’ Whereas for the last two years, it seems like
-almost all of the insights, or many of them, come from studies from
-other countries. They have better data systems, they are investing
-more in clinical research. What’s going on and what do we need to do
-to be leaders in this area? Because it really feels like we’re
-followers.</p>
-<p>ET: We are followers. And we have pathetic data systems. I mean,
-pathetic. And the one thing that really strikes me, Bob, is that we of
-course support the current administration and the fact that the mantra
-sticking to the science. But there has been all these announcements
-from day one of taking on administration through today, there has not
-been one mention of improving our data system. Not a mention. And this
-is just preposterous. Yes, we are forced to rely on other country’s
-data, but when these advisory committees for FDA and CDC convene, they
-basically are unwilling to accept that data even though there’s not
-data here in this country, because, like for example, right now we
-want to know whether these Omicron boosters, how well they’re working
-to prevent hospitalizations and deaths. And when do they wane? When
-does their protection wane? Those people who are getting hospitalized
-who had a third shot, what’s going on there? We were promised by the
-CDC in May that they would track every breakthrough hospitalization
-and death. Never happened. And so we don’t have critical data. We have
-150,000-plus people in the hospital. And I have begged at the HHS
-level that we have granular data on each of those people. Their
-vaccination status, which vaccine, when they got it, their age, their
-co-existing conditions, and all the basal stuff, right? And they say,
-“Well, we’re gonna look into it.” Even though it can be mandated by
-HHS authority. So we have just a dreadful situation here where we
-don’t have real-time capture of data. The only data that gets posted
-on the CDC is a month old, and it’s de minimus about things like
-hospitalizations or deaths, and this is unacceptable. If you’re gonna
-go in a pandemic and try to deliver and guidance, you have to have
-data. That’s how you develop trust. That’s how you have the best
-navigation system. And we don’t have it. But the most important thing
-to me, Bob, is there’s no seeming will to get one. And that is
-distressing and it has to change.</p>
-<p>BW: Why do you think that is?</p>
-<p>ET: Well, the main thing to me is that we have a Secretary of HHS, who
-came from California, the attorney general, he hasn’t shown up for the
-pandemic. Have you seen him? Have you seen him make a statement?</p>
-<p>BW: I saw him talking about how the CDC director doesn’t have a degree
-in marketing the other day. That was interesting.</p>
-<p>ET: I see, I see, Yeah we have a serious problem. HHS, there’s been a
-lot of infighting between the agencies. And the HHS secretary should
-be bringing that together. And so we have a serious problem is we have
-a no-show HHS secretary. We have an HHS that could mandate this data
-capture, but they’re afraid, in my view, of political backlash. That’s
-why they’re not doing it. And you just can’t. Yeah, we’re a big
-country, but yo know what, a big country without data is in a horrible
-situation. So we have to rely on other countries. And fortunately we
-have amazing data that comes out of places like the UK and Israel and
-Denmark and South Africa. So many that has been terrific for us. But
-it’s amazing we have a different population here, we’re much less
-vaccinated, much less boosted, we have lots of co-existing conditions
-that are not as prevalent in some of these other countries, and yet we
-don’t have data. I don’t know. I mean, I just don’t think that the
-administration has delivered to sticking to the science because part
-of the science is having the data.</p>
-<p>BW: Yeah, that makes sense.</p>
-</blockquote>
-<p>{{% youtube "lCAvFHd3B38?start=2883" %}}</p>
-<p>John Burn-Murdoch sites an example where better monitoring in the UK
-provides information relevant to interpreting COVID trends in the US
-because of a <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/conditionsanddiseases/bulletins/coronaviruscovid19infectionsurveypilot/latest">random sample survey of prevalence of
-COVID</a>
-in the UK.</p>
-<blockquote>
-<p>Once again, we should really be immensely grateful to the team at
-<a href="https://twitter.com/ONS">@ONS</a>, whose random sample survey providing
-regular and representative estimates of prevalence is truly
-world-leading, and the absolute gold standard in pandemic
-surveillance.”</p>
-</blockquote>
-<p>{{% tweet "1483062311971704833" %}}</p>
-<p>Would better data tracking have made a difference in fighting the
-pandemic in the US? Perhaps not. But individuals and local governments
-have been struggling to figure out best practices while the facts are
-uncertain and knowledge is still being developed.</p>
 </div>
