@@ -7,7 +7,7 @@ categories:
   - COVID19
 tags:
   - COVID19
-subtitle: ''
+subtitle: 'How CDC and Connecticut Vaccination Counts Difer'
 excerpt: 'A comparison of vaccination counts in Connecticut according to the CDC and the CT Department of Public Health.'
 draft: yes
 images: null
@@ -102,16 +102,17 @@ source('~/Documents/R_local_repos/ctcorona/R/setup_ct_table.R')
 ```{r get_dph_vaccine_counts}
 # statewide by age with booster count: https://data.ct.gov/Health-and-Human-Services/COVID-19-Vaccinations-by-Age-Group/vjim-iz5e
 # # so far this is the only dph dataset with boosters [no, now i get booster data from dph]
+# 2022-04-22 changed column names: Additional Dose to Additional Dose 1
 dph_vaccine_age_total_detail <- read_delim("https://data.ct.gov/api/views/vjim-iz5e/rows.tsv",
     delim = "\t", escape_double = FALSE,
-    col_types = cols(`Additional Dose Received Count` = col_double(),
-        `Additional Dose Received Percent` = col_double(),
+    col_types = cols(`Additional Dose 1 Received Count` = col_double(),
+        `Additional Dose 1 Received Percent` = col_double(),
         Date = col_date(format = "%m/%d/%Y")),
     trim_ws = TRUE) |>
   rename(dph_age_group = `Age group`, population = Population,
          dph_initiated_vaccine = `At least one dose`,
          dph_fully_vaccinated = `Fully Vaccinated`,
-         dph_booster = `Additional Dose Received Count`, dph_date = Date) |>
+         dph_booster = `Additional Dose 1 Received Count`, dph_date = Date) |>
     mutate(dph_initiated_only = dph_initiated_vaccine - dph_fully_vaccinated) |>
   mutate(across(c(population, dph_initiated_vaccine, dph_fully_vaccinated, dph_booster, dph_initiated_only),
                 ~ ifelse(is.na(.x), 0, .x))) |>
@@ -157,8 +158,8 @@ dph_vaccine_by_age_full <- read.socrata(
          population = as.numeric(population),
          fully_vaccinated = as.numeric(fully_vaccinated),
          fully_vaccinated_percent = as.numeric(fully_vaccinated_percent),
-         additional_dose_received = as.numeric(additional_dose_received),
-         additional_dose_received_percent = as.numeric(additional_dose_received_percent),
+         additional_dose_received = as.numeric(additional_dose_1_received),
+         additional_dose_received_percent = as.numeric(additional_dose_1_received_percent),
          dateupdated = as_date(dateupdated),
          social_vulnerability_index = at_least_one_census_tract,
          at_least_one_census_tract = at_least_one_census_tract == "Yes") |> 
@@ -674,47 +675,6 @@ communicated that to them separately.) When I got my second booster from
 Walgreens, the record was available through CT WiZ within a couple of
 days.
 
-### Issues That Affect Both CDC and State Vaccination Rates
-
-A major issue for vaccination rates by geographic area is that the
-residence reported at the time of vaccination may not be the same
-residence reported to the Census tabulations which drives the
-denominator of the rate calculation. College students, "snowbird"
-retirees who spend part of the year in different states, or migrant
-workers may not be counted consistently in the numerator and the
-denominator. When someone gets a vaccination they are most likely to
-give their location at the time of the vaccination as their residence.
-That may not be the same place the individual is counted in the 2020
-census.
-
-For example, the town of Mansfield is the home of the University of
-Connecticut. It has the lowest reported vaccination rate of any town in
-Connecticut. In the Census, students who live on campus are counted as
-residents of Mansfield and are in the denominator of the rate
-calculation. At the time they were vaccinated many of those students may
-have reported their home address as the address where they live with
-their families when school is not in session. Younger populations are
-less likely to be vaccinated, but a large part of what produces the
-reported low vaccination rate in Mansfield is that "home address" in the
-vaccination data often does not match where the student was counted by
-the Census Bureau.
-
-### Comparison with Polling Data
-
-There are many opinion polls that ask about COVID vaccination.
-Unfortunately polling questions often do not distinguish among first
-dose, second dose, and booster dose. Pew has published a
-[report](https://www.pewresearch.org/fact-tank/2021/09/20/polls-on-covid-19-vaccination-closely-align-with-cdc-data/)
-that compares many public opinion polls with CDC reports. The report
-focus on the percentage of adults who have received at least one dose so
-it does not evaluate question of whether subsequent doses are being
-accurately reported. In general it shows that polls closely track CDC
-data so that's reassuring. The report only goes up through June 2021
-which means it stopped before booster shots became an option.
-
-[![COVID vaccination polling compared with CDC
-data](https://www.pewresearch.org/wp-content/uploads/2021/09/FT_21.09.13_benchmarkingPollsVaccination.png?h=640)](https://www.pewresearch.org/fact-tank/2021/09/20/polls-on-covid-19-vaccination-closely-align-with-cdc-data/)
-
 ### The Plan to Track Immunizations
 
 Internet searching of the CDC web site turns up a lot of information
@@ -736,11 +696,11 @@ The CDC vaccine information architecture depends on 64 Immunization
 Information Systems (IIS), which are mostly state based. The concept of
 immunization information systems was developed before COVID and was
 primarily aimed at childhood immunizations (but always covered other
-immunizations as well). That's why I can see many of my non-COVID
-vaccinations in my Connecticut IIS (CT WiZ).
+immunizations as well, which is why I can see many of my non-COVID
+vaccinations in CT WiZ).
 
-The plan describes a lot of detail about the legal process. It looks
-like there are supposed to be [explicit legal
+The plan describes a lot of detail about the legal process. It discusses
+the need for separate [explicit legal
 agreements](https://www.cdc.gov/vaccines/covid-19/reporting/iz-gateway/gateway-qa.html)
 for how data goes from federal providers (such as DOD) to the state (via
 its IIS).
@@ -782,9 +742,10 @@ pre-COVID.
 > critical missing pieces. [from a pre-COVID [press
 > report](https://www.healthcareitnews.com/news/how-hhs-innovating-data-aggregation-and-visualization-boost-pop-health "from Healthcare IT News")]
 
-It appears that the IZ Gateway is operated by the Association of Public
-Health Laboratories (APHL), presumably under a contract from HHS.
-Unfortunately the APHL web site offers no information about the gateway.
+It appears that the IZ Gateway is operated by the [Association of Public
+Health Laboratories](https://www.aphl.org) (APHL), presumably under a
+contract from HHS. Unfortunately the APHL web site offers no information
+about the gateway.
 
 What is actually happening with the gateway? My impression is that for
 the most part agreements have not been made to exchange this data across
@@ -796,7 +757,13 @@ seem to be passed on to the state IIS's. The planning diagram has lots
 of multi-way arrows, but in practice the arrows seem to go one-way into
 the IZ Gateway and dead end there. That limits the comprehensiveness of
 the reporting done by state agencies such as the CT Department of Public
-Health.
+Health. While the IZ Gateway was conceived before COVID, the pandemic
+increased the urgency. An article "[How the US plans to track Covid-19
+vaccine
+doses](https://qz.com/1941989/how-the-us-plans-to-track-pfizers-covid-19-vaccine-doses/)"
+describes some of the atmosphere in December 2020 just as vaccines were
+about to be rolled out. It may just take time for the IZ Gateway to
+reach its original conception.
 
 In summary, the two big problems for Connecticut state reporting are
 that they do not have complete information about vaccinations performed
@@ -888,7 +855,52 @@ identifying information redacted.
 Note that the authority cited
 ([09-90-2001](https://www.federalregister.gov/documents/2020/07/20/2020-15564/privacy-act-of-1974-system-of-records "SORN from Federal Register"))
 was written in the summer of 2020 specifically to respond to the COVID
-epidemic.
+epidemic. A [New York Times
+article](https://www.nytimes.com/2020/12/08/us/politics/cdc-vaccine-data-privacy.html)
+from December 2020 describes concerns and suspicion about why the
+federal government was asking for individual identifying information for
+the IZ Gateway.
+
+### Issues That Affect Both CDC and State Vaccination Rates
+
+A major issue for vaccination rates by geographic area is that the
+residence reported at the time of vaccination may not be the same
+residence reported to the Census tabulations which drives the
+denominator of the rate calculation. College students, "snowbird"
+retirees who spend part of the year in different states, or migrant
+workers may not be counted consistently in the numerator and the
+denominator. When someone gets a vaccination they are most likely to
+give their location at the time of the vaccination as their residence.
+That may not be the same place the individual is counted in the 2020
+census.
+
+For example, the town of Mansfield is the home of the University of
+Connecticut. It has the lowest reported vaccination rate of any town in
+Connecticut. In the Census, students who live on campus are counted as
+residents of Mansfield and are in the denominator of the rate
+calculation. At the time they were vaccinated many of those students may
+have reported their home address as the address where they live with
+their families when school is not in session. Younger populations are
+less likely to be vaccinated, but a large part of what produces the
+reported low vaccination rate in Mansfield is that "home address" in the
+vaccination data often does not match where the student was counted by
+the Census Bureau.
+
+### Comparison with Polling Data
+
+There are many opinion polls that ask about COVID vaccination.
+Unfortunately polling questions often do not distinguish among first
+dose, second dose, and booster dose. Pew has published a
+[report](https://www.pewresearch.org/fact-tank/2021/09/20/polls-on-covid-19-vaccination-closely-align-with-cdc-data/)
+that compares many public opinion polls with CDC reports. The report
+focus on the percentage of adults who have received at least one dose so
+it does not evaluate question of whether subsequent doses are being
+accurately reported. In general it shows that polls closely track CDC
+data so that's reassuring. The report only goes up through June 2021
+which means it stopped before booster shots became an option.
+
+![COVID vaccination polling compared with CDC
+data](https://www.pewresearch.org/wp-content/uploads/2021/09/FT_21.09.13_benchmarkingPollsVaccination.png?h=640){alt="COVID vaccinatioin polling compared with CDC data"}
 
 ### General Issues with Tracking COVID Data
 
