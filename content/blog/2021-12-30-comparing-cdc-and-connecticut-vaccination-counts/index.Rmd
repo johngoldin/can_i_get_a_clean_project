@@ -747,7 +747,12 @@ Health Laboratories](https://www.aphl.org) (APHL), presumably under a
 contract from HHS. Unfortunately the APHL web site offers no information
 about the gateway.
 
-What is actually happening with the gateway? My impression is that for
+What is actually happening with the gateway? 
+
+The diagram shows a lot of two-way arrows, but the two directions
+are not equal. 
+For many states it may be possible
+to look up the vaccination for an individual in the IZ Gateway.My impression is that for
 the most part agreements have not been made to exchange this data across
 states and that data mostly goes one-way from the state IIS to the
 central IZ Gateway. As a result, states IIS's do not learn about out of
