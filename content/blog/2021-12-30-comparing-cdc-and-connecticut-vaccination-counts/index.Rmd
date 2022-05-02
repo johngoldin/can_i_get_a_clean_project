@@ -747,28 +747,41 @@ Health Laboratories](https://www.aphl.org) (APHL), presumably under a
 contract from HHS. Unfortunately the APHL web site offers no information
 about the gateway.
 
-What is actually happening with the gateway? 
+What is actually happening with the gateway?
 
-The diagram shows a lot of two-way arrows, but the two directions
-are not equal. 
-For many states it may be possible
-to look up the vaccination for an individual in the IZ Gateway.My impression is that for
-the most part agreements have not been made to exchange this data across
-states and that data mostly goes one-way from the state IIS to the
-central IZ Gateway. As a result, states IIS's do not learn about out of
-state vaccinations of their residents. Vaccinations by federal agencies
-are recorded via VAMS. That goes into to the IZ Gateway but does not
-seem to be passed on to the state IIS's. The planning diagram has lots
-of multi-way arrows, but in practice the arrows seem to go one-way into
-the IZ Gateway and dead end there. That limits the comprehensiveness of
-the reporting done by state agencies such as the CT Department of Public
-Health. While the IZ Gateway was conceived before COVID, the pandemic
-increased the urgency. An article "[How the US plans to track Covid-19
-vaccine
+The diagram shows a lot of two-way arrows, but the two directions are
+not equal. For participating states, all of the assembled by the state
+IIS flows into the IZ Gateway. Data does not flow so freely back down to
+the state. It seems that data for Connecticut residents who get their
+vaccinations out of state does not automatically flow into CT WiZ (the
+Connecticut IIS). One must also keep in mind that individuals may list a
+local residence when they are vaccinated. For states that have signed
+the relevant memorandum of understanding, they can retrieve all of the
+immunizations for that individual from the IZ Gateway. In that way,
+Connecticut may be able to check whether a particular person has gotten
+vaccinations in another state. I'm not sure whether that actually
+happens. The effect is that for the most part data goes one-way from the
+state IIS to the central IZ Gateway. As a result, states IIS's do not
+learn about out of state vaccinations of their residents[^1].
+Vaccinations by federal agencies are recorded via VAMS. That goes into
+to the IZ Gateway but does not seem to be passed on to the state IIS's.
+The planning diagram has lots of multi-way arrows, but in practice the
+arrows seem to go one-way into the IZ Gateway and dead end there. That
+limits the comprehensiveness of the reporting done by state agencies
+such as the CT Department of Public Health. While the IZ Gateway was
+conceived before COVID, the pandemic increased the urgency. An article
+"[How the US plans to track Covid-19 vaccine
 doses](https://qz.com/1941989/how-the-us-plans-to-track-pfizers-covid-19-vaccine-doses/)"
 describes some of the atmosphere in December 2020 just as vaccines were
 about to be rolled out. It may just take time for the IZ Gateway to
 reach its original conception.
+
+[^1]: Some states make bilateral arrangments with particular neighboring
+    states. For example, Wisconsin gets data from Minnesota and from
+    Michigan.
+
+There is an organization called the American Immunization Registry
+Association (AIRA)
 
 In summary, the two big problems for Connecticut state reporting are
 that they do not have complete information about vaccinations performed
@@ -781,6 +794,48 @@ to the town they listed as residence when we they got a shot.
 <a href="https://www.aphl.org/programs/informatics/Pages/COVID-19-resources.aspx">
 <img src="https://www.aphl.org/PublishingImages/INFO-2020-AIMS-COVID-19-Data-Flow-Infographic.jpg" alt="COVID-19 Data Flow on AIMS Platform" class="ms-rtePosition-2" style="margin:10px 15px;width:495px;height:387px;"/>
 </a>
+
+Some of the CDC information on the IZ Gateway doesn't seem to jive with
+actual practice. For example, their [Q&A on the IZ
+Gateway](In the Share component, the IZ Gateway will recognize when a patient is vaccinated outside of the jurisdiction in which he or she resides and will automatically push the patient’s record to the relevant IIS. By opting into IZ Gateway Share, a jurisdiction is automatically choosing to share data, when relevant, with all participating IISs.)
+says
+
+> In the Share component, the IZ Gateway will recognize when a patient
+> is vaccinated outside of the jurisdiction in which he or she resides
+> and will automatically push the patient's record to the relevant IIS.
+> By opting into IZ Gateway Share, a jurisdiction is automatically
+> choosing to share data, when relevant, with all participating IISs.
+
+Based on scanning various state web sites I haven't seen signs that this
+is what actually happens. It's hard to say exactly. Identifying "the
+jurisdiction in which he or she resides" may not be so simple for
+snowbirds or college students.
+
+The states that I have examined all have mentioned that the state IIS
+(and therefore the state summary stats) do not contain information about
+vaccinations administered by federal entities. That's not what the Q&A
+on the CDC site seems to say:[^2]
+
+[^2]: Although the Q&A page says it was last reviewed in August 2021, I
+    suspect that the information is from the summer of 2020 during high
+    hopes and high aspirations while planning for the eventual vaccine.
+    I'm basing a lot of my evaluation of this Q&A based on how things
+    seem to actually work from the point of view of CT WiZ.
+
+> ### **In the Connect component of the IZ Gateway, will participating IISs receive data (push) from VAMS and other non-traditional vaccination providers (e.g., DoD) who administered vaccinations within the IIS's jurisdiction?**
+>
+> Yes, in the Connect component of IZ Gateway, participating IISs will
+> receive data from VAMS for patients in their jurisdictions.
+> Participating IISs will also receive data for patients in their
+> jurisdictions from non-traditional vaccination providers that are
+> onboarded to IZ Gateway Connect and not already connected to IISs.
+
+Providing the federal vaccination data to the states seems like a basic
+service that the IZ Gateway should provide, but it doesn't seem to be
+happening.
+
+The legal underpinning for exchanging data among states and with the CDC
+depends on a complicated set of state-by-state legal agreements.
 
 ### Issues with CDC COVID Vaccination Data
 
