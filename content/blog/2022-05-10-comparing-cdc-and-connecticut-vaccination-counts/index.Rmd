@@ -1,7 +1,7 @@
 ---
 title: Comparing CDC and Connecticut Vaccination Counts
 author: John Goldin
-date: '2022-05-10'
+date: '2021-12-30'
 slug: comparing-cdc-and-connecticut-vaccination-counts
 categories:
   - COVID19
@@ -9,7 +9,7 @@ tags:
   - COVID19
 subtitle: 'How CDC and Connecticut Vaccination Counts Difer'
 excerpt: 'A comparison of vaccination counts in Connecticut according to the CDC and the CT Department of Public Health.'
-draft: no
+draft: yes
 images: null
 series: null
 output: 
@@ -54,6 +54,7 @@ knitr::opts_chunk$set(echo = FALSE, warning=FALSE,   message=FALSE, #out.width =
                       knitr.table.format = "html") 
 # knitr.table.format is for kable. Needed this to get blogdown table to format correctly. 
 ```
+
 ```{r libraries, echo = FALSE, warning= FALSE, message = FALSE}
 library(tidyverse, quietly = TRUE)
 library(tidycensus, quietly = TRUE)
@@ -74,6 +75,7 @@ library(RcppRoll)
 options(tigris_use_cache = TRUE)
 options(tigris_class = "sf")
 ```
+
 ```{r ggplot2_defaults}
 library(scico)       ## scico color palettes(http://www.fabiocrameri.ch/colourmaps.php) in R 
 library(ggtext)      ## add improved text rendering to ggplot2
@@ -94,6 +96,7 @@ theme_update(
 )
 
 ```
+
 ```{r setup_data, echo = FALSE, warning=FALSE, message = FALSE}
 covid_project <- "can_i_get_a_clean_project"
 path_to_post <- paste0("~/Documents/R_local_repos/",covid_project, "/content/blog/2020-03-29-covid19-cases-in-connecticut/")
@@ -107,6 +110,7 @@ load(paste0(path_to_ctcorona, "census_population.RData")) # created in setup_geo
 source('~/Documents/R_local_repos/ctcorona/R/setup_ct_table.R')
 
 ```
+
 ```{r get_dph_vaccine_counts}
 # statewide by age with booster count: https://data.ct.gov/Health-and-Human-Services/COVID-19-Vaccinations-by-Age-Group/vjim-iz5e
 # # so far this is the only dph dataset with boosters [no, now i get booster data from dph]
@@ -299,6 +303,7 @@ dph_ct_vax_table <-
                      additional_dose_received_percent = additional_dose_received / pop2020)
   )
 ```
+
 ```{r get_cdc_vaccine_counts}
 cdc_vax <- read.socrata(
   validateUrl(str_c("https://data.cdc.gov/resource/8xkx-amqh.json",
@@ -355,6 +360,7 @@ cdc_ct_vax_total <- cdc_ct_vax |>
 # ct_vax does because town by town data does.
 
 ```
+
 ```{r combine_cdc_dph}
 both_sources_detail <- cdc_ct_vax |> ungroup() |> 
               mutate(cdc_pop = case_when(
@@ -482,6 +488,7 @@ for_table <- both_sources |> ungroup() |>
 # for_table <- for_table |> tab_options(table.width = "2000px")  makes attempted line too wide
 # tried changing table with with https://stackoverflow.com/questions/38367392/override-rmarkdown-theme-in-order-to-change-html-page-width/38373846#38373846
 ```
+
 ```{r state_summary_table}
 ct_total <- both_sources |> filter(county == "Total") |> 
   # ungroup() |> select(-state, -county, -dph_county_date, -cdc_date,
@@ -965,7 +972,7 @@ Lake](https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html).
 > Lake. The IZ Data Lake also aggregates and analyzes data and provides
 > data summaries and analytics via these reporting hubs
 
-###  Issues with CDC COVID Vaccination Statistics
+### Issues with CDC COVID Vaccination Statistics
 
 The vaccination statistics are tabulated from the CDC Data Lake. The
 quality of those statistics is constrained by how well the process of
@@ -1011,7 +1018,7 @@ become such a feature of modern life. HIPPA makes confidentiality a
 legal requirement. In the context of the overall privacy of immunization
 records, the CDC's deidentification step seems to function in a way
 similar to what [Bruce
-Schneier](https://en.wikipedia.org/wiki/Bruce_Schneier ) has called
+Schneier](https://en.wikipedia.org/wiki/Bruce_Schneier) has called
 [security theater](https://en.wikipedia.org/wiki/Security_theater). In
 this case it might be called privacy theater. It represents a visible
 action related to privacy that doesn't actually do much to increase
