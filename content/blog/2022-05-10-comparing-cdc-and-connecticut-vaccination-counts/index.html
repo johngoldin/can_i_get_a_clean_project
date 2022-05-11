@@ -1,7 +1,7 @@
 ---
 title: Comparing CDC and Connecticut Vaccination Counts
 author: John Goldin
-date: '2021-12-30'
+date: '2022-05-10'
 slug: comparing-cdc-and-connecticut-vaccination-counts
 categories:
   - COVID19
@@ -9,7 +9,7 @@ tags:
   - COVID19
 subtitle: 'How CDC and Connecticut Vaccination Counts Difer'
 excerpt: 'A comparison of vaccination counts in Connecticut according to the CDC and the CT Department of Public Health.'
-draft: yes
+draft: no
 images: null
 series: null
 output: 
@@ -30,16 +30,19 @@ editor_options:
 
 <div id="TOC">
 <ul>
-<li><a href="#summary">Summary</a>
-<ul>
+<li><a href="#summary">Summary</a></li>
 <li><a href="#why-does-cdc-report-more-individuals-as-first-dose-only">Why does CDC report more individuals as first dose only?</a></li>
 <li><a href="#where-does-vaccination-data-come-from">Where does vaccination data come from?</a></li>
-<li><a href="#the-cdc-plan-to-track-immunizations">The CDC Plan to Track Immunizations</a></li>
-</ul></li>
-<li><a href="#is-there-a-trade-off-between-privacy-protection-and-accurate-vaccination-statistics">Is There a Trade Off Between Privacy Protection and Accurate Vaccination Statistics</a>
+<li><a href="#the-cdc-plan-to-track-immunizations">The CDC Plan to Track Immunizations</a>
 <ul>
-<li><a href="#issues-that-affect-both-cdc-and-state-vaccination-rates">Issues That Affect Both CDC and State Vaccination Rates</a></li>
+<li><a href="#iis-immunization-information-systems">IIS – Immunization Information Systems</a></li>
+<li><a href="#iz-gateway">IZ Gateway</a></li>
+<li><a href="#cdc-iz-clearinghouse">CDC IZ Clearinghouse</a></li>
+<li><a href="#cdc-iz-data-lake">CDC IZ Data Lake</a></li>
+<li><a href="#issues-with-cdc-covid-vaccination-statistics">Issues with CDC COVID Vaccination Statistics</a></li>
 </ul></li>
+<li><a href="#is-there-a-trade-off-between-privacy-protection-and-accurate-vaccination-statistics">Is There a Trade Off Between Privacy Protection and Accurate Vaccination Statistics</a></li>
+<li><a href="#issues-that-affect-both-cdc-and-state-vaccination-rates">Issues That Affect Both CDC and State Vaccination Rates</a></li>
 <li><a href="#comparison-with-polling-data">Comparison with Polling Data</a></li>
 <li><a href="#general-issues-with-tracking-covid-data">General Issues with Tracking COVID Data</a></li>
 <li><a href="#questions">Questions</a></li>
@@ -75,18 +78,18 @@ the CDC and Connecticut summaries.</p>
 reported by the CDC and the tallies from the Connecticut <a href="https://data.ct.gov/stories/s/CoVP-COVID-Vaccine-Distribution-Data/bhcd-4mnv/">Department of
 Public
 Health</a>
-county by county as of 09-May-2022. The column on the right shows how
+county by county as of 10-May-2022. The column on the right shows how
 many more vaccinations are reported by the CDC than by CT DPH. Note that
 CDC reports 15%
 more individuals with some vaccination, including
 57%
 more who have received only the initial dose.</p>
-<div id="umufkxmpih" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="nsccjvnppz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#umufkxmpih .gt_table {
+#nsccjvnppz .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -111,7 +114,7 @@ more who have received only the initial dose.</p>
   border-left-color: #D3D3D3;
 }
 
-#umufkxmpih .gt_heading {
+#nsccjvnppz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -123,7 +126,7 @@ more who have received only the initial dose.</p>
   border-right-color: #D3D3D3;
 }
 
-#umufkxmpih .gt_title {
+#nsccjvnppz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -135,7 +138,7 @@ more who have received only the initial dose.</p>
   border-bottom-width: 0;
 }
 
-#umufkxmpih .gt_subtitle {
+#nsccjvnppz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -147,13 +150,13 @@ more who have received only the initial dose.</p>
   border-top-width: 0;
 }
 
-#umufkxmpih .gt_bottom_border {
+#nsccjvnppz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#umufkxmpih .gt_col_headings {
+#nsccjvnppz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -168,7 +171,7 @@ more who have received only the initial dose.</p>
   border-right-color: #D3D3D3;
 }
 
-#umufkxmpih .gt_col_heading {
+#nsccjvnppz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -188,7 +191,7 @@ more who have received only the initial dose.</p>
   overflow-x: hidden;
 }
 
-#umufkxmpih .gt_column_spanner_outer {
+#nsccjvnppz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -200,15 +203,15 @@ more who have received only the initial dose.</p>
   padding-right: 4px;
 }
 
-#umufkxmpih .gt_column_spanner_outer:first-child {
+#nsccjvnppz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#umufkxmpih .gt_column_spanner_outer:last-child {
+#nsccjvnppz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#umufkxmpih .gt_column_spanner {
+#nsccjvnppz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -220,7 +223,7 @@ more who have received only the initial dose.</p>
   width: 100%;
 }
 
-#umufkxmpih .gt_group_heading {
+#nsccjvnppz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -245,7 +248,7 @@ more who have received only the initial dose.</p>
   vertical-align: middle;
 }
 
-#umufkxmpih .gt_empty_group_heading {
+#nsccjvnppz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -260,15 +263,15 @@ more who have received only the initial dose.</p>
   vertical-align: middle;
 }
 
-#umufkxmpih .gt_from_md > :first-child {
+#nsccjvnppz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#umufkxmpih .gt_from_md > :last-child {
+#nsccjvnppz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#umufkxmpih .gt_row {
+#nsccjvnppz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -287,7 +290,7 @@ more who have received only the initial dose.</p>
   overflow-x: hidden;
 }
 
-#umufkxmpih .gt_stub {
+#nsccjvnppz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -300,7 +303,7 @@ more who have received only the initial dose.</p>
   padding-right: 5px;
 }
 
-#umufkxmpih .gt_stub_row_group {
+#nsccjvnppz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -314,11 +317,11 @@ more who have received only the initial dose.</p>
   vertical-align: top;
 }
 
-#umufkxmpih .gt_row_group_first td {
+#nsccjvnppz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#umufkxmpih .gt_summary_row {
+#nsccjvnppz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -328,16 +331,16 @@ more who have received only the initial dose.</p>
   padding-right: 5px;
 }
 
-#umufkxmpih .gt_first_summary_row {
+#nsccjvnppz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#umufkxmpih .gt_first_summary_row.thick {
+#nsccjvnppz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#umufkxmpih .gt_last_summary_row {
+#nsccjvnppz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -347,7 +350,7 @@ more who have received only the initial dose.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#umufkxmpih .gt_grand_summary_row {
+#nsccjvnppz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -357,7 +360,7 @@ more who have received only the initial dose.</p>
   padding-right: 5px;
 }
 
-#umufkxmpih .gt_first_grand_summary_row {
+#nsccjvnppz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -367,11 +370,11 @@ more who have received only the initial dose.</p>
   border-top-color: #D3D3D3;
 }
 
-#umufkxmpih .gt_striped {
+#nsccjvnppz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#umufkxmpih .gt_table_body {
+#nsccjvnppz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -380,7 +383,7 @@ more who have received only the initial dose.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#umufkxmpih .gt_footnotes {
+#nsccjvnppz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -394,7 +397,7 @@ more who have received only the initial dose.</p>
   border-right-color: #D3D3D3;
 }
 
-#umufkxmpih .gt_footnote {
+#nsccjvnppz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -403,7 +406,7 @@ more who have received only the initial dose.</p>
   padding-right: 5px;
 }
 
-#umufkxmpih .gt_sourcenotes {
+#nsccjvnppz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -417,7 +420,7 @@ more who have received only the initial dose.</p>
   border-right-color: #D3D3D3;
 }
 
-#umufkxmpih .gt_sourcenote {
+#nsccjvnppz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -425,60 +428,60 @@ more who have received only the initial dose.</p>
   padding-right: 5px;
 }
 
-#umufkxmpih .gt_left {
+#nsccjvnppz .gt_left {
   text-align: left;
 }
 
-#umufkxmpih .gt_center {
+#nsccjvnppz .gt_center {
   text-align: center;
 }
 
-#umufkxmpih .gt_right {
+#nsccjvnppz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#umufkxmpih .gt_font_normal {
+#nsccjvnppz .gt_font_normal {
   font-weight: normal;
 }
 
-#umufkxmpih .gt_font_bold {
+#nsccjvnppz .gt_font_bold {
   font-weight: bold;
 }
 
-#umufkxmpih .gt_font_italic {
+#nsccjvnppz .gt_font_italic {
   font-style: italic;
 }
 
-#umufkxmpih .gt_super {
+#nsccjvnppz .gt_super {
   font-size: 65%;
 }
 
-#umufkxmpih .gt_footnote_marks {
+#nsccjvnppz .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#umufkxmpih .gt_asterisk {
+#nsccjvnppz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#umufkxmpih .gt_slash_mark {
+#nsccjvnppz .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#umufkxmpih .gt_fraction_numerator {
+#nsccjvnppz .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#umufkxmpih .gt_fraction_denominator {
+#nsccjvnppz .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -501,25 +504,25 @@ more who have received only the initial dose.</p>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">Initial dose only</td>
-<td class="gt_row gt_right">584,714</td>
+<td class="gt_row gt_right">584,901</td>
 <td class="gt_row gt_right">249,367</td>
 <td class="gt_row gt_right">+57%</td></tr>
     <tr><td class="gt_row gt_left">Two doses</td>
-<td class="gt_row gt_right">1,364,064</td>
+<td class="gt_row gt_right">1,364,063</td>
 <td class="gt_row gt_right">1,163,544</td>
 <td class="gt_row gt_right">+15%</td></tr>
     <tr><td class="gt_row gt_left">With booster</td>
-<td class="gt_row gt_right">1,464,926</td>
+<td class="gt_row gt_right">1,465,435</td>
 <td class="gt_row gt_right">1,484,161</td>
 <td class="gt_row gt_right">&minus;1%</td></tr>
     <tr><td class="gt_row gt_left">Total</td>
-<td class="gt_row gt_right">3,413,704</td>
+<td class="gt_row gt_right">3,414,399</td>
 <td class="gt_row gt_right">2,897,072</td>
 <td class="gt_row gt_right">+15%</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="4">CDC data as of 09-May-2022, CT DPH data as of 04-May-2022</td>
+      <td class="gt_sourcenote" colspan="4">CDC data as of 10-May-2022, CT DPH data as of 04-May-2022</td>
     </tr>
     <tr>
       <td class="gt_sourcenote" colspan="4">An initial J&amp;J dose is counted in the 'two doses' column rather than in the 'initial dose' column.</td>
@@ -534,8 +537,9 @@ more who have received only the initial dose.</p>
 <p>“Fully vaccinated” has referred to individuals with two doses of Pfizer
 or Moderna or one dose of J&amp;J. In this post we will refer to those
 people as “two doses” even if they have had only one dose of J&amp;J.</p>
-<div id="why-does-cdc-report-more-individuals-as-first-dose-only" class="section level3">
-<h3>Why does CDC report more individuals as first dose only?</h3>
+</div>
+<div id="why-does-cdc-report-more-individuals-as-first-dose-only" class="section level2">
+<h2>Why does CDC report more individuals as first dose only?</h2>
 <p>State-wide and county by county the pattern is that CDC reports more
 people vaccinated with at least one dose and more people who have
 received only the first dose. This pattern has been observed in other
@@ -597,8 +601,8 @@ Yglesias</a>
 or <a href="https://khn.org/news/article/huge-gaps-in-vaccine-data-make-it-next-to-impossible-to-know-who-got-the-shots/">Kaiser Health
 News</a>).</p>
 </div>
-<div id="where-does-vaccination-data-come-from" class="section level3">
-<h3>Where does vaccination data come from?</h3>
+<div id="where-does-vaccination-data-come-from" class="section level2">
+<h2>Where does vaccination data come from?</h2>
 <p>To try to understand possible weakness in how CDC distinguishes among
 first dose, second dose, and boosters, it’s necessary to examine the
 details of how the data gets to the CDC. This will underscore some
@@ -636,8 +640,8 @@ communicated that to them separately.) When I got my second booster from
 Walgreens, the record was available through CT WiZ within a couple of
 days.</p>
 </div>
-<div id="the-cdc-plan-to-track-immunizations" class="section level3">
-<h3>The CDC Plan to Track Immunizations</h3>
+<div id="the-cdc-plan-to-track-immunizations" class="section level2">
+<h2>The CDC Plan to Track Immunizations</h2>
 <p>Internet searching of the CDC web site turns up a lot of information
 about how CDC tracks COVID vaccinations, but almost all of it refers to
 planning done during late 2020 in preparation for the roll out of
@@ -655,8 +659,8 @@ immunizations</a>
 and describes the same flow described in the chart above.</p>
 <p>Let’s go through this information flow displayed in the figure above
 from top to bottom.</p>
-<div id="iis-immunization-information-systems" class="section level4">
-<h4>IIS – Immunization Information Systems</h4>
+<div id="iis-immunization-information-systems" class="section level3">
+<h3>IIS – Immunization Information Systems</h3>
 <p><a href="https://www.cdc.gov/vaccines/programs/iis/about.html">Immunization information
 systems</a> are
 designed to track immunizations of individuals. There are 64 of them,
@@ -673,8 +677,8 @@ part of preventive services. <a href="https://www.cdc.gov/vaccines/programs/iis/
 efforts</a>
 to design the elements for such systems go back earlier to the 1990’s.</p>
 </div>
-<div id="iz-gateway" class="section level4">
-<h4>IZ Gateway</h4>
+<div id="iz-gateway" class="section level3">
+<h3>IZ Gateway</h3>
 <p>The CDC vaccine information architecture depends on 64 Immunization
 Information Systems (IIS), which are mostly state based. The concept of
 immunization gateway was <a href="https://www.healthcareitnews.com/news/how-hhs-innovating-data-aggregation-and-visualization-boost-pop-health">developed before
@@ -710,12 +714,11 @@ the <a href="https://www.aphl.org">Association of Public Health Laboratories</a>
 on the HHS site that seems to describe the idea of the gateway
 pre-COVID.</p>
 <blockquote>
-<p>HHS’ <a href="https://www.hhs.gov/cto/initiatives/public-health-innovation/immunization-gateway/index.html">Immunization
-Gateway</a>,
-meanwhile, which was launched in 2013 to boost consumer access to
-immunization records and enable more informed patient decisions, has
-helped improve population health by breaking down silos and filling in
-critical missing pieces. [from a pre-COVID <a href="https://www.healthcareitnews.com/news/how-hhs-innovating-data-aggregation-and-visualization-boost-pop-health" title="from Healthcare IT News">press
+<p>HHS’ Immunization Gateway, meanwhile, which was launched in 2013 to
+boost consumer access to immunization records and enable more informed
+patient decisions, has helped improve population health by breaking
+down silos and filling in critical missing pieces. [from a pre-COVID
+<a href="https://www.healthcareitnews.com/news/how-hhs-innovating-data-aggregation-and-visualization-boost-pop-health" title="from Healthcare IT News">press
 report</a>]</p>
 </blockquote>
 <p>What is actually happening with the gateway?</p>
@@ -743,10 +746,10 @@ their residents<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.
 represent individual health records rather than aggregate statistical
 data. That limits the comprehensiveness of the reporting done by state
 agencies such as the CT Department of Public Health.</p>
-<p>There is an organization called the American Immunization Registry
-Association (AIRA) which has been involved in working out the legal
-memoranda of understanding that enable the data exchange. There is a
-<a href="https://www.youtube.com/watch?v=JMmvkEtvWw4" title="training video on IZ Gateway">training webinar from the summer of
+<p>There is an organization called the <a href="https://www.immregistries.org">American Immunization Registry
+Association</a> (AIRA) which has been
+involved in working out the legal memoranda of understanding that enable
+the data exchange. There is a <a href="https://www.youtube.com/watch?v=JMmvkEtvWw4" title="training video on IZ Gateway">training webinar from the summer of
 2020</a>
 that goes into some of the detail of those arrangements.</p>
 <p>The IZ Gateway is operated by the Association of Public Health
@@ -754,7 +757,7 @@ Laboratories (APHL). The diagram below is a summary of their overview of
 the gateway.</p>
 <p><a href="https://www.aphl.org/programs/informatics/Pages/aims_platform.aspx"><img src="https://www.aphl.org/PublishingImages/INFO-2020-AIMS-COVID-19-Data-Flow-Infographic.jpg" class="ms-rtePosition-2" alt="COVID-19 Data Flow on AIMS Platform" style="margin:10px 15px;" width="495" height="387" /></a></p>
 <p>Some of the CDC information on the IZ Gateway doesn’t seem to jive with
-actual practice. For example, their <a href="In%20the%20Share%20component,%20the%20IZ%20Gateway%20will%20recognize%20when%20a%20patient%20is%20vaccinated%20outside%20of%20the%20jurisdiction%20in%20which%20he%20or%20she%20resides%20and%20will%20automatically%20push%20the%20patient’s%20record%20to%20the%20relevant%20IIS.%20By%20opting%20into%20IZ%20Gateway%20Share,%20a%20jurisdiction%20is%20automatically%20choosing%20to%20share%20data,%20when%20relevant,%20with%20all%20participating%20IISs.">Q&amp;A on the IZ
+actual practice. For example, their <a href="https://www.cdc.gov/vaccines/programs/iis/iz-gateway/questions-answers.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fvaccines%2Fcovid-19%2Freporting%2Fiz-gateway%2Fgateway-qa.html">Q&amp;A on the IZ
 Gateway</a>
 says</p>
 <blockquote>
@@ -820,8 +823,8 @@ live while at college but may be in the numerator according to the town
 they listed as residence when we they got a shot.</p>
 </div>
 </div>
-<div id="cdc-iz-clearinghouse" class="section level4">
-<h4>CDC IZ Clearinghouse</h4>
+<div id="cdc-iz-clearinghouse" class="section level3">
+<h3>CDC IZ Clearinghouse</h3>
 <p>The Clearinghouse is described in the <a href="https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html">CDC
 summary</a></p>
 <blockquote>
@@ -865,10 +868,11 @@ assessment</a>
 that describes issues with the identifiable data in the Clearinghouse
 and the legal authorization for that information.</p>
 </div>
-<div id="cdc-iz-data-lake" class="section level4">
-<h4>CDC IZ Data Lake</h4>
-<p>The component that I have the least information about is the CDC IZ Data
-Lake.</p>
+<div id="cdc-iz-data-lake" class="section level3">
+<h3>CDC IZ Data Lake</h3>
+<p>The component that I have the least information about is the <a href="https://www.cdc.gov/vaccines/covid-19/reporting/overview/IT-systems.html">CDC IZ
+Data
+Lake</a>.</p>
 <blockquote>
 <p>The IZ Data Lake is a cloud-hosted data repository to receive, store,
 manage, and analyze deidentified COVID-19 vaccination data. CDC,
@@ -880,8 +884,8 @@ Lake. The IZ Data Lake also aggregates and analyzes data and provides
 data summaries and analytics via these reporting hubs</p>
 </blockquote>
 </div>
-<div id="issues-with-cdc-covid-vaccination-statistics" class="section level4">
-<h4>Issues with CDC COVID Vaccination Statistics</h4>
+<div id="issues-with-cdc-covid-vaccination-statistics" class="section level3">
+<h3>Issues with CDC COVID Vaccination Statistics</h3>
 <p>The vaccination statistics are tabulated from the CDC Data Lake. The
 quality of those statistics is constrained by how well the process of
 deidentification and deduplication is applied to the source data before
@@ -896,7 +900,6 @@ not feed complete information into the IZ Gateway and therefore the CDC
 would have a less complete view of vaccinations in those states.</p>
 </div>
 </div>
-</div>
 <div id="is-there-a-trade-off-between-privacy-protection-and-accurate-vaccination-statistics" class="section level2">
 <h2>Is There a Trade Off Between Privacy Protection and Accurate Vaccination Statistics</h2>
 <p>A key issue is the attempt to ensure privacy of individual vaccination
@@ -908,8 +911,9 @@ who have access to the CDC Data Lake. Probably that’s not a large group
 of CDC staff. Meanwhile there are also some CDC staff who have access to
 the CDC IZ Clearinghouse. And there is widespread access to the
 state-based data through the individual Immunization Information
-Systems. It s seems likely that deidentification does not significantly
-reduce the number of individual with access to the data.</p>
+Systems. It seems likely that deidentification does not significantly
+reduce the number of individual with access to the data who might
+violate their confidentiality obligations.</p>
 <p>Meanwhile, whether or not data is individually identifiable is not what
 really keeps the data private. For practical reasons, immunization
 systems and other health delivery systems have to deal with individually
@@ -922,13 +926,14 @@ Portability and Accountability Act of 1996
 (HIPAA)</a> has
 become such a feature of modern life. HIPPA makes confidentiality a
 legal requirement. In the context of the overall privacy of immunization
-records, the CDC’s deidentification step seems like an example of what
-<a href="https://en.wikipedia.org/wiki/Bruce_Schneier">Bruce Schneier</a> has
-coined as <a href="https://en.wikipedia.org/wiki/Security_theater">security
-theater</a>. It represents
-a visible action related to privacy that doesn’t actually do much to
-increase privacy. One of a small number CDC staff with access to the
-data violating legal and CDC regulations to reveal an individual’s
+records, the CDC’s deidentification step seems to function in a way
+similar to what <a href="https://en.wikipedia.org/wiki/Bruce_Schneier">Bruce
+Schneier</a> has called
+<a href="https://en.wikipedia.org/wiki/Security_theater">security theater</a>. In
+this case it might be called privacy theater. It represents a visible
+action related to privacy that doesn’t actually do much to increase
+privacy. One of a small number CDC staff with access to the data
+violating legal and CDC regulations to reveal an individual’s
 vaccination record is not a high probability threat, especially in
 comparison with all the other ways that information might be revealed.
 We should remember how effective confidentiality rules can be. For
@@ -954,8 +959,9 @@ the IZ Gateway. It’s possible that deidentification is responding to
 those political concerns. The CDC is saying, “don’t worry, we don’t have
 the data for a vaccine ID card.” But they do have the data. It’s just in
 the IZ Clearinghouse rather than in the Data Lake.</p>
-<div id="issues-that-affect-both-cdc-and-state-vaccination-rates" class="section level3">
-<h3>Issues That Affect Both CDC and State Vaccination Rates</h3>
+</div>
+<div id="issues-that-affect-both-cdc-and-state-vaccination-rates" class="section level2">
+<h2>Issues That Affect Both CDC and State Vaccination Rates</h2>
 <p>An issue for vaccination rates by geographic area is that the residence
 reported at the time of vaccination may not be the same residence
 reported to the Census tabulations which drives the denominator of the
@@ -976,7 +982,6 @@ less likely to be vaccinated, but a large part of what produces the
 reported low vaccination rate in Mansfield is that “home address” in the
 vaccination data often does not match where the student was counted by
 the Census Bureau.</p>
-</div>
 </div>
 <div id="comparison-with-polling-data" class="section level2">
 <h2>Comparison with Polling Data</h2>
@@ -1139,12 +1144,12 @@ states.</li>
 <p>For the sake of completeness, below are comparisons of county-level data
 from the CDC to DPH, first with a table and then displayed via a bar
 chart.</p>
-<div id="msaamobgoc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="wtxzmciyvb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#msaamobgoc .gt_table {
+#wtxzmciyvb .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1169,7 +1174,7 @@ chart.</p>
   border-left-color: #D3D3D3;
 }
 
-#msaamobgoc .gt_heading {
+#wtxzmciyvb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1181,7 +1186,7 @@ chart.</p>
   border-right-color: #D3D3D3;
 }
 
-#msaamobgoc .gt_title {
+#wtxzmciyvb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1193,7 +1198,7 @@ chart.</p>
   border-bottom-width: 0;
 }
 
-#msaamobgoc .gt_subtitle {
+#wtxzmciyvb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1205,13 +1210,13 @@ chart.</p>
   border-top-width: 0;
 }
 
-#msaamobgoc .gt_bottom_border {
+#wtxzmciyvb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#msaamobgoc .gt_col_headings {
+#wtxzmciyvb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1226,7 +1231,7 @@ chart.</p>
   border-right-color: #D3D3D3;
 }
 
-#msaamobgoc .gt_col_heading {
+#wtxzmciyvb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1246,7 +1251,7 @@ chart.</p>
   overflow-x: hidden;
 }
 
-#msaamobgoc .gt_column_spanner_outer {
+#wtxzmciyvb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1258,15 +1263,15 @@ chart.</p>
   padding-right: 4px;
 }
 
-#msaamobgoc .gt_column_spanner_outer:first-child {
+#wtxzmciyvb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#msaamobgoc .gt_column_spanner_outer:last-child {
+#wtxzmciyvb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#msaamobgoc .gt_column_spanner {
+#wtxzmciyvb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1278,7 +1283,7 @@ chart.</p>
   width: 100%;
 }
 
-#msaamobgoc .gt_group_heading {
+#wtxzmciyvb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1303,7 +1308,7 @@ chart.</p>
   vertical-align: middle;
 }
 
-#msaamobgoc .gt_empty_group_heading {
+#wtxzmciyvb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1318,15 +1323,15 @@ chart.</p>
   vertical-align: middle;
 }
 
-#msaamobgoc .gt_from_md > :first-child {
+#wtxzmciyvb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#msaamobgoc .gt_from_md > :last-child {
+#wtxzmciyvb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#msaamobgoc .gt_row {
+#wtxzmciyvb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1345,7 +1350,7 @@ chart.</p>
   overflow-x: hidden;
 }
 
-#msaamobgoc .gt_stub {
+#wtxzmciyvb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1358,7 +1363,7 @@ chart.</p>
   padding-right: 5px;
 }
 
-#msaamobgoc .gt_stub_row_group {
+#wtxzmciyvb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1372,11 +1377,11 @@ chart.</p>
   vertical-align: top;
 }
 
-#msaamobgoc .gt_row_group_first td {
+#wtxzmciyvb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#msaamobgoc .gt_summary_row {
+#wtxzmciyvb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1386,16 +1391,16 @@ chart.</p>
   padding-right: 5px;
 }
 
-#msaamobgoc .gt_first_summary_row {
+#wtxzmciyvb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#msaamobgoc .gt_first_summary_row.thick {
+#wtxzmciyvb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#msaamobgoc .gt_last_summary_row {
+#wtxzmciyvb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1405,7 +1410,7 @@ chart.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#msaamobgoc .gt_grand_summary_row {
+#wtxzmciyvb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1415,7 +1420,7 @@ chart.</p>
   padding-right: 5px;
 }
 
-#msaamobgoc .gt_first_grand_summary_row {
+#wtxzmciyvb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1425,11 +1430,11 @@ chart.</p>
   border-top-color: #D3D3D3;
 }
 
-#msaamobgoc .gt_striped {
+#wtxzmciyvb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#msaamobgoc .gt_table_body {
+#wtxzmciyvb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1438,7 +1443,7 @@ chart.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#msaamobgoc .gt_footnotes {
+#wtxzmciyvb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1452,7 +1457,7 @@ chart.</p>
   border-right-color: #D3D3D3;
 }
 
-#msaamobgoc .gt_footnote {
+#wtxzmciyvb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1461,7 +1466,7 @@ chart.</p>
   padding-right: 5px;
 }
 
-#msaamobgoc .gt_sourcenotes {
+#wtxzmciyvb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1475,7 +1480,7 @@ chart.</p>
   border-right-color: #D3D3D3;
 }
 
-#msaamobgoc .gt_sourcenote {
+#wtxzmciyvb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1483,60 +1488,60 @@ chart.</p>
   padding-right: 5px;
 }
 
-#msaamobgoc .gt_left {
+#wtxzmciyvb .gt_left {
   text-align: left;
 }
 
-#msaamobgoc .gt_center {
+#wtxzmciyvb .gt_center {
   text-align: center;
 }
 
-#msaamobgoc .gt_right {
+#wtxzmciyvb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#msaamobgoc .gt_font_normal {
+#wtxzmciyvb .gt_font_normal {
   font-weight: normal;
 }
 
-#msaamobgoc .gt_font_bold {
+#wtxzmciyvb .gt_font_bold {
   font-weight: bold;
 }
 
-#msaamobgoc .gt_font_italic {
+#wtxzmciyvb .gt_font_italic {
   font-style: italic;
 }
 
-#msaamobgoc .gt_super {
+#wtxzmciyvb .gt_super {
   font-size: 65%;
 }
 
-#msaamobgoc .gt_footnote_marks {
+#wtxzmciyvb .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#msaamobgoc .gt_asterisk {
+#wtxzmciyvb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#msaamobgoc .gt_slash_mark {
+#wtxzmciyvb .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#msaamobgoc .gt_fraction_numerator {
+#wtxzmciyvb .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#msaamobgoc .gt_fraction_denominator {
+#wtxzmciyvb .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -1583,109 +1588,109 @@ dif</th>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_center">Litchfield</td>
-<td class="gt_row gt_right">21,257</td>
+<td class="gt_row gt_right">21,261</td>
 <td class="gt_row gt_right">10,283</td>
 <td class="gt_row gt_right">+52%</td>
-<td class="gt_row gt_right">62,497</td>
+<td class="gt_row gt_right">62,493</td>
 <td class="gt_row gt_right">56,389</td>
 <td class="gt_row gt_right">+10%</td>
-<td class="gt_row gt_right">74,330</td>
+<td class="gt_row gt_right">74,349</td>
 <td class="gt_row gt_right">77,063</td>
 <td class="gt_row gt_right">&minus;4%</td></tr>
     <tr><td class="gt_row gt_center">Hartford</td>
-<td class="gt_row gt_right">106,826</td>
+<td class="gt_row gt_right">106,848</td>
 <td class="gt_row gt_right">55,149</td>
 <td class="gt_row gt_right">+48%</td>
-<td class="gt_row gt_right">314,535</td>
+<td class="gt_row gt_right">314,523</td>
 <td class="gt_row gt_right">283,318</td>
 <td class="gt_row gt_right">+10%</td>
-<td class="gt_row gt_right">363,902</td>
+<td class="gt_row gt_right">364,011</td>
 <td class="gt_row gt_right">377,650</td>
 <td class="gt_row gt_right">&minus;4%</td></tr>
     <tr><td class="gt_row gt_center">Tolland</td>
-<td class="gt_row gt_right">14,393</td>
+<td class="gt_row gt_right">14,396</td>
 <td class="gt_row gt_right">7,347</td>
 <td class="gt_row gt_right">+49%</td>
 <td class="gt_row gt_right">41,793</td>
 <td class="gt_row gt_right">39,654</td>
 <td class="gt_row gt_right">+5%</td>
-<td class="gt_row gt_right">59,489</td>
+<td class="gt_row gt_right">59,501</td>
 <td class="gt_row gt_right">61,753</td>
 <td class="gt_row gt_right">&minus;4%</td></tr>
     <tr><td class="gt_row gt_center">Windham</td>
-<td class="gt_row gt_right">11,600</td>
+<td class="gt_row gt_right">11,595</td>
 <td class="gt_row gt_right">6,389</td>
 <td class="gt_row gt_right">+45%</td>
 <td class="gt_row gt_right">37,571</td>
 <td class="gt_row gt_right">33,712</td>
 <td class="gt_row gt_right">+10%</td>
-<td class="gt_row gt_right">37,565</td>
+<td class="gt_row gt_right">37,580</td>
 <td class="gt_row gt_right">38,206</td>
 <td class="gt_row gt_right">&minus;2%</td></tr>
     <tr><td class="gt_row gt_center">Fairfield</td>
-<td class="gt_row gt_right">192,311</td>
+<td class="gt_row gt_right">192,370</td>
 <td class="gt_row gt_right">85,389</td>
 <td class="gt_row gt_right">+56%</td>
-<td class="gt_row gt_right">400,137</td>
+<td class="gt_row gt_right">400,115</td>
 <td class="gt_row gt_right">340,822</td>
 <td class="gt_row gt_right">+15%</td>
-<td class="gt_row gt_right">372,975</td>
+<td class="gt_row gt_right">373,129</td>
 <td class="gt_row gt_right">386,722</td>
 <td class="gt_row gt_right">&minus;4%</td></tr>
     <tr><td class="gt_row gt_center">New Haven</td>
-<td class="gt_row gt_right">148,880</td>
+<td class="gt_row gt_right">148,904</td>
 <td class="gt_row gt_right">57,406</td>
 <td class="gt_row gt_right">+61%</td>
-<td class="gt_row gt_right">326,325</td>
+<td class="gt_row gt_right">326,331</td>
 <td class="gt_row gt_right">273,704</td>
 <td class="gt_row gt_right">+16%</td>
-<td class="gt_row gt_right">341,731</td>
+<td class="gt_row gt_right">341,851</td>
 <td class="gt_row gt_right">347,468</td>
 <td class="gt_row gt_right">&minus;2%</td></tr>
     <tr><td class="gt_row gt_center">Middlesex</td>
-<td class="gt_row gt_right">21,765</td>
+<td class="gt_row gt_right">21,804</td>
 <td class="gt_row gt_right">8,816</td>
-<td class="gt_row gt_right">+59%</td>
-<td class="gt_row gt_right">57,211</td>
+<td class="gt_row gt_right">+60%</td>
+<td class="gt_row gt_right">57,189</td>
 <td class="gt_row gt_right">48,137</td>
 <td class="gt_row gt_right">+16%</td>
-<td class="gt_row gt_right">78,700</td>
+<td class="gt_row gt_right">78,736</td>
 <td class="gt_row gt_right">81,835</td>
 <td class="gt_row gt_right">&minus;4%</td></tr>
     <tr><td class="gt_row gt_center">New London</td>
-<td class="gt_row gt_right">37,225</td>
+<td class="gt_row gt_right">37,253</td>
 <td class="gt_row gt_right">16,088</td>
 <td class="gt_row gt_right">+57%</td>
-<td class="gt_row gt_right">103,265</td>
+<td class="gt_row gt_right">103,276</td>
 <td class="gt_row gt_right">80,167</td>
 <td class="gt_row gt_right">+22%</td>
-<td class="gt_row gt_right">107,965</td>
+<td class="gt_row gt_right">107,996</td>
 <td class="gt_row gt_right">110,026</td>
 <td class="gt_row gt_right">&minus;2%</td></tr>
     <tr><td class="gt_row gt_center">Address pending</td>
-<td class="gt_row gt_right">30,457</td>
+<td class="gt_row gt_right">30,470</td>
 <td class="gt_row gt_right">2,500</td>
 <td class="gt_row gt_right">+92%</td>
-<td class="gt_row gt_right">20,730</td>
+<td class="gt_row gt_right">20,772</td>
 <td class="gt_row gt_right">7,641</td>
 <td class="gt_row gt_right">+63%</td>
-<td class="gt_row gt_right">28,269</td>
+<td class="gt_row gt_right">28,282</td>
 <td class="gt_row gt_right">3,438</td>
 <td class="gt_row gt_right">+88%</td></tr>
     <tr><td class="gt_row gt_center">Total</td>
-<td class="gt_row gt_right">584,714</td>
+<td class="gt_row gt_right">584,901</td>
 <td class="gt_row gt_right">249,367</td>
 <td class="gt_row gt_right">+57%</td>
-<td class="gt_row gt_right">1,364,064</td>
+<td class="gt_row gt_right">1,364,063</td>
 <td class="gt_row gt_right">1,163,544</td>
 <td class="gt_row gt_right">+15%</td>
-<td class="gt_row gt_right">1,464,926</td>
+<td class="gt_row gt_right">1,465,435</td>
 <td class="gt_row gt_right">1,484,161</td>
 <td class="gt_row gt_right">&minus;1%</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="10">CDC data as of 09-May-2022, CT DPH data as of 04-May-2022</td>
+      <td class="gt_sourcenote" colspan="10">CDC data as of 10-May-2022, CT DPH data as of 04-May-2022</td>
     </tr>
     <tr>
       <td class="gt_sourcenote" colspan="10">An initial J&amp;J dose is counted in the `second dose` column rather than in the `initial dose` column.</td>
