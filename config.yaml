@@ -21,12 +21,15 @@ metaDataFormat: yaml
 footnoteReturnLinkContents: '&#8617;'
 paginate: 8
 preserveTaxonomyNames: yes
+# added "\\.qmd$", "\\.ipynb$" per https://quarto.org/docs/output-formats/hugo.html
 ignoreFiles:
   - \.Rmd$
   - \.Rmarkdown$
   - _cache$
   - \.knit\.md$
   - \.utf8\.md$
+  - \.qmd$
+  - \.ipynb
 enableEmoji: yes
 # one of https://xyproto.github.io/splash/docs/all.html
 
