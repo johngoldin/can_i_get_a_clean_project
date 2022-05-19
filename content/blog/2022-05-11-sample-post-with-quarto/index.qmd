@@ -8,13 +8,23 @@ slug: sample-post-with-quarto
 categories: []
 tags: []
 subtitle: ''
-excerpt: ''
+excerpt: 'National county-level data shows a correlation between COVID vaccinatioin rates and 2020 Trump vote share. This post will do something similar at the level of Connecticut towns.'
 draft: yes
 images:
   - ~
   - ~
 series: ~
 layout: single
+execute:
+  echo: false
+  warning: false
+cache: true
+toc: true
+freeze: auto
+fig-width: 7
+out-width: 100%
+fig-align: "center"
+fig-asp: 0.618  
 ---
 
 ## Quarto
