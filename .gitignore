@@ -10,6 +10,8 @@
 
 **/index.en_cache/**
 **/index_cache/**
+**/index_alt_cache/**
+**/index_alt_files/**
 
 # check_site suggestion:
 Thumbs.db
