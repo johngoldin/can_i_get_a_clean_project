@@ -5,6 +5,7 @@ date: '2018-09-08'
 slug: geotagging-voters
 aliases:
     - /2018/09/geotagging_voters/
+    - /blog/geotagging-voters/
 categories: 
   - R
   - maps
