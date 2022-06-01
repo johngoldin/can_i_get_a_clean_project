@@ -1,7 +1,7 @@
 ---
 title: Vaccination and Trump Vote in Connecticut
 author: John Goldin
-date: '2022-06-02'
+date: '2022-07-02'
 categories:
   - COVID19
 tags:
@@ -35,6 +35,8 @@ fig-asp: 0.618
 -   <a href="#polling-on-partisanship-and-vaccination" id="toc-polling-on-partisanship-and-vaccination">Polling on Partisanship and Vaccination</a>
 -   <a href="#some-quick-reactions" id="toc-some-quick-reactions">Some Quick Reactions</a>
 -   <a href="#the-issue-of-the-population-denominator-and-its-effects-on-vaccination-rates" id="toc-the-issue-of-the-population-denominator-and-its-effects-on-vaccination-rates">The Issue of the Population Denominator and Its Effects on Vaccination Rates</a>
+
+Check that we have the right version of the post.
 
 The plot below shows the relationship between vaccination rates and percentage of the vote for Trump in the 2020 election for each Connecticut town.
 
