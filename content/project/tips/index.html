@@ -51,7 +51,6 @@ editor_options:
     wrap: 72
 ---
 
-<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -66,20 +65,24 @@ editor_options:
 </ul>
 </div>
 
-<p>I have been saving R-related snippets in Evernote. What I will do here is pick out some of
-the ones that I use most often to try to organize them in a more curated fashion.</p>
+<p>I have been saving R-related snippets in Evernote. What I will do here
+is pick out some of the ones that I use most often to try to organize
+them in a more curated fashion.</p>
 <div id="mapping" class="section level3">
 <h3>Mapping</h3>
 <div id="leaflet" class="section level4">
 <h4>Leaflet</h4>
-<p><a href="http://leafletjs.com/reference.html#control-scale">scale on leaflet map</a><br />
+<p><a href="http://leafletjs.com/reference.html#control-scale">scale on leaflet
+map</a><br />
 <a href="http://www.r-bloggers.com/interactive-mapping-with-leaflet-in-r/" class="uri">http://www.r-bloggers.com/interactive-mapping-with-leaflet-in-r/</a><br />
-leaflet map sample: <a href="http://leaflet-extras.github.io/leaflet-providers/preview/" class="uri">http://leaflet-extras.github.io/leaflet-providers/preview/</a></p>
+leaflet map sample:
+<a href="http://leaflet-extras.github.io/leaflet-providers/preview/" class="uri">http://leaflet-extras.github.io/leaflet-providers/preview/</a></p>
 </div>
 </div>
 <div id="tables" class="section level3">
 <h3>Tables</h3>
-<p><a href="https://rfortherestofus.com/2019/11/how-to-make-beautiful-tables-in-r/">How to Make Beautiful Tables</a></p>
+<p><a href="https://rfortherestofus.com/2019/11/how-to-make-beautiful-tables-in-r/">How to Make Beautiful
+Tables</a></p>
 </div>
 <div id="census" class="section level3">
 <h3>Census</h3>
@@ -87,37 +90,54 @@ leaflet map sample: <a href="http://leaflet-extras.github.io/leaflet-providers/p
 </div>
 <div id="network-analysis-twitter" class="section level3">
 <h3>Network Analysis &amp; Twitter</h3>
-<p><a href="https://www.jessesadler.com/post/network-analysis-with-r/">Introduction to Network Analysis with R</a><br />
-<a href="http://psych-networks.com/misinterpreting-networks-an-abbreviated-tutorial-on-visualizations/">good tutorial to networks</a> and <a href="https://www.frontiersin.org/articles/10.3389/fpsyg.2018.01742/full" class="uri">https://www.frontiersin.org/articles/10.3389/fpsyg.2018.01742/full</a>)<br />
-<a href="http://advances.sciencemag.org/content/1/1/e1400005">network of faculty hiring</a></p>
+<p><a href="https://www.jessesadler.com/post/network-analysis-with-r/">Introduction to Network Analysis with
+R</a><br />
+<a href="http://psych-networks.com/misinterpreting-networks-an-abbreviated-tutorial-on-visualizations/">good tutorial to
+networks</a>
+and
+<a href="https://www.frontiersin.org/articles/10.3389/fpsyg.2018.01742/full" class="uri">https://www.frontiersin.org/articles/10.3389/fpsyg.2018.01742/full</a>)<br />
+<a href="http://advances.sciencemag.org/content/1/1/e1400005">network of faculty
+hiring</a></p>
 </div>
 <div id="github-techniques" class="section level3">
 <h3>Github Techniques</h3>
 <p><a href="http://allendowney.github.io/amgit/conflict">GitHub merge</a><br />
-<a href="https://usethis.r-lib.org/articles/articles/pr-functions.html">pull request helpers</a></p>
+<a href="https://usethis.r-lib.org/articles/articles/pr-functions.html">pull request
+helpers</a></p>
+<p><a href="https://www.njtierney.com/post/2017/10/27/change-pkg-name/">How to chabnge package
+name</a></p>
 </div>
 <div id="ggplot2" class="section level3">
 <h3>ggplot2</h3>
 <p><a href="https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html">ggridges</a><br />
 <img src="img/ggridges_example.png" />
 <a href="https://hafen.github.io/geofacet/">geofacet</a></p>
-<p>really great collection of tips and tricks: <a href="https://github.com/z3tt/outlierconf2021" class="uri">https://github.com/z3tt/outlierconf2021</a>
-   tutorial: <a href="https://z3tt.github.io/OutlierConf2021/" class="uri">https://z3tt.github.io/OutlierConf2021/</a>
-   <img src="img/ggplot_wizardry.png" />
-   <img src="img/fancy_example.png" />
-scio palettes: <a href="https://github.com/thomasp85/scico" class="uri">https://github.com/thomasp85/scico</a>
+<div id="really-great-collection-of-tips-and-tricks-httpsgithub.comz3ttoutlierconf2021-tutorial-httpsz3tt.github.iooutlierconf2021-figuring-out-what-ggplot2-palettes." class="section level4">
+<h4>really great collection of tips and tricks: <a href="https://github.com/z3tt/outlierconf2021" class="uri">https://github.com/z3tt/outlierconf2021</a>    tutorial: <a href="https://z3tt.github.io/OutlierConf2021/" class="uri">https://z3tt.github.io/OutlierConf2021/</a>    <img src="img/ggplot_wizardry.png" />    <img src="img/fancy_example.png" /> Figuring out what ggplot2 palettes.</h4>
+<pre class="r"><code>scales::hue_pal()(2)</code></pre>
+<pre><code>## [1] &quot;#F8766D&quot; &quot;#00BFC4&quot;</code></pre>
+<pre class="r"><code>scales::show_col(scales::hue_pal()(2))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/hue_pal-1.png" width="672" /></p>
+<pre class="r"><code>scales::show_col(scales::hue_pal(direction = -1)(2)) |&gt; print()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/hue_pal-2.png" width="672" /></p>
+<pre><code>## NULL</code></pre>
+<p>scio palettes: <a href="https://github.com/thomasp85/scico" class="uri">https://github.com/thomasp85/scico</a>
 <img src="img/scico_palette_show.png" /></p>
+</div>
 <div id="sankey-plots" class="section level4">
 <h4>sankey plots</h4>
-<p>Sankey plots.  <a href="https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html" class="uri">https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html</a><br />
+<p>Sankey plots. 
+<a href="https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html" class="uri">https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html</a><br />
 in plotly: <a href="https://plot.ly/r/sankey-diagram/" class="uri">https://plot.ly/r/sankey-diagram/</a><br />
-and see <a href="https://matthewdharris.com/2017/11/11/a-brief-diversion-into-static-alluvial-sankey-diagrams-in-r/" class="uri">https://matthewdharris.com/2017/11/11/a-brief-diversion-into-static-alluvial-sankey-diagrams-in-r/</a><br />
+and see
+<a href="https://matthewdharris.com/2017/11/11/a-brief-diversion-into-static-alluvial-sankey-diagrams-in-r/" class="uri">https://matthewdharris.com/2017/11/11/a-brief-diversion-into-static-alluvial-sankey-diagrams-in-r/</a><br />
 And <a href="https://david.frigge.nz/posts/2019-10-rugby-world-cup/" class="uri">https://david.frigge.nz/posts/2019-10-rugby-world-cup/</a></p>
 </div>
 </div>
 <div id="markdown-html-and-hugo-shortcodes" class="section level3">
 <h3>Markdown, HTML, and Hugo Shortcodes</h3>
-<p><a href="https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes">link to Hugo shortcodes</a></p>
+<p><a href="https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes">link to Hugo
+shortcodes</a></p>
 <p>To insert a figure:</p>
 <pre class="html"><code>&lt;figure&gt; 
   &lt;img  src=&quot;/img/canopy_bed.png&quot; alt=&quot;Canopy Bed&quot; width=&quot;304&quot; height=&quot;228&quot;&gt;
@@ -148,42 +168,46 @@ see [these tweets](https://indrajeetpatil.github.io/RmarkdownTips/).
 
 In an .md document:    
 [Choosing a path]({{&lt; relref &quot;2017-03-11-american-walker-in-britain-part-2.md#choosing-a-path&quot; &gt;}})    
-In an RMarkdown document, it&#39;s different if pandoc is turning the document into html rather than Hugo.
-</code></pre>
+In an RMarkdown document, it&#39;s different if pandoc is turning the document into html rather than Hugo.</code></pre>
 <div id="back-to-uk-walking-topics-relref-2017-03-07-an-american-walking-in-britain.mdtopics" class="section level4">
 <h4>[Back to UK Walking Topics]({{&lt; relref “2017-03-07-an-american-walking-in-britain.md#topics” &gt;}})</h4>
 <ul>
-<li>[Choosing a path]({{&lt; relref “2017-03-11-american-walker-in-britain-part-2.md#choosing-a-path” &gt;}})</li>
+<li>[Choosing a
+path]({{&lt; relref “2017-03-11-american-walker-in-britain-part-2.md#choosing-a-path” &gt;}})</li>
 </ul>
-<pre><code>
-[Hugo figure shortcode](https://gohugo.io/content-management/shortcodes/#figure)
-</code></pre>
-and {{%/* figure src=“/img/taxi.png#floatright” caption=“Need a taxi Hadrians Wall Path?” */%}}
-img style=“float: right;” src=“/img/taxi.png”&gt;
-&lt;figure.right &gt;
-&lt;img src=“/img/taxi.png” alt=“taxi phone number” "&gt;
+<!-- -->
+<pre><code>[Hugo figure shortcode](https://gohugo.io/content-management/shortcodes/#figure)</code></pre>
+<p>and {{%/* figure src=“/img/taxi.png#floatright” caption=“Need a taxi
+Hadrians Wall Path?” */%}} img style=“float: right;”
+src=“/img/taxi.png”&gt; &lt;figure.right &gt; &lt;img src=“/img/taxi.png”
+alt=“taxi phone number” “&gt;</p>
 <figcaption>
-Isn’t this better than camping?
+<p>Isn’t this better than camping?</p>
 </figcaption>
 </figure>
 <p>{{&lt; tweet 1390602863651573760 &gt;}}</p>
-<p>markdown code for figure: (html parameters within curly braces)
-<img src="/img/hugo_pool/page_inspector.jpg" style="width:100.0%" alt="(Text, italic in ())" /></p>
-<p>{{%/* figure src=“/img/taxi.png#floatright” caption=“Need a taxi Hadrians Wall Path?” */%}}</p>
+<p>markdown code for figure: (html parameters within curly braces) <img src="/img/hugo_pool/page_inspector.jpg" style="width:100.0%" alt="(Text, italic in ())" /></p>
+<p>{{%/* figure src=“/img/taxi.png#floatright” caption=“Need a taxi
+Hadrians Wall Path?” */%}}</p>
 <p>Have to use shortcode function to embed shortcode from RMarkdown:
-blogdown::shortcode(“figure”, src = “/img/taxi.png#floatright”, caption = “Called using shortcode function”)
-```</p>
+blogdown::shortcode(“figure”, src = “/img/taxi.png#floatright”, caption
+= “Called using shortcode function”) ```</p>
 <p>{{% figure src="/img/taxi.png#floatright" caption="Called using shortcode function" %}}</p>
-<p><a href="https://www.garrickadenbuie.com/blog/blogdown-netlify-new-post-workflow/">workflow for blogdown and netlify</a><br />
-<a href="https://alison.rbind.io/post/2020-12-12-how-much-hugo/">a spoonful of hugo</a></p>
+<p><a href="https://www.garrickadenbuie.com/blog/blogdown-netlify-new-post-workflow/">workflow for blogdown and
+netlify</a><br />
+<a href="https://alison.rbind.io/post/2020-12-12-how-much-hugo/">a spoonful of
+hugo</a></p>
 </div>
 <div id="markdown-for-footnote-that-contains-a-link" class="section level4">
 <h4>Markdown for footnote that contains a link</h4>
 <p>[^1] – put this where the footnote appears<br />
-[^1]: The footnote is contained in this line of text and can include more markdown formatting.</p>
+[^1]: The footnote is contained in this line of text and can include
+more markdown formatting.</p>
 </div>
 </div>
 <div id="regular-expressions" class="section level3">
 <h3>Regular Expressions</h3>
-<p>Some <a href="https://www.jumpingrivers.com/blog/regular-expressions-every-r-programmer-should-know/">tips</a> from the Jumping Rivers blog</p>
+<p>Some
+<a href="https://www.jumpingrivers.com/blog/regular-expressions-every-r-programmer-should-know/">tips</a>
+from the Jumping Rivers blog</p>
 </div>

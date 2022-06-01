@@ -1,19 +1,21 @@
 ---
-title: "Sample Post With Quarto"
+title: Vaccination and Trump Vote in Connecticut
+author: John Goldin
+date: '2022-06-02'
+categories:
+  - COVID19
+tags:
+  - COVID19
 format: hugo
 editor: visual
-author: John Goldin
-date: '2022-05-11'
 slug: sample-post-with-quarto
-categories: []
-tags: []
-subtitle: ''
-excerpt: 'National county-level data shows a correlation between COVID vaccinatioin rates and 2020 Trump vote share. This post will do something similar at the level of Connecticut towns.'
+excerpt: National county-level data shows a correlation between COVID vaccinatioin
+  rates and 2020 Trump vote share. This post will do something similar at the level
+  of Connecticut towns.
 draft: yes
 images:
   - ~
   - ~
-series: ~
 layout: single
 execute:
   echo: false
@@ -23,8 +25,8 @@ toc: true
 freeze: auto
 fig-width: 7
 out-width: 100%
-fig-align: "center"
-fig-asp: 0.618  
+fig-align: center
+fig-asp: 0.618
 ---
 
 ```{r}
@@ -44,6 +46,7 @@ library(janitor, quietly = TRUE)
 options(tigris_use_cache = TRUE)
 options(tigris_class = "sf")
 ```
+
 ```{r}
 #| label: setup_date
 #| message: false
@@ -85,33 +88,43 @@ month_dates <- vote_vaccinated2 |> ungroup() |> count(date) |>
   summarise(date = last(date)) |> pluck("date")
 
               
-
+# remove Mansfield because of Storrs
 p_vote_vaccine <- ggplot(data = xx, 
                          aes(x = pct_repub, y = value,
                             colour = `Age Group`)) +
   geom_smooth(data = xx |> filter(social_vulnerability_index != "xYes",
-                  town != "Mansfield", town != "Salisbury"),
+                  town != "Mansfield", town != "xSalisbury"),
     method = "lm") +
   geom_point(aes(shape = social_vulnerability_index)) +
-  geom_text(aes(label = town), size = 2.5) +
-  ylab("Percent Fully Vaccinated") + xlab("Percent Trump")
+  geom_text(aes(label = town), size = 2.5, nudge_y = -0.005) +
+  ylab("Fully Vaccinated") + xlab("Trump vote in 2020") +
+   scale_y_continuous(labels=percent) + scale_x_continuous(labels=percent)
 
 
-
+# Manfield and Canaan are extreme outliers, Mansfield because of
+# UConn but I don't know explanation for Canaan.
  p_pops1 <- ggplot(data = vote_vaccinated2 |> 
                     filter(town != "Mansfield", town != "Canaan", date == max(date)), 
                    aes(x = pct_repub, y = vax_rate2020)) +
    geom_smooth(mapping = aes(x = pct_repub, y = vax_rate2020), method = "lm", se = FALSE, na.rm = TRUE) +
-   geom_point(aes(size = pop2020)) +
+   geom_point(aes(size = pop2020), colour = "grey30") +
    # geom_point(aes(size = pop2020, y = vax_ratedph), colour = "red") +
    scale_size_area(breaks = c(1000, 2000, 5000, 10000, 30000, 100000)) +
-   geom_text(aes(label = town), size = 2.5) 
+   geom_text(aes(label = town), size = 2.5, nudge_y = -0.005) +
+   ylab("Fully Vaccinated") + xlab("Trump vote in 2020") +
+   scale_y_continuous(labels=percent) + 
+   scale_x_continuous(labels=percent) +
+   theme(legend.position="none")
  
 p_pops1b <- p_pops1 +
   geom_smooth(data = vote_vaccinated2 |> 
                 filter(date %in% month_dates, social_vulnerability_index == "No"), 
               aes(group = date), method = "lm", se = FALSE)
- 
+
+# vote_vaccinated2 <- vote_vaccinated2 |> 
+#   mutate(social_vulnerability_index = factor(social_vulnerability_index,
+#                                              levels = c("No", "Yes"), 
+#                                              ordered = TRUE))
 p_pops2 <- ggplot(data = vote_vaccinated2 |> 
                     filter(town != "Mansfield", town != "Canaan", 
                            date == max(date)), 
@@ -120,8 +133,14 @@ p_pops2 <- ggplot(data = vote_vaccinated2 |>
  # geom_smooth(aes(size = pop2020, y = vax_rate2020_over17), colour = "grey", method = "lm") +
    geom_point(aes(size = pop2020, colour = social_vulnerability_index)) +
    # geom_point(aes(size = pop2020, y = vax_rate2020_over17), colour = "grey") +
-   scale_size_area(breaks = c(1000, 2000, 5000, 10000, 30000, 100000)) +
-   geom_text(aes(label = town), size = 2.5)
+   ylab("Fully Vaccinated") + xlab("Trump vote in 2020") +
+   scale_y_continuous(labels=percent) + 
+   scale_x_continuous(labels=percent) +
+   scale_colour_discrete(guide = "none") +
+   theme(legend.position = "top") +
+   scale_size_area(breaks = c(1000, 2000, 5000, 10000, 30000, 100000),
+                   guide = "none") +
+   geom_text(aes(label = town), size = 2.5, nudge_y = -0.005)
 
 p_pops3 <- p_pops2 +
   geom_smooth(data = vote_vaccinated2 |> filter(date %in% month_dates, social_vulnerability_index == "No"), aes(group = date), method = "lm")
@@ -148,7 +167,8 @@ lm_lines <- lm_lines |>
 
 #### Your next task:
 #### apply lm_lines to add date label
-p_pops1b + geom_text(data = lm_lines |> filter(social_vulnerability_index == "No"),
+# I don't plan on using p_pops1b_with_hist, just wanted to see what it looked like.
+p_pops1b_with_hist <- p_pops1b + geom_text(data = lm_lines |> filter(social_vulnerability_index == "No"),
                      aes(label = month(date, label  = TRUE, abbr = FALSE) |> as.character(), 
                          x = date_label.x, y = date_label.y), 
                      colour = "grey", size = 3)
@@ -157,71 +177,75 @@ p_pops1b + geom_text(data = lm_lines |> filter(social_vulnerability_index == "No
 # and here's Charles Gaba on them talking to him about this: https://twitter.com/charles_gaba/status/1467499374817259524?s=20
 ```
 
-## Connecticut 2020 Presidential Vote and Vaccination by Town
-
-The plot below shows the relationship between vaccination rates and percentage of 
-the vote for Trump in the 2020 election.
+The plot below shows the relationship between vaccination rates and percentage of the vote for Trump in the 2020 election for each Connecticut town.
 
 ```{r}
 #| label: vote_repub
+#| message: false
+print(p_pops1)
+```
+
+As the trend line emphasizes, a large vote percentage for Trump is associated with a lower percentage of individuals who are fully vaccinated. But there are some obvious complications that show the story is a bit more complicated. Looking at the lower left portion of the figure we see that the biggest cities in Connecticut have a very low vote for Trump but also tend to have below-average vaccination rates. Political affiliation has a role, but there are other important factors as well.
+
+The CDC has constructed something they call the [social vulnerability index](https://www.atsdr.cdc.gov/placeandhealth/svi/fact_sheet/fact_sheet.html) to indicate communities that are more vulnerable to events that threaten public health. It is based on 15 characteristics from the Census Bureau which they group as socioeconomic factors, household composition, race/ethnicity/language, and housing/transportation. The Connecticut Department of Public Health flags any town with at least one census tract that is high on the social vulnerability index. (See Table 3 of the [Statewide Hazard Vulnerability Analysis](https://www.atsdr.cdc.gov/placeandhealth/svi/fact_sheet/fact_sheet.html).)
+
+In the next figure, towns that are relatively high on the social vulnerability index are flagged in green. Mostly one sees the but large urban centers in Connecticut, which tend to include areas with high poverty, lower educational attainment, and other factors measured by the index. One can quibble with how well the index categorizes Connecticut towns. For example, West Hartford is coded as vulnerable while Hamden is not. The precision of the index isn't important. For towns flagged as vulnerable there is no relationship between Trump vote and vaccination rate, while the trend line for other towns shows a steeper negative slope.
+
+The moral of the story is there are factors such as wealth and education that have a significant relationship to vaccination decisions independent of political preferences,
+
+```{r}
+#| label: social_vulnerability
 #| message: false
 plot(p_pops2)
 plot(p_vote_vaccine)
 ```
 
-Note that for the trend lines in the plot I have eliminated Mansfield and Simsbury as outliers. 
-Manfield is the location of University of Connecticut. Some students may be counted
-in census population for Manfield, but getting their vaccinations elsewhere.
-I don't know what's going on with Simsbury.
+Note that for the trend lines in the plot I have eliminated Mansfield and Simsbury as outliers. Manfield is the location of University of Connecticut. Some students may be counted in census population for Manfield, but getting their vaccinations elsewhere. I don't know what's going on with Simsbury.
 
-The CDC uses someting they call the 
-[social vulnerability index](https://www.atsdr.cdc.gov/placeandhealth/svi/index.html),
-and DPH has included
-that as well. DPH flags each town that has at least one census tract that has a social
-vulnerability index of 75% or greater. Towns showing the social vulnerability index flag tend
-to have a lower vaccination rate (and a lower Trump percentage), and that's especially
-true for the large cities.
+The CDC uses someting they call the [social vulnerability index](https://www.atsdr.cdc.gov/placeandhealth/svi/index.html), and DPH has included that as well. DPH flags each town that has at least one census tract that has a social vulnerability index of 75% or greater. Towns showing the social vulnerability index flag tend to have a lower vaccination rate (and a lower Trump percentage), and that's especially true for the large cities.
 
-### Work by [Charles Gaba](https://t.co/x3Vu568chv?amp=1) on Trump Vote and COVID vaccination and death
+### Work by Charles Gaba on Trump Vote and COVID vaccination and death
 
-Charles Gaba has been doing analyses showing the 
-[relationship between 2020 vote and vaccinations](https://acasignups.net/21/11/23/weekly to update to us to covid19 to vaccination to levels to county to trump to 2020 to vote) 
-and deaths using county to level data for all states.
+[Charles Gaba](https://t.co/x3Vu568chv?amp=1) has been doing analyses showing the [relationship](https://acasignups.net/21/11/23/weekly%20to%20update%20to%20us%20to%20covid19%20to%20vaccination%20to%20levels%20to%20county%20to%20trump%20to%202020%20to%20vote)[between](https://acasignups.net/vaccinations "Vaccine info at Gaba website")[2020 vote and vaccinations](https://acasignups.net/21/11/23/weekly%20to%20update%20to%20us%20to%20covid19%20to%20vaccination%20to%20levels%20to%20county%20to%20trump%20to%202020%20to%20vote) and deaths using county to level data for all states.
 
 ![From Charles Gaba](https://acasignups.net/sites/default/files/styles/inline_default/public/vaxxes_red_blue_every_county_112221_0.jpg?itok=JBx4OW9o)
-Which reminds me, why have I been putting Trump Vote on the  y to axis? 
-The x to axis makes much more sense given that the hypothesis is that Trump vote affects
-vaccination.
 
 ### Polling on Partisanship and Vaccination
 
-See this summary of the MULawPoll.
+See this summary based on the the [Marquette University Law School Poll](https://law.marquette.edu/poll/).
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Here is vaccination status by age and party, suggested by <a href="https://twitter.com/AFilindra?ref_src=twsrc%5Etfw">@AFilindra</a> <br><br>This pools Sept &amp; Nov 2021 <a href="https://twitter.com/MULawPoll?ref_src=twsrc%5Etfw">@MULawPoll</a> national surveys to maximize cases. Estimates are logit fits by party.<br><br>Partisan gap narrows with age, but obvious partisan difference even among old. <a href="https://t.co/klA11TY5YX">pic.twitter.com/klA11TY5YX</a></p>&mdash; Charles Franklin (@PollsAndVotes) <a href="https://twitter.com/PollsAndVotes/status/1465126616561029126?ref_src=twsrc%5Etfw">November 29, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Here is vaccination status by age and party, suggested by <a href="https://twitter.com/AFilindra?ref_src=twsrc%5Etfw">@AFilindra</a> <br><br>This pools Sept &amp; Nov 2021 <a href="https://twitter.com/MULawPoll?ref_src=twsrc%5Etfw">@MULawPoll</a> national surveys to maximize cases. Estimates are logit fits by party.<br><br>Partisan gap narrows with age, but obvious partisan difference even among old. <a href="https://t.co/klA11TY5YX">pic.twitter.com/klA11TY5YX</a></p>&mdash; Charles Franklin (@PollsAndVotes) <a href="https://twitter.com/PollsAndVotes/status/1465126616561029126?ref_src=twsrc%5Etfw">November 29, 2021</a></blockquote>
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+In their [recent poll response](https://law.marquette.edu/poll/2021/09/23/new-marquette-law-school-poll-finds-strong-partisan-divisions-on-afghanistan-covid-policies-and-election-results/), Table 11: Vaccination status, by party identification, Sept. 2021
+
+*Table 11: Vaccination status, by party identification, Sept. 2021*
+
+| Party ID    | Vaccinated | Not Vaccinated |
+|-------------|------------|----------------|
+| Republican  | 64         | 35             |
+| Independent | 74         | 25             |
+| Democratic  | 90         | 9              |
 
 ### Some Quick Reactions
 
-The first interesting thing is that the relationship between Trump vote and vaccination
-is so different for the over 65 crowd. It's only the under 65 population for whom
-a higher Trump vote is correlated with lower vaccination (and that relationship is 
-probably even clear if one separate out the towns flagged with the social
-vulnerability index or the large cities).
+The first interesting thing is that the relationship between Trump vote and vaccination is so different for the over 65 crowd. It's only the under 65 population for whom a higher Trump vote is correlated with lower vaccination (and that relationship is probably even clear if one separate out the towns flagged with the social vulnerability index or the large cities).
 
 I'll sleep on this and see what I think tomorrow.
-
 
 #### Sources
 
 Vote stats come from [The Secretary of State](https://ctemspublic.pcctg.net/#/reports).
 
-Vaccination rates are from DPH via [data.ct.gov](https://data.ct.gov/Health to and to Human to Services/COVID to 19 to Vaccinations to by to Town to and to Age to Group/gngw to ukpw).
-
+Vaccination rates are from DPH via [data.ct.gov](https://data.ct.gov/Health%20to%20and%20to%20Human%20to%20Services/COVID%20to%2019%20to%20Vaccinations%20to%20by%20to%20Town%20to%20and%20to%20Age%20to%20Group/gngw%20to%20ukpw).
 
 ```{r}
 #| label: census_stuff
 #| message: false
 # from https://www.johngoldin.com/blog/2019 to 04 to new to haven to census to and to r/
-vars <- load_variables(2019, "acs5", cache = TRUE) %>% 
+census_year <- 2020
+vars <- load_variables(2020, "acs5", cache = TRUE) %>% 
   mutate(table_id = str_sub(name, 1, 6), 
          # Race generally is in parentheses after the concept name.
          # But for a few cases, something else is in parentheses first. So I
@@ -249,7 +273,7 @@ B17010_variables <- vars %>%
 poverty_acs <- get_acs(geography = "county subdivision",  # for CT, that means towns
               state = "CT",
               geometry = "FALSE", # no map at this time
-              year = 2019,
+              year = census_year,
               survey = "acs5",
               variables = B17010_variables[2],
               summary_var = B17010_variables[1]) %>% 
@@ -269,6 +293,7 @@ poverty_acs <- get_acs(geography = "county subdivision",  # for CT, that means t
 #               variables = "B19013_001")
 
 ```
+
 ```{r}
 #| label: race
 #| message: false
@@ -293,7 +318,7 @@ rcodes <- tribble(
 race_town2 <- get_acs(geography = "county subdivision",  # for CT, that means towns
               state = "CT",
               geometry = "FALSE", 
-              year = 2019,
+              year = census_year,
               survey = "acs5",
               variables = c(white_not_hispanic, white_alone, black, hispanic, asian, not_us),
               summary_var = "B01001_001")   %>% 
@@ -319,6 +344,7 @@ race_town2 <- get_acs(geography = "county subdivision",  # for CT, that means to
 #   spread(key = race, value = Percent) %>% 
 #   arrange(`White not Hispanic`) 
 ```
+
 ```{r}
 #| label: gender-from-census2
 #| message: false
@@ -334,7 +360,14 @@ if (1 == 2) {
   sex_age_acs2014_3 <- sex_age_acs2014_2 |> 
     group_by(TOWN, age) |> 
     summarise(estimate = sum(estimate))
-  save(sex_age_acs2019_2, sex_age_acs2014_2, file = "~/Documents/R_local_repos/ctcorona/data/census_acs_data.RData")
+  sex_age_acs2020_2 <- get_acs_age_sex(acs_year = 2020, acs_vars = vars)
+  sex_age_acs2020_3 <- sex_age_acs2020_2 |> 
+    group_by(TOWN, age) |> 
+    summarise(estimate = sum(estimate))  
+  save(sex_age_acs2020_2,
+       sex_age_acs2019_2, 
+       sex_age_acs2014_2, 
+       file = "~/Documents/R_local_repos/ctcorona/data/census_acs_data.RData")
 }
 load("~/Documents/R_local_repos/ctcorona/data/census_acs_data.RData")
 
@@ -413,7 +446,6 @@ p2 <- ggplot(data = acs1519_popvax) +
   ggtitle("Age 65+: Compare Using ACS 2014-2019 population and DPH population as denominator for vax rate") +
   ylab("Vax rate using DPH pop") + xlab("Vax rate using ACS")
 ```
-
 
 ```{r}
 #| label: gender-from-census
@@ -495,32 +527,11 @@ compare_stats <- dph_vaccine_by_age |>
 
 ### The Issue of the Population Denominator and Its Effects on Vaccination Rates
 
-The Department of Public Health (DPH) provides vaccination rates by age ranges by town.
-For this plot I have collapsed the age ranges into four groups. DPH also provides
-an estimated population for each range. Note that you see a lot of vaccination percentages
-above 100%. That's probably an issue with the estimated population. 
-DPH includes their estimate of the population with all of their statistics. 
-See [this page](https://portal.ct.gov/dph/Health to Information to Systems to  to Reporting/Population/Population to Statistics for
-[this description of technical issues](https://authoring.ct.gov/ to /media/Departments to and to Agencies/DPH/Population/PopulationStatisticsOverviewpdf.pdf).
-I am uncertain where that leaves things. It's possible they are using estimates
-based on the 2010 to 2014 surveys from Census. I am in my own town of
-Guilford the population is definitely aging. It became more of a bedroom community
-for New Haven in the 1970's and that original influx has benn growing old
-together. Something similar may be going on in other towns, and that might
-make the estimates of population for older ages come out too low. I'm not sure.
-(John Burn-Murdoch of the *Financial Times* has pointed that that one needs to watch out for
-[issues with the denominators](https://threadreaderapp.com/thread/1447617110910382081.html) 
-while comparing vaccination rates.)
+The Department of Public Health (DPH) provides vaccination rates by age ranges by town. For this plot I have collapsed the age ranges into four groups. DPH also provides an estimated population for each range. Note that you see a lot of vaccination percentages above 100%. That's probably an issue with the estimated population. DPH includes their estimate of the population with all of their statistics. See \[this page\](<https://portal.ct.gov/dph/Health> to Information to Systems to to Reporting/Population/Population to Statistics for [this description of technical issues](https://authoring.ct.gov/%20to%20/media/Departments%20to%20and%20to%20Agencies/DPH/Population/PopulationStatisticsOverviewpdf.pdf). I am uncertain where that leaves things. It's possible they are using estimates based on the 2010 to 2014 surveys from Census. I am in my own town of Guilford the population is definitely aging. It became more of a bedroom community for New Haven in the 1970's and that original influx has benn growing old together. Something similar may be going on in other towns, and that might make the estimates of population for older ages come out too low. I'm not sure. (John Burn-Murdoch of the *Financial Times* has pointed that that one needs to watch out for [issues with the denominators](https://threadreaderapp.com/thread/1447617110910382081.html) while comparing vaccination rates.)
 
 #### Vaccination Rate Depends Both on the Population Denominator and the Vax Doses
 
-As near as I can tell (and I may be wrong), DPH is using the population figures
-from the Census ACS from 2010-2014 (a five year average). The most recent
-ACS data I could fetch was for 2015-2019. I used that data to estimate the
-population by age by town. The plot below compares the effect of using either the
-DPH population estimate or the latest ACS estimate as the denominator when
-calculating the vaccination rate. It makes a noticeable difference. The town
-names are show for cases where the difference in population estimates is greater than 5%.
+As near as I can tell (and I may be wrong), DPH is using the population figures from the Census ACS from 2010-2014 (a five year average). The most recent ACS data I could fetch was for 2015-2019. I used that data to estimate the population by age by town. The plot below compares the effect of using either the DPH population estimate or the latest ACS estimate as the denominator when calculating the vaccination rate. It makes a noticeable difference. The town names are show for cases where the difference in population estimates is greater than 5%.
 
 ```{r}
 #| label: pop-compre-plot
@@ -537,13 +548,14 @@ print(p_compare_vax_rate4564, echo = FALSE, message = FALSE)
 # latest data is from September, 2 months old
 # https://data.ct.gov/api/odata/v4/gngw-ukpw
 ```
+
 ```{r}
 #| label: pop-total-by-age
 load("~/Documents/R_local_repos/ctcorona/data/census_acs_data.RData")
 sex_age_acs2014_2 <- sex_age_acs2014_2 |> 
   filter(age != "Total Female", age != "Total Male") |> 
   mutate(age = factor(age, levels = c("Under 18", "18-44", "45-64", "65+", "Total")))
-print("ACS 2000-2014")
+print("ACS 2010-2014")
 sex_age_acs2014_2 |> 
   group_by(age) |> 
   summarise(estimate = sum(estimate)) |> 
@@ -551,11 +563,19 @@ sex_age_acs2014_2 |>
 sex_age_acs2019_2 <- sex_age_acs2019_2 |> 
   filter(age != "Total Female", age != "Total Male") |> 
   mutate(age = factor(age, levels = c("Under 18", "18-44", "45-64", "65+", "Total")))
-print("ACS 2005-2019")
+print("ACS 2015-2019")
 sex_age_acs2019_2 |> 
   group_by(age) |> 
   summarise(estimate = sum(estimate)) |> 
   mutate(pct = estimate /  sum((sex_age_acs2019_2$estimate[sex_age_acs2019_2$age == "Total"])), estimate = comma(estimate), pct = percent(pct))
+sex_age_acs2019_2 <- sex_age_acs2019_2 |> 
+  filter(age != "Total Female", age != "Total Male") |> 
+  mutate(age = factor(age, levels = c("Under 18", "18-44", "45-64", "65+", "Total")))
+print("ACS 2016-2020")
+sex_age_acs2020_2 |> 
+  group_by(age) |> 
+  summarise(estimate = sum(estimate)) |> 
+  mutate(pct = estimate /  sum((sex_age_acs2020_2$estimate[sex_age_acs2020_2$age == "Total"])), estimate = comma(estimate), pct = percent(pct))
 
 atown <- function(xx, twn) {
   cat("ACS ", " for ", twn, ":\n")
