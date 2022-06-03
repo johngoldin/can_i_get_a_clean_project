@@ -20,7 +20,7 @@ layout: single
 execute:
   echo: false
   warning: false
-cache: true
+cache: false
 toc: true
 freeze: auto
 fig-width: 7
@@ -36,13 +36,15 @@ fig-asp: 0.618
 -   <a href="#some-quick-reactions" id="toc-some-quick-reactions">Some Quick Reactions</a>
 -   <a href="#the-issue-of-the-population-denominator-and-its-effects-on-vaccination-rates" id="toc-the-issue-of-the-population-denominator-and-its-effects-on-vaccination-rates">The Issue of the Population Denominator and Its Effects on Vaccination Rates</a>
 
-Check that we have the right version of the post.
-
 The plot below shows the relationship between vaccination rates and percentage of the vote for Trump in the 2020 election for each Connecticut town.
 
-<div id="fig-anonymous-1">
+<div id="fig-vote-repub">
 
-<img src="index_files/figure-gfm/vote_repub-1.png" width="672" />
+<figure>
+<img src="index_files/figure-gfm/fig-vote-repub-1.png" width="672" />
+</figure>
+
+Figure 1: Trump Vote in 2020 and COVID Vaccination Rate
 
 </div>
 
@@ -54,31 +56,37 @@ In the next figure, towns that are relatively high on the social vulnerability i
 
 The moral of the story is there are factors such as wealth and education that have a significant relationship to vaccination decisions independent of political preferences,
 
-<div id="fig-anonymous-2">
+<div id="fig-social-vulnerability">
 
-<img src="index_files/figure-gfm/social_vulnerability-1.png" width="672" />
+<figure>
+<img src="index_files/figure-gfm/fig-social-vulnerability-1.png" width="672" />
+</figure>
 
-</div>
-
-<div id="fig-anonymous-3">
-
-<img src="index_files/figure-gfm/social_vulnerability-2.png" width="672" />
+Figure 2: Considering Social Vulnerability of Town
 
 </div>
 
-Note that for the trend lines in the plot I have eliminated Mansfield and Simsbury as outliers. Manfield is the location of University of Connecticut. Some students may be counted in census population for Manfield, but getting their vaccinations elsewhere. I don't know what's going on with Simsbury.
+Note that for the trend lines in the plot I have eliminated Mansfield and Simsbury as outliers. Manfield is the location of University of Connecticut. Some students may be counted in census population for Manfield, but getting their vaccinations elsewhere. I don't know what's going on with Salisbury
 
-The CDC uses someting they call the [social vulnerability index](https://www.atsdr.cdc.gov/placeandhealth/svi/index.html), and DPH has included that as well. DPH flags each town that has at least one census tract that has a social vulnerability index of 75% or greater. Towns showing the social vulnerability index flag tend to have a lower vaccination rate (and a lower Trump percentage), and that's especially true for the large cities.
+<div id="fig-age">
+
+<figure>
+<img src="index_files/figure-gfm/fig-age-1.png" width="672" />
+</figure>
+
+Figure 3: Separately by Age of Vaccinated
+
+</div>
 
 ### Work by Charles Gaba on Trump Vote and COVID vaccination and death
 
 [Charles Gaba](https://t.co/x3Vu568chv?amp=1) has been doing analyses showing the [relationship](https://acasignups.net/21/11/23/weekly%20to%20update%20to%20us%20to%20covid19%20to%20vaccination%20to%20levels%20to%20county%20to%20trump%20to%202020%20to%20vote)[between](https://acasignups.net/vaccinations "Vaccine info at Gaba website")[2020 vote and vaccinations](https://acasignups.net/21/11/23/weekly%20to%20update%20to%20us%20to%20covid19%20to%20vaccination%20to%20levels%20to%20county%20to%20trump%20to%202020%20to%20vote) and deaths using county to level data for all states.
 
-<div id="fig-anonymous-4">
+<div id="fig-gaba-chart">
 
 ![](https://acasignups.net/sites/default/files/styles/inline_default/public/vaxxes_red_blue_every_county_112221_0.jpg?itok=JBx4OW9o)
 
-From Charles Gaba
+Figure 4: From Charles Gaba
 
 </div>
 
