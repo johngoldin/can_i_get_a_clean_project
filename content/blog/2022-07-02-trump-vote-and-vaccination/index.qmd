@@ -1,5 +1,5 @@
 ---
-title: Vaccination and Trump Vote in Connecticut
+title: COVID Vaccination and Trump Vote in Connecticut
 author: John Goldin
 date: '2022-07-02'
 categories:
@@ -61,6 +61,64 @@ load(paste0(path_to_ctcorona, "dph_datasets.RData"))
 load(paste0(path_to_ctcorona, "vote2020.RData"))
 load(paste0(path_to_ctcorona, "census_population.RData")) # created in setup_geometries.R
 source("~/Documents/R_local_repos/ctcorona/R/get_acs_age_sex.R")
+```
+
+```{r}
+#| label: census_ctdph
+#| cache: true
+# This chunk will get the ACS5 2020 pop by age range by town
+# Use this to convert from age ranges in ACS to age range in CT DPH vaccination data.
+# 
+convert_acs_to_ctdph = tribble(   
+  ~acs,            ~ctdph1,       ~age,
+ '5 to 9 years', "young", "5-17",     
+ '10 to 14 years', "young",      "5-17",  
+ '15 to 17 years', "young",      "5-17",
+ '18 and 19 years', "population_18-24",  "18-44", 
+ '20 years', "population_18-24",  "18-44",        
+ '21 years', "population_18-24",  "18-44",        
+ '22 to 24 years' , "population_18-24",  "18-44", 
+ '25 to 29 years', "population_25-44",  "18-44",  
+ '30 to 34 years', "population_25-44",  "18-44",  
+ '35 to 39 years', "population_25-44",  "18-44",  
+ '40 to 44 years', "population_25-44",  "18-44",  
+ '45 to 49 years', "population_45-64", "45-64",   
+ '50 to 54 years', "population_45-64", "45-64",   
+ '55 to 59 years', "population_45-64", "45-64",   
+ '60 and 61 years', "population_45-64", "45-64",  
+ '62 to 64 years', "population_45-64", "45-64",   
+ '65 and 66 years', "population_65+", "65+",  
+ '67 to 69 years', "population_65+", "65+",   
+ '70 to 74 years' , "population_65+", "65+",  
+ '75 to 79 years', "population_65+", "65+",   
+ '80 to 84 years', "population_65+", "65+",   
+ '85 years and over', "population_65+", "65+",
+ 'Total', "total",    "total",        
+ 'Total Female', "total female",   "total female",    
+ 'Total Male' , "male",    "male",   
+ 'Under 5 years', "young",      "<5",)
+census_pop_base <- get_acs_age_sex(2020, acs_vars = load_variables(2020, "acs5", cache = TRUE))
+acs_age_range <- census_pop_base |> 
+  group_by(town = TOWN, census_age) |> 
+  summarise(acs_pop = estimate) |> 
+   left_join(convert_acs_to_ctdph, by = c("census_age" = "acs"))
+# version #2 has ctdph2 as <18, 18-44, 45-54, 55-64, 65+ 
+census_pop2 <- acs_age_range |> 
+  mutate(measure = "acspop") |> 
+  filter(age != "male", age != "female", age!= "total female", age != "total") |> 
+  group_by(town, measure, age) |> 
+  summarise(value = sum(acs_pop), .groups = "drop") 
+```
+
+```{r}
+#| label: process_vax
+#| message: false
+#| cache: true
+
+# dph vaccination data is imported from 
+# that is created by daily_ct_stats.R.
+# To exaine state data of town  by town vaccinations, 
+# go to https://data.ct.gov/resource/gngw-ukpw
 
 vote_vaccinated <- town_vote |> 
   left_join(dph_vaccine_by_age, by = "town") |> 
@@ -71,41 +129,169 @@ vote_vaccinated2 <-
   mutate(vax_rate2020 = fully_vaccinated / pop2020,
          vax_ratedph = fully_vaccinated / dph_total_pop,
          vax_rate2020_over17 = fully_vaccinated / over17)
-xx <- vote_vaccinated |> ungroup() |> 
-  select(town, pct_repub,
-         social_vulnerability_index, under_18_vaxed, young_18_to_44_vaxed, middle_vaxed, `old_65+_vaxed`) |> 
-  pivot_longer(names_to = "Age Group",
-               cols = c(under_18_vaxed, young_18_to_44_vaxed, middle_vaxed, `old_65+_vaxed`)) |> 
+# vote_vaccinated3 <- vote_vaccinated |> ungroup() |> 
+#   select(town, pct_repub,
+#          social_vulnerability_index, 
+#          `<18` = under_18_vaxed, `18-44` = young_18_to_44_vaxed, 
+#          `45-64` = middle_vaxed, `65+` = `old_65+_vaxed`) |> 
+#   pivot_longer(names_to = "Age Group",
+#                cols = c(`<18`, `18-44`, `45-64`, `65+`)) |> 
+#   left_join(census_pop2, by = c(""))
+# vac_count_age assembles raw vax count by four age groups so that
+# later we can apply ACS5 2020 data as denominator for vax rate.
+vax_count_age1 <- vote_vaccinated |> ungroup() |> 
+    mutate(`vax_5-17` = (`fully_vaccinated_5-11` + `fully_vaccinated_12-17`) ,
+         `vax_18-44` = (`fully_vaccinated_18-24` + `fully_vaccinated_25-44`),
+         `vax_45-64` = `fully_vaccinated_45-64` ,
+         `vax_65+` = `fully_vaccinated_65+`,
+         `population_5-17` = `population_5-11` + `population_12-17`,
+         `population_18-44` = (`population_18-24` + `population_25-44`),
+         `dphrate_5-17` = `vax_5-17` / `population_5-17`,
+         `dphrate_18-44` = `vax_18-44` / `population_18-44`,
+         `dphrate_45-64` = `vax_45-64` / `population_45-64`,
+         `dphrate_65+` = `vax_65+` / `population_65+`
+         ) |> 
+  select(town, # pct_repub, social_vulnerability_index, pop2020,
+         starts_with("vax"), `dphpop_5-17` = `population_5-17`, 
+         `dphpop_18-44` = `population_18-44`, 
+         `dphpop_45-64` = `population_45-64`, `dphpop_65+` = `population_65+`, 
+         starts_with("dphrate")) |> 
+  pivot_longer(names_to = c("measure", "age"), values_to = "value",
+               cols = c(`vax_5-17`:`dphrate_65+`), names_sep = "_")
+vax_count_age <- vax_count_age1 |> 
+  bind_rows(census_pop2)
+vax_age_wide <- vax_count_age |>
+  pivot_wider(id_cols = town,  values_from = value,
+              names_from = c(measure, age),
+               values_fill = 0) |> 
+  # join town variables back in
+  left_join(vote_vaccinated |> ungroup() |> 
+    select(town, social_vulnerability_index, pop2020, pct_repub, dateupdated) |> 
+    unique(), by = "town") |> 
+  mutate(`acsrate_5-17` = `vax_5-17` / `acspop_5-17`,
+         `acsrate_18-44` = `vax_18-44` / `acspop_18-44`,
+         `acsrate_45-64` = `vax_45-64` / `acspop_45-64`,
+         `acsrate_65+` = `vax_65+` / `acspop_65+`,
+         acs_total_same = `acspop_5-17` + `acspop_18-44` + `acspop_45-64` + `acspop_65+`,
+         acs_total = acs_total_same + `acspop_<5`,
+         dph_total = `dphpop_5-17` + `dphpop_18-44` + `dphpop_45-64` + `dphpop_65+`)
+for_checkup <- vax_age_wide |> 
+  mutate(total_dif = abs(acs_total - dph_total) / dph_total,
+         old_rate_dif = abs(`acsrate_65+` - `dphrate_65+`)) |> 
+  relocate(town, pop2020, acs_total, acs_total_same, dph_total, social_vulnerability_index,
+          `acspop_5-17`, `dphpop_5-17`,`acspop_18-44`, `dphpop_18-44`, 
+          `acspop_45-64`, `dphpop_45-64`, `acspop_65+`, `dphpop_65+` )
+  
+# Used this to compare decenial census with ACS2020 and DPH estimate of 2020       
+# p_compare_acs_pop <- ggplot(data = for_checkup, aes(x = `acs_total`, y = `pop2020`)) + 
+#   geom_abline() + 
+#   geom_point(aes(size = pop2020), colour = "grey30") +
+#   scale_y_continuous(trans='log10') +
+#   scale_x_continuous(trans='log10') +
+#   scale_size_area(breaks = c(1000, 2000, 5000, 10000, 30000, 100000)) +
+#   # geom_point(aes(size = pop2020, y = vax_ratedph), colour = "red") +
+#   geom_text(aes(label = town), size = 2.5, nudge_y = -0.005) +
+#   ylab("Population (Decenial)") + xlab("Population (ACS2000 estimate)") +
+#   theme(legend.position="none") +
+#   theme(plot.caption = element_text(hjust = 0)) +
+#   labs(title = "Comparison of Population Estimate Based on ACS or DPH",
+#        caption = "")
+
+# Next use pivot_longer to get one separate age range within town
+# rather than one row per town.
+vax_town_age_acs <- vax_age_wide |>
+  select(town, pop2020, social_vulnerability_index, pct_repub, dateupdated,
+         `acsrate_18-44`, `acsrate_45-64`, `acsrate_5-17`,`acsrate_65+`) |> 
+  pivot_longer(cols = starts_with("acsrate"), 
+               names_to = "Age Group") |> 
+  mutate(`Age Group` = str_replace(`Age Group`, "acsrate_", "")) |> 
+  left_join(  # do a second pivot_longer to also get population that goes with rate
+    vax_age_wide |> 
+      select(town, dateupdated,
+             `acspop_18-44`, `acspop_45-64`, `acspop_5-17`,`acspop_65+`) |> 
+      pivot_longer(cols = starts_with("acspop"), 
+                   names_to = "Age Group", values_to = "pop") |> 
+      mutate(`Age Group` = str_replace(`Age Group`, "acspop_", "")), 
+    by = c("town", "dateupdated", "Age Group")
+  ) |> 
   mutate(`Age Group` = factor(`Age Group`, 
-                              levels = c("under_18_vaxed", "young_18_to_44_vaxed",
-                                         "middle_vaxed", "old_65+_vaxed")) |>
-           fct_recode("<18" =   "under_18_vaxed",
-                                  "18-44" = "young_18_to_44_vaxed",
-                                  "45-64" = "middle_vaxed",
-                                  "65+" = "old_65+_vaxed"))
+                              levels = c("5-17", "18-44", "45-64", "65+")),
+         flag_for_removal = case_when(
+           (town == "Mansfield") & (`Age Group` %in% c("5-17", "18-44")) ~ TRUE,
+           town == "Simsbury" ~ TRUE,
+           TRUE ~ FALSE
+         ))
+
+vax_town_age_dph <- vax_age_wide |>
+  select(town, pop2020, social_vulnerability_index, pct_repub, dateupdated,
+         `dphrate_18-44`, `dphrate_45-64`, `dphrate_5-17`,`dphrate_65+`) |> 
+  pivot_longer(cols = starts_with("dphrate"), 
+               names_to = "Age Group") |> 
+  mutate(`Age Group` = str_replace(`Age Group`, "dphrate_", "")) |> 
+  left_join(  # do a second pivot_longer to also get population that goes with rate
+    vax_age_wide |> 
+      select(town, dateupdated,
+             `dphpop_18-44`, `dphpop_45-64`, `dphpop_5-17`,`dphpop_65+`) |> 
+      pivot_longer(cols = starts_with("dphpop"), 
+                   names_to = "Age Group", values_to = "pop") |> 
+      mutate(`Age Group` = str_replace(`Age Group`, "dphpop_", "")), 
+    by = c("town", "dateupdated", "Age Group")
+  ) |> 
+  mutate(`Age Group` = factor(`Age Group`, 
+                              levels = c("5-17", "18-44", "45-64", "65+")),
+         flag_for_removal = case_when(
+           (town == "Mansfield") & (`Age Group` %in% c("5-17", "18-44")) ~ TRUE,
+           town == "Simsbury" ~ TRUE,
+           TRUE ~ FALSE
+         ))
+
+vax_town_age <- vax_town_age_acs |> 
+  left_join(
+    vax_town_age_dph |> 
+      select(town, `Age Group`, dateupdated, value, pop),
+    by = c("town", "Age Group", "dateupdated"),
+    suffix =c("_acs", "_dph")
+  )
+
  # prepare monthly sequence of dates:
 month_dates <- vote_vaccinated2 |> ungroup() |> count(date) |> 
   mutate(month = lubridate::month(date)) |> 
   group_by(month) |> 
   summarise(date = last(date)) |> pluck("date")
 ```
+
 ```{r}
 #| label: create_plots
 #| message: false
 #| cache: false
-              
+
+p <- ggplot(data = vax_town_age |> filter(!flag_for_removal), 
+            aes(x = pct_repub, y = value, colour = `Age Group`)) +
+              geom_point()
 # remove Mansfield because of Storrs
-p_vote_vaccine <- ggplot(data = xx, 
-                         aes(x = pct_repub, y = value,
-                            colour = `Age Group`)) +
-  geom_smooth(data = xx |> filter(social_vulnerability_index != "xYes",
-                  town != "Mansfield", town != "Salisbury"),
-    method = "lm") +
+p_vote_vaccine_acs <- ggplot(data = vax_town_age |> filter(!flag_for_removal), 
+                         aes(x = pct_repub, y = value_acs,
+                             colour = `Age Group`)) +
+  geom_smooth(data = vax_town_age |> filter(social_vulnerability_index != "Yes",
+                                             !flag_for_removal),
+              aes(colour = `Age Group`),
+              method = "lm") +
   geom_point(aes(shape = social_vulnerability_index)) +
   geom_text(aes(label = town), size = 2.5, nudge_y = -0.005) +
   ylab("Fully Vaccinated") + xlab("Trump vote in 2020") +
-   scale_y_continuous(labels=percent) + scale_x_continuous(labels=percent)
+  scale_y_continuous(labels=percent) + scale_x_continuous(labels=percent)
 
+p_vote_vaccine_dph2 <- ggplot(data = vax_town_age |> filter(!flag_for_removal), 
+                         aes(x = pct_repub, y = value_dph,
+                             colour = `Age Group`)) +
+  geom_smooth(data = vax_town_age |> filter(social_vulnerability_index != "Yes",
+                                             !flag_for_removal),
+              aes(colour = `Age Group`),
+              method = "lm") +
+  geom_point(aes(shape = social_vulnerability_index)) +
+  geom_text(aes(label = town), size = 2.5, nudge_y = -0.005) +
+  ylab("Fully Vaccinated") + xlab("Trump vote in 2020") +
+  scale_y_continuous(labels=percent) + scale_x_continuous(labels=percent)
 
 # Manfield and Canaan are extreme outliers, Mansfield because of
 # UConn but I don't know explanation for Canaan.
@@ -122,7 +308,7 @@ p_vote_vaccine <- ggplot(data = xx,
    scale_x_continuous(labels=percent) +
    theme(legend.position="none") +
    theme(plot.caption = element_text(hjust = 0)) +
-   labs(title = "Trump Vote in 2020 and COVID Vaccination Rate",
+   labs(title = "Trump Vote in 2020 and COVID Vaccination Rate in Connecticut Towns",
         caption = "\n'fully vaccinated' means one dose of J&J or two of Pfizer or Moderna")
  
 p_pops1b <- p_pops1 +
@@ -142,7 +328,7 @@ p_pops2 <- ggplot(data = vote_vaccinated2 |>
  # geom_smooth(aes(size = pop2020, y = vax_rate2020_over17), colour = "grey", method = "lm") +
    geom_point(aes(size = pop2020, colour = social_vulnerability_index)) +
    # geom_point(aes(size = pop2020, y = vax_rate2020_over17), colour = "grey") +
-   ylab("xFully Vaccinated") + xlab("Trump vote in 2020") +
+   ylab("Fully Vaccinated") + xlab("Trump vote in 2020") +
    scale_y_continuous(labels=percent) + 
    scale_x_continuous(labels=percent) +
    scale_colour_manual(
@@ -188,49 +374,12 @@ p_pops1b_with_hist <- p_pops1b + geom_text(data = lm_lines |> filter(social_vuln
 # NPR charts on death and vaccination by county and trump vote: https://www.npr.org/sections/health-shots/2021/12/05/1059828993/data-vaccine-misinformation-trump-counties-covid-death-rate
 # and here's Charles Gaba on them talking to him about this: https://twitter.com/charles_gaba/status/1467499374817259524?s=20
 ```
-```{r}
-#| census_ctdph
 
-# use this to convert from age ranges in ACS to age range in CT DPH vaccination data
-convert_acs_to_ctdph = tribble(   
-  ~acs,            ~ctdph,
- '10 to 14 years', "young",   
- '15 to 17 years', "young",
- '18 and 19 years', "population_18-24",  
- '20 years', "population_18-24",         
- '21 years', "population_18-24",         
- '22 to 24 years' , "population_18-24",  
- '25 to 29 years', "population_25-44",   
- '30 to 34 years', "population_25-44",   
- '35 to 39 years', "population_25-44",   
- '40 to 44 years', "population_25-44",   
- '45 to 49 years', "population_45-64",   
- '5 to 9 years', "population_45-64",     
- '50 to 54 years', "population_45-64",   
- '55 to 59 years', "population_45-64",   
- '60 and 61 years', "population_45-64",  
- '62 to 64 years', "population_45-64",   
- '65 and 66 years', "population_65+",  
- '67 to 69 years', "population_65+",   
- '70 to 74 years' , "population_65+",  
- '75 to 79 years', "population_65+",   
- '80 to 84 years', "population_65+",   
- '85 years and over', "population_65+",
- 'Total', "total",           
- 'Total Female', "total female",     
- 'Total Male' , "male",      
- 'Under 5 years', "young")
-census_pop_base <- get_acs_age_sex(2020, acs_vars = load_variables(2020, "acs5", cache = TRUE))
-atry <- census_pop |> 
-  group_by(town = TOWN, census_age) |> 
-  summarise(acs_pop = estimate) 
- census_pop <- left_join(atry, convert_acs_to_ctdph, by = c("census_age" = "acs")) |> 
-  group_by(town, ctdph) |> 
-  summarise(acs_pop = sum(acs_pop))
-```
+### Trump Vote and COVID Vaccination
 
+The plot below shows the relationship between COVID vaccination rates[^1] and the percentage of the vote for Trump in the 2020 election for each Connecticut town.
 
-The plot below shows the relationship between vaccination rates and percentage of the vote for Trump in the 2020 election for each Connecticut town.
+[^1]: Wherever I refer to vaccination rates in this post, I'm referring to "fully vaccinated" as originally interpreted by the CDC. In practical terms at least one booster dose is also needed, but the easiest way to assemble the data is to stick with the original "fully vaccinated" definition.
 
 ```{r}
 #| label: fig-vote-repub
@@ -240,13 +389,23 @@ The plot below shows the relationship between vaccination rates and percentage o
 print(p_pops1)
 ```
 
-As the trend line emphasizes, a large vote percentage for Trump is associated with a lower percentage of individuals who are fully vaccinated. But there are some obvious complications that show the story is a bit more complicated. Looking at the lower left portion of the figure we see that the biggest cities in Connecticut have a very low vote for Trump but also tend to have below-average vaccination rates. Political affiliation has a role, but there are other important factors as well.
+As the trend line emphasizes, a large vote percentage for Trump is associated with a lower percentage of individuals who are fully vaccinated.
 
-The CDC has constructed something they call the [social vulnerability index](https://www.atsdr.cdc.gov/placeandhealth/svi/fact_sheet/fact_sheet.html) to indicate communities that are more vulnerable to events that threaten public health. It is based on 15 characteristics from the Census Bureau which they group as socioeconomic factors, household composition, race/ethnicity/language, and housing/transportation. The Connecticut Department of Public Health flags any town with at least one census tract that is high on the social vulnerability index. (See Table 3 of the [Statewide Hazard Vulnerability Analysis](https://www.atsdr.cdc.gov/placeandhealth/svi/fact_sheet/fact_sheet.html).)
+### Work by Charles Gaba on Trump Vote and COVID Vaccination
 
-In the next figure, towns that are relatively high on the social vulnerability index are flagged in green. Mostly one sees the but large urban centers in Connecticut, which tend to include areas with high poverty, lower educational attainment, and other factors measured by the index. One can quibble with how well the index categorizes Connecticut towns. For example, West Hartford is coded as vulnerable while Hamden is not. The precision of the index isn't important. For towns flagged as vulnerable there is no relationship between Trump vote and vaccination rate, while the trend line for other towns shows a steeper negative slope.
+The inspiration for this post is work that [Charles Gaba](https://t.co/x3Vu568chv?amp=1) has been doing showing the [relationship](https://acasignups.net/21/11/23/weekly%20to%20update%20to%20us%20to%20covid19%20to%20vaccination%20to%20levels%20to%20county%20to%20trump%20to%202020%20to%20vote)[between](https://acasignups.net/vaccinations "Vaccine info at Gaba website")[2020 vote and vaccinations](https://acasignups.net/21/11/23/weekly%20to%20update%20to%20us%20to%20covid19%20to%20vaccination%20to%20levels%20to%20county%20to%20trump%20to%202020%20to%20vote) and deaths using county to level data for all states. The next figure shows a summary of the relationship between Trump vote by county and vaccination rate for all counties in the US. The idea behind this post was to use Connecticut data to look at this relationship at a geographic unit smaller than a county.
 
-The moral of the story is there are factors such as wealth and education that have a significant relationship to vaccination decisions independent of political preferences,
+<img src="https://acasignups.net/sites/default/files/styles/inline_default/public/vaxxes_red_blue_every_county_112221_0.jpg?itok=JBx4OW9o" alt="From Charles Gaba"/>{#fig-gaba-chart}
+
+### The Trump Vote and Vaccination Rate Relationship Applies Less Well in Poorer Towns
+
+Looking at the lower left portion of the first figure for Connecticut, we see that the biggest cities in Connecticut don't follow the national pattern. They have a very low vote rate for Trump but also tend to have below-average vaccination rates. Political affiliation has a role, but there are other important factors as well.
+
+The CDC has constructed something they call the [social vulnerability index](https://www.atsdr.cdc.gov/placeandhealth/svi/fact_sheet/fact_sheet.html) to indicate communities that are more vulnerable to events that threaten public health. It is based on 15 characteristics from the Census Bureau which they group as socioeconomic factors, household composition, race/ethnicity/language, and housing/transportation.
+
+In the next figure, the trend line is shown separately for towns flagged by the social vulnerability index (shown in a reddish color) in contrast with towns less "vulnerable" towns flagged in green. The "vulnerable" towns are mostly the large urban centers in Connecticut, which tend to include areas with high poverty, lower educational attainment, and other factors measured by the index. The Connecticut Department of Public Health has applied the social vulnerability index index to towns by flagging the whole town if only one census tract within the town is flagged as vulnerable. One can quibble with how well the index categorizes Connecticut towns. For example, West Hartford is coded as vulnerable while Hamden is coded as not vulnerable. The index is not perfect, but the general trend is clear: for towns flagged as vulnerable there is no relationship between Trump vote and vaccination rate, while the trend line for other towns shows a steeper negative slope. Note that the social vulnerability index predates the COVID pandemic. It was designed to be a sign of general public health vulnerability either in terms of disease or natural disasters.
+
+The relationship between Trump vote and vaccination is interesting and remarkable, but it is important to remember that there are factors such as wealth and education that have a significant relationship to vaccination decisions separate from political preferences or ideology.
 
 ```{r}
 #| label: fig-social-vulnerability
@@ -263,17 +422,12 @@ Note that for the trend lines in the plot I have eliminated Mansfield and Simsbu
 #| message: false
 #| fig-cap: Separately by Age of Vaccinated
 
-print(p_vote_vaccine)
+print(p_vote_vaccine_acs)
 ```
 
-
-### Work by Charles Gaba on Trump Vote and COVID vaccination and death
-
-[Charles Gaba](https://t.co/x3Vu568chv?amp=1) has been doing analyses showing the [relationship](https://acasignups.net/21/11/23/weekly%20to%20update%20to%20us%20to%20covid19%20to%20vaccination%20to%20levels%20to%20county%20to%20trump%20to%202020%20to%20vote)[between](https://acasignups.net/vaccinations "Vaccine info at Gaba website")[2020 vote and vaccinations](https://acasignups.net/21/11/23/weekly%20to%20update%20to%20us%20to%20covid19%20to%20vaccination%20to%20levels%20to%20county%20to%20trump%20to%202020%20to%20vote) and deaths using county to level data for all states.
-
-![From Charles Gaba](https://acasignups.net/sites/default/files/styles/inline_default/public/vaxxes_red_blue_every_county_112221_0.jpg?itok=JBx4OW9o){#fig-gaba-chart}
-
 ### Polling on Partisanship and Vaccination
+
+The plot in Figure \@ref(fig:1) and the analyses done by Charles Gaba individual vaccination behavior to aggregate entities. That can be tricky.
 
 See this summary based on the the [Marquette University Law School Poll](https://law.marquette.edu/poll/).
 
@@ -412,6 +566,7 @@ race_town2 <- get_acs(geography = "county subdivision",  # for CT, that means to
 #| label: gender-from-census2
 #| message: false
 #| eval: false
+
 vars2020 <- load_variables(2020, "pl", cache = TRUE) 
 if (1 == 2) {
   sex_age_acs2019_2 <- get_acs_age_sex(acs_year = 2019, acs_vars = vars)
@@ -432,6 +587,7 @@ if (1 == 2) {
        sex_age_acs2014_2, 
        file = "~/Documents/R_local_repos/ctcorona/data/census_acs_data.RData")
 }
+# in effect I'm making my own more general cache for the census data
 load("~/Documents/R_local_repos/ctcorona/data/census_acs_data.RData")
 
 #   `population_5-11` `population_12-17` `population_18-24` `population_25-44` `population_45-64` `population_65+` population_Unknown
@@ -590,7 +746,7 @@ compare_stats <- dph_vaccine_by_age |>
 
 ### The Issue of the Population Denominator and Its Effects on Vaccination Rates
 
-The Department of Public Health (DPH) provides vaccination rates by age ranges by town. For this plot I have collapsed the age ranges into four groups. DPH also provides an estimated population for each range. Note that you see a lot of vaccination percentages above 100%. That's probably an issue with the estimated population. DPH includes their estimate of the population with all of their statistics. See [this page](<https://portal.ct.gov/dph/Health> to Information to Systems to to Reporting/Population/Population to Statistics for [this description of technical issues](https://authoring.ct.gov/%20to%20/media/Departments%20to%20and%20to%20Agencies/DPH/Population/PopulationStatisticsOverviewpdf.pdf). I am uncertain where that leaves things. It's possible they are using estimates based on the 2010 to 2014 surveys from Census. I am in my own town of Guilford the population is definitely aging. It became more of a bedroom community for New Haven in the 1970's and that original influx has benn growing old together. Something similar may be going on in other towns, and that might make the estimates of population for older ages come out too low. I'm not sure. (John Burn-Murdoch of the *Financial Times* has pointed that that one needs to watch out for [issues with the denominators](https://threadreaderapp.com/thread/1447617110910382081.html) while comparing vaccination rates.)
+The Department of Public Health (DPH) provides vaccination rates by age ranges by town. For this plot I have collapsed the age ranges into four groups. DPH also provides an estimated population for each range. Note that you see a lot of vaccination percentages above 100%. That's probably an issue with the estimated population. DPH includes their estimate of the population with all of their statistics. See \[this page\](<https://portal.ct.gov/dph/Health> to Information to Systems to to Reporting/Population/Population to Statistics for [this description of technical issues](https://authoring.ct.gov/%20to%20/media/Departments%20to%20and%20to%20Agencies/DPH/Population/PopulationStatisticsOverviewpdf.pdf). I am uncertain where that leaves things. It's possible they are using estimates based on the 2010 to 2014 surveys from Census. I am in my own town of Guilford the population is definitely aging. It became more of a bedroom community for New Haven in the 1970's and that original influx has benn growing old together. Something similar may be going on in other towns, and that might make the estimates of population for older ages come out too low. I'm not sure. (John Burn-Murdoch of the *Financial Times* has pointed that that one needs to watch out for [issues with the denominators](https://threadreaderapp.com/thread/1447617110910382081.html) while comparing vaccination rates.)
 
 #### Vaccination Rate Depends Both on the Population Denominator and the Vax Doses
 

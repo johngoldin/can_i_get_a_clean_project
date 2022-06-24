@@ -1,5 +1,5 @@
 ---
-title: Vaccination and Trump Vote in Connecticut
+title: COVID Vaccination and Trump Vote in Connecticut
 author: John Goldin
 date: '2022-07-02'
 categories:
@@ -31,12 +31,16 @@ fig-asp: 0.618
 
 
 
--   <a href="#work-by-charles-gaba-on-trump-vote-and-covid-vaccination-and-death" id="toc-work-by-charles-gaba-on-trump-vote-and-covid-vaccination-and-death">Work by Charles Gaba on Trump Vote and COVID vaccination and death</a>
+-   <a href="#trump-vote-and-covid-vaccination" id="toc-trump-vote-and-covid-vaccination">Trump Vote and COVID Vaccination</a>
+-   <a href="#work-by-charles-gaba-on-trump-vote-and-covid-vaccination" id="toc-work-by-charles-gaba-on-trump-vote-and-covid-vaccination">Work by Charles Gaba on Trump Vote and COVID Vaccination</a>
+-   <a href="#the-trump-vote-and-vaccination-rate-relationship-applies-less-well-in-poorer-towns" id="toc-the-trump-vote-and-vaccination-rate-relationship-applies-less-well-in-poorer-towns">The Trump Vote and Vaccination Rate Relationship Applies Less Well in Poorer Towns</a>
 -   <a href="#polling-on-partisanship-and-vaccination" id="toc-polling-on-partisanship-and-vaccination">Polling on Partisanship and Vaccination</a>
 -   <a href="#some-quick-reactions" id="toc-some-quick-reactions">Some Quick Reactions</a>
 -   <a href="#the-issue-of-the-population-denominator-and-its-effects-on-vaccination-rates" id="toc-the-issue-of-the-population-denominator-and-its-effects-on-vaccination-rates">The Issue of the Population Denominator and Its Effects on Vaccination Rates</a>
 
-The plot below shows the relationship between vaccination rates and percentage of the vote for Trump in the 2020 election for each Connecticut town.
+### Trump Vote and COVID Vaccination
+
+The plot below shows the relationship between COVID vaccination rates[^1] and the percentage of the vote for Trump in the 2020 election for each Connecticut town.
 
 <div id="fig-vote-repub">
 
@@ -48,13 +52,23 @@ Figure 1: Trump Vote in 2020 and COVID Vaccination Rate
 
 </div>
 
-As the trend line emphasizes, a large vote percentage for Trump is associated with a lower percentage of individuals who are fully vaccinated. But there are some obvious complications that show the story is a bit more complicated. Looking at the lower left portion of the figure we see that the biggest cities in Connecticut have a very low vote for Trump but also tend to have below-average vaccination rates. Political affiliation has a role, but there are other important factors as well.
+As the trend line emphasizes, a large vote percentage for Trump is associated with a lower percentage of individuals who are fully vaccinated.
 
-The CDC has constructed something they call the [social vulnerability index](https://www.atsdr.cdc.gov/placeandhealth/svi/fact_sheet/fact_sheet.html) to indicate communities that are more vulnerable to events that threaten public health. It is based on 15 characteristics from the Census Bureau which they group as socioeconomic factors, household composition, race/ethnicity/language, and housing/transportation. The Connecticut Department of Public Health flags any town with at least one census tract that is high on the social vulnerability index. (See Table 3 of the [Statewide Hazard Vulnerability Analysis](https://www.atsdr.cdc.gov/placeandhealth/svi/fact_sheet/fact_sheet.html).)
+### Work by Charles Gaba on Trump Vote and COVID Vaccination
 
-In the next figure, towns that are relatively high on the social vulnerability index are flagged in green. Mostly one sees the but large urban centers in Connecticut, which tend to include areas with high poverty, lower educational attainment, and other factors measured by the index. One can quibble with how well the index categorizes Connecticut towns. For example, West Hartford is coded as vulnerable while Hamden is not. The precision of the index isn't important. For towns flagged as vulnerable there is no relationship between Trump vote and vaccination rate, while the trend line for other towns shows a steeper negative slope.
+The inspiration for this post is work that [Charles Gaba](https://t.co/x3Vu568chv?amp=1) has been doing showing the [relationship](https://acasignups.net/21/11/23/weekly%20to%20update%20to%20us%20to%20covid19%20to%20vaccination%20to%20levels%20to%20county%20to%20trump%20to%202020%20to%20vote)[between](https://acasignups.net/vaccinations "Vaccine info at Gaba website")[2020 vote and vaccinations](https://acasignups.net/21/11/23/weekly%20to%20update%20to%20us%20to%20covid19%20to%20vaccination%20to%20levels%20to%20county%20to%20trump%20to%202020%20to%20vote) and deaths using county to level data for all states. The next figure shows a summary of the relationship between Trump vote by county and vaccination rate for all counties in the US. The idea behind this post was to use Connecticut data to look at this relationship at a geographic unit smaller than a county.
 
-The moral of the story is there are factors such as wealth and education that have a significant relationship to vaccination decisions independent of political preferences,
+<img src="https://acasignups.net/sites/default/files/styles/inline_default/public/vaxxes_red_blue_every_county_112221_0.jpg?itok=JBx4OW9o" alt="From Charles Gaba"/>{#fig-gaba-chart}
+
+### The Trump Vote and Vaccination Rate Relationship Applies Less Well in Poorer Towns
+
+Looking at the lower left portion of the first figure for Connecticut, we see that the biggest cities in Connecticut don't follow the national pattern. They have a very low vote rate for Trump but also tend to have below-average vaccination rates. Political affiliation has a role, but there are other important factors as well.
+
+The CDC has constructed something they call the [social vulnerability index](https://www.atsdr.cdc.gov/placeandhealth/svi/fact_sheet/fact_sheet.html) to indicate communities that are more vulnerable to events that threaten public health. It is based on 15 characteristics from the Census Bureau which they group as socioeconomic factors, household composition, race/ethnicity/language, and housing/transportation.
+
+In the next figure, the trend line is shown separately for towns flagged by the social vulnerability index (shown in a reddish color) in contrast with towns less "vulnerable" towns flagged in green. The "vulnerable" towns are mostly the large urban centers in Connecticut, which tend to include areas with high poverty, lower educational attainment, and other factors measured by the index. The Connecticut Department of Public Health has applied the social vulnerability index index to towns by flagging the whole town if only one census tract within the town is flagged as vulnerable. One can quibble with how well the index categorizes Connecticut towns. For example, West Hartford is coded as vulnerable while Hamden is coded as not vulnerable. The index is not perfect, but the general trend is clear: for towns flagged as vulnerable there is no relationship between Trump vote and vaccination rate, while the trend line for other towns shows a steeper negative slope. Note that the social vulnerability index predates the COVID pandemic. It was designed to be a sign of general public health vulnerability either in terms of disease or natural disasters.
+
+The relationship between Trump vote and vaccination is interesting and remarkable, but it is important to remember that there are factors such as wealth and education that have a significant relationship to vaccination decisions separate from political preferences or ideology.
 
 <div id="fig-social-vulnerability">
 
@@ -78,19 +92,9 @@ Figure 3: Separately by Age of Vaccinated
 
 </div>
 
-### Work by Charles Gaba on Trump Vote and COVID vaccination and death
-
-[Charles Gaba](https://t.co/x3Vu568chv?amp=1) has been doing analyses showing the [relationship](https://acasignups.net/21/11/23/weekly%20to%20update%20to%20us%20to%20covid19%20to%20vaccination%20to%20levels%20to%20county%20to%20trump%20to%202020%20to%20vote)[between](https://acasignups.net/vaccinations "Vaccine info at Gaba website")[2020 vote and vaccinations](https://acasignups.net/21/11/23/weekly%20to%20update%20to%20us%20to%20covid19%20to%20vaccination%20to%20levels%20to%20county%20to%20trump%20to%202020%20to%20vote) and deaths using county to level data for all states.
-
-<div id="fig-gaba-chart">
-
-![](https://acasignups.net/sites/default/files/styles/inline_default/public/vaxxes_red_blue_every_county_112221_0.jpg?itok=JBx4OW9o)
-
-Figure 4: From Charles Gaba
-
-</div>
-
 ### Polling on Partisanship and Vaccination
+
+The plot in Figure @ref(fig:1) and the analyses done by Charles Gaba individual vaccination behavior to aggregate entities. That can be tricky.
 
 See this summary based on the the [Marquette University Law School Poll](https://law.marquette.edu/poll/).
 
@@ -160,3 +164,5 @@ As near as I can tell (and I may be wrong), DPH is using the population figures 
     5 Total Female 1,828,861 51.2% 
     6 Total Male   1,741,688 48.8% 
     7 Under 18     735,584   20.6% 
+
+[^1]: Wherever I refer to vaccination rates in this post, I'm referring to "fully vaccinated" as originally interpreted by the CDC. In practical terms at least one booster dose is also needed, but the easiest way to assemble the data is to stick with the original "fully vaccinated" definition.
