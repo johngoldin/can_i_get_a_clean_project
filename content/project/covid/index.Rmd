@@ -266,7 +266,7 @@ box_score %>%
 ```
 
 See most recent [weekly
-report](%60r%20dph_reports$url%5Bdph_reports$date%20==%20max(dph_reports$date)%5D%60)
+report](`r dph_reports$url[dph_reports$date == max(dph_reports$date)]`)
 from the Department of Public Health for detail about cases,
 hospitalizations, and deaths among vaccinated compared with
 unvaccinated.
@@ -887,7 +887,7 @@ in Connecticut. Click on the county name for detail about individual
 towns within that county.
 
 |                                                                                                         |                                                                                                       |                                                                                                       |                                                                                                         |
-|---------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+|------------------|------------------|------------------|------------------|
 | [Litchfield County](/project/covid-19-in-connecticut-2/index_files/county_html/litchfield_summary.html) | [Hartford County](/project/covid-19-in-connecticut-2/index_files/county_html/hartford_summary.html)   | [Tolland County](/project/covid-19-in-connecticut-2/index_files/county_html/tolland_summary.html)     | [Windham County](/project/covid-19-in-connecticut-2/index_files/county_html/windham_summary.html)       |
 | [Fairfield County](/project/covid-19-in-connecticut-2/index_files/county_html/fairfield_summary.html)   | [New Haven County](/project/covid-19-in-connecticut-2/index_files/county_html/new_haven_summary.html) | [Middlesex County](/project/covid-19-in-connecticut-2/index_files/county_html/middlesex_summary.html) | [New London County](/project/covid-19-in-connecticut-2/index_files/county_html/new_london_summary.html) |
 
