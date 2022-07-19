@@ -1,0 +1,223 @@
+---
+title: Notes for RConf2022 Talk on Apple Health Export
+author: John Goldin
+date: '2022-07-18'
+slug: notes-apple-health-export
+categories:
+  - Apple-Health-Export
+tags:
+  - Apple-Health-Export
+subtitle: Odds and ends of notes related to the Apple Health Export on the occasion of my talk at RConf2022.
+excerpt: ~
+weight: 4
+images: ~
+series: ~
+layout: single
+draft: no
+---
+
+
+
+<p>During the last several years I have been accumulating various notes while I explore the Apple Health Export.
+This post will be a series of disconnected comments. I’ll be adding to it during the
+weeks before and after my talk at RConf2022.</p>
+<p>The schedule for the 2022 RStudio conference is <a href="https://www.rstudio.com/conference/2022/schedule/">here</a>.
+<a href="https://rstudioconf2022.sched.com/?iframe=yes&amp;w=100%&amp;sidebar=yes&amp;bg=no#">My talk</a>
+is at 11:30 on Thursday, July 28.</p>
+<p>Here are the <a href="RConf2022_health_export_slides.html">slides</a> for my talk,
+done as a Quarto presentation.</p>
+<p>To learn how to get the Apple Health Export and load it into R, see my
+<a href="https://www.johngoldin.com/blog/2020-02-apple-health-export-1/">first post</a>
+in this series. Or see this more succinct and to the point
+<a href="https://rud.is/b/2021/02/14/extracting-heart-rate-data-from-apple-health-xml-export-files-using-r-a-k-a-the-least-romantic-valentines-day-r-post/">version from a well-known R blogger</a>.</p>
+<div id="the-big-picture" class="section level3">
+<h3>The Big Picture</h3>
+<p>Dr. Sumbul Desai is Apple’s Vice President for Health, which
+makes her the spokesperson for the importance of the Apple Health Kit and
+the health data collected by the Watch and the iPhone. In an interview
+in February of 2022, Dr. Desai emphasized an ambitious quote from
+Tim Cook, Apple’s CEO:</p>
+<blockquote>
+<p>If you zoom out into the future and you look back and you ask the question what was Apple’s greatest contribution to mankind, it will be about health. [at 2:05 in <a href="https://9to5mac.com/2022/02/21/apple-vp-health-shares-how-it-designs-health-features/">this interview</a>]</p>
+</blockquote>
+<p>That’s a bold statement. Apple is a long way short of that aspiration.</p>
+<p>In May of 2022, David Pogue did a fun
+<a href="https://www.youtube.com/watch?v=RyV7a60p52o">interview with Dr. Desai</a>
+on CBS Sunday Morning that makes
+the case for the Health app. They spend some time on detection of atrial fibrillation,
+and I’ll have much more to say on that topic below. The electro-cardiogram seems to
+be on a different level of sophistication on than the other measures taken
+by the Apple Watch. Perhaps that’s wrong-headed. For all I know, the machine learning
+required to reliably do fall detection or to measure walking unsteadiness may
+be more complex than what’s required to identify atrial fibrillation from the ECG.
+But understandably Apple emphasize atrial fibrillation because it’s the most
+dramatic example of a direct connection between the Apple Watch and medical
+treatment.</p>
+<p>The segment also includes an interview with Dr. Michael Snyder, a professor at the Stanford Medical School.
+Snyder’s topic is closer to the near term uses of the Apple Health Kit. He hopes to
+use health tracking to identify what’s “normal” for an individual so that one
+can detect changes that indicate that something now is not normal and intervention
+may be useful. Easier said than done. He talks about using health tracking to
+support early detection of COVID infection. Snyder did a
+<a href="https://www.youtube.com/watch?v=d70Wm_-JDcA">TEDx talk on wearables</a>
+all the way back in 2015.
+His point: “You don’t run your car without a dashboard. Here we are as people running around without any sensors most people and we should be wearing these things in my opinion because they can alert to early things.”</p>
+<div id="large-scale-studies-using-the-apple-health-data" class="section level4">
+<h4>Large Scale Studies Using the Apple Health Data</h4>
+<p>I’m optimistic about what large scale studies might be able to find. The
+Apple iOS for the iPhone includes the <a href="https://www.apple.com/ios/research-app/">Research</a> app.
+I participate in the Apple Heart and Movement Study. The Research app is intended
+to facilitate the sharing of health data in a way that also protects the privacy
+of the data. So far the list of open studies looks underwhelming.</p>
+<p>The <a href="https://med.stanford.edu/news/all-news/2019/03/apple-heart-study-demonstrates-ability-of-wearable-technology.html">Apple Heart Study</a>
+has been completed and may serve as an example of how such studies can work.</p>
+<p>There is also competition for the Apple Research app. <a href="https://careevolution.com/mydatahelps-research-wellness-platform/">MyDataHelps</a>
+is a platform independent app that also manages collection of data from
+tracking to support research studies.
+I’m enrolled in the DETECT study by Scripps Research which is intended to
+see whether heart rate, activity, and sleep measured by my tracker
+can predict when someone is coming down with a viral illness even before
+they feel bad.</p>
+<p>In the spirit of writing these notes, I just signed up for
+<a href="https://www.projectbaseline.com">Project Baseline</a>
+which appears to be the equivalent app created by Google.</p>
+<p>A friend of mine is enrolled in the Johnson &amp; Johnson <a href="https://heartlinestudy.com">Heartline Study</a>. This study is looking at
+screening for atrial fibrillation. He was able to buy an Apple
+Watch at a reduced price to enter the study. (Otherwise they
+would have loaned him a watch.) I was not able to join this
+study because I have been previously diagnosed with atrial fibrillation.</p>
+<p>I think these kinds of studies have a good future.</p>
+</div>
+</div>
+<div id="privacy" class="section level3">
+<h3>Privacy</h3>
+<p>The Apple Health Kit is a moment by moment recording of your life. It has obvious
+implications for privacy. I may be the wrong person to evaluate the risks.
+As I look at my Health Export data, I do so wrapped in a cocoon of
+privilege that protects me from many of the potential consequences.
+I’m old enough that my future is limited. As a financially comfortable
+retiree I’m unlikely to apply for a job, unlikely to run for office,
+unlikely to encounter law enforcement or the criminal justice system.
+Perhaps some day Health Kit data could be used to question whether I
+should have a license to drive. (And maybe that would be an appropriate
+use.)</p>
+<p>In general it doesn’t feel like there’s much potential for
+adverse consequences for me personally. But I may not be typical. In the wake of the Supreme Court decision
+overturning Roe v. Wade there has been much discussion of how cycle
+tracking in health apps could be used to expose women to prosecution.
+That’s not far fetched. January 6 rioters were tracked in part via their phone,
+but one can image that minute by minute heart rate data might also
+relate to their activities during the event. What could Communist China
+do with the Health Export data? It takes the invasion of privacy
+imagined in <strong>1984</strong> to another level.</p>
+<p>I acknowledge that privacy of health and fitness tracking is a serious
+issue. But you shouldn’t look to me for a lot of wisdom on that aspect
+of tracking. I’ve already made a choice and immersed myself in tracking.
+It works for me, but my situation would not apply to everybody.</p>
+</div>
+<div id="a-bit-more-on-the-nuts-and-bolts-of-the-apple-health-export" class="section level3">
+<h3>A Bit More on the Nuts and Bolts of the Apple Health Export</h3>
+<p>The export from the Health app comes as a zip file called export.zip.</p>
+<p>When I unzip export.zip I get an apple_health_export
+folder containing the following items:</p>
+<ul>
+<li><p>apple_health_export (3.8 GB)</p>
+<ul>
+<li><p>electrocardiograms [folder] (37 MB)</p></li>
+<li><p>export_cda.xml (851 MB)</p></li>
+<li><p>wokout-routes [folder] (1.3 GB)</p></li>
+<li><p>export.xml (1.7 GB) &lt;– the part I use</p></li>
+</ul></li>
+</ul>
+<p>I always make sure I unzip this in my Downloads folder, which
+is excluded from my Time Machine backup. I don’t want to clutter
+up my backup with all these gigabytes of stuff.</p>
+<p>My first post has more detail on getting the export.</p>
+<p>Below is a fragment of the code I use to do the
+actual import of the data from export.xml.</p>
+<pre class="r"><code>  if (file_exists(&quot;~/Downloads/export 2.zip&quot;)) usethis::ui_stop(&quot;More than one version of export zip.&quot;)
+  if (file_exists(&quot;~/Downloads/export.zip&quot;)) {
+    rc &lt;- unzip(&quot;~/Downloads/export.zip&quot;, exdir = &quot;~/Downloads&quot;, overwrite = TRUE)  # exported folder is 2.75GB
+    if (length(rc) != 0) {
+      # once unzipped, delete export.zip. Otherwise, the next time Air Drop sends export.zip
+      # to your mac it will be renamed as export2.zip and you may accidentally process
+      # an out-of-date set of data.
+
+      # takes a bit more than 20 seconds on my iMac
+      health_xml &lt;- XML::xmlParse(&quot;~/Downloads/apple_health_export/export.xml&quot;)
+      # takes about 70 seconds on my iMac
+      health_df &lt;- XML:::xmlAttrsToDataFrame(health_xml[&quot;//Record&quot;], stringsAsFactors = FALSE) |&gt;
+        as_tibble() |&gt; mutate(value = as.numeric(value)) |&gt;
+        select(-device)  # device seems to cause some duplicate rows
+      check_count &lt;- nrow(health_df)
+      health_df &lt;- health_df |&gt; unique()   # unique adds at least two minutes. Had found 42,364 rows, mostly Lose It!, SleepMatic, and Omron, but some came from Watch and iPhone
+      dup_count &lt;- check_count - nrow(health_df)
+      usethis::ui_done( &quot;Extracted {nrow(health_df)} rows for health_df. Removed {dup_count} duplicates.&quot;)
+
+      activity_df &lt;- XML:::xmlAttrsToDataFrame(health_xml[&quot;//ActivitySummary&quot;], stringsAsFactors = FALSE) |&gt;
+        as_tibble()
+      usethis::ui_done(&quot;Extracted {nrow(activity_df)} rows for activity_df.&quot;)
+      workout_df &lt;-  XML:::xmlAttrsToDataFrame(health_xml[&quot;//Workout&quot;], stringsAsFactors = FALSE) |&gt;
+        as_tibble()
+      usethis::ui_done(&quot;Extracted {nrow(workout_df)} rows for workout_df.&quot;)
+      ecg_df &lt;- dir_ls(&quot;~/Downloads/apple_health_export/electrocardiograms&quot;,  glob = &quot;*/ecg*.csv&quot;) |&gt;
+        map_df(read_ecg_headers)
+      usethis::ui_done(&quot;Found info for {nrow(ecg_df)} rows for ecg_df.&quot;)
+
+      clinical_df &lt;- XML:::xmlAttrsToDataFrame(health_xml[&quot;//ClinicalRecord&quot;]) |&gt;
+        as_tibble()
+      usethis::ui_done(&quot;Extracted {nrow(clinical_df)} rows for clinical_df.&quot;)
+      if (file.exists(&quot;~/Downloads/export.zip&quot;)) file.remove(&quot;~/Downloads/export.zip&quot;)
+      usethis::ui_info(&quot;Completed raw import, nrow(health_df): {usethis::ui_value(nrow(health_df))} &quot;)
+    } else usethis::ui_stop(&quot;unzip returned a zero length list.&quot;)
+  } else usethis::ui_warn(&quot;There was no export.zip file.&quot;)</code></pre>
+<p>I have a bunch more code after this that does some basic setup of the data.</p>
+<p>I realize I need to do a Github Gist to share this code.</p>
+</div>
+<div id="atrial-fibrillation-and-the-apple-watch" class="section level3">
+<h3>Atrial Fibrillation and the Apple Watch</h3>
+<p>Afib is strongly related to age. “Prevalence increased from 0.1% among adults younger than 55 years to 9.0% in persons aged 80 years or older.” [<a href="https://pubmed.ncbi.nlm.nih.gov/11343485/">from a 2001 study</a>] Younger populations
+should not worry too much about atrial fibrillation.</p>
+<p>Apple touts the value of widespread screening for Afib, but there are
+sound reasons why that might not be a good thing for younger populations.
+The <a href="https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/atrial-fibrillation-screening">US Preventitive Care Task Force</a>: “For adults 50 years or older who do not have signs or symptoms of atrial fibrillation (AF):
+The USPSTF found that the current evidence is insufficient to assess the balance of benefits and harms of screening for AF.”
+Aaron Carroll, The Incidental Economist, has done a <a href="https://theincidentaleconomist.com/wordpress/is-the-apple-watch-a-useful-medical-device/">video</a>
+expressing skepticism about the value of the ECG feature of the Apple Watch.</p>
+<p>And for another skeptical note, see <a href="https://www.theverge.com/2022/3/2/22958156/apple-watch-heart-rhythm-detection-benefit">this article</a>.</p>
+<div id="apple-and-kardiamobile-from-alivecor" class="section level4">
+<h4>Apple and KardiaMobile from AliveCor</h4>
+<p>Note that in terms of personal detection of Afib, Apple has some significant
+competition. A company called AliveCor makes a product called
+<a href="https://store.kardia.com/products/kardiamobile">KardiaMobile</a>. I does an electro-cardiogram
+in a way that is similar to the Apple Watch. You can pick one up on
+<a href="https://www.amazon.com/KardiaMobile-Single-Lead-Personal-Monitor-FDA-Cleared/dp/B01A4W8AUK/ref=sr_1_5?crid=2X92WZQFQ9ZSE&amp;keywords=kardia+mobile+heart+monitor&amp;qid=1658170156&amp;sprefix=kardia%2Caps%2C76&amp;sr=8-5">Amazon</a> for about $79.
+I just saw that there’s a
+<a href="https://store.kardia.com/products/kardiamobile-card">new version</a>
+called the KardiaMobile Card that is exactly the size of a
+credit card, presumably so that it will fit into your wallet.</p>
+<p>The <a href="https://theskepticalcardiologist.com/2020/09/27/apple-watch-versus-kardia-to-monitor-atrial-fibrillation-from-home-a-case-study/">Skeptical Cardiologist</a>
+discusses the use of both KardiaMobile and Apple Watch in his practice.</p>
+<p>AliveCor has been maybe six months ahead of AliveCor in terms of what they’ve
+been able to detect with their software. When I had Afib in 2020, Apple’s
+algorithm would not say anything beyond “inconclusive” if pulse was
+higher than some level (I think only 110 or so.) AliveCor was doing better
+at high pulse rate. Apple got FDA approval for their improved algorithm at the
+end of 2020. AliveCor is now detecting some rhythm conditions other than
+Afib that Apple doesn’t detect. So AliveCor seems to be legitimate competition.</p>
+<p>AliveCor is <a href="https://www.docketalarm.com/cases/California_Northern_District_Court/3--21-cv-03958/Alivecor_Inc._v._Apple_Inc/1/">suing Apple</a>
+for anti-trust actions in connection with
+their competition with Apple. I’m in no position to judge
+the legal merits of the lawsuit, but in moral terms they
+seem to have a point. AliveCor had developed a watchband for the
+Watch that would do an electro-cardiogram and they were selling that
+before Apple announced their ECG option. Normally Apple is secretive
+about future products, but AliveCor alleges that Apple pre-announced
+their ECG product in order to squelch AliveCor’s watchband product.
+Based on my limited reading, I have the impression that the KardiaMobile
+has a good reputation among cardiologists.</p>
+<div id="ill-add-more-to-these-notes-as-i-think-of-it" class="section level5">
+<h5>I’ll add more to these notes as I think of it…</h5>
+</div>
+</div>
+</div>
