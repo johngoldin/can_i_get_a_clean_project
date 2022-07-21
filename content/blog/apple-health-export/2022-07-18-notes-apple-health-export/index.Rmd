@@ -7,7 +7,7 @@ categories:
   - Apple-Health-Export
 tags:
   - Apple-Health-Export
-subtitle: Odds and ends of notes related to the Apple Health Export on the occasion of my talk at RConf2022.
+subtitle: Odds and ends related to the Apple Health Export on the occasion of my talk at RConf2022.
 excerpt: ~
 weight: 4
 images: ~
@@ -37,12 +37,12 @@ in this series. Or see this more succinct and to the point
 Dr. Sumbul Desai is Apple's Vice President for Health, which
 makes her the spokesperson for the importance of the Apple Health Kit and
 the health data collected by the Watch and the iPhone. In an interview
-in February of 2022, Dr. Desai emphasized an ambitious quote from
-Tim Cook, Apple's CEO:
+in February of 2022, Dr. Desai emphasized quote from
+Tim Cook, Apple's CEO, which stakes out an ambitious claim:
 
 > If you zoom out into the future and you look back and you ask the question what was Apple's greatest contribution to mankind, it will be about health. [at 2:05 in [this interview](https://9to5mac.com/2022/02/21/apple-vp-health-shares-how-it-designs-health-features/)]
 
-That's a bold statement. Apple is a long way short of that aspiration.
+That's a bold statement. Apple has a long way to go to match that aspiration.
 
 In May of 2022, David Pogue did a fun 
 [interview with Dr. Desai](https://www.youtube.com/watch?v=RyV7a60p52o) 
@@ -71,8 +71,11 @@ His point: "You don't run your car without a dashboard. Here we are as people ru
 
 I'm optimistic about what large scale studies might be able to find. The
 Apple iOS for the iPhone includes the [Research](https://www.apple.com/ios/research-app/) app.
+The Research app is intended to facilitate large-scale studies that
+make use of the collected in the Apple Health Kit, the database that
+supports the Health app.
 I participate in the Apple Heart and Movement Study. The Research app is intended
-to facilitate the sharing of health data in a way that also protects the privacy
+to support sharing of health data with a research project in a way that also protects the privacy
 of the data. So far the list of open studies looks underwhelming. 
 
 The [Apple Heart Study](https://med.stanford.edu/news/all-news/2019/03/apple-heart-study-demonstrates-ability-of-wearable-technology.html)
@@ -96,7 +99,26 @@ Watch at a reduced price to enter the study. (Otherwise they
 would have loaned him a watch.) I was not able to join this
 study because I have been previously diagnosed with atrial fibrillation.
 
-I think these kinds of studies have a good future.
+I think these kinds of studies have a future. The most obvious
+places where they will be conclusive is the relationship between
+fitness and health. What trackers are really good at is
+measuring movement and heart rate. There's a potential for studies
+that make very precise connections between intensity of physical
+activity and health. It may take longer for them to be effective
+in other areas.
+
+One problem with using Apple Watch data as the basis for research is
+that the measures are a "black box." Apple is not forthcoming about
+the operational definition of the measures (i.e., what exactly are they
+doing) or whether the measures are changed. It's a good thing that 
+Apple makes changes in order to improve their measures. It's a problem
+for researchers if they don't know those changes are happening.
+There is an [article in The Verge](https://www.theverge.com/2021/7/27/22594178/apple-watch-data-research-heart-rate-reliability) 
+that describes an example of the problem.
+
+While looking for information on Apple Watch studies, I also
+came across [reports of early results](https://labblog.uofmhealth.org/health-tech/apple-watch-study-provides-an-unprecedented-look-at-health-status-of-a-diverse-patient) from a study at 
+the University of Michigan.
 
 ### Privacy
 
@@ -108,11 +130,12 @@ I'm old enough that my future is limited. As a financially comfortable
 retiree I'm unlikely to apply for a job, unlikely to run for office,
 unlikely to encounter law enforcement or the criminal justice system.
 Perhaps some day Health Kit data could be used to question whether I 
-should have a license to drive. (And maybe that would be an appropriate 
+should continue to have a license to drive. (And maybe that would be an appropriate 
 use.) 
 
-In general it doesn't feel like there's much potential for
-adverse consequences for me personally. But I may not be typical. In the wake of the Supreme Court decision
+In general I don't feel like there's much potential for
+adverse consequences for me personally. But I may not be typical. 
+In the wake of the Supreme Court decision
 overturning Roe v. Wade there has been much discussion of how cycle
 tracking in health apps could be used to expose women to prosecution.
 That's not far fetched. January 6 rioters were tracked in part via their phone,
@@ -125,6 +148,12 @@ I acknowledge that privacy of health and fitness tracking is a serious
 issue. But you shouldn't look to me for a lot of wisdom on that aspect
 of tracking. I've already made a choice and immersed myself in tracking.
 It works for me, but my situation would not apply to everybody.
+
+One practical issue is that if you use the Apple Health Export you should
+pay attention to where the exported folder ends up. Once you have
+extracted the data from the Apple Health app, it becomes your
+responsibility rather than Apple's to limit whether anyone else can
+access it.
 
 ### A Bit More on the Nuts and Bolts of the Apple Health Export
 
@@ -139,13 +168,14 @@ folder containing the following items:
   
   - export_cda.xml (851 MB)
   
-  - wokout-routes [folder] (1.3 GB)
+  - workout-routes [folder] (1.3 GB)
   
   - export.xml (1.7 GB) <– the part I use
   
 I always make sure I unzip this in my Downloads folder, which
 is excluded from my Time Machine backup. I don't want to clutter
-up my backup with all these gigabytes of stuff. 
+up my backup with all these gigabytes of stuff. (But see my
+comment above on why you should be aware who has access to this folder.)
 
 My first post has more detail on getting the export. 
 
@@ -201,13 +231,16 @@ Afib is strongly related to age. "Prevalence increased from 0.1% among adults yo
 should not worry too much about atrial fibrillation.
 
 Apple touts the value of widespread screening for Afib, but there are
-sound reasons why that might not be a good thing for younger populations. 
-The [US Preventitive Care Task Force](https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/atrial-fibrillation-screening): "For adults 50 years or older who do not have signs or symptoms of atrial fibrillation (AF): 
+sound reasons why that might not be a good thing. 
+Here's the inconclusive statement from the [US Preventitive Care Task Force](https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/atrial-fibrillation-screening): "For adults 50 years or older who do not have signs or symptoms of atrial fibrillation (AF): 
 The USPSTF found that the current evidence is insufficient to assess the balance of benefits and harms of screening for AF."
 Aaron Carroll, The Incidental Economist, has done a [video](https://theincidentaleconomist.com/wordpress/is-the-apple-watch-a-useful-medical-device/)
 expressing skepticism about the value of the ECG feature of the Apple Watch.
 
 And for another skeptical note, see [this article](https://www.theverge.com/2022/3/2/22958156/apple-watch-heart-rhythm-detection-benefit).
+
+If you have symptoms, get it checked out. But if you don't have symptoms, screening
+for Afib may not be worthwhile, especially among non-elderly populations.
 
 #### Apple and KardiaMobile from AliveCor
 
@@ -243,6 +276,16 @@ about future products, but AliveCor alleges that Apple pre-announced
 their ECG product in order to squelch AliveCor's watchband product.
 Based on my limited reading, I have the impression that the KardiaMobile
 has a good reputation among cardiologists.
+
+#### FDA Approval
+
+I was curious what FDA approval of the Watch electrocardiogram looks like so
+here is the [request for approval from the FDA](https://www.accessdata.fda.gov/cdrh_docs/reviews/DEN180044.pdf),
+and here is the [actual approval](https://www.accessdata.fda.gov/cdrh_docs/pdf18/DEN180044.pdf).
+
+The Verge did [an explanation](https://www.theverge.com/2020/10/7/21504023/apple-watch-ekg-blood-oxygen-fda-clearance) of why Apple needed FDA approval for the
+electrocardiogram but did not get the pulse oximeter approved as a 
+medical device.
 
 ##### I'll add more to these notes as I think of it...
 

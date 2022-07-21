@@ -4,7 +4,7 @@ subtitle: There are a variety of ways to have a walking holiday in Britain.
 slug: "am-walker-1"
 aliases:
     - /2017/03/am_walker_1/
-excerpt: 'Tips on country walking in Britain from the point of view of an American. The first of three parts.'
+excerpt: 'Tips on country walking in Britain from the point of view of an American.'
 categories:
   - British Walking
 layout: single-series

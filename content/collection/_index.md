@@ -1,5 +1,4 @@
 ---
-description: "Where does this information show?"
 layout: list-sidebar # list, list-sidebar
 show_author_byline: false
 show_post_date: false
@@ -13,7 +12,7 @@ cascade:
   sidebar:
     author: John Goldin
     title: An American Walking in Britain
-    description: "I am still experimenting with how to use the Collections section of the Hugo Apéro theme. Here I have placed the three blog posts I did on An American Walking in Britain. I am showing the same information copied from a *series* of blog posts to see how that compares with organizing the information as a collection of web pages."
+    description: "I enjoy walking holidays in the UK. Here are some posts with things I have learned as an American during my travels."
     show_author_byline: false
     show_post_date: false
     show_sidebar_adunit: false

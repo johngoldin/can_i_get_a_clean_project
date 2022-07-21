@@ -125,6 +125,13 @@ covid_estim <- read_csv("https://covidestim.s3.us-east-2.amazonaws.com/latest/st
 #   ungroup() 
 ```
 
+## Under Repair
+
+The Connecticut Department of Public Health made some changes in
+their datasets at the end of June 2022, and I have not yet
+caught up with those changes. As a result, I'm not updating the
+data regularly.
+
 I started publishing this in as a blog post in June 2020. Each weekday I
 would update that post with the data from Connecticut state sources. The
 blog format never made sense for doing a frequent update of that type of

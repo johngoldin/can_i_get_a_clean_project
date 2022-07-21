@@ -31,10 +31,6 @@ Here I will tell the tale of two visits to the ER,
 and how I used data from the Apple Health Export
 to provide some context for what went on before
 and during these visits.
-At the end of the post I will include a note about
-why I am not concerned about diminishing my privacy,
-and why I would advise most people to think twice before
-publishing something like this. 
 
 ### At the ER in February 2019
 
@@ -48,7 +44,8 @@ I won't go into the details except to say that
 it probably was related to GERD and that I 
 have had episodes somewhat like this since I
 was in my late 30's, although much
-diminished as I got older and my life style changed.
+diminished as I got older and my life style changed and
+my diet has improved.
 About 5:30 AM after a brief visit to the bathroom
 I got back into bed and felt strange, looked at
 my Apple Watch, and saw that my pulse was up to 150.
@@ -87,8 +84,8 @@ high, but not as high as one would expect with
 pancreatitis. It turned out I didn't have pancreatitis.
 In fact, I redid the blood work the next
 day and it was completely normal. Let's ignore
-the digestive story because that is an uneventful story that has nothing to
-do with my Apple Watch; instead let's focus on
+the digestive story because that turned out to be uneventful and has nothing to
+do with my Apple Watch. Instead let's focus on
 heart [palpitations](https://en.wikipedia.org/wiki/Palpitations), 
 the symptom that I presented with at the ER. (I haven't had
 a significant repeat of the digestive episode since then so it doesn't seem to be 
@@ -121,9 +118,9 @@ time I don't think I knew how to make a screenshot and I had other things
 on my mind. I could see that my heart rate had been high and maxed out at 150.
 I couldn't see clearly what had happened right before I arrived at the ER.
 
-After several days at home I prepared for my follow-up visit with my
+At home I prepared for my follow-up visit with my
 primary care physician by creating a detailed record of my heart rate
-during the day in question. See my earier post for a detailed
+during the day in question. See my earier post for a
 description of how to use R to download the Health Export and import
 and set it up in R. I acknowledge this is not something a normal person
 is going to do. 
@@ -149,7 +146,9 @@ I noted that I immediately lost a noticeable amount of weight without much
 difficulty. So for the next year and a half I faithfully used the
 [LoseIt!app](https://www.loseit.com) to
 track calories and ended up losing about 25 pounds. One of the creators
-of LoseIt! was J.J. Allaire, the co-founder of RStudio. I am confident
+of LoseIt! was J.J. Allaire, the co-founder of RStudio. It's possible 
 that losing that weight has lowered my blood pressure and improved my
 health in general and discovering RStudio has improved my intellectual health as well.
-The weight loss was a direct result of the visit to the ER.
+The weight loss was a direct result of the visit to the ER. I'm now a full-blown
+vegetarian. That's not directly related to the ER visit, but it there are some indirect
+connections.
