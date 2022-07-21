@@ -287,6 +287,9 @@ The Verge did [an explanation](https://www.theverge.com/2020/10/7/21504023/apple
 electrocardiogram but did not get the pulse oximeter approved as a 
 medical device.
 
+[Here](https://gadgetanswer.com/top-6-fda-approved-ecg-smartwatch/) is a
+list of six FDA approvals of electrocardiogram features in Watches.
+
 ##### I'll add more to these notes as I think of it...
 
 
