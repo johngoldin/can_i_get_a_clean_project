@@ -164,7 +164,7 @@ I will be much more prosaic.
 
 ### Types of Walks
 
-The first trip I took to England was planned as a car trip around North Yorkshire.
+The first trip I took on my own to England was planned as a car trip around North Yorkshire.
 But I quickly realized that if I went to the local tourist information center (TIC) there often was information about some local walks. I ended up doing a 
 number of half-day walks, including two that lay the ground work for
 an enduring interest in walking in Britain. So mixing car touring with

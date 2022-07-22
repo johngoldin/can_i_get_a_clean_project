@@ -30,8 +30,26 @@ done as a Quarto presentation.</p>
 <a href="https://www.johngoldin.com/blog/2020-02-apple-health-export-1/">first post</a>
 in this series. Or see this more succinct and to the point
 <a href="https://rud.is/b/2021/02/14/extracting-heart-rate-data-from-apple-health-xml-export-files-using-r-a-k-a-the-least-romantic-valentines-day-r-post/">version from a well-known R blogger</a>.</p>
-<div id="the-big-picture" class="section level3">
-<h3>The Big Picture</h3>
+<p>This is post is not a coherent essay about the Apple Health Export. It’s
+just a series of urelated thoughts that have some connection to the topic.</p>
+<p>If my posts on the Health Export seem self-centered, I admit they are. I’ve been
+in that mode for a long time. See <a href="https://www.johngoldin.com/blog/2017-02-narcissism/">An Implementation of Narcissism in R</a>. I have been
+recording my weight each morning for more than 25 years. I appreciate
+that may be a bit odd and unusual. From my point of view, looking at my data
+in the Health Export is a continuation of the sort of thing I did
+from collecting data on my own. One value of the Apple Health Export
+is that it collects data from multiple sources. These data I use
+a <a href="https://support.apple.com/guide/watch/use-shortcuts-apd99050d435/watchos">Watch shortcut</a>
+to record my weight each morning. Before I had the watch shortcut, I used
+to record my weight on a calendar each morning and then periodically
+transfer the data to a spreadsheet. Now I get that weight data
+via the Health Export. In a similar way, I used to record my blood
+pressure in a spreadsheet. Now I
+use an app that transfers data from my blood pressure cuff to
+the Health app via a blue tooth connection and
+rely on the Health Export for that data.</p>
+<div id="the-big-picture" class="section level2">
+<h2>The Big Picture</h2>
 <p>Dr. Sumbul Desai is Apple’s Vice President for Health, which
 makes her the spokesperson for the importance of the Apple Health Kit and
 the health data collected by the Watch and the iPhone. In an interview
@@ -50,7 +68,7 @@ be on a different level of sophistication on than the other measures taken
 by the Apple Watch. Perhaps that’s wrong-headed. For all I know, the machine learning
 required to reliably do fall detection or to measure walking unsteadiness may
 be more complex than what’s required to identify atrial fibrillation from the ECG.
-But understandably Apple emphasize atrial fibrillation because it’s the most
+But understandably Apple emphasizes atrial fibrillation because it’s the most
 dramatic example of a direct connection between the Apple Watch and medical
 treatment.</p>
 <p>The segment also includes an interview with Dr. Michael Snyder, a professor at the Stanford Medical School.
@@ -107,10 +125,14 @@ that describes an example of the problem.</p>
 <p>While looking for information on Apple Watch studies, I also
 came across <a href="https://labblog.uofmhealth.org/health-tech/apple-watch-study-provides-an-unprecedented-look-at-health-status-of-a-diverse-patient">reports of early results</a> from a study at
 the University of Michigan.</p>
+<p>In summary, fitness and health trackers have potential to be important research tools.
+But we are still in the early days of those uses. Note that my perspective is
+that I am very much a <em>personal</em> user, and I have no experience with the
+research studies except as a subject.</p>
 </div>
 </div>
-<div id="privacy" class="section level3">
-<h3>Privacy</h3>
+<div id="privacy" class="section level2">
+<h2>Privacy</h2>
 <p>The Apple Health Kit is a moment by moment recording of your life. It has obvious
 implications for privacy. I may be the wrong person to evaluate the risks.
 As I look at my Health Export data, I do so wrapped in a cocoon of
@@ -135,14 +157,14 @@ imagined in <strong>1984</strong> to another level.</p>
 issue. But you shouldn’t look to me for a lot of wisdom on that aspect
 of tracking. I’ve already made a choice and immersed myself in tracking.
 It works for me, but my situation would not apply to everybody.</p>
-<p>One practical issue is that if you use the Apple Health Export you should
+<p>One practical issue is that if you extract the Apple Health Export you should
 pay attention to where the exported folder ends up. Once you have
 extracted the data from the Apple Health app, it becomes your
-responsibility rather than Apple’s to limit whether anyone else can
+responsibility rather than Apple’s to limit whether anyone else has
 access it.</p>
 </div>
-<div id="a-bit-more-on-the-nuts-and-bolts-of-the-apple-health-export" class="section level3">
-<h3>A Bit More on the Nuts and Bolts of the Apple Health Export</h3>
+<div id="a-bit-more-on-the-nuts-and-bolts-of-the-apple-health-export" class="section level2">
+<h2>A Bit More on the Nuts and Bolts of the Apple Health Export</h2>
 <p>The export from the Health app comes as a zip file called export.zip.</p>
 <p>When I unzip export.zip I get an apple_health_export
 folder containing the following items:</p>
@@ -201,9 +223,10 @@ actual import of the data from export.xml.</p>
 <p>I have a bunch more code after this that does some basic setup of the data.</p>
 <p>I realize I need to do a Github Gist to share this code.</p>
 </div>
-<div id="atrial-fibrillation-and-the-apple-watch" class="section level3">
-<h3>Atrial Fibrillation and the Apple Watch</h3>
-<p>Afib is strongly related to age. “Prevalence increased from 0.1% among adults younger than 55 years to 9.0% in persons aged 80 years or older.” [<a href="https://pubmed.ncbi.nlm.nih.gov/11343485/">from a 2001 study</a>] Younger populations
+<div id="atrial-fibrillation-and-the-apple-watch" class="section level2">
+<h2>Atrial Fibrillation and the Apple Watch</h2>
+<p>Atrial fibrillation is an irregular heart rhythm that begins in your heart’s upper chambers.
+Afib is strongly related to age. “Prevalence increased from 0.1% among adults younger than 55 years to 9.0% in persons aged 80 years or older.” [<a href="https://pubmed.ncbi.nlm.nih.gov/11343485/">from a 2001 study</a>] Younger populations
 should not worry too much about atrial fibrillation.</p>
 <p>Apple touts the value of widespread screening for Afib, but there are
 sound reasons why that might not be a good thing.
