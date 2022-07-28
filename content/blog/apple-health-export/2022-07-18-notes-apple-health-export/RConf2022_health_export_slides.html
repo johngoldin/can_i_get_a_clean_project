@@ -7,7 +7,7 @@
 <link href="RConf2022_health_export_slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="RConf2022_health_export_slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="RConf2022_health_export_slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.0.11">
+  <meta name="generator" content="quarto-1.0.32">
 
   <title>rconf2022_health_export_slides</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -313,7 +313,7 @@
     }
   </style>
 </head>
-<body>
+<body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
@@ -359,7 +359,7 @@
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="RConf2022_health_export_slides_files/img/feb_2019_event%20no%20arrows.png" alt="Heart Rate on y-axis rising to 130 at 5:30 AM"></p>
+<p><img data-src="RConf2022_health_export_slides_files/img/feb_2019_event%20no%20arrows.png" alt="Heart Rate on y-axis rising to 150 at 5:30 AM"></p>
 </figure>
 </div>
 <aside class="notes">
@@ -432,6 +432,30 @@
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="RConf2022_health_export_slides_files/img/feb_2019_event%203.png" alt="Arrow highlighting incraese in heart rate during night"></p>
+</figure>
+</div>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+
+<div class="footer">
+
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="RConf2022_health_export_slides_files/img/feb_2019_event%201.png" alt="Another view of heart rate with arrow pointing to pulse of 150"></p>
 </figure>
 </div>
 <aside class="notes">
@@ -562,14 +586,13 @@ Health App<br>
 <ul>
 <li>start time stamp</li>
 <li>end time stamp</li>
-<li>type</li>
-<li>unit</li>
+<li>type (what is being measured)</li>
 <li>value</li>
 <li>source</li>
 <li>version</li>
 </ul>
 <aside class="notes">
-
+<p>I removed “unit” from the list because it’s not worth mentioning here.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -948,8 +971,12 @@ Want to try your <strong>dplyr</strong> skills but tired of Diamonds or Palmer P
         }
       }
       const toggleBodyColorPrimary = () => {
-        toggleBodyColorMode(window.document.querySelector("link#quarto-bootstrap"));
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
       }
+      toggleBodyColorPrimary();  
       const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
       tabsets.forEach(function(tabset) {
         const tabby = new Tabby('#' + tabset.id);
