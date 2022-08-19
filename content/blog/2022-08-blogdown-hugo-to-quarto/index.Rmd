@@ -1,0 +1,34 @@
+---
+title: Notes on Converting from Blogdown/Hugo to Quarto
+author: John Goldin
+date: '2022-08-28'
+slug: blogdown-hugo-to-quarto
+subtitle: 'Fun With Quarto'
+excerpt: "My existing blog uses blogdown/hugo/apero. Because hugo does not use pandoc, I'm unable to take advantage of all the features of quarto. As I convert to a quarto website, I'll try to describe the process in this post."
+categories:
+  - R
+tags:
+  - R
+draft: yes
+images:
+  - ~
+  - ~
+execute:
+  freeze: auto  # re-render only when source changes
+  echo: false
+format: hugo
+---
+
+I have written a couple of posts that used [Quarto](https://quarto.org/docs/output-formats/hugo.html) rather than Rmd.
+There has always been a 
+
+## Examples
+
+I'm collecting examples of blog sites done in quarto.
+
+[Umair Durrani](https://github.com/durraniu/umair-durrani)
+
+[Robert Mitchell describes moving to quarto blog(https://robertmitchellv.com/blog/2022-08-building-with-quarto/building-with-quarto.html)
+
+Examples from [Quarto gallery](https://quarto.org/docs/gallery/#websites)
+[Bea Miller](https://github.com/beatrizmilz/blog-en/blob/main/_quarto.yml) example of a series

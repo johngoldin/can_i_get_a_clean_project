@@ -20,7 +20,7 @@ During the last several years I have been accumulating various notes while I exp
 
 The schedule for the 2022 RStudio conference is [here](https://www.rstudio.com/conference/2022/schedule/). [My talk](https://rstudioconf2022.sched.com/?iframe=yes&w=100%&sidebar=yes&bg=no#) WAS at 11:30 on Thursday, July 28.
 
-Here are the [slides](RConf2022_health_export_slides.html) for my talk, done as a Quarto presentation.
+Here are the [slides](RConf2022_health_export_slides.html) for my talk, done as a Quarto presentation. And the [video of my talk](https://www.rstudio.com/conference/2022/talks/introduction-to-apple-health-export/) is now available. The remote microphone I was using at the beginning of the talk didn’t work so they ended up replacing the mic. The first two or three minutes of the talk are missing. I was telling the story of how going to the ER had motivated me to figure out how to export the data from the Apple Health. That’s why the first thing I say is “when last seen, I was…”. 
 
 To learn how to get the Apple Health Export and load it into R, see my [first post](https://www.johngoldin.com/blog/2020-02-apple-health-export-1/) in this series. Or see this more succinct and to the point [version from a well-known R blogger](https://rud.is/b/2021/02/14/extracting-heart-rate-data-from-apple-health-xml-export-files-using-r-a-k-a-the-least-romantic-valentines-day-r-post/).
 
@@ -30,15 +30,22 @@ This is post is not a coherent essay about the Apple Health Export. It's just a 
 
 Although my talk may give the impression that I spend my time hanging out in emergency rooms, I'm basically a healthy guy. I had a short episode of Afib in 2020, but it has repeated since then so for now it's not a concern.
 
-After RStudio (Posit) puts up the videos from the talks, I'll be curious to see whether my mic problems screwed up the beginning of the talk.
-
-The talk basically came off the way I hoped it would.
+The talk basically came off the way I hoped it would. I should have taken an extra moment at the beginning
+to check whether my mic was working. It's too bad the first couple of
+minutes are missing, but it doesn't seem to be a problem.
 
 RStudio required speakers to participate in training and coaching for the talk. That involved four two-hour Zoom sessions. I appreciated the advice and guidance of Acacia Duncan of [Articulation](https://www.articulationinc.com). As a life-long procrastinator, I have never been as prepared. The investment in the sessions had the indirect of raising the stakes for the talk and that also had an effect. It was interesting to see the final version of talks that I had a glimpse of during training.
 
+The video is about 13 minutes long and it may be missing the first two minutes so
+I it fit the 15-minutes I was aiming for. The time slot was 20 minutes. There were
+some questions at the end, but they don't include the Q&A in the video. Looking
+at the video now it is almost exactly the way I practiced. Acacia coached us
+to not talk from behind the podium and that's what I did.
+
 ##### Back To My Pre-Talk Notes
 
-If my posts on the Health Export seem self-centered, I admit they are. I've been in that mode for a long time. See [An Implementation of Narcissism in R](https://www.johngoldin.com/blog/2017-02-narcissism/) (and I'm a day or two away from doing an updated version of that post). I have been recording my weight each morning for more than 25 years. I appreciate that may be a bit odd and unusual. From my point of view, looking at my data in the Health Export is a continuation of the sort of thing I did from collecting data on my own. One value of the Apple Health Export is that it collects data from multiple sources. These data I use a [Watch shortcut](https://support.apple.com/guide/watch/use-shortcuts-apd99050d435/watchos) to record my weight each morning. Before I had the watch shortcut, I used to record my weight on a calendar each morning and then periodically transfer the data to a spreadsheet. Now I get that weight data via the Health Export. In a similar way, I used to record my blood pressure in a spreadsheet. Now I use an app that transfers data from my blood pressure cuff to the Health app via a blue tooth connection and rely on the Health Export for that data.
+If my posts on the Health Export seem self-centered, I admit they are. I've been in that mode for a long time. See [An Implementation of Narcissism in R](https://www.johngoldin.com/blog/2017-02-narcissism/). I recently
+added an [updated version](https://www.johngoldin.com/blog/2022-08-weight-again/) which includes my experience counting calories. I have been recording my weight each morning for more than 25 years. I appreciate that may be a bit odd and unusual. From my point of view, looking at my data in the Health Export is a continuation of the sort of thing I did from collecting data on my own. One value of the Apple Health Export is that it collects data from multiple sources. These data I use a [Watch shortcut](https://support.apple.com/guide/watch/use-shortcuts-apd99050d435/watchos) to record my weight each morning. Before I had the watch shortcut, I used to record my weight on a calendar each morning and then periodically transfer the data to a spreadsheet. Now I get that weight data via the Health Export. In a similar way, I used to record my blood pressure in a spreadsheet. Now I use an app that transfers data from my blood pressure cuff to the Health app via a blue tooth connection and rely on the Health Export for that data.
 
 ## The Big Picture
 

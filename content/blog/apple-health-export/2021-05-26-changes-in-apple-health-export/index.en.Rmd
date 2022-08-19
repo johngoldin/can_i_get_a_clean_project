@@ -30,17 +30,17 @@ editor_options:
 ---
 
 ```{r libraries, echo = FALSE, message = FALSE}
-library(tidyverse)
-library(lubridate)
-library(kableExtra)
-library(janitor)
-library(scales)
-library(scico)       ## scico color palettes(http://www.fabiocrameri.ch/colourmaps.php) in R 
-library(ggtext)      ## add improved text rendering to ggplot2
-library(ggforce)     ## add missing functionality to ggplot2
-library(ggdist)      ## add uncertainity visualizations to ggplot2
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(lubridate))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(janitor))
+suppressPackageStartupMessages(library(scales))
+suppressPackageStartupMessages(library(scico))       ## scico color palettes(http://www.fabiocrameri.ch/colourmaps.php) in R 
+suppressPackageStartupMessages(library(ggtext))      ## add improved text rendering to ggplot2
+suppressPackageStartupMessages(library(ggforce))     ## add missing functionality to ggplot2
+suppressPackageStartupMessages(library(ggdist))      ## add uncertainity visualizations to ggplot2
 # library(magick)      ## load images into R
-library(patchwork)   ## combine outputs from ggplot2
+suppressPackageStartupMessages(library(patchwork))   ## combine outputs from ggplot2
 # library(Cairo)
 
 path_saved_export <- "~/Dropbox/Programming/R_Stuff/john_vitals/Apple-Health-Data/"
